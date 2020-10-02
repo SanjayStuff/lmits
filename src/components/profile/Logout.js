@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import LandingContent from "../landing/LandingContent";
 
 const Logout = () => {
-  return (
-    <>
-      {" "}
-      localStorage.removeItem("auth_key"); localStorage.removeItem("email");
-      localStorage.removeItem("name"); history.push("/login")
-    </>
-  );
+  useEffect(() => {
+    localStorage.removeItem("auth_key");
+  });
+
+  return <LandingContent />;
 };
 
 export default Logout;
