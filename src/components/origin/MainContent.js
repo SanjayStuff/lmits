@@ -1,7 +1,13 @@
 import React from "react";
+import QuotationContent from "../quotation/QuotationContent";
+import LandingContent from "../landing/LandingContent";
 
 const MainContent = () => {
-  return <h3>Main Content</h3>;
+  return (
+    <>
+      auth_token ? <QuotationContent /> : <LandingContent />
+    </>
+  );
 };
 
 export default MainContent;
