@@ -1,5 +1,5 @@
-import React from "react";
-import Dashboard from "./components/profile/Dashboard";
+import React from 'react';
+import Dashboard from './components/profile/Dashboard';
 
 function App() {
   return (
@@ -8,5 +8,5 @@ function App() {
     </div>
   );
 }
-
+// comment
 export default App;
