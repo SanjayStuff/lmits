@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavbarTop from "../../origin/NavbarTopSide";
+import NavbarTop from "../../origin/NavbarTop";
 import Modal from "@material-ui/core/Modal";
 
 const LoginWithMail = () => {
