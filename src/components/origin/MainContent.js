@@ -4,9 +4,9 @@ import LandingContent from "../landing/LandingContent";
 
 const MainContent = () => {
   return (
-    <>
-      auth_token ? <QuotationContent /> : <LandingContent />
-    </>
+    <h3>
+      {/*auth_token ? <QuotationContent /> : <LandingContent />*/}Main Content
+    </h3>
   );
 };
 

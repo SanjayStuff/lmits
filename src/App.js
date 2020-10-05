@@ -1,12 +1,22 @@
-import React from 'react';
-import Dashboard from './components/profile/Dashboard';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import MainRender from "./components/origin/MainRender";
+import LoginWithMail from "./components/landing/landingModals/LoginWithMail";
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={MainRender} />
+        <Route path="/loginwithuser" exact component={LoginWithMail} />
+      </Switch>
+    </Router>
   );
 }
-// comment
+
 export default App;
