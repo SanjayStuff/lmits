@@ -10,6 +10,7 @@ import Container from "@material-ui/core/Container";
 import Modal from "@material-ui/core/Modal";
 import { Button, Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
 
 function getModalStyle() {
   return {
@@ -23,12 +24,12 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "relative",
-    maxWidth: 1200,
+    maxWidth: 800,
     maxHeight: 700,
+    // minWidth: 600,
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    // border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    // padding: theme.spacing(2, 4, 3),
   },
 }));
 
@@ -36,6 +37,8 @@ const NavbarTop = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -47,53 +50,121 @@ const NavbarTop = () => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <Container>
-        <Grid container="true" spacing={2}>
-          <Grid item xs={5}>
-            <img src={loginImg} style={{ height: "100%", width: "100%" }} />
-            {/*<Paper className={classes.paper}>*/}
-          </Grid>
-          <Grid item xs={7} style={{ marginTop: "15px" }}>
-            <img src={lmitsLogo} style={{ width: "50%" }} />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-              aperiam aspernatur atque consectetur consequatur consequuntur
-              dolores earum ex, fugiat iure labore nesciunt odit, perspiciatis
-              placeat praesentium quidem, sed veniam voluptate.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
-              consequuntur culpa eaque fugit impedit nisi odio repudiandae.
-              Alias consequatur consequuntur delectus eligendi esse pariatur
-              quae reprehenderit saepe ullam! Commodi, quaerat.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
-              consequuntur culpa eaque fugit impedit nisi odio repudiandae.
-              Alias consequatur consequuntur delectus eligendi esse pariatur
-              quae reprehenderit saepe ullam! Commodi, quaerat.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
-              consequuntur culpa eaque fugit impedit nisi odio repudiandae.
-              Alias consequatur consequuntur delectus eligendi esse pariatur
-              quae reprehenderit saepe ullam! Commodi, quaerat.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
-              consequuntur culpa eaque fugit impedit nisi odio repudiandae.
-              Alias consequatur consequuntur delectus eligendi esse pariatur
-              quae reprehenderit saepe ullam! Commodi, quaerat.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
-              consequuntur culpa eaque fugit impedit nisi odio repudiandae.
-              Alias consequatur consequuntur delectus eligendi esse pariatur
-              quae reprehenderit saepe ullam! Commodi, quaerat.
-            </p>
-          </Grid>
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={5}>
+          <img src={loginImg} style={{ height: "100%", width: "100%" }} />
         </Grid>
-      </Container>
+        <Grid item xs={7} style={{ marginTop: "15px" }}>
+          <img
+            src={lmitsLogo}
+            // style={{ }}
+            style={{
+              width: "25%",
+              margin: "0.5em",
+              padding: "0.5rem",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          />
+          <h2
+            style={{
+              margin: "0.5em",
+              padding: "0.5rem",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Hello, Welcome Back
+          </h2>
+          <form>
+            <div
+              style={{
+                margin: "0.5em",
+                padding: "0.5rem",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                id="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                variant="outlined"
+                label="Email"
+                style={{ minWidth: "350px" }}
+              />
+            </div>
+            <div
+              style={{
+                margin: "0.5em",
+                padding: "0.5em",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                id="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                variant="outlined"
+                label="Password"
+                style={{ minWidth: "350px" }}
+              />
+            </div>
+            <div>
+              <span style={{ direction: "row" }}>Login with OTP</span>
+              <span style={{ direction: "rowReverse" }}>Forgot Password?</span>
+            </div>
+            <div
+              style={{
+                margin: "1rem",
+              }}
+            >
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{
+                  paddingRight: "4rem",
+                  paddingLeft: "4rem",
+                  paddingTop: "1rem",
+                  // paddingBottom: "1rem",
+                  // marginLeft: "4rem",
+                  fontSize: "1rem",
+                  minWidth: "350px",
+                  // marginBottom: "1rem",
+                }}
+              >
+                SIGN IN
+              </Button>
+            </div>
+            <div>New to Lmits? SignUp</div>
+          </form>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
+  const authentication = (
+    <div className="dv-desktop-menu__login-button b-header__login-button header-login-action p-2">
+      <div className="dv-button dv-button-colorless dv-button--small">
+        <Button onClick={handleOpen}>Login / Sign Up</Button>
+      </div>
+      <Modal open={open} onClose={handleClose} disableBackdropClick={true}>
+        {body}
+      </Modal>
+    </div>
+  );
+
+  const profHolder = (
+    <div className="header_img">
+      <a href="">
+        <img src={profileImg} alt="" />
+      </a>
     </div>
   );
 
@@ -124,23 +195,9 @@ const NavbarTop = () => {
               <img src={playStoreImg} alt="LMiTS" height={25} />
             </a>
           </div>
-          <div className="dv-desktop-menu__login-button b-header__login-button header-login-action p-2">
-            <div className="dv-button dv-button-colorless dv-button--small">
-              <Button onClick={handleOpen}>Login / Sign Up</Button>
-            </div>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              disableBackdropClick={true}
-            >
-              {body}
-            </Modal>
-          </div>
-          <div className="header_img">
-            <a href="">
-              <img src={profileImg} alt="" />
-            </a>
-          </div>
+          {!localStorage.getItem("lmits_auth_key")
+            ? authentication
+            : profHolder}
         </div>
       </div>
     </nav>
