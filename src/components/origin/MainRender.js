@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarTop from "./NavbarTop";
+import NavbarTop from "./NavbarTopSide";
 import MainContent from "./MainContent";
 
 const MainRender = () => {
