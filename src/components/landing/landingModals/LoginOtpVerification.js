@@ -1,9 +1,35 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
+import { Button, Grid, Link } from "@material-ui/core";
+import axios from "axios";
 
 const LoginOtpVerification = () => {
   const [otp, setOtp] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const otpVerifyData = {
+      Details: localStorage.getItem("lmits_login_details"),
+      otp,
+      mobile_number: localStorage.getItem("lmits_login_mob"),
+    };
+    console.log(otpVerifyData);
+    axios
+      .post(`${process.env.REACT_APP_VERIFY_LOGIN_OTP}`, otpVerifyData)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.response_data == 200) {
+          alert(response.data.message);
+        } else if (
+          response.data.response_code &&
+          response.data.response_code !== 200
+        ) {
+          alert(response.data.message);
+        }
+      })
+      .catch((err) => alert(err));
+  };
 
   return (
     <>
@@ -38,6 +64,9 @@ const LoginOtpVerification = () => {
         >
           Submit
         </Button>
+        <Link style={{ direction: "row-reverse", marginLeft: "2.5em" }}>
+          Resend OTP?
+        </Link>
       </form>
     </>
   );

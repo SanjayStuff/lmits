@@ -5,10 +5,14 @@ import { Button, Grid, Link } from "@material-ui/core";
 import LoginWithMail from "./LoginWithMail";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
+import LoginOtpVerification from "./LoginOtpVerification";
+import { useHistory } from "react-router";
 
 const LoginWithOtp = (props) => {
   const [mobile_number, setMobile_Number] = useState("");
   const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
+
+  let history = useHistory();
 
   const handleClick = () => {
     setIsOtpLogin(false);
@@ -26,13 +30,16 @@ const LoginWithOtp = (props) => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
+          localStorage.setItem("lmits_login_mob", mobile_number);
           localStorage.setItem("lmits_otp_details", response.data.otp.Details);
           alert(response.data.message);
+          history.push("/loginotpverification");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
           alert(response.data.message);
+          setMobile_Number("");
         }
       })
       .catch((err) => alert(err));
