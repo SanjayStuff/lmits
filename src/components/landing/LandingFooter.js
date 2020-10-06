@@ -1,7 +1,7 @@
-import React from "react";
-import logo from "../../assets/images/Logo.png";
-import FAppStore from "../../assets/images/footer/footer-appstore.png";
-import FPlayStore from "../../assets/images/footer/footer-playstore.png";
+import React from 'react';
+import logo from '../../assets/images/Logo.png';
+import FAppStore from '../../assets/images/footer/footer-appstore.png';
+import FPlayStore from '../../assets/images/footer/footer-playstore.png';
 
 const LandingFooter = () => {
   return (
@@ -63,17 +63,17 @@ const LandingFooter = () => {
                   </h6>
                   <ul className="list-unstyled company-sub-menu">
                     <li>
-                      <a className="text-muted" href>
+                      <a className="text-muted" href="#services">
                         Hyper Local
                       </a>
                     </li>
                     <li>
-                      <a className="text-muted" href>
+                      <a className="text-muted" href="#services">
                         Courier
                       </a>
                     </li>
                     <li>
-                      <a className="text-muted" href>
+                      <a className="text-muted" href="#services">
                         Intracity Delivery
                       </a>
                     </li>
@@ -83,7 +83,7 @@ const LandingFooter = () => {
                   <h6 className="footer-list-title text-dark mb-3">Company</h6>
                   <ul className="list-unstyled company-sub-menu">
                     <li>
-                      <a className="text-muted" href>
+                      <a className="text-muted" href="#about">
                         About Us
                       </a>
                     </li>

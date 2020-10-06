@@ -10,17 +10,15 @@
   --small-font-size: 0.75rem;
 }
 
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -34,7 +32,7 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #343a40;
   background: #fff;
-  font-size: 15px;
+  font-size: 14px;
 }
 p {
   line-height: 1.8;
@@ -911,6 +909,7 @@ ul li {
 }
 
 .read-more {
+  font-size: 14px;
   font-weight: 500;
   color: #303952;
 }
@@ -1676,7 +1675,7 @@ ul li {
 }
 
 .footer .company-sub-menu li {
-  padding: 8px 0;
+  padding: 0 0;
 }
 
 .footer .footer-para {
@@ -2393,6 +2392,7 @@ ul li {
   margin-bottom: 8px;
 }
 .s-box p {
+  font-size: 15px;
   color: rgba(87, 105, 117, 0.9);
   text-align: center;
 }
