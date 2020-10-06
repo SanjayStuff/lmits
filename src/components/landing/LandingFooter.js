@@ -105,7 +105,7 @@ const LandingFooter = () => {
                   </h6>
                   <p className="text-muted f-14">
                     R-22, 3rd Crosss, Nash Square, 1st Flr, Electronicity
-                    Phase-1 Above Canara Bank, Bengaluru, Karnatake - 560100
+                    Phase-1 Above Canara Bank, Bengaluru, Karnataka - 560100
                   </p>
                   <p className="text-muted">
                     <a className="text-muted" href="mailto:support@lmits.in">
