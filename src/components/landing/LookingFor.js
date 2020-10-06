@@ -6,7 +6,7 @@ import intraCityImg from '../../assets/images/service/intracity_delivery.svg';
 const LookingFor = () => {
   return (
     <>
-      <section className="services">
+      <section className="services" id="services">
         <div className="s-heading mt-5 pt-5 mb-0">
           <div className="services-title">
             <span className="section_title">What are you looking for ?</span>
@@ -18,7 +18,7 @@ const LookingFor = () => {
               <div className="bar" />
               <img alt={1} src={hyperLocalImg} />
               <h1 className="mt-2 text-center">Hyper Local</h1>
-              <p>
+              <p className="font-weight-normal">
                 Delivery services within a small and medium geographical area.
               </p>
             </div>
@@ -28,7 +28,7 @@ const LookingFor = () => {
               <div className="bar" />
               <img alt={1} src={courierImg} />
               <h1 className="mt-2 text-center">Courier</h1>
-              <p>
+              <p className="font-weight-normal">
                 Door to Door pickup and delivery services to select postal codes
                 across key cities in India for both domestic and international.
               </p>
@@ -39,7 +39,9 @@ const LookingFor = () => {
               <div className="bar" />
               <img alt={1} src={intraCityImg} />
               <h1 className="mt-2 text-center">Intracity Delivery</h1>
-              <p>Delivery services within a city at affordable cost.</p>
+              <p className="font-weight-normal">
+                Delivery services within a city at affordable cost.
+              </p>
             </div>
           </a>
         </div>
