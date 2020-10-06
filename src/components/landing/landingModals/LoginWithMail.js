@@ -28,15 +28,18 @@ const LoginWithMail = () => {
     };
     console.log(signIn.session);
     axios
-      .post("process.env.LOGIN_WITH_USER", signIn)
+      .post(`${process.env.REACT_APP_LOGIN_WITH_USER}`, signIn)
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
           // localStorage.setItem("lmits_auth_key", response.data.auth_token);
           alert(response.data.message);
-          history.push("/dashboard");
-        } else {
-          alert("Errorrrrr!!!!");
+          // history.push("/dashboard");
+        } else if (
+          response.data.response_code &&
+          response.data.response_code !== 200
+        ) {
+          alert(response.data.message);
         }
       })
       .catch((err) => alert(err));
