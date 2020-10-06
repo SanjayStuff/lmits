@@ -18,6 +18,7 @@ function getModalStyle() {
     left: "50%",
     transform: "translate(-50%, -50%)",
     overflow: "scroll",
+    borderRadius: 0,
   };
 }
 
@@ -66,16 +67,18 @@ const NavbarTop = () => {
               alignItems: "center",
             }}
           />
-          <h2
+          <h3
             style={{
               margin: "0.5em",
               padding: "0.5rem",
+              marginTop: "0",
+              paddingTop: "0",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
             Hello, Welcome Back
-          </h2>
+          </h3>
           <form>
             <div
               style={{
@@ -115,10 +118,18 @@ const NavbarTop = () => {
                 style={{ minWidth: "350px" }}
               />
             </div>
-            <div>
-              <span style={{ direction: "row" }}>Login with OTP</span>
-              <span style={{ direction: "rowReverse" }}>Forgot Password?</span>
-            </div>
+            <Grid container>
+              <Grid item xs={6}>
+                <span style={{ direction: "row", marginLeft: "1em" }}>
+                  Login with OTP
+                </span>
+              </Grid>
+              <Grid item xs={6}>
+                <span style={{ direction: "row-reverse" }}>
+                  Forgot Password?
+                </span>
+              </Grid>
+            </Grid>
             <div
               style={{
                 margin: "1rem",
@@ -132,17 +143,20 @@ const NavbarTop = () => {
                   paddingRight: "4rem",
                   paddingLeft: "4rem",
                   paddingTop: "1rem",
-                  // paddingBottom: "1rem",
-                  // marginLeft: "4rem",
                   fontSize: "1rem",
                   minWidth: "350px",
-                  // marginBottom: "1rem",
                 }}
               >
-                SIGN IN
+                Login
               </Button>
             </div>
-            <div>New to Lmits? SignUp</div>
+            <Grid
+              container
+              xs={12}
+              style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}
+            >
+              New to Lmits? SignUp
+            </Grid>
           </form>
         </Grid>
       </Grid>
