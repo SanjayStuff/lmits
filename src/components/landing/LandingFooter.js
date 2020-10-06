@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from '../../assets/images/logo.png';
-import FAppStore from '../../assets/images/footer/footer-appstore.png';
-import FPlayStore from '../../assets/images/footer/footer-playstore.png';
+import React from "react";
+import logo from "../../assets/images/Logo.png";
+import FAppStore from "../../assets/images/footer/footer-appstore.png";
+import FPlayStore from "../../assets/images/footer/footer-playstore.png";
 
 const LandingFooter = () => {
   return (
