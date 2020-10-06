@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import lmitsLogo from '../../../assets/images/Logo.png';
 import TextField from '@material-ui/core/TextField';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Link } from '@material-ui/core';
 import LoginWithOtp from './LoginWithOtp';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { UserContext } from '../../../context/UserContext';
 
-const LoginWithMail = () => {
+const LoginWithMail = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isOtpLogin, setIsOtpLogin] = useState(false);
+  const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
 
   let history = useHistory();
 
@@ -28,22 +29,25 @@ const LoginWithMail = () => {
     };
     console.log(signIn.session);
     axios
-      .post('process.env.LOGIN_WITH_USER', signIn)
+      .post(`${process.env.REACT_APP_LOGIN_WITH_USER}`, signIn)
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          // localStorage.setItem("lmits_auth_key", response.data.auth_token);
+          localStorage.setItem('lmits_auth_key', response.data.auth_token);
           alert(response.data.message);
-          history.push('/dashboard');
-        } else {
-          alert('Errorrrrr!!!!');
+          // history.push("/dashboard");
+        } else if (
+          response.data.response_code &&
+          response.data.response_code !== 200
+        ) {
+          alert(response.data.message);
         }
       })
       .catch((err) => alert(err));
   };
 
   return isOtpLogin ? (
-    <LoginWithOtp isOtpLogin={isOtpLogin} />
+    <LoginWithOtp />
   ) : (
     <>
       <div>
@@ -117,18 +121,17 @@ const LoginWithMail = () => {
         </div>
         <Grid container>
           <Grid item xs={6}>
-            <Button
-              disableRipple="true"
+            <Link
               style={{ direction: 'row', marginLeft: '1em' }}
               onClick={handleClick}
             >
               Login with OTP
-            </Button>
+            </Link>
           </Grid>
           <Grid item xs={6}>
-            <span style={{ direction: 'row-reverse', marginLeft: '2.5em' }}>
+            <Link style={{ direction: 'row-reverse', marginLeft: '2.5em' }}>
               Forgot Password?
-            </span>
+            </Link>
           </Grid>
         </Grid>
         <div

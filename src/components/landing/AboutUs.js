@@ -21,7 +21,7 @@ const AboutUs = () => {
                     About
                     <span className="text-warning font-weight-medium"> Us</span>
                   </h3>
-                  <p className="text-muted text-left">
+                  <p className="text-muted font-weight-normal text-left">
                     Logistics is the process of planning and executing the
                     efficient transportation and storage of goods from the point
                     of origin to the point of consumption. The goal of LMiTS is
@@ -29,14 +29,14 @@ const AboutUs = () => {
                     and ease of access with us innovative technology.
                   </p>
                   <div className="row pl-3">
-                    <a href="" className="mt-3 read-more">
+                    <a href="" className="mt-3 font-weight-normal read-more">
                       Read more <span className="right-icon">→</span>
                     </a>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <h6 className="text-dark f-20 mb-3">Our Vision</h6>
-                  <p className="text-muted font-weight-light">
+                  <p className="text-muted font-weight-normal">
                     We aim to simplify the logistics industry process. Our
                     vision is to enable the LMiTS Solutions &amp; technology in
                     all the logistics process grounded worldwide as a trusted
@@ -46,7 +46,7 @@ const AboutUs = () => {
                 </div>
                 <div className="col-md-6">
                   <h6 className="text-dark f-18 mb-3">Our Mission</h6>
-                  <p className="text-muted font-weight-light">
+                  <p className="text-muted font-weight-normal">
                     To promote teamwork &amp; create a work environment
                     encouraging the workforce to continuously strive for quality
                     &amp; excellence, providing high-quality service to

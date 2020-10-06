@@ -1,17 +1,46 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Link } from "@material-ui/core";
+import LoginWithMail from "./LoginWithMail";
+import { UserContext } from "../../../context/UserContext";
+import axios from "axios";
 
 const LoginWithOtp = (props) => {
   const [mobile_number, setMobile_Number] = useState("");
-  const [isOtpLogin, setIsOtpLogin] = useState(props);
+  const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
 
   const handleClick = () => {
     setIsOtpLogin(false);
   };
 
-  return (
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const otpData = {
+      mobile_number,
+    };
+    console.log(otpData);
+    axios
+      .post(`${process.env.REACT_APP_LOGIN_WITH_OTP}`, otpData)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.response_code === 200) {
+          localStorage.setItem("lmits_otp_details", response.data.otp.Details);
+          alert(response.data.message);
+        } else if (
+          response.data.response_code &&
+          response.data.response_code !== 200
+        ) {
+          alert(response.data.message);
+        }
+      })
+      .catch((err) => alert(err));
+  };
+
+  return !isOtpLogin ? (
+    <LoginWithMail />
+  ) : (
     <>
       <img
         src={lmitsLogo}
@@ -39,7 +68,7 @@ const LoginWithOtp = (props) => {
         We will send you a OTP(One Time Password) to verify the below mobile
         number provided by you
       </h6>
-      <form>
+      <form onSubmit={onSubmit}>
         <div
           style={{
             margin: "0.5em",
@@ -62,12 +91,12 @@ const LoginWithOtp = (props) => {
         </div>
         <Grid container style={{ maxWidth: "15vw" }}>
           <Grid item xs={12}>
-            <Button
+            <Link
               style={{ direction: "row", marginLeft: "1em" }}
               onClick={handleClick}
             >
               Login with Email/Mobile Number
-            </Button>
+            </Link>
           </Grid>
         </Grid>
         <div
@@ -90,11 +119,7 @@ const LoginWithOtp = (props) => {
             Generate OTP
           </Button>
         </div>
-        <Grid
-          container
-          xs={12}
-          style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}
-        >
+        <Grid container style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}>
           New to Lmits? SignUp
         </Grid>
       </form>

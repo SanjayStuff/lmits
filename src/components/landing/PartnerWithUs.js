@@ -32,7 +32,7 @@ const PartnerWithUs = () => {
             <div className="col-md-5 offset-md-1">
               <div className="row">
                 <div className="col-md-12 mb-1">
-                  <p className="text-dark font-weight-bold">
+                  <p className="text-dark font-weight-medium f-15">
                     Help us with below details in order to server you better
                   </p>
                 </div>
