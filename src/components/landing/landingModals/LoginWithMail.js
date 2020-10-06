@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Link } from "@material-ui/core";
 import LoginWithOtp from "./LoginWithOtp";
 import axios from "axios";
 import { useHistory } from "react-router";
+import { UserContext } from "../../../context/UserContext";
 
-const LoginWithMail = () => {
+const LoginWithMail = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isOtpLogin, setIsOtpLogin] = useState(false);
+  const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
 
   let history = useHistory();
 
@@ -32,7 +33,7 @@ const LoginWithMail = () => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          // localStorage.setItem("lmits_auth_key", response.data.auth_token);
+          localStorage.setItem("lmits_auth_key", response.data.auth_token);
           alert(response.data.message);
           // history.push("/dashboard");
         } else if (
@@ -46,7 +47,7 @@ const LoginWithMail = () => {
   };
 
   return isOtpLogin ? (
-    <LoginWithOtp isOtpLogin={isOtpLogin} />
+    <LoginWithOtp />
   ) : (
     <>
       <img
@@ -114,17 +115,17 @@ const LoginWithMail = () => {
         </div>
         <Grid container style={{ maxWidth: "350px" }}>
           <Grid item xs={6}>
-            <Button
+            <Link
               style={{ direction: "row", marginLeft: "1em" }}
               onClick={handleClick}
             >
               Login with OTP
-            </Button>
+            </Link>
           </Grid>
           <Grid item xs={6}>
-            <span style={{ direction: "row-reverse", marginLeft: "2.5em" }}>
+            <Link style={{ direction: "row-reverse", marginLeft: "2.5em" }}>
               Forgot Password?
-            </span>
+            </Link>
           </Grid>
         </Grid>
         <div
