@@ -11,13 +11,15 @@ import Modal from "@material-ui/core/Modal";
 import { Button, Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
+import LoginWithMail from "../landing/landingModals/LoginWithMail";
 
 function getModalStyle() {
   return {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    overflow: "scroll",
+    overflow: "hidden",
     borderRadius: 0,
   };
 }
@@ -25,12 +27,15 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "relative",
-    maxWidth: 800,
-    maxHeight: 700,
+    maxWidth: "60vw",
+    maxHeight: "90vh",
+    // minHeight: "75vh",
     // minWidth: 600,
     backgroundColor: theme.palette.background.paper,
     // border: "2px solid #000",
     boxShadow: theme.shadows[5],
+    borderRadius: 0,
+    overlay: "hidden",
   },
 }));
 
@@ -38,8 +43,6 @@ const NavbarTop = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,108 +59,7 @@ const NavbarTop = () => {
           <img src={loginImg} style={{ height: "100%", width: "100%" }} />
         </Grid>
         <Grid item xs={7} style={{ marginTop: "15px" }}>
-          <img
-            src={lmitsLogo}
-            // style={{ }}
-            style={{
-              width: "25%",
-              margin: "0.5em",
-              padding: "0.5rem",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          />
-          <h3
-            style={{
-              margin: "0.5em",
-              padding: "0.5rem",
-              marginTop: "0",
-              paddingTop: "0",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            Hello, Welcome Back
-          </h3>
-          <form>
-            <div
-              style={{
-                margin: "0.5em",
-                padding: "0.5rem",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <TextField
-                id="Email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                variant="outlined"
-                label="Email"
-                style={{ minWidth: "350px" }}
-              />
-            </div>
-            <div
-              style={{
-                margin: "0.5em",
-                padding: "0.5em",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <TextField
-                id="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                variant="outlined"
-                label="Password"
-                style={{ minWidth: "350px" }}
-              />
-            </div>
-            <Grid container>
-              <Grid item xs={6}>
-                <span style={{ direction: "row", marginLeft: "1em" }}>
-                  Login with OTP
-                </span>
-              </Grid>
-              <Grid item xs={6}>
-                <span style={{ direction: "row-reverse" }}>
-                  Forgot Password?
-                </span>
-              </Grid>
-            </Grid>
-            <div
-              style={{
-                margin: "1rem",
-              }}
-            >
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                style={{
-                  paddingRight: "4rem",
-                  paddingLeft: "4rem",
-                  paddingTop: "1rem",
-                  fontSize: "1rem",
-                  minWidth: "350px",
-                }}
-              >
-                Login
-              </Button>
-            </div>
-            <Grid
-              container
-              xs={12}
-              style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}
-            >
-              New to Lmits? SignUp
-            </Grid>
-          </form>
+          <LoginWithMail />
         </Grid>
       </Grid>
     </div>
@@ -219,64 +121,3 @@ const NavbarTop = () => {
 };
 
 export default NavbarTop;
-
-// ==============
-// <<<<<<< HEAD
-//     import React, { useState } from "react";
-// import { Button, Container } from "@material-ui/core";
-// import Modal from "@material-ui/core/Modal";
-// import makeStyles from "@material-ui/core/styles/makeStyles";
-// // import LoginWithMail from "../landing/landingModals/LoginWithMail";
-// // import { useHistory } from "react-router";
-//
-// function getModalStyle() {
-// return {
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-// };
-// }
-//
-// const useStyles = makeStyles((theme) => ({
-// paper: {
-//   position: "absolute",
-//   width: 400,
-//   backgroundColor: theme.palette.background.paper,
-//   border: "2px solid #000",
-//   boxShadow: theme.shadows[5],
-//   padding: theme.spacing(2, 4, 3),
-// },
-// }));
-//
-// const NavbarTop = () => {
-// const classes = useStyles();
-// const [open, setOpen] = useState(false);
-// const [modalStyle] = useState(getModalStyle);
-//
-// const handleOpen = () => {
-// setOpen(true);
-// };
-//
-// const handleClose = () => {
-// setOpen(false);
-// };
-//
-// const body = (
-//     <div style={modalStyle} className={classes.paper}>
-//     <Container>
-//     <h3>Modal is working</h3>
-// </Container>
-// </div>
-// );
-//
-// return (
-// <>
-// <>Navbar</>
-// <Button onClick={handleOpen} variant="contained" color="primary">
-// Login/signUp
-// </Button>
-// <Modal open={open} onClose={handleClose} disableBackdropClick={true}>
-// {body}
-// </Modal>
-// </>
-// =======
