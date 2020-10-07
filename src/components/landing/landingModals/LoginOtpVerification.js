@@ -39,31 +39,35 @@ const LoginOtpVerification = () => {
       {/*  your account.*/}
       {/*</p>*/}
       <form onSubmit={onSubmit}>
-        <TextField
-          id="OTP"
-          type="number"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-          required
-          variant="outlined"
-          label="Enter OTP"
-          size="small"
-          style={{ minWidth: "350px" }}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{
-            paddingRight: "4rem",
-            paddingLeft: "4rem",
-            paddingTop: "1rem",
-            fontSize: "1rem",
-            minWidth: "350px",
-          }}
-        >
-          Submit
-        </Button>
+        <div>
+          <TextField
+            id="OTP"
+            type="number"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            required
+            variant="outlined"
+            label="Enter OTP"
+            size="small"
+            style={{ minWidth: "350px" }}
+          />
+        </div>
+        <div>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{
+              paddingRight: "4rem",
+              paddingLeft: "4rem",
+              paddingTop: "1rem",
+              fontSize: "1rem",
+              minWidth: "350px",
+            }}
+          >
+            Submit
+          </Button>
+        </div>
         <Link style={{ direction: "row-reverse", marginLeft: "2.5em" }}>
           Resend OTP?
         </Link>
