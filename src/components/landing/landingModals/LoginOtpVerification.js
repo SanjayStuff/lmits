@@ -1,42 +1,41 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Button, Grid, Link, makeStyles } from '@material-ui/core';
-import axios from 'axios';
+import React, { useState } from "react";
+import TextField from "@material-ui/core/TextField";
+import { Button, Grid, Link, makeStyles } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '15px',
-    padding: '0.5rem 1rem',
-    outline: 'none',
-    border: 'none',
-    color: '#fff',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    color: "#fff",
+    background: "#8845d0",
+    textTransform: "capitalize",
+    marginLeft: "auto",
+    fontSize: "15px",
+    padding: "0.5rem 1rem",
+    outline: "none",
+    border: "none",
+    borderRadius: "0.5rem",
+    opacity: "0.7",
+    cursor: "pointer",
+    transition: "0.3s",
+    "&:hover": {
+      border: "none",
+      background: "#8845d0",
+      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
     },
   },
 }));
 
 const LoginOtpVerification = () => {
   const classes = useStyles();
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const otpVerifyData = {
-      Details: localStorage.getItem('lmits_otp_details'),
+      Details: localStorage.getItem("lmits_otp_details"),
       otp,
-      mobile_number: localStorage.getItem('lmits_login_mob'),
+      mobile_number: localStorage.getItem("lmits_login_mob"),
     };
     console.log(otpVerifyData);
     axios
@@ -59,7 +58,7 @@ const LoginOtpVerification = () => {
     <>
       <div
         style={{
-          marginLeft: '1rem',
+          marginLeft: "1rem",
         }}
       >
         <p className="login-card-description mb-0 pb-0">
@@ -69,10 +68,10 @@ const LoginOtpVerification = () => {
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -84,13 +83,13 @@ const LoginOtpVerification = () => {
             variant="outlined"
             label="Enter OTP"
             size="small"
-            style={{ minWidth: '100%' }}
+            style={{ minWidth: "100%" }}
           />
         </div>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
+            margin: "0.5em",
+            padding: "0.5rem",
           }}
         >
           <Button
@@ -99,7 +98,7 @@ const LoginOtpVerification = () => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: '100%',
+              minWidth: "100%",
             }}
           >
             Submit
@@ -111,7 +110,7 @@ const LoginOtpVerification = () => {
           <Link>
             <p
               className="login-card-forgot f-12"
-              style={{ color: '#000', cursor: 'pointer' }}
+              style={{ color: "#000", cursor: "pointer" }}
             >
               Resend OTP?
             </p>
@@ -120,7 +119,7 @@ const LoginOtpVerification = () => {
 
         <div className="pb-0 mb-0">
           <p>
-            New to LMiTS?{' '}
+            New to LMiTS?{" "}
             <a href="" className="text-black">
               SignUp
             </a>

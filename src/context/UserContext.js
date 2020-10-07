@@ -3,10 +3,10 @@ import React, { useState, createContext } from "react";
 export const UserContext = createContext();
 
 export const UserProvider = (props) => {
-  const [isOtpLogin, setIsOtpLogin] = useState(false);
+  const [userAuth, setUserAuth] = useState("");
 
   return (
-    <UserContext.Provider value={[isOtpLogin, setIsOtpLogin]}>
+    <UserContext.Provider value={[userAuth, setUserAuth]}>
       {props.children}
     </UserContext.Provider>
   );

@@ -1,75 +1,20 @@
-import React, { useState } from 'react';
-import logo from '../../assets/images/Logo.png';
-import appStoreImg from '../../assets/images/navicons/Appstore.png';
-import playStoreImg from '../../assets/images/navicons/Playstore.png';
-import profileImg from '../../assets/images/navicons/profile.png';
-import loginImg from '../../assets/images/login.svg';
-import lmitsLogo from '../../assets/images/Logo.png';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Container from '@material-ui/core/Container';
-import Modal from '@material-ui/core/Modal';
-import { Button, Grid, Dialog } from '@material-ui/core';
-import CloseIcon from '@material-ui/core/Icon';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import { Link } from 'react-router-dom';
-import LoginWithMail from '../landing/landingModals/LoginWithMail';
-
-function getModalStyle() {
-  return {
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    overflow: 'hidden',
-    borderRadius: 0,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    position: 'relative',
-    maxWidth: '60vw',
-    maxHeight: '90vh',
-    // minHeight: "75vh",
-    // minWidth: 600,
-    backgroundColor: theme.palette.background.paper,
-    // border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    borderRadius: 0,
-    overlay: 'hidden',
-  },
-}));
+import React, { useContext } from "react";
+import logo from "../../assets/images/Logo.png";
+import appStoreImg from "../../assets/images/navicons/Appstore.png";
+import playStoreImg from "../../assets/images/navicons/Playstore.png";
+import profileImg from "../../assets/images/navicons/profile.png";
+import loginImg from "../../assets/images/login.svg";
+import { Button } from "@material-ui/core";
+import LoginWithMail from "../landing/landingModals/LoginWithMail";
+import { UserContext } from "../../context/UserContext";
+import LoginWithOtp from "../landing/landingModals/LoginWithOtp";
+import ForgotPasswordOtp from "../landing/landingModals/ForgotPasswordOtp";
+import EnterNewPassword from "../landing/landingModals/EnterNewPassword";
+import SignupWithOtp from "../landing/landingModals/SignupWithOtp";
+import SignUpForm from "../landing/landingModals/SignUpForm";
 
 const NavbarTop = () => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [modalStyle] = useState(getModalStyle);
-  const [scroll, setScroll] = React.useState('paper');
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <Grid container direction="row" spacing={2}>
-        <Grid item xs={5}>
-          <img src={loginImg} style={{ height: '100%', width: '100%' }} />
-        </Grid>
-        <Grid item xs={7} style={{ marginTop: '15px' }}>
-          <LoginWithMail />
-        </Grid>
-      </Grid>
-    </div>
-  );
+  const [userAuth, setUserAuth] = useContext(UserContext);
 
   const authentication = (
     <div className="dv-desktop-menu__login-button b-header__login-button header-login-action p-2">
@@ -78,9 +23,6 @@ const NavbarTop = () => {
           <Button disableRipple="true">Login / Sign Up</Button>
         </a>
       </div>
-      {/* <Modal open={open} onClose={handleOpen} disableBackdropClick={true}>
-        {body}
-      </Modal> */}
     </div>
   );
 
@@ -91,6 +33,25 @@ const NavbarTop = () => {
       </a>
     </div>
   );
+
+  const modalComponent = () => {
+    switch (userAuth) {
+      case "1":
+        return <LoginWithMail />;
+      case "2":
+        return <LoginWithOtp />;
+      case "3":
+        return <ForgotPasswordOtp />;
+      case "4":
+        return <EnterNewPassword />;
+      case "5":
+        return <SignupWithOtp />;
+      case "6":
+        return <SignUpForm />;
+      default:
+        return <LoginWithMail />;
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-custom sticky">
@@ -104,7 +65,7 @@ const NavbarTop = () => {
           <div className="nav-item">
             <a
               className="font-weight-medium pb-0 mb-0 nav-name"
-              style={{ color: '#9da9bb' }}
+              style={{ color: "#9da9bb" }}
             >
               Download
             </a>
@@ -119,7 +80,7 @@ const NavbarTop = () => {
               <img src={playStoreImg} alt="LMiTS" height={25} />
             </a>
           </div>
-          {!localStorage.getItem('lmits_auth_key')
+          {!localStorage.getItem("lmits_auth_key")
             ? authentication
             : profHolder}
         </div>
@@ -132,9 +93,7 @@ const NavbarTop = () => {
                     <img src={loginImg} alt="" />
                   </div>
                   <div className="popup__text col-md-7">
-                    <div className="card-body">
-                      <LoginWithMail />
-                    </div>
+                    <div className="card-body">{modalComponent()}</div>
                   </div>
                   <a className="popup__close" href="#">
                     <i className="fa fa-close"></i>

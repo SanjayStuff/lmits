@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
+import { UserContext } from "../../../context/UserContext";
 
 const SignupOtpVerification = () => {
   const [otp, setOtp] = useState("");
+  const [userAuth, setUserAuth] = useContext(UserContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -21,8 +23,9 @@ const SignupOtpVerification = () => {
       .post(`${process.env.REACT_APP_VERIFY_SIGNUP_OTP}`, otpVerifyData)
       .then(function (response) {
         console.log(response.data);
-        if (response.data.response_code == 200) {
+        if (response.data.response_code === 200) {
           alert(response.data.message);
+          setUserAuth("6");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200

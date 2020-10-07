@@ -4,9 +4,11 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import axios from "axios";
 import SignupOtpVerification from "./SignupOtpVerification";
+import LoginOtpVerification from "./LoginOtpVerification";
 
 const SignupWithOtp = () => {
   const [mobile_number, setMobile_Number] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const SignupWithOtp = () => {
         if (response.data.response_code === 200) {
           localStorage.setItem("lmits_login_mob", mobile_number);
           localStorage.setItem("lmits_otp_details", response.data.otp.Details);
+          setOtpSent(true);
           alert(response.data.message);
         } else if (
           response.data.response_code &&
@@ -106,7 +109,7 @@ const SignupWithOtp = () => {
           </Button>
         </div>
       </form>
-      <SignupOtpVerification />
+      {otpSent ? <SignupOtpVerification /> : null}
     </>
   );
 };
