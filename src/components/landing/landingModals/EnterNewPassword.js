@@ -3,10 +3,13 @@ import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const EnterNewPassword = () => {
   const [new_password, setNewPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
+
+  let history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +29,7 @@ const EnterNewPassword = () => {
         if (response.data.response_code === 200) {
           alert(response.data.message);
           localStorage.removeItem("lmits_login_mob");
+          history.push("/");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200

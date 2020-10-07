@@ -10,7 +10,7 @@ const LoginOtpVerification = () => {
     e.preventDefault();
 
     const otpVerifyData = {
-      Details: localStorage.getItem("lmits_login_details"),
+      Details: localStorage.getItem("lmits_otp_details"),
       otp,
       mobile_number: localStorage.getItem("lmits_login_mob"),
     };
@@ -33,11 +33,11 @@ const LoginOtpVerification = () => {
 
   return (
     <>
-      <p>
-        Enter the 6 digit OTP you received on the mobile number you provided and
-        click on the 'Submit' button to verify your mobile number and login to
-        your account.
-      </p>
+      {/*<p>*/}
+      {/*  Enter the 6 digit OTP you received on the mobile number you provided and*/}
+      {/*  click on the 'Submit' button to verify your mobile number and login to*/}
+      {/*  your account.*/}
+      {/*</p>*/}
       <form onSubmit={onSubmit}>
         <TextField
           id="OTP"
@@ -67,6 +67,9 @@ const LoginOtpVerification = () => {
         <Link style={{ direction: "row-reverse", marginLeft: "2.5em" }}>
           Resend OTP?
         </Link>
+        <Grid container style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}>
+          New to Lmits? SignUp
+        </Grid>
       </form>
     </>
   );

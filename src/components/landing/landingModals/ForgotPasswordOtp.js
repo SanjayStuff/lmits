@@ -12,12 +12,13 @@ const ForgotPasswordOtp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const number = {
+    const mobileNumber = {
       mobile_number,
     };
-    console.log(number);
+
+    console.log(mobileNumber);
     axios
-      .post(`${process.env.REACT_APP_FORGOT_PASS_OTP}`, mobile_number)
+      .post(`${process.env.REACT_APP_FORGOT_PASS_OTP}`, mobileNumber)
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
