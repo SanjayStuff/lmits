@@ -1,14 +1,43 @@
 import React, { useState } from "react";
 import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
-import { Button, Grid } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import axios from "axios";
+import SignupOtpVerification from "./SignupOtpVerification";
 
 const SignupWithOtp = () => {
   const [mobile_number, setMobile_Number] = useState("");
 
-  // const handleClick = () => {
-  //     setIsOtpLogin(false);
-  // };
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const otpSignUpData = {
+      mobile_number,
+      controller: "users",
+      action: "verify_mobile",
+      user: {
+        mobile_number,
+      },
+    };
+    console.log(otpSignUpData);
+    axios
+      .post(`${process.env.REACT_APP_SIGNUP_WITH_OTP}`, otpSignUpData)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.response_code === 200) {
+          localStorage.setItem("lmits_login_mob", mobile_number);
+          localStorage.setItem("lmits_otp_details", response.data.otp.Details);
+          alert(response.data.message);
+        } else if (
+          response.data.response_code &&
+          response.data.response_code !== 200
+        ) {
+          alert(response.data.message);
+          setMobile_Number("");
+        }
+      })
+      .catch((err) => alert(err));
+  };
 
   return (
     <>
@@ -21,6 +50,7 @@ const SignupWithOtp = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
+        alt="LogoImg"
       />
       <h3
         style={{
@@ -32,13 +62,9 @@ const SignupWithOtp = () => {
           alignItems: "center",
         }}
       >
-        Hello, Welcome
+        Verification
       </h3>
-      <h6>
-        We will send you a OTP(One Time Password) to verify the below mobile
-        number provided by you
-      </h6>
-      <form>
+      <form onSubmit={onSubmit}>
         <div
           style={{
             margin: "0.5em",
@@ -54,7 +80,7 @@ const SignupWithOtp = () => {
             onChange={(e) => setMobile_Number(e.target.value)}
             required
             variant="outlined"
-            label="Mobile Number"
+            label="Enter Mobile Number"
             size="small"
             style={{ minWidth: "15vw" }}
           />
@@ -79,14 +105,8 @@ const SignupWithOtp = () => {
             Generate OTP
           </Button>
         </div>
-        <Grid
-          container
-          xs={12}
-          style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}
-        >
-          Already have an account? Login
-        </Grid>
       </form>
+      <SignupOtpVerification />
     </>
   );
 };
