@@ -14,6 +14,7 @@ import Dashboard from './components/profile/Dashboard';
 import LoginOtpVerification from './components/landing/landingModals/LoginOtpVerification';
 import ForgotPasswordOtp from './components/landing/landingModals/ForgotPasswordOtp';
 import EnterNewPassword from './components/landing/landingModals/EnterNewPassword';
+import SignUpForm from './components/landing/landingModals/SignUpForm';
 
 const THEME = createMuiTheme({
   typography: {
@@ -37,6 +38,8 @@ function App() {
           />
           <Route path="/forgotpass" component={ForgotPasswordOtp} />
           <Route path="/enternewpass" component={EnterNewPassword} />
+          <Route path="/signupotp" component={SignupWithOtp} />
+          <Route path="/signup" component={SignUpForm} />
         </Switch>
       </Router>
     </MuiThemeProvider>
