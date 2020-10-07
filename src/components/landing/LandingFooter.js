@@ -63,19 +63,25 @@ const LandingFooter = () => {
                   </h6>
                   <ul className="list-unstyled company-sub-menu">
                     <li>
-                      <a className="text-muted" href="#services">
-                        Hyper Local
-                      </a>
+                      <p className="text-muted">
+                        <a className="text-muted" href="#services">
+                          Hyper Local
+                        </a>
+                      </p>
                     </li>
                     <li>
-                      <a className="text-muted" href="#services">
-                        Courier
-                      </a>
+                      <p className="text-muted">
+                        <a className="text-muted" href="#services">
+                          Courier
+                        </a>
+                      </p>
                     </li>
                     <li>
-                      <a className="text-muted" href="#services">
-                        Intracity Delivery
-                      </a>
+                      <p className="text-muted">
+                        <a className="text-muted" href="#services">
+                          Intracity Delivery
+                        </a>
+                      </p>
                     </li>
                   </ul>
                 </div>
@@ -83,19 +89,25 @@ const LandingFooter = () => {
                   <h6 className="footer-list-title text-dark mb-3">Company</h6>
                   <ul className="list-unstyled company-sub-menu">
                     <li>
-                      <a className="text-muted" href="#about">
-                        About Us
-                      </a>
+                      <p className="text-muted">
+                        <a className="text-muted" href="#about">
+                          About Us
+                        </a>
+                      </p>
                     </li>
                     <li>
-                      <a className="text-muted" href>
-                        Terms &amp; Conditions
-                      </a>
+                      <p className="text-muted">
+                        <a className="text-muted" href="#">
+                          Terms &amp; Conditions
+                        </a>
+                      </p>
                     </li>
                     <li>
-                      <a className="text-muted" href>
-                        Privacy Policy
-                      </a>
+                      <p className="text-muted">
+                        <a className="text-muted" href="#">
+                          Privacy Policy
+                        </a>
+                      </p>
                     </li>
                   </ul>
                 </div>

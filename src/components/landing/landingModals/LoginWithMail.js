@@ -1,15 +1,39 @@
-import React, { useContext, useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import TextField from "@material-ui/core/TextField";
-import { Button, Grid, Link } from "@material-ui/core";
-import LoginWithOtp from "./LoginWithOtp";
-import axios from "axios";
-import { useHistory } from "react-router";
-import { UserContext } from "../../../context/UserContext";
+import React, { useContext, useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import TextField from '@material-ui/core/TextField';
+import { Button, Grid, Link, makeStyles } from '@material-ui/core';
+import LoginWithOtp from './LoginWithOtp';
+import axios from 'axios';
+import { useHistory } from 'react-router';
+import { UserContext } from '../../../context/UserContext';
+
+const useStyles = makeStyles((theme) => ({
+  loginButton: {
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+
+    fontSize: '15px',
+    padding: '0.5rem 7rem',
+    outline: 'none',
+    border: 'none',
+    color: '#fff',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    },
+  },
+}));
 
 const LoginWithMail = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
 
   // let history = useHistory();
@@ -33,7 +57,7 @@ const LoginWithMail = (props) => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.setItem("lmits_auth_key", response.data.auth_token);
+          localStorage.setItem('lmits_auth_key', response.data.auth_token);
           alert(response.data.message);
           // history.push("/dashboard");
         } else if (
@@ -50,35 +74,40 @@ const LoginWithMail = (props) => {
     <LoginWithOtp />
   ) : (
     <>
-      <img
-        src={lmitsLogo}
-        style={{
-          width: "25%",
-          margin: "0.5em",
-          padding: "0.5rem",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      />
-      <h3
-        style={{
-          margin: "0.5em",
-          padding: "0.5rem",
-          marginTop: "0",
-          paddingTop: "0",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Hello, Welcome Back
-      </h3>
-      <form onSubmit={onSubmit}>
-        <div
+      <div>
+        <img
+          className="login-img"
+          src={lmitsLogo}
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '25%',
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        />
+        <h3
+          style={{
+            fontSize: '20px',
+            margin: '0.5em',
+            padding: '0.5rem',
+            marginTop: '0',
+            paddingTop: '0',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          Hello, Welcome Back
+        </h3>
+      </div>
+      <form container onSubmit={onSubmit} className="form">
+        <div
+          className="form__div"
+          style={{
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -86,19 +115,19 @@ const LoginWithMail = (props) => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
             variant="outlined"
             label="Email"
             size="small"
-            style={{ minWidth: "350px" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
+          className="form__div"
           style={{
-            margin: "0.5em",
-            padding: "0.5em",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -106,51 +135,60 @@ const LoginWithMail = (props) => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
             variant="outlined"
             label="Password"
             size="small"
-            style={{ minWidth: "350px" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
-        <Grid container style={{ maxWidth: "350px" }}>
-          <Grid item xs={6}>
-            <Link
-              style={{ direction: "row", marginLeft: "1em" }}
-              onClick={handleClick}
+
+        <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
+          <div className="d-inline-block">
+            <Link onClick={handleClick}>
+              <p
+                className="login-card-description f-12"
+                style={{ color: '#000', cursor: 'pointer' }}
+              >
+                Login with OTP
+              </p>
+            </Link>
+          </div>
+
+          <div className="pb-0 mb-0">
+            <p
+              className="login-card-description f-12"
+              style={{ color: '#ee4a4a', cursor: 'pointer' }}
             >
-              Login with OTP
-            </Link>
-          </Grid>
-          <Grid item xs={6}>
-            <Link style={{ direction: "row-reverse", marginLeft: "2.5em" }}>
               Forgot Password?
-            </Link>
-          </Grid>
-        </Grid>
+            </p>
+          </div>
+        </div>
         <div
+          className="text-center mt-0 pt-0"
           style={{
-            margin: "1rem",
+            margin: '.5rem',
           }}
         >
           <Button
+            className={classes.loginButton}
             type="submit"
             variant="contained"
             color="primary"
             style={{
-              paddingRight: "4rem",
-              paddingLeft: "4rem",
-              paddingTop: "1rem",
-              fontSize: "1rem",
-              minWidth: "350px",
+              minWidth: '100%',
             }}
           >
             Login
           </Button>
         </div>
-        <Grid container style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}>
-          New to Lmits? SignUp
-        </Grid>
+        <div className="text-center">
+          <p>
+            New to LMiTS?{' '}
+            <a href="" className="text-black">
+              SignUp
+            </a>
+          </p>
+        </div>
       </form>
     </>
   );
