@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import TextField from "@material-ui/core/TextField";
-import { Button, Grid, Link } from "@material-ui/core";
-import LoginWithMail from "./LoginWithMail";
-import { UserContext } from "../../../context/UserContext";
-import axios from "axios";
+import React, { useContext, useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import TextField from '@material-ui/core/TextField';
+import { Button, Grid, Link } from '@material-ui/core';
+import LoginWithMail from './LoginWithMail';
+import { UserContext } from '../../../context/UserContext';
+import axios from 'axios';
 
 const LoginWithOtp = (props) => {
-  const [mobile_number, setMobile_Number] = useState("");
+  const [mobile_number, setMobile_Number] = useState('');
   const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
 
   const handleClick = () => {
@@ -26,7 +26,7 @@ const LoginWithOtp = (props) => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.setItem("lmits_otp_details", response.data.otp.Details);
+          localStorage.setItem('lmits_otp_details', response.data.otp.Details);
           alert(response.data.message);
         } else if (
           response.data.response_code &&
@@ -45,25 +45,13 @@ const LoginWithOtp = (props) => {
       <img
         src={lmitsLogo}
         style={{
-          width: "25%",
-          margin: "0.5em",
-          padding: "0.5rem",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '25%',
+          margin: '0.5em',
+          padding: '0.5rem',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       />
-      <h3
-        style={{
-          margin: "0.5em",
-          padding: "0.5rem",
-          marginTop: "0",
-          paddingTop: "0",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Hello, Welcome Back
-      </h3>
       <h6>
         We will send you a OTP(One Time Password) to verify the below mobile
         number provided by you
@@ -71,10 +59,10 @@ const LoginWithOtp = (props) => {
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -86,13 +74,13 @@ const LoginWithOtp = (props) => {
             variant="outlined"
             label="Mobile Number"
             size="small"
-            style={{ minWidth: "15vw" }}
+            style={{ minWidth: '15vw' }}
           />
         </div>
-        <Grid container style={{ maxWidth: "15vw" }}>
+        <Grid container style={{ maxWidth: '15vw' }}>
           <Grid item xs={12}>
             <Link
-              style={{ direction: "row", marginLeft: "1em" }}
+              style={{ direction: 'row', marginLeft: '1em' }}
               onClick={handleClick}
             >
               Login with Email/Mobile Number
@@ -101,7 +89,7 @@ const LoginWithOtp = (props) => {
         </Grid>
         <div
           style={{
-            margin: "1rem",
+            margin: '1rem',
           }}
         >
           <Button
@@ -109,17 +97,17 @@ const LoginWithOtp = (props) => {
             variant="contained"
             color="primary"
             style={{
-              paddingRight: "4rem",
-              paddingLeft: "4rem",
-              paddingTop: "1rem",
-              fontSize: "1rem",
-              minWidth: "350px",
+              paddingRight: '4rem',
+              paddingLeft: '4rem',
+              paddingTop: '1rem',
+              fontSize: '1rem',
+              minWidth: '350px',
             }}
           >
             Generate OTP
           </Button>
         </div>
-        <Grid container style={{ marginLeft: "0.5em", marginBottom: "1.5em" }}>
+        <Grid container style={{ marginLeft: '0.5em', marginBottom: '1.5em' }}>
           New to Lmits? SignUp
         </Grid>
       </form>

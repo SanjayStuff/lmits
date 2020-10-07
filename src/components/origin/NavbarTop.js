@@ -75,7 +75,7 @@ const NavbarTop = () => {
     <div className="dv-desktop-menu__login-button b-header__login-button header-login-action p-2">
       <div className="dv-button dv-button-colorless dv-button--small">
         <a href="#popupotplogin">
-          <Button>Login / Sign Up</Button>
+          <Button disableRipple="true">Login / Sign Up</Button>
         </a>
       </div>
       {/* <Modal open={open} onClose={handleOpen} disableBackdropClick={true}>
@@ -137,7 +137,7 @@ const NavbarTop = () => {
                     </div>
                   </div>
                   <a className="popup__close" href="#">
-                    X
+                    <i className="fa fa-close"></i>
                   </a>
                 </div>
               </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import EcourierzImg from '../../assets/images/partner/Ecourierz.png';
-import GrabImg from '../../assets/images/partner/Grab.png';
 import TelyportImg from '../../assets/images/partner/Telyport.png';
 import VamashipImg from '../../assets/images/partner/Vamaship.png';
 import WefastImg from '../../assets/images/partner/Wefast.png';
@@ -26,35 +25,30 @@ const Partners = () => {
                   <img src={VamashipImg} alt="" />
                   <img src={WefastImg} alt="" height="100px" />
                   <img src={EcourierzImg} alt="" />
-                  <img src={GrabImg} alt="" height="100px" />
                   <img src={TelyportImg} alt="" />
                 </div>
                 <div className="slides">
                   <img src={VamashipImg} alt="" />
                   <img src={WefastImg} alt="" height="100px" />
                   <img src={EcourierzImg} alt="" />
-                  <img src={GrabImg} alt="" height="100px" />
                   <img src={TelyportImg} alt="" />
                 </div>
                 <div className="slides">
                   <img src={VamashipImg} alt="" />
                   <img src={WefastImg} alt="" height="100px" />
                   <img src={EcourierzImg} alt="" />
-                  <img src={GrabImg} alt="" height="100px" />
                   <img src={TelyportImg} alt="" />
                 </div>
                 <div className="slides">
                   <img src={VamashipImg} alt="" />
                   <img src={WefastImg} alt="" height="100px" />
                   <img src={EcourierzImg} alt="" />
-                  <img src={GrabImg} alt="" height="100px" />
                   <img src={TelyportImg} alt="" />
                 </div>
                 <div className="slides">
                   <img src={VamashipImg} alt="" />
                   <img src={WefastImg} alt="" height="100px" />
                   <img src={EcourierzImg} alt="" />
-                  <img src={GrabImg} alt="" height="100px" />
                   <img src={TelyportImg} alt="" />
                 </div>
               </div>
