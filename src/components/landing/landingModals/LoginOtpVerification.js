@@ -46,7 +46,7 @@ const LoginOtpVerification = () => {
           onChange={(e) => setOtp(e.target.value)}
           required
           variant="outlined"
-          label="Password"
+          label="Enter OTP"
           size="small"
           style={{ minWidth: "350px" }}
         />
