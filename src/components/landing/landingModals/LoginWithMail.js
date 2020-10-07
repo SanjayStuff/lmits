@@ -12,7 +12,7 @@ const LoginWithMail = (props) => {
   const [password, setPassword] = useState('');
   const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
 
-  let history = useHistory();
+  // let history = useHistory();
 
   const handleClick = () => {
     setIsOtpLogin(true);
