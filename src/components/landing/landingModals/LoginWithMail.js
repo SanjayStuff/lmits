@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     background: '#8845d0',
     textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '18px',
-    padding: '0.5rem 1rem',
+
+    fontSize: '15px',
+    padding: '0.5rem 7rem',
     outline: 'none',
     border: 'none',
     color: '#fff',
@@ -28,18 +28,15 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
-  formFont: {
-    fontFamily: `"Poppins", 'sans-serif'`,
-  },
 }));
 
 const LoginWithMail = (props) => {
+  const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
-  const classes = useStyles();
 
-  let history = useHistory();
+  // let history = useHistory();
 
   const handleClick = () => {
     setIsOtpLogin(true);
@@ -114,7 +111,6 @@ const LoginWithMail = (props) => {
           }}
         >
           <TextField
-            className={classes.formFont}
             id="Email"
             type="email"
             value={email}
@@ -150,7 +146,7 @@ const LoginWithMail = (props) => {
           <div className="d-inline-block">
             <Link onClick={handleClick}>
               <p
-                className="login-card-forgot f-12"
+                className="login-card-description f-12"
                 style={{ color: '#000', cursor: 'pointer' }}
               >
                 Login with OTP
@@ -159,27 +155,16 @@ const LoginWithMail = (props) => {
           </div>
 
           <div className="pb-0 mb-0">
-            <p className="login-card-forgot f-12" style={{ color: '#ee4a4a' }}>
+            <p
+              className="login-card-description f-12"
+              style={{ color: '#ee4a4a', cursor: 'pointer' }}
+            >
               Forgot Password?
             </p>
           </div>
         </div>
-
-        {/* <Grid container>
-          <Grid item xs={6}>
-            <Link style={{ direction: 'row' }} onClick={handleClick}>
-              <p className="p-0 m-0 pt-0 mt-0" style={{ cursor: 'pointer' }}>
-                Login with OTP
-              </p>
-            </Link>
-          </Grid>
-          <Grid item xs={6}>
-            <Link style={{ direction: 'row-reverse', marginLeft: '2.5em' }}>
-              Forgot Password?
-            </Link>
-          </Grid>
-        </Grid> */}
         <div
+          className="text-center mt-0 pt-0"
           style={{
             margin: '.5rem',
           }}
@@ -196,14 +181,14 @@ const LoginWithMail = (props) => {
             Login
           </Button>
         </div>
-        <Grid container style={{ marginLeft: '0.5em', marginBottom: '1.5em' }}>
+        <div className="text-center">
           <p>
             New to LMiTS?{' '}
             <a href="" className="text-black">
               SignUp
             </a>
           </p>
-        </Grid>
+        </div>
       </form>
     </>
   );
