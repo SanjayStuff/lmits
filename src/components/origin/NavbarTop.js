@@ -87,9 +87,10 @@ const NavbarTop = () => {
               <img src={playStoreImg} alt="LMiTS" height={25} />
             </a>
           </div>
-          {!localStorage.getItem("lmits_auth_key")
-            ? authentication
-            : profHolder}
+          {/*{!localStorage.getItem("lmits_auth_key")*/}
+          {/*  ? authentication*/}
+          {/*  : profHolder}*/}
+          {authentication}
         </div>
         <section>
           <div className="row">

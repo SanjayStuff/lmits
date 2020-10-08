@@ -106,12 +106,12 @@ const LoginWithMail = (props) => {
         >
           <TextField
             id="Email"
-            type="email"
+            // type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             variant="outlined"
             required
-            label="Email"
+            label="Email/Phone Number"
             size="small"
             style={{ minWidth: "100%" }}
           />
