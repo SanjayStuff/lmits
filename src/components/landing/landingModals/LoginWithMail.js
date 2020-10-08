@@ -1,42 +1,45 @@
-import React, { useContext, useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import TextField from "@material-ui/core/TextField";
-import { Button, Link, makeStyles } from "@material-ui/core";
-import LoginWithOtp from "./LoginWithOtp";
-import axios from "axios";
-import { UserContext } from "../../../context/UserContext";
+import React, { useContext, useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import TextField from '@material-ui/core/TextField';
+import { Button, Link, makeStyles } from '@material-ui/core';
+import LoginWithOtp from './LoginWithOtp';
+import axios from 'axios';
+import { UserContext } from '../../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
-    color: "#fff",
-    background: "#8845d0",
-    textTransform: "capitalize",
-    fontSize: "15px",
-    padding: "0.5rem 7rem",
-    outline: "none",
-    border: "none",
-    borderRadius: "0.5rem",
-    opacity: "0.7",
-    cursor: "pointer",
-    transition: "0.3s",
-    "&:hover": {
-      border: "none",
-      background: "#8845d0",
-      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+    fontSize: '15px',
+    padding: '0.5rem 7rem',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
+  },
+  asterisk: {
+    display: 'none',
   },
 }));
 
 const LoginWithMail = (props) => {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [userAuth, setUserAuth] = useContext(UserContext);
 
   // let history = useHistory();
 
   const handleClick = () => {
-    setUserAuth("2");
+    setUserAuth('2');
   };
 
   const onSubmit = (e) => {
@@ -54,7 +57,7 @@ const LoginWithMail = (props) => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.setItem("lmits_auth_key", response.data.auth_token);
+          localStorage.setItem('lmits_auth_key', response.data.auth_token);
           alert(response.data.message);
         } else if (
           response.data.response_code &&
@@ -73,22 +76,20 @@ const LoginWithMail = (props) => {
           className="login-img"
           src={lmitsLogo}
           style={{
-            width: "25%",
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '25%',
+            marginLeft: '0.8em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         />
         <h3
+          className="text-black"
           style={{
-            fontSize: "20px",
-            margin: "0.5em",
-            padding: "0.5rem",
-            marginTop: "0",
-            paddingTop: "0",
-            justifyContent: "center",
-            alignItems: "center",
+            fontSize: '20px',
+            margin: '0.5em',
+            padding: '0.5rem',
+            paddingBottom: '0px',
           }}
         >
           Hello, Welcome Back
@@ -98,43 +99,58 @@ const LoginWithMail = (props) => {
         <div
           className="form__div"
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
             id="Email"
             // type="email"
             value={email}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+              style: { fontSize: 15 },
+            }}
             onChange={(e) => setEmail(e.target.value)}
             variant="outlined"
             required
             label="Email/Phone Number"
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           className="form__div"
           style={{
-            margin: "0.5em",
-            padding: "0.5em",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
             id="Password"
             type="password"
             value={password}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             onChange={(e) => setPassword(e.target.value)}
             variant="outlined"
             label="Password"
             required
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
 
@@ -143,7 +159,7 @@ const LoginWithMail = (props) => {
             <Link onClick={handleClick}>
               <p
                 className="login-card-description f-12"
-                style={{ color: "#000", cursor: "pointer" }}
+                style={{ color: '#000', cursor: 'pointer' }}
               >
                 Login with OTP
               </p>
@@ -153,9 +169,9 @@ const LoginWithMail = (props) => {
           <div className="pb-0 mb-0">
             <p
               className="login-card-description f-12"
-              style={{ color: "#ee4a4a", cursor: "pointer" }}
+              style={{ color: '#ee4a4a', cursor: 'pointer' }}
               onClick={() => {
-                setUserAuth("3");
+                setUserAuth('3');
               }}
             >
               Forgot Password?
@@ -165,7 +181,7 @@ const LoginWithMail = (props) => {
         <div
           className="text-center mt-0 pt-0"
           style={{
-            margin: ".5rem",
+            margin: '.5rem',
           }}
         >
           <Button
@@ -174,7 +190,7 @@ const LoginWithMail = (props) => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: "100%",
+              minWidth: '100%',
             }}
           >
             Login
@@ -186,9 +202,9 @@ const LoginWithMail = (props) => {
             <span
               className="text-black"
               onClick={() => {
-                setUserAuth("5");
+                setUserAuth('5');
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               SignUp
             </span>

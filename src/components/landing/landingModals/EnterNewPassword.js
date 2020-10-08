@@ -1,13 +1,37 @@
-import React, { useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
-import axios from "axios";
-import { useHistory } from "react-router";
+import React, { useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import TextField from '@material-ui/core/TextField';
+import { Button, makeStyles } from '@material-ui/core';
+import axios from 'axios';
+import { useHistory } from 'react-router';
+
+const useStyles = makeStyles((theme) => ({
+  loginButton: {
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+    fontSize: '15px',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    },
+  },
+  asterisk: {
+    display: 'none',
+  },
+}));
 
 const EnterNewPassword = () => {
-  const [new_password, setNewPassword] = useState("");
-  const [password_confirmation, setPasswordConfirmation] = useState("");
+  const classes = useStyles();
+  const [new_password, setNewPassword] = useState('');
+  const [password_confirmation, setPasswordConfirmation] = useState('');
 
   let history = useHistory();
 
@@ -16,7 +40,7 @@ const EnterNewPassword = () => {
 
     const changePass = {
       update_password_params: {
-        phone: localStorage.getItem("lmits_login_mob"),
+        phone: localStorage.getItem('lmits_login_mob'),
         new_password,
         password_confirmation,
       },
@@ -45,20 +69,28 @@ const EnterNewPassword = () => {
       <img
         src={lmitsLogo}
         style={{
-          width: "25%",
-          margin: "0.5em",
-          padding: "0.5rem",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '25%',
+          margin: '0.5em',
+          padding: '0.5rem',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       />
+      <h4
+        className="text-black f-18"
+        style={{
+          marginLeft: '0.8em',
+        }}
+      >
+        Change Forgot Password
+      </h4>
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5em",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -67,18 +99,25 @@ const EnterNewPassword = () => {
             value={new_password}
             onChange={(e) => setNewPassword(e.target.value)}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Enter New Password"
             size="small"
-            style={{ minWidth: "350px" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5em",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -87,27 +126,31 @@ const EnterNewPassword = () => {
             value={password_confirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Confirm New Password"
             size="small"
-            style={{ minWidth: "350px" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           style={{
-            margin: "1rem",
+            paddingLeft: '.5rem',
           }}
         >
           <Button
+            className={classes.loginButton}
             type="submit"
             variant="contained"
             color="primary"
             style={{
-              paddingRight: "4rem",
-              paddingLeft: "4rem",
-              paddingTop: "1rem",
-              fontSize: "1rem",
-              minWidth: "350px",
+              minWidth: '100%',
             }}
           >
             Change Password

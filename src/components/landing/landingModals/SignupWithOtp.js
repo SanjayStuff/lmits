@@ -1,13 +1,39 @@
-import React, { useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
-import axios from "axios";
-import SignupOtpVerification from "./SignupOtpVerification";
-import LoginOtpVerification from "./LoginOtpVerification";
+import React, { useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import TextField from '@material-ui/core/TextField';
+import { Button, makeStyles } from '@material-ui/core';
+import axios from 'axios';
+import SignupOtpVerification from './SignupOtpVerification';
+import LoginOtpVerification from './LoginOtpVerification';
+
+const useStyles = makeStyles((theme) => ({
+  loginButton: {
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+    marginLeft: 'auto',
+    fontSize: '15px',
+    padding: '0.5rem 1rem',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    },
+  },
+  asterisk: {
+    display: 'none',
+  },
+}));
 
 const SignupWithOtp = () => {
-  const [mobile_number, setMobile_Number] = useState("");
+  const classes = useStyles();
+  const [mobile_number, setMobile_Number] = useState('');
   const [otpSent, setOtpSent] = useState(false);
 
   const onSubmit = (e) => {
@@ -15,8 +41,8 @@ const SignupWithOtp = () => {
 
     const otpSignUpData = {
       mobile_number,
-      controller: "users",
-      action: "verify_mobile",
+      controller: 'users',
+      action: 'verify_mobile',
       user: {
         mobile_number,
       },
@@ -27,8 +53,8 @@ const SignupWithOtp = () => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.setItem("lmits_login_mob", mobile_number);
-          localStorage.setItem("lmits_otp_details", response.data.otp.Details);
+          localStorage.setItem('lmits_login_mob', mobile_number);
+          localStorage.setItem('lmits_otp_details', response.data.otp.Details);
           setOtpSent(true);
           alert(response.data.message);
         } else if (
@@ -36,7 +62,7 @@ const SignupWithOtp = () => {
           response.data.response_code !== 200
         ) {
           alert(response.data.message);
-          setMobile_Number("");
+          setMobile_Number('');
         }
       })
       .catch((err) => alert(err));
@@ -44,36 +70,32 @@ const SignupWithOtp = () => {
 
   return (
     <>
-      <img
-        src={lmitsLogo}
-        style={{
-          width: "25%",
-          margin: "0.5em",
-          padding: "0.5rem",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        alt="LogoImg"
-      />
-      <h3
-        style={{
-          margin: "0.5em",
-          padding: "0.5rem",
-          marginTop: "0",
-          paddingTop: "0",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Verification
-      </h3>
+      <div>
+        <img
+          src={lmitsLogo}
+          style={{
+            width: '25%',
+            margin: '0.5em',
+            padding: '0.5rem',
+          }}
+          alt="LogoImg"
+        />
+        {/* <h5
+          className="text-black"
+          style={{
+            paddingLeft: '0.8rem',
+          }}
+        >
+          Verification
+        </h5> */}
+      </div>
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -82,27 +104,30 @@ const SignupWithOtp = () => {
             value={mobile_number}
             onChange={(e) => setMobile_Number(e.target.value)}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Enter Mobile Number"
             size="small"
-            style={{ minWidth: "15vw" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           style={{
-            margin: "1rem",
+            margin: '1rem',
           }}
         >
           <Button
+            className={classes.loginButton}
             type="submit"
             variant="contained"
             color="primary"
             style={{
-              paddingRight: "4rem",
-              paddingLeft: "4rem",
-              paddingTop: "1rem",
-              fontSize: "1rem",
-              minWidth: "350px",
+              minWidth: '100%',
             }}
           >
             Generate OTP
