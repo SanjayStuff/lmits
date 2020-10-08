@@ -9,6 +9,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const SignUpForm = () => {
         password,
         password_confirmation,
         mobile_number: localStorage.getItem("lmits_login_mob"),
-        image: "",
+        image,
       };
       console.log(signUp);
       axios

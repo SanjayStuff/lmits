@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button, Link } from "@material-ui/core";
 import axios from "axios";
 import { useHistory } from "react-router";
+import { UserContext } from "../../../context/UserContext";
 
 const ForgotPasswordOtpVerification = () => {
   const [otp, setOtp] = useState("");
-
-  let history = useHistory();
+  const [userAuth, setUserAuth] = useContext(UserContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const ForgotPasswordOtpVerification = () => {
         if (response.data.response_code === 200) {
           localStorage.removeItem("lmits_otp_details");
           alert(response.data.message);
-          history.push("/enternewpass");
+          setUserAuth("4");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200

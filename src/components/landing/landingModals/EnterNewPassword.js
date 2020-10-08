@@ -29,7 +29,7 @@ const EnterNewPassword = () => {
         if (response.data.response_code === 200) {
           alert(response.data.message);
           localStorage.removeItem("lmits_login_mob");
-          history.push("/");
+          // history.push("/");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
