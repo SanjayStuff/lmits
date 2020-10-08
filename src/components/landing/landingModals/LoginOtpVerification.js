@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '0.5rem 1rem',
     outline: 'none',
     border: 'none',
-    color: '#fff',
     borderRadius: '0.5rem',
     opacity: '0.7',
     cursor: 'pointer',
@@ -115,27 +114,6 @@ const LoginOtpVerification = () => {
           </Button>
         </div>
       </form>
-      <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
-        <div className="d-inline-block">
-          <Link>
-            <p
-              className="login-card-forgot f-12"
-              style={{ color: '#000', cursor: 'pointer' }}
-            >
-              Resend OTP?
-            </p>
-          </Link>
-        </div>
-
-        <div className="pb-0 mb-0">
-          <p>
-            New to LMiTS?{' '}
-            <a href="" className="text-black">
-              SignUp
-            </a>
-          </p>
-        </div>
-      </div>
     </>
   );
 };

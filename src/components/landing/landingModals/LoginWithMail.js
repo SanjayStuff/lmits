@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react';
 import lmitsLogo from '../../../assets/images/Logo.png';
 import TextField from '@material-ui/core/TextField';
-import { Button, Grid, Link, makeStyles } from '@material-ui/core';
+import { Button, Link, makeStyles } from '@material-ui/core';
 import LoginWithOtp from './LoginWithOtp';
 import axios from 'axios';
-import { useHistory } from 'react-router';
 import { UserContext } from '../../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,12 +11,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     background: '#8845d0',
     textTransform: 'capitalize',
-
     fontSize: '15px',
     padding: '0.5rem 7rem',
     outline: 'none',
     border: 'none',
-    color: '#fff',
     borderRadius: '0.5rem',
     opacity: '0.7',
     cursor: 'pointer',
@@ -37,12 +34,12 @@ const LoginWithMail = (props) => {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
+  const [userAuth, setUserAuth] = useContext(UserContext);
 
   // let history = useHistory();
 
   const handleClick = () => {
-    setIsOtpLogin(true);
+    setUserAuth('2');
   };
 
   const onSubmit = (e) => {
@@ -62,7 +59,6 @@ const LoginWithMail = (props) => {
         if (response.data.response_code === 200) {
           localStorage.setItem('lmits_auth_key', response.data.auth_token);
           alert(response.data.message);
-          // history.push("/dashboard");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
@@ -73,9 +69,7 @@ const LoginWithMail = (props) => {
       .catch((err) => alert(err));
   };
 
-  return isOtpLogin ? (
-    <LoginWithOtp />
-  ) : (
+  return (
     <>
       <div>
         <img
@@ -83,21 +77,19 @@ const LoginWithMail = (props) => {
           src={lmitsLogo}
           style={{
             width: '25%',
-            margin: '0.5em',
+            marginLeft: '0.8em',
             padding: '0.5rem',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         />
         <h3
+          className="text-black"
           style={{
             fontSize: '20px',
             margin: '0.5em',
             padding: '0.5rem',
-            marginTop: '0',
-            paddingTop: '0',
-            justifyContent: 'center',
-            alignItems: 'center',
+            paddingBottom: '0px',
           }}
         >
           Hello, Welcome Back
@@ -115,7 +107,7 @@ const LoginWithMail = (props) => {
         >
           <TextField
             id="Email"
-            type="email"
+            // type="email"
             value={email}
             required
             InputLabelProps={{
@@ -127,7 +119,8 @@ const LoginWithMail = (props) => {
             }}
             onChange={(e) => setEmail(e.target.value)}
             variant="outlined"
-            label="Email/Mobile Number"
+            required
+            label="Email/Phone Number"
             size="small"
             style={{ minWidth: '100%' }}
           />
@@ -155,6 +148,7 @@ const LoginWithMail = (props) => {
             onChange={(e) => setPassword(e.target.value)}
             variant="outlined"
             label="Password"
+            required
             size="small"
             style={{ minWidth: '100%' }}
           />
@@ -176,6 +170,9 @@ const LoginWithMail = (props) => {
             <p
               className="login-card-description f-12"
               style={{ color: '#ee4a4a', cursor: 'pointer' }}
+              onClick={() => {
+                setUserAuth('3');
+              }}
             >
               Forgot Password?
             </p>
@@ -201,10 +198,16 @@ const LoginWithMail = (props) => {
         </div>
         <div className="text-center">
           <p>
-            New to LMiTS?{' '}
-            <a href="" className="text-black">
+            New to LMiTS?
+            <span
+              className="text-black"
+              onClick={() => {
+                setUserAuth('5');
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               SignUp
-            </a>
+            </span>
           </p>
         </div>
       </form>

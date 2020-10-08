@@ -6,7 +6,7 @@ import LoginWithMail from './LoginWithMail';
 import { UserContext } from '../../../context/UserContext';
 import axios from 'axios';
 import LoginOtpVerification from './LoginOtpVerification';
-import { useHistory } from 'react-router';
+import ForgotPasswordOtpVerification from './ForgotPasswordOtpVerification';
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '0.5rem 1rem',
     outline: 'none',
     border: 'none',
-    color: '#fff',
     borderRadius: '0.5rem',
     opacity: '0.7',
     cursor: 'pointer',
@@ -37,12 +36,13 @@ const useStyles = makeStyles((theme) => ({
 const LoginWithOtp = (props) => {
   const classes = useStyles();
   const [mobile_number, setMobile_Number] = useState('');
-  const [isOtpLogin, setIsOtpLogin] = useContext(UserContext);
+  const [userAuth, setUserAuth] = useContext(UserContext);
+  const [otpSent, setOtpSent] = useState(false);
 
   // let history = useHistory();
 
   const handleClick = () => {
-    setIsOtpLogin(false);
+    setUserAuth('1');
   };
 
   const onSubmit = (e) => {
@@ -60,7 +60,7 @@ const LoginWithOtp = (props) => {
           localStorage.setItem('lmits_login_mob', mobile_number);
           localStorage.setItem('lmits_otp_details', response.data.otp.Details);
           alert(response.data.message);
-          // history.push("/loginotpverification");
+          setOtpSent(true);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
@@ -72,30 +72,30 @@ const LoginWithOtp = (props) => {
       .catch((err) => alert(err));
   };
 
-  return !isOtpLogin ? (
-    <LoginWithMail />
-  ) : (
+  return (
     <>
-      {/* <img
+      <img
         src={lmitsLogo}
         style={{
           width: '25%',
-          margin: '0.5em',
+          marginLeft: '0.5em',
           padding: '0.5rem',
           justifyContent: 'center',
           alignItems: 'center',
         }}
-      /> */}
+      />
       <div>
-        <h5
+        <h3
           className="text-black"
           style={{
+            fontSize: '20px',
             margin: '0.5em',
             padding: '0.5rem',
+            paddingBottom: '0px',
           }}
         >
           Login
-        </h5>
+        </h3>
         <p
           className="login-card-description mb-0 pb-0"
           style={{
@@ -159,6 +159,9 @@ const LoginWithOtp = (props) => {
               <p
                 className="login-card-forgot f-12"
                 style={{ color: '#000', cursor: 'pointer' }}
+                onClick={() => {
+                  setUserAuth('1');
+                }}
               >
                 Login with Password
               </p>
@@ -166,7 +169,28 @@ const LoginWithOtp = (props) => {
           </Grid> */}
         </div>
       </form>
-      <LoginOtpVerification />
+      {otpSent ? <LoginOtpVerification /> : null}
+      <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
+        <div className="d-inline-block">
+          <Link>
+            <p
+              className="login-card-forgot f-12"
+              style={{ color: '#000', cursor: 'pointer' }}
+            >
+              Resend OTP?
+            </p>
+          </Link>
+        </div>
+
+        <div className="pb-0 mb-0">
+          <p>
+            New to LMiTS?{' '}
+            <a href="" className="text-black">
+              SignUp
+            </a>
+          </p>
+        </div>
+      </div>
     </>
   );
 };
