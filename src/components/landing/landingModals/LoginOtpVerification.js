@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
+  asterisk: {
+    display: 'none',
+  },
 }));
 
 const LoginOtpVerification = () => {
@@ -81,6 +84,12 @@ const LoginOtpVerification = () => {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Enter OTP"
             size="small"

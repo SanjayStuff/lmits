@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
+  asterisk: {
+    display: 'none',
+  },
 }));
 
 const LoginWithOtp = (props) => {
@@ -123,6 +126,12 @@ const LoginWithOtp = (props) => {
             value={mobile_number}
             onChange={(e) => setMobile_Number(e.target.value)}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Enter Mobile Number"
             size="small"
@@ -145,7 +154,7 @@ const LoginWithOtp = (props) => {
           >
             Generate OTP
           </Button>
-          <Grid container style={{ marginTop: '0.6em' }}>
+          {/* <Grid container style={{ marginTop: '0.6em' }}>
             <Link onClick={handleClick}>
               <p
                 className="login-card-forgot f-12"
@@ -154,7 +163,7 @@ const LoginWithOtp = (props) => {
                 Login with Password
               </p>
             </Link>
-          </Grid>
+          </Grid> */}
         </div>
       </form>
       <LoginOtpVerification />

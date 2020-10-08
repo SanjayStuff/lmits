@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
+  asterisk: {
+    display: 'none',
+  },
 }));
 
 const LoginWithMail = (props) => {
@@ -114,9 +117,17 @@ const LoginWithMail = (props) => {
             id="Email"
             type="email"
             value={email}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+              style: { fontSize: 15 },
+            }}
             onChange={(e) => setEmail(e.target.value)}
             variant="outlined"
-            label="Email"
+            label="Email/Mobile Number"
             size="small"
             style={{ minWidth: '100%' }}
           />
@@ -134,6 +145,13 @@ const LoginWithMail = (props) => {
             id="Password"
             type="password"
             value={password}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             onChange={(e) => setPassword(e.target.value)}
             variant="outlined"
             label="Password"
