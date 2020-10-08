@@ -1965,9 +1965,7 @@ ul li {
     flex: 0 0 98.333333%;
     max-width: 98.333333%;
   }
-  .card-body h3 {
-    display: none;
-  }
+
   .popup__text {
     width: 100%;
   }
