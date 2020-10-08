@@ -1852,7 +1852,7 @@ ul li {
   z-index: 999;
   visibility: hidden;
   opacity: 0;
-  overflow: hiden;
+  overflow: hidden;
   -webkit-transition: 0.64s ease-in-out;
   transition: 0.64s ease-in-out;
 }
@@ -1965,9 +1965,9 @@ ul li {
     flex: 0 0 98.333333%;
     max-width: 98.333333%;
   }
-  .card-body h3 {
-    display: none;
-  }
+  /*.card-body h3 {*/
+  /*  display: none;*/
+  /*}*/
   .popup__text {
     width: 100%;
   }

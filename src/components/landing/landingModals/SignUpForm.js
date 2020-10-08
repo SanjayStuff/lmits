@@ -33,8 +33,8 @@ const SignUpForm = () => {
   const [last_name, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
-  const [email, setEmail] = useState(null);
-  const [image, setImage] = useState(null);
+  const [email, setEmail] = useState("");
+  // const [image, setImage] = useState(null);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ const SignUpForm = () => {
         password,
         password_confirmation,
         mobile_number: localStorage.getItem("lmits_login_mob"),
-        image,
+        image: null,
       };
       console.log(signUp);
       axios
@@ -222,7 +222,8 @@ const SignUpForm = () => {
         </div>
         <div
           style={{
-            margin: "1rem",
+            margin: "0.5em",
+            padding: "0.5rem",
           }}
         >
           <Button
