@@ -1953,6 +1953,12 @@ ul li {
   align-items: center;
 }
 
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+  .popup-inner {
+    width: 60%;
+  }
+}
+
 @media all and (min-width: 768px) and (max-width: 1024px) {
   .popup__photo,
   .popup__photo img {
@@ -1965,9 +1971,6 @@ ul li {
     flex: 0 0 98.333333%;
     max-width: 98.333333%;
   }
-  /*.card-body h3 {*/
-  /*  display: none;*/
-  /*}*/
   .popup__text {
     width: 100%;
   }
@@ -1985,15 +1988,11 @@ ul li {
     display: none;
   }
   .popup-inner {
-    width: 60%;
+    width: 80%;
   }
-
   .popup__text {
     flex: 0 0 98.333333%;
     max-width: 98.333333%;
-  }
-  .card-body h3 {
-    display: none;
   }
   .popup__text {
     width: 100%;
@@ -2049,9 +2048,9 @@ ul li {
   .popup__photo {
     display: none;
   }
-  .card-body {
+  /* .card-body {
     padding: 0;
-  }
+  } */
   .form {
     width: 100%;
   }
