@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button, Link, makeStyles } from "@material-ui/core";
 import axios from "axios";
-import { useHistory } from "react-router";
 import { UserContext } from "../../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,9 +33,13 @@ const ForgotPasswordOtpVerification = () => {
   const classes = useStyles();
   const [otp, setOtp] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg("");
+    setIsValidated(true);
 
     const otpVerifyData = {
       otp,
@@ -51,7 +54,7 @@ const ForgotPasswordOtpVerification = () => {
         console.log(response.data);
         if (response.data.response_code === 200) {
           localStorage.removeItem("lmits_otp_details");
-          alert(response.data.message);
+          // alert(response.data.message);
           setUserAuth("4");
         } else if (
           response.data.response_code &&
@@ -90,6 +93,7 @@ const ForgotPasswordOtpVerification = () => {
           <TextField
             id="OTP"
             type="number"
+            autoFocus
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             required
@@ -123,20 +127,14 @@ const ForgotPasswordOtpVerification = () => {
             Verify
           </Button>
         </div>
+        <>
+          {isValidated && errorMsg !== "" ? (
+            <div>
+              <p>{errorMsg}</p>
+            </div>
+          ) : null}
+        </>
       </form>
-
-      <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
-        <div className="d-inline-block">
-          <Link>
-            <p
-              className="login-card-forgot f-12"
-              style={{ color: "#000", cursor: "pointer" }}
-            >
-              Resend OTP?
-            </p>
-          </Link>
-        </div>
-      </div>
     </>
   );
 };

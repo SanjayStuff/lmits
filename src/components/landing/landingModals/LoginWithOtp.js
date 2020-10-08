@@ -2,11 +2,9 @@ import React, { useContext, useState } from "react";
 import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
 import { Button, Grid, Link, makeStyles } from "@material-ui/core";
-import LoginWithMail from "./LoginWithMail";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
 import LoginOtpVerification from "./LoginOtpVerification";
-import ForgotPasswordOtpVerification from "./ForgotPasswordOtpVerification";
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
@@ -33,13 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginWithOtp = (props) => {
+const LoginWithOtp = () => {
   const classes = useStyles();
   const [mobile_number, setMobile_Number] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [otpSent, setOtpSent] = useState(false);
-
-  // let history = useHistory();
 
   const handleClick = () => {
     setUserAuth("1");
@@ -47,6 +43,7 @@ const LoginWithOtp = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setOtpSent(false);
 
     const otpData = {
       mobile_number,
@@ -59,7 +56,7 @@ const LoginWithOtp = (props) => {
         if (response.data.response_code === 200) {
           localStorage.setItem("lmits_login_mob", mobile_number);
           localStorage.setItem("lmits_otp_details", response.data.otp.Details);
-          alert(response.data.message);
+          // alert(response.data.message);
           setOtpSent(true);
         } else if (
           response.data.response_code &&
@@ -124,7 +121,10 @@ const LoginWithOtp = (props) => {
             id="MobileNumber"
             type="number"
             value={mobile_number}
-            onChange={(e) => setMobile_Number(e.target.value)}
+            onChange={(e) => {
+              setMobile_Number(e.target.value);
+              setOtpSent(false);
+            }}
             required
             InputLabelProps={{
               classes: {
@@ -144,6 +144,7 @@ const LoginWithOtp = (props) => {
           }}
         >
           <Button
+            disabled={otpSent}
             className={classes.loginButton}
             type="submit"
             variant="contained"
@@ -172,7 +173,7 @@ const LoginWithOtp = (props) => {
       {otpSent ? <LoginOtpVerification /> : null}
       <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
         <div className="d-inline-block">
-          <Link>
+          <Link onClick={onSubmit}>
             <p
               className="login-card-forgot f-12"
               style={{ color: "#000", cursor: "pointer" }}
@@ -181,7 +182,6 @@ const LoginWithOtp = (props) => {
             </p>
           </Link>
         </div>
-
         <div className="pb-0 mb-0">
           <p>
             New to LMiTS?{" "}
