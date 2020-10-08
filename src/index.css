@@ -1953,13 +1953,44 @@ ul li {
   align-items: center;
 }
 
-@media only screen and (max-width: 768px) {
+@media all and (min-width: 768px) and (max-width: 1024px) {
   .popup__photo,
   .popup__photo img {
     display: none;
   }
   .popup-inner {
     width: 60%;
+  }
+  .popup__text {
+    flex: 0 0 98.333333%;
+    max-width: 98.333333%;
+  }
+  .card-body h3 {
+    display: none;
+  }
+  .popup__text {
+    width: 100%;
+  }
+  .form {
+    width: 100%;
+  }
+  .forgot-password-link p {
+    text-align: right;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .popup__photo,
+  .popup__photo img {
+    display: none;
+  }
+  .popup-inner {
+    width: 60%;
+  }
+
+  .popup__text {
+    flex: 0 0 98.333333%;
+    max-width: 98.333333%;
   }
   .card-body h3 {
     display: none;
