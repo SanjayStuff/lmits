@@ -1,48 +1,48 @@
-import React, { useContext, useState } from 'react';
-import lmitsLogo from '../../../assets/images/Logo.png';
-import TextField from '@material-ui/core/TextField';
-import { Button, Grid, Link, makeStyles } from '@material-ui/core';
-import LoginWithMail from './LoginWithMail';
-import { UserContext } from '../../../context/UserContext';
-import axios from 'axios';
-import LoginOtpVerification from './LoginOtpVerification';
-import ForgotPasswordOtpVerification from './ForgotPasswordOtpVerification';
+import React, { useContext, useState } from "react";
+import lmitsLogo from "../../../assets/images/Logo.png";
+import TextField from "@material-ui/core/TextField";
+import { Button, Grid, Link, makeStyles } from "@material-ui/core";
+import LoginWithMail from "./LoginWithMail";
+import { UserContext } from "../../../context/UserContext";
+import axios from "axios";
+import LoginOtpVerification from "./LoginOtpVerification";
+import ForgotPasswordOtpVerification from "./ForgotPasswordOtpVerification";
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '15px',
-    padding: '0.5rem 1rem',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    color: "#fff",
+    background: "#8845d0",
+    textTransform: "capitalize",
+    marginLeft: "auto",
+    fontSize: "15px",
+    padding: "0.5rem 1rem",
+    outline: "none",
+    border: "none",
+    borderRadius: "0.5rem",
+    opacity: "0.7",
+    cursor: "pointer",
+    transition: "0.3s",
+    "&:hover": {
+      border: "none",
+      background: "#8845d0",
+      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
     },
   },
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const LoginWithOtp = (props) => {
   const classes = useStyles();
-  const [mobile_number, setMobile_Number] = useState('');
+  const [mobile_number, setMobile_Number] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [otpSent, setOtpSent] = useState(false);
 
   // let history = useHistory();
 
   const handleClick = () => {
-    setUserAuth('1');
+    setUserAuth("1");
   };
 
   const onSubmit = (e) => {
@@ -57,8 +57,8 @@ const LoginWithOtp = (props) => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.setItem('lmits_login_mob', mobile_number);
-          localStorage.setItem('lmits_otp_details', response.data.otp.Details);
+          localStorage.setItem("lmits_login_mob", mobile_number);
+          localStorage.setItem("lmits_otp_details", response.data.otp.Details);
           alert(response.data.message);
           setOtpSent(true);
         } else if (
@@ -66,7 +66,7 @@ const LoginWithOtp = (props) => {
           response.data.response_code !== 200
         ) {
           alert(response.data.message);
-          setMobile_Number('');
+          setMobile_Number("");
         }
       })
       .catch((err) => alert(err));
@@ -77,21 +77,21 @@ const LoginWithOtp = (props) => {
       <img
         src={lmitsLogo}
         style={{
-          width: '25%',
-          marginLeft: '0.5em',
-          padding: '0.5rem',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: "25%",
+          marginLeft: "0.5em",
+          padding: "0.5rem",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       />
       <div>
         <h3
           className="text-black"
           style={{
-            fontSize: '20px',
-            margin: '0.5em',
-            padding: '0.5rem',
-            paddingBottom: '0px',
+            fontSize: "20px",
+            margin: "0.5em",
+            padding: "0.5rem",
+            paddingBottom: "0px",
           }}
         >
           Login
@@ -99,8 +99,8 @@ const LoginWithOtp = (props) => {
         <p
           className="login-card-description mb-0 pb-0"
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
+            margin: "0.5em",
+            padding: "0.5rem",
           }}
         >
           We will send you a OTP(One Time Password) to verify the below mobile
@@ -114,10 +114,10 @@ const LoginWithOtp = (props) => {
       <form onSubmit={onSubmit} className="mb-0 pb-0">
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -135,12 +135,12 @@ const LoginWithOtp = (props) => {
             variant="outlined"
             label="Enter Mobile Number"
             size="small"
-            style={{ minWidth: '100%' }}
+            style={{ minWidth: "100%" }}
           />
         </div>
         <div
           style={{
-            margin: '1rem',
+            margin: "1rem",
           }}
         >
           <Button
@@ -149,7 +149,7 @@ const LoginWithOtp = (props) => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: '100%',
+              minWidth: "100%",
             }}
           >
             Generate OTP
@@ -175,7 +175,7 @@ const LoginWithOtp = (props) => {
           <Link>
             <p
               className="login-card-forgot f-12"
-              style={{ color: '#000', cursor: 'pointer' }}
+              style={{ color: "#000", cursor: "pointer" }}
             >
               Resend OTP?
             </p>
@@ -184,10 +184,16 @@ const LoginWithOtp = (props) => {
 
         <div className="pb-0 mb-0">
           <p>
-            New to LMiTS?{' '}
-            <a href="" className="text-black">
+            New to LMiTS?{" "}
+            <span
+              className="text-black"
+              onClick={() => {
+                setUserAuth("5");
+              }}
+              style={{ cursor: "pointer" }}
+            >
               SignUp
-            </a>
+            </span>
           </p>
         </div>
       </div>
