@@ -36,6 +36,8 @@ const LoginWithOtp = () => {
   const [mobile_number, setMobile_Number] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [otpSent, setOtpSent] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleClick = () => {
     setUserAuth("1");
@@ -44,6 +46,8 @@ const LoginWithOtp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setOtpSent(false);
+    setErrorMsg("");
+    setMsg("");
 
     const otpData = {
       mobile_number,
@@ -57,12 +61,14 @@ const LoginWithOtp = () => {
           localStorage.setItem("lmits_login_mob", mobile_number);
           localStorage.setItem("lmits_otp_details", response.data.otp.Details);
           // alert(response.data.message);
+          setMsg(response.data.message);
           setOtpSent(true);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
+          setErrorMsg(response.data.message);
           setMobile_Number("");
         }
       })
@@ -197,6 +203,11 @@ const LoginWithOtp = () => {
           </p>
         </div>
       </div>
+      {errorMsg !== " " ? (
+        <div>
+          <p style={{ color: "red" }}>{errorMsg}</p>
+        </div>
+      ) : null}
     </>
   );
 };

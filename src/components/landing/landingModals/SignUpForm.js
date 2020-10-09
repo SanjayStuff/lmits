@@ -66,7 +66,8 @@ const SignUpForm = () => {
             response.data.response_code &&
             response.data.response_code !== 200
           ) {
-            alert(response.data.message);
+            // alert(response.data.message);
+            setErrorMsg(response.data.message);
           }
         })
         .catch((err) => alert(err));

@@ -34,10 +34,12 @@ const ForgotPasswordOtp = () => {
   const classes = useStyles();
   const [mobile_number, setMobile_Number] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     setOtpSent(false);
+    setErrorMsg("");
 
     const mobileNumber = {
       mobile_number,
@@ -58,6 +60,7 @@ const ForgotPasswordOtp = () => {
           response.data.response_code !== 200
         ) {
           // alert(response.data.message);
+          setErrorMsg(response.data.message);
           setMobile_Number("");
         }
       })
@@ -137,6 +140,11 @@ const ForgotPasswordOtp = () => {
             Get OTP
           </Button>
         </div>
+        {errorMsg !== " " ? (
+          <div>
+            <p style={{ color: "red" }}>{errorMsg}</p>
+          </div>
+        ) : null}
         {otpSent ? <ForgotPasswordOtpVerification /> : null}
         <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
           <div className="d-inline-block">

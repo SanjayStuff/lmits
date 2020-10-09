@@ -57,16 +57,16 @@ const EnterNewPassword = () => {
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            alert(response.data.message);
+            // alert(response.data.message);
             localStorage.removeItem("lmits_login_mob");
             setMsg("Password has been changed");
-
             // history.push("/");
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
           ) {
-            alert(response.data.message);
+            // alert(response.data.message);
+            setErrorMsg(response.data.message);
           }
         })
         .catch((err) => alert(err));
@@ -107,6 +107,10 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            error={
+              new_password !== password_confirmation &&
+              password_confirmation.length > 0
+            }
             id="new_Password"
             type="password"
             value={new_password}
@@ -134,6 +138,10 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            error={
+              new_password !== password_confirmation &&
+              password_confirmation.length > 0
+            }
             id="Password_Confirmation"
             type="password"
             value={password_confirmation}
