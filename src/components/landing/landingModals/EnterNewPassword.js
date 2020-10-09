@@ -6,6 +6,11 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
     color: '#fff',
     background: '#8845d0',
@@ -52,7 +57,7 @@ const EnterNewPassword = () => {
         console.log(response.data);
         if (response.data.response_code === 200) {
           alert(response.data.message);
-          localStorage.removeItem("lmits_login_mob");
+          localStorage.removeItem('lmits_login_mob');
           // history.push("/");
         } else if (
           response.data.response_code &&
@@ -94,6 +99,7 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            className={classes.root}
             id="new_Password"
             type="password"
             value={new_password}
@@ -121,6 +127,7 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            className={classes.root}
             id="Password_Confirmation"
             type="password"
             value={password_confirmation}

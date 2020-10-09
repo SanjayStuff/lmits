@@ -9,6 +9,11 @@ import LoginOtpVerification from './LoginOtpVerification';
 import ForgotPasswordOtpVerification from './ForgotPasswordOtpVerification';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
     color: '#fff',
     background: '#8845d0',
@@ -121,6 +126,7 @@ const LoginWithOtp = (props) => {
           }}
         >
           <TextField
+            className={classes.root}
             id="MobileNumber"
             type="number"
             value={mobile_number}

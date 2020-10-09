@@ -4,6 +4,11 @@ import { Button, Grid, Link, makeStyles } from '@material-ui/core';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
     color: '#fff',
     background: '#8845d0',
@@ -78,6 +83,7 @@ const LoginOtpVerification = () => {
           }}
         >
           <TextField
+            className={classes.root}
             id="OTP"
             type="number"
             value={otp}

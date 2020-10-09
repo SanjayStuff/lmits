@@ -6,6 +6,11 @@ import Link from '@material-ui/core/Link';
 import { UserContext } from '../../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
     color: '#fff',
     background: '#8845d0',
@@ -88,6 +93,7 @@ const SignupOtpVerification = () => {
           }}
         >
           <TextField
+            className={classes.root}
             id="OTP"
             type="number"
             value={otp}

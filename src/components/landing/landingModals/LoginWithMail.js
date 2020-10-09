@@ -7,6 +7,11 @@ import axios from 'axios';
 import { UserContext } from '../../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
     color: '#fff',
     background: '#8845d0',
@@ -106,6 +111,7 @@ const LoginWithMail = (props) => {
           }}
         >
           <TextField
+            className={classes.root}
             id="Email"
             // type="email"
             value={email}
@@ -135,6 +141,7 @@ const LoginWithMail = (props) => {
           }}
         >
           <TextField
+            className={classes.root}
             id="Password"
             type="password"
             value={password}
@@ -158,7 +165,7 @@ const LoginWithMail = (props) => {
           <div className="d-inline-block">
             <Link onClick={handleClick}>
               <p
-                className="login-card-description f-12"
+                className="login-card-description f-12 login-otp"
                 style={{ color: '#000', cursor: 'pointer' }}
               >
                 Login with OTP
@@ -198,7 +205,7 @@ const LoginWithMail = (props) => {
         </div>
         <div className="text-center">
           <p>
-            New to LMiTS?
+            New to LMiTS? {''}
             <span
               className="text-black"
               onClick={() => {

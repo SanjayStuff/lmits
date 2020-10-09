@@ -7,6 +7,11 @@ import SignupOtpVerification from './SignupOtpVerification';
 import LoginOtpVerification from './LoginOtpVerification';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
     color: '#fff',
     background: '#8845d0',
@@ -99,6 +104,7 @@ const SignupWithOtp = () => {
           }}
         >
           <TextField
+            className={classes.root}
             id="MobileNumber"
             type="number"
             value={mobile_number}
