@@ -36,9 +36,13 @@ const useStyles = makeStyles((theme) => ({
 const LoginOtpVerification = () => {
   const classes = useStyles();
   const [otp, setOtp] = useState('');
+  const [msg, setMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setMsg('');
+    setErrorMsg('');
 
     const otpVerifyData = {
       Details: localStorage.getItem('lmits_otp_details'),
@@ -50,13 +54,15 @@ const LoginOtpVerification = () => {
       .post(`${process.env.REACT_APP_VERIFY_LOGIN_OTP}`, otpVerifyData)
       .then(function (response) {
         console.log(response.data);
-        if (response.data.response_data == 200) {
-          alert(response.data.message);
+        if (response.data.response_code == 200) {
+          // alert(response.data.message);
+          setMsg(response.data.message);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
+          setErrorMsg(response.data.message);
         }
       })
       .catch((err) => alert(err));
@@ -87,6 +93,7 @@ const LoginOtpVerification = () => {
             id="OTP"
             type="number"
             value={otp}
+            autoFocus
             onChange={(e) => setOtp(e.target.value)}
             required
             InputLabelProps={{
@@ -101,6 +108,17 @@ const LoginOtpVerification = () => {
             style={{ minWidth: '100%' }}
           />
         </div>
+        {errorMsg !== ' ' ? (
+          <div className="pl-3">
+            <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+          </div>
+        ) : null}
+
+        {msg !== '' ? (
+          <div className="pl-3">
+            <p style={{ color: '#0ebc7d' }}>{msg}</p>
+          </div>
+        ) : null}
         <div
           style={{
             margin: '0.5em',

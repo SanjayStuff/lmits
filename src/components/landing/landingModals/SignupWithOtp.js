@@ -40,9 +40,14 @@ const SignupWithOtp = () => {
   const classes = useStyles();
   const [mobile_number, setMobile_Number] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const [msg, setMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg('');
+    setMsg('');
+    setOtpSent(false);
 
     const otpSignUpData = {
       mobile_number,
@@ -61,13 +66,15 @@ const SignupWithOtp = () => {
           localStorage.setItem('lmits_login_mob', mobile_number);
           localStorage.setItem('lmits_otp_details', response.data.otp.Details);
           setOtpSent(true);
-          alert(response.data.message);
+          setMsg(response.data.message);
+          // alert(response.data.message);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
           setMobile_Number('');
+          setErrorMsg(response.data.message);
         }
       })
       .catch((err) => alert(err));
@@ -75,7 +82,7 @@ const SignupWithOtp = () => {
 
   return (
     <>
-      <div>
+      <div className="pb-1">
         <img
           src={lmitsLogo}
           style={{
@@ -85,16 +92,22 @@ const SignupWithOtp = () => {
           }}
           alt="LogoImg"
         />
-        {/* <h5
+        <h3
           className="text-black"
           style={{
+            fontSize: '16px',
             paddingLeft: '0.8rem',
           }}
         >
-          Verification
-        </h5> */}
+          Sign Up with OTP
+        </h3>
       </div>
       <form onSubmit={onSubmit}>
+        {errorMsg !== ' ' ? (
+          <div className="pl-3">
+            <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+          </div>
+        ) : null}
         <div
           style={{
             margin: '0.5em',
@@ -108,7 +121,10 @@ const SignupWithOtp = () => {
             id="MobileNumber"
             type="number"
             value={mobile_number}
-            onChange={(e) => setMobile_Number(e.target.value)}
+            onChange={(e) => {
+              setMobile_Number(e.target.value);
+              setOtpSent(false);
+            }}
             required
             InputLabelProps={{
               classes: {
@@ -128,6 +144,7 @@ const SignupWithOtp = () => {
           }}
         >
           <Button
+            disabled={otpSent}
             className={classes.loginButton}
             type="submit"
             variant="contained"

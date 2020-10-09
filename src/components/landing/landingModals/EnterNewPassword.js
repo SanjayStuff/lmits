@@ -37,36 +37,49 @@ const EnterNewPassword = () => {
   const classes = useStyles();
   const [new_password, setNewPassword] = useState('');
   const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [msg, setMsg] = useState('');
+  const [validated, setValidated] = false;
 
   let history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg('');
+    setMsg('');
 
-    const changePass = {
-      update_password_params: {
-        phone: localStorage.getItem('lmits_login_mob'),
-        new_password,
-        password_confirmation,
-      },
-    };
-    console.log(changePass.update_password_params);
-    axios
-      .post(`${process.env.REACT_APP_FORGOT_CHANGE_PASS}`, changePass)
-      .then(function (response) {
-        console.log(response.data);
-        if (response.data.response_code === 200) {
-          alert(response.data.message);
-          localStorage.removeItem('lmits_login_mob');
-          // history.push("/");
-        } else if (
-          response.data.response_code &&
-          response.data.response_code !== 200
-        ) {
-          alert(response.data.message);
-        }
-      })
-      .catch((err) => alert(err));
+    if (new_password === password_confirmation) {
+      const changePass = {
+        update_password_params: {
+          phone: localStorage.getItem('lmits_login_mob'),
+          new_password,
+          password_confirmation,
+        },
+      };
+      console.log(changePass.update_password_params);
+      axios
+        .post(`${process.env.REACT_APP_FORGOT_CHANGE_PASS}`, changePass)
+        .then(function (response) {
+          console.log(response.data);
+          if (response.data.response_code === 200) {
+            // alert(response.data.message);
+            localStorage.removeItem('lmits_login_mob');
+            setMsg('Password has been changed');
+            // history.push("/");
+          } else if (
+            response.data.response_code &&
+            response.data.response_code !== 200
+          ) {
+            // alert(response.data.message);
+            setErrorMsg(response.data.message);
+          }
+        })
+        .catch((err) => alert(err));
+    } else {
+      setNewPassword('');
+      setPasswordConfirmation('');
+      setErrorMsg('Passwords Do Not Match!');
+    }
   };
 
   return (
@@ -99,7 +112,10 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
-            className={classes.root}
+            error={
+              new_password !== password_confirmation &&
+              password_confirmation.length > 0
+            }
             id="new_Password"
             type="password"
             value={new_password}
@@ -127,7 +143,10 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
-            className={classes.root}
+            error={
+              new_password !== password_confirmation &&
+              password_confirmation.length > 0
+            }
             id="Password_Confirmation"
             type="password"
             value={password_confirmation}
@@ -162,6 +181,14 @@ const EnterNewPassword = () => {
           >
             Change Password
           </Button>
+        </div>
+        <div className="pl-3 text-center">
+          <>
+            {errorMsg !== '' ? (
+              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+            ) : null}
+          </>
+          <>{msg !== '' ? <p>{msg}</p> : null}</>
         </div>
       </form>
     </>

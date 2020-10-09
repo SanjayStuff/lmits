@@ -39,10 +39,14 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirmation] = useState('');
   const [email, setEmail] = useState('');
+  const [msg, setMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   // const [image, setImage] = useState(null);
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setMsg('');
+    setErrorMsg('');
 
     if (password === password_confirmation) {
       const signUp = {
@@ -54,25 +58,29 @@ const SignUpForm = () => {
         mobile_number: localStorage.getItem('lmits_login_mob'),
         image: null,
       };
+      setErrorMsg('');
       console.log(signUp);
       axios
         .post(`${process.env.REACT_APP_SIGNUP_DATA}`, signUp)
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            alert(response.data.message);
+            // alert(response.data.message);
+            setMsg(response.data.message);
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
           ) {
-            alert(response.data.message);
+            // alert(response.data.message);
+            setErrorMsg(response.data.message);
           }
         })
         .catch((err) => alert(err));
     } else {
-      alert('Passwords do not match');
+      // alert("Passwords do not match");
       setPassword('');
       setPasswordConfirmation('');
+      setErrorMsg('Passwords Do Not Match!');
     }
   };
 
@@ -183,7 +191,10 @@ const SignUpForm = () => {
             id="Password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrorMsg('');
+            }}
             required
             InputLabelProps={{
               classes: {
@@ -215,7 +226,10 @@ const SignUpForm = () => {
             id="ConfirmPassword"
             type="password"
             value={password_confirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            onChange={(e) => {
+              setPasswordConfirmation(e.target.value);
+              setErrorMsg('');
+            }}
             required
             InputLabelProps={{
               classes: {
@@ -247,6 +261,18 @@ const SignUpForm = () => {
           >
             Register
           </Button>
+        </div>
+        <div className="pl-3 text-center">
+          {msg !== '' ? (
+            <div>
+              <p style={{ color: '#0ebc7d' }}>{msg}</p>
+            </div>
+          ) : null}
+          {errorMsg !== ' ' ? (
+            <div>
+              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+            </div>
+          ) : null}
         </div>
       </form>
     </>

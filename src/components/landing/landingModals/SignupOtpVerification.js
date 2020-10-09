@@ -39,9 +39,11 @@ const SignupOtpVerification = () => {
   const classes = useStyles();
   const [otp, setOtp] = useState('');
   const [userAuth, setUserAuth] = useContext(UserContext);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg('');
 
     const otpVerifyData = {
       otp,
@@ -55,13 +57,14 @@ const SignupOtpVerification = () => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          alert(response.data.message);
+          // alert(response.data.message);
           setUserAuth('6');
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
+          setErrorMsg(response.data.message);
         }
       })
       .catch((err) => alert(err));
@@ -95,6 +98,7 @@ const SignupOtpVerification = () => {
           <TextField
             className={classes.root}
             id="OTP"
+            autoFocus
             type="number"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
@@ -111,6 +115,11 @@ const SignupOtpVerification = () => {
             style={{ minWidth: '100%' }}
           />
         </div>
+        {errorMsg !== ' ' ? (
+          <div className="pl-3">
+            <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+          </div>
+        ) : null}
         <div
           style={{
             margin: '0.5em',

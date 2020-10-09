@@ -40,6 +40,10 @@ const LoginWithMail = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userAuth, setUserAuth] = useContext(UserContext);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [msg, setMsg] = useState('');
+  const [isValidated, setIsValidated] = useState(false);
+  const [changeDet, setChangeDet] = useState(false);
 
   // let history = useHistory();
 
@@ -49,6 +53,9 @@ const LoginWithMail = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setChangeDet(false);
+    setMsg('');
+    setErrorMsg('');
 
     const signIn = {
       session: {
@@ -63,12 +70,16 @@ const LoginWithMail = (props) => {
         console.log(response.data);
         if (response.data.response_code === 200) {
           localStorage.setItem('lmits_auth_key', response.data.auth_token);
-          alert(response.data.message);
+          setMsg(response.data.message);
+          setIsValidated(true);
+          // alert(response.data.message);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
+          setErrorMsg(response.data.message);
+          setIsValidated(false);
         }
       })
       .catch((err) => alert(err));
@@ -101,6 +112,17 @@ const LoginWithMail = (props) => {
         </h3>
       </div>
       <form container onSubmit={onSubmit} className="form">
+        <div className="text-center" style={{ paddingLeft: '.9rem' }}>
+          {!changeDet ? (
+            <>
+              {isValidated ? (
+                <p style={{ color: '#0ebc7d' }}>{msg}</p>
+              ) : (
+                <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+              )}
+            </>
+          ) : null}
+        </div>
         <div
           className="form__div"
           style={{
@@ -123,7 +145,10 @@ const LoginWithMail = (props) => {
               },
               style: { fontSize: 15 },
             }}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setChangeDet(true);
+            }}
             variant="outlined"
             required
             label="Email/Phone Number"
@@ -152,7 +177,10 @@ const LoginWithMail = (props) => {
               },
               style: { fontSize: 15 },
             }}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setChangeDet(true);
+            }}
             variant="outlined"
             label="Password"
             required
@@ -165,7 +193,7 @@ const LoginWithMail = (props) => {
           <div className="d-inline-block">
             <Link onClick={handleClick}>
               <p
-                className="login-card-description f-12 login-otp"
+                className="login-card-description f-12"
                 style={{ color: '#000', cursor: 'pointer' }}
               >
                 Login with OTP
@@ -185,10 +213,11 @@ const LoginWithMail = (props) => {
             </p>
           </div>
         </div>
+
         <div
           className="text-center mt-0 pt-0"
           style={{
-            margin: '.5rem',
+            margin: '.8rem',
           }}
         >
           <Button
