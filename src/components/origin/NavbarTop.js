@@ -1,28 +1,29 @@
-import React, { useContext } from "react";
-import logo from "../../assets/images/Logo.png";
-import appStoreImg from "../../assets/images/navicons/Appstore.png";
-import playStoreImg from "../../assets/images/navicons/Playstore.png";
-import profileImg from "../../assets/images/navicons/profile.png";
-import loginImg from "../../assets/images/login.svg";
-import { Button } from "@material-ui/core";
-import LoginWithMail from "../landing/landingModals/LoginWithMail";
-import { UserContext } from "../../context/UserContext";
-import LoginWithOtp from "../landing/landingModals/LoginWithOtp";
-import ForgotPasswordOtp from "../landing/landingModals/ForgotPasswordOtp";
-import EnterNewPassword from "../landing/landingModals/EnterNewPassword";
-import SignupWithOtp from "../landing/landingModals/SignupWithOtp";
-import SignUpForm from "../landing/landingModals/SignUpForm";
+import React, { useContext } from 'react';
+import logo from '../../assets/images/Logo.png';
+import appStoreImg from '../../assets/images/navicons/Appstore.png';
+import playStoreImg from '../../assets/images/navicons/Playstore.png';
+import profileImg from '../../assets/images/navicons/profile.png';
+import loginImg from '../../assets/images/login.svg';
+import { Button } from '@material-ui/core';
+import LoginWithMail from '../landing/landingModals/LoginWithMail';
+import { UserContext } from '../../context/UserContext';
+import LoginWithOtp from '../landing/landingModals/LoginWithOtp';
+import ForgotPasswordOtp from '../landing/landingModals/ForgotPasswordOtp';
+import EnterNewPassword from '../landing/landingModals/EnterNewPassword';
+import SignupWithOtp from '../landing/landingModals/SignupWithOtp';
+import SignUpForm from '../landing/landingModals/SignUpForm';
 
 const NavbarTop = () => {
   const [userAuth, setUserAuth] = useContext(UserContext);
 
   const authentication = (
-    <div className="dv-desktop-menu__login-button b-header__login-button header-login-action p-2">
+    <div className="dv-desktop-menu__login-button b-header__login-button header-login-action">
       <div className="dv-button dv-button-colorless dv-button--small">
         <a href="#popupotplogin">
           <Button
+            style={{ outline: 'none' }}
             onClick={() => {
-              setUserAuth("1");
+              setUserAuth('1');
             }}
             disableRipple="true"
           >
@@ -43,17 +44,17 @@ const NavbarTop = () => {
 
   const modalComponent = () => {
     switch (userAuth) {
-      case "1":
+      case '1':
         return <LoginWithMail />;
-      case "2":
+      case '2':
         return <LoginWithOtp />;
-      case "3":
+      case '3':
         return <ForgotPasswordOtp />;
-      case "4":
+      case '4':
         return <EnterNewPassword />;
-      case "5":
+      case '5':
         return <SignupWithOtp />;
-      case "6":
+      case '6':
         return <SignUpForm />;
       default:
         return <LoginWithMail />;
@@ -72,18 +73,22 @@ const NavbarTop = () => {
           <div className="nav-item">
             <a
               className="font-weight-medium pb-0 mb-0 nav-name"
-              style={{ color: "#9da9bb" }}
+              style={{ color: '#9da9bb' }}
             >
               Download
             </a>
             <a
-              className="ml-2"
+              className="ml-2 app-store"
               href="https://www.apple.com/in/ios/app-store/"
               target="_blank"
             >
               <img src={appStoreImg} alt="LMiTS" height={25} />
             </a>
-            <a href="https://play.google.com/store?hl=en_IN" target="_blank">
+            <a
+              className="play-store"
+              href="https://play.google.com/store?hl=en_IN"
+              target="_blank"
+            >
               <img src={playStoreImg} alt="LMiTS" height={25} />
             </a>
           </div>

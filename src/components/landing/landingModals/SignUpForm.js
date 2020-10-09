@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Button, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,13 +32,16 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
+  paper: { maxWidth: '800px' },
   asterisk: {
-    display: 'none',
+    color: 'red',
   },
 }));
 
 const SignUpForm = () => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [scroll, setScroll] = React.useState('paper');
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [password, setPassword] = useState('');
@@ -42,6 +50,25 @@ const SignUpForm = () => {
   const [msg, setMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   // const [image, setImage] = useState(null);
+
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -244,6 +271,58 @@ const SignUpForm = () => {
             style={{ minWidth: '100%' }}
           />
         </div>
+        <div className="custom-control custom-checkbox ml-3">
+          <input
+            type="checkbox"
+            className="custom-control-input"
+            id="customCheck1"
+          />
+          <label className="custom-control-label" htmlFor="customCheck1">
+            I accept the{' '}
+            <span
+              className="login-card-description f-10"
+              style={{ color: '#8845d0', cursor: 'pointer' }}
+              onClick={handleClickOpen('paper')}
+            >
+              Terms and Conditions
+            </span>
+          </label>
+        </div>
+
+        <Dialog
+          classes={{ paper: classes.paper }}
+          open={open}
+          onClose={handleClose}
+          scroll={scroll}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+        >
+          <DialogTitle id="scroll-dialog-title">
+            Terms and Conditions
+          </DialogTitle>
+          <DialogContent dividers={scroll === 'paper'}>
+            <DialogContentText
+              id="scroll-dialog-description"
+              ref={descriptionElementRef}
+              tabIndex={-1}
+            >
+              {[...new Array(50)]
+                .map(
+                  () => `Cras mattis consectetur purus sit amet fermentum.
+Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
+                )
+                .join('\n')}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <div
           style={{
             margin: '0.5em',

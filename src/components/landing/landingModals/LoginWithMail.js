@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: '0.7',
     cursor: 'pointer',
     transition: '0.3s',
+
     '&:hover': {
       border: 'none',
       background: '#8845d0',
