@@ -1,47 +1,52 @@
-import React, { useState } from "react";
-import { Button, makeStyles } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Button, makeStyles } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
-    color: "#fff",
-    background: "#8845d0",
-    textTransform: "capitalize",
-    fontSize: "15px",
-    padding: "0.5rem 7rem",
-    outline: "none",
-    border: "none",
-    borderRadius: "0.5rem",
-    opacity: "0.7",
-    cursor: "pointer",
-    transition: "0.3s",
-    "&:hover": {
-      border: "none",
-      background: "#8845d0",
-      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+    fontSize: '15px',
+    padding: '0.5rem 7rem',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
   asterisk: {
-    display: "none",
+    display: 'none',
   },
 }));
 
 const SignUpForm = () => {
   const classes = useStyles();
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [password_confirmation, setPasswordConfirmation] = useState("");
-  const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [email, setEmail] = useState('');
+  const [msg, setMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   // const [image, setImage] = useState(null);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setMsg("");
-    setErrorMsg("");
+    setMsg('');
+    setErrorMsg('');
 
     if (password === password_confirmation) {
       const signUp = {
@@ -50,10 +55,10 @@ const SignUpForm = () => {
         email,
         password,
         password_confirmation,
-        mobile_number: localStorage.getItem("lmits_login_mob"),
+        mobile_number: localStorage.getItem('lmits_login_mob'),
         image: null,
       };
-      setErrorMsg("");
+      setErrorMsg('');
       console.log(signUp);
       axios
         .post(`${process.env.REACT_APP_SIGNUP_DATA}`, signUp)
@@ -73,9 +78,9 @@ const SignUpForm = () => {
         .catch((err) => alert(err));
     } else {
       // alert("Passwords do not match");
-      setPassword("");
-      setPasswordConfirmation("");
-      setErrorMsg("Passwords Do Not Match!");
+      setPassword('');
+      setPasswordConfirmation('');
+      setErrorMsg('Passwords Do Not Match!');
     }
   };
 
@@ -84,12 +89,12 @@ const SignUpForm = () => {
       <h3
         className="text-black f-20"
         style={{
-          margin: "0.5em",
-          padding: "0.5rem",
-          marginTop: "0",
-          paddingTop: "0",
-          justifyContent: "center",
-          alignItems: "center",
+          margin: '0.5em',
+          padding: '0.5rem',
+          marginTop: '0',
+          paddingTop: '0',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         Sign Up
@@ -97,13 +102,14 @@ const SignUpForm = () => {
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
+            className={classes.root}
             id="FirstName"
             variant="outlined"
             label="First Name"
@@ -117,19 +123,20 @@ const SignUpForm = () => {
               style: { fontSize: 15 },
             }}
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
             onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
+            className={classes.root}
             id="LastName"
             variant="outlined"
             label="Last Name"
@@ -143,19 +150,20 @@ const SignUpForm = () => {
               style: { fontSize: 15 },
             }}
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
+            className={classes.root}
             id="Email"
             type="email"
             value={email}
@@ -163,18 +171,19 @@ const SignUpForm = () => {
             variant="outlined"
             label="Email"
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
+            className={classes.root}
             error={
               password !== password_confirmation &&
               password_confirmation.length > 0
@@ -184,7 +193,7 @@ const SignUpForm = () => {
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setErrorMsg("");
+              setErrorMsg('');
             }}
             required
             InputLabelProps={{
@@ -197,18 +206,19 @@ const SignUpForm = () => {
             variant="outlined"
             label="Password"
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
+            className={classes.root}
             error={
               password !== password_confirmation &&
               password_confirmation.length > 0
@@ -218,7 +228,7 @@ const SignUpForm = () => {
             value={password_confirmation}
             onChange={(e) => {
               setPasswordConfirmation(e.target.value);
-              setErrorMsg("");
+              setErrorMsg('');
             }}
             required
             InputLabelProps={{
@@ -231,13 +241,13 @@ const SignUpForm = () => {
             variant="outlined"
             label="Confirm Password"
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
+            margin: '0.5em',
+            padding: '0.5rem',
           }}
         >
           <Button
@@ -246,22 +256,24 @@ const SignUpForm = () => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: "100%",
+              minWidth: '100%',
             }}
           >
             Register
           </Button>
         </div>
-        {msg !== "" ? (
-          <div>
-            <p style={{ color: "purple" }}>{msg}</p>
-          </div>
-        ) : null}
-        {errorMsg !== " " ? (
-          <div>
-            <p style={{ color: "red" }}>{errorMsg}</p>
-          </div>
-        ) : null}
+        <div className="pl-3 text-center">
+          {msg !== '' ? (
+            <div>
+              <p style={{ color: '#0ebc7d' }}>{msg}</p>
+            </div>
+          ) : null}
+          {errorMsg !== ' ' ? (
+            <div>
+              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+            </div>
+          ) : null}
+        </div>
       </form>
     </>
   );
