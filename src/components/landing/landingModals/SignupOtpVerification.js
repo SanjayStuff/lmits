@@ -1,50 +1,55 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import { Button, makeStyles } from "@material-ui/core";
-import Link from "@material-ui/core/Link";
-import { UserContext } from "../../../context/UserContext";
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import { Button, makeStyles } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
+import { UserContext } from '../../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
+    },
+  },
   loginButton: {
-    color: "#fff",
-    background: "#8845d0",
-    textTransform: "capitalize",
-    marginLeft: "auto",
-    fontSize: "15px",
-    padding: "0.5rem 1rem",
-    outline: "none",
-    border: "none",
-    borderRadius: "0.5rem",
-    opacity: "0.7",
-    cursor: "pointer",
-    transition: "0.3s",
-    "&:hover": {
-      border: "none",
-      background: "#8845d0",
-      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+    marginLeft: 'auto',
+    fontSize: '15px',
+    padding: '0.5rem 1rem',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
   asterisk: {
-    display: "none",
+    display: 'none',
   },
 }));
 
 const SignupOtpVerification = () => {
   const classes = useStyles();
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState('');
   const [userAuth, setUserAuth] = useContext(UserContext);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setErrorMsg("");
+    setErrorMsg('');
 
     const otpVerifyData = {
       otp,
-      details: localStorage.getItem("lmits_otp_details"),
-      controller: "users",
-      action: "verify_otp",
+      details: localStorage.getItem('lmits_otp_details'),
+      controller: 'users',
+      action: 'verify_otp',
     };
     console.log(otpVerifyData);
     axios
@@ -53,7 +58,7 @@ const SignupOtpVerification = () => {
         console.log(response.data);
         if (response.data.response_code === 200) {
           // alert(response.data.message);
-          setUserAuth("6");
+          setUserAuth('6');
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
@@ -74,7 +79,7 @@ const SignupOtpVerification = () => {
       {/*</p>*/}
       <div
         style={{
-          marginLeft: "1rem",
+          marginLeft: '1rem',
         }}
       >
         <p className="login-card-description mb-0 pb-0">
@@ -84,13 +89,14 @@ const SignupOtpVerification = () => {
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
+            className={classes.root}
             id="OTP"
             autoFocus
             type="number"
@@ -106,18 +112,18 @@ const SignupOtpVerification = () => {
             variant="outlined"
             label="Enter OTP"
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
-        {errorMsg !== " " ? (
-          <div>
-            <p style={{ color: "red" }}>{errorMsg}</p>
+        {errorMsg !== ' ' ? (
+          <div className="pl-3">
+            <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
           </div>
         ) : null}
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
+            margin: '0.5em',
+            padding: '0.5rem',
           }}
         >
           <Button
@@ -126,7 +132,7 @@ const SignupOtpVerification = () => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: "100%",
+              minWidth: '100%',
             }}
           >
             Submit
