@@ -8,7 +8,7 @@ const PartnerWithUs = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-6 col-md-8">
-              <div className="title text-center mb-5">
+              <div className="title text-center mb-2">
                 <div className="services-title">
                   <span className="section_title">PARTNER WITH US</span>
                 </div>

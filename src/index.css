@@ -26,7 +26,6 @@ html {
 
 a {
   text-decoration: none !important;
-  outline: none;
 }
 body {
   font-family: 'Poppins', sans-serif;
@@ -74,7 +73,11 @@ ul li {
   transition: 0.3s !important;
 }
 
-@media only screen and (max-width: 768px) {
+.collapse {
+  display: inline !important;
+}
+
+@media only screen and (max-width: 200px) {
   .navbar-collapse .nav_account {
     display: inline-block;
     border-top: 1px solid #edeef1;
@@ -282,12 +285,55 @@ ul li {
 }
 
 @media (min-width: 200px) and (min-width: 575px) {
-  .nav-name {
-    display: none;
+  .nav-item .nav-name {
+    display: inline;
   }
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
+  }
+}
+
+@media (min-width: 350px) and (min-width: 500px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-collapse .nav_account {
+    display: inline-block;
+    border-top: 1px solid #edeef1;
+    padding: 1rem 0;
+  }
+  .navbar-brand {
+    width: 10%;
+    padding-right: 10px;
+  }
+}
+
+@media all and (min-width: 200px) and (max-width: 370px) {
+  .app-store img,
+  .play-store img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-name {
+    display: none;
+  }
+  .navbar-brand {
+    width: 20%;
+    padding-right: 10px;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-collapse .nav_account {
+    display: inline-block;
+    border-top: 1px solid #edeef1;
+    padding: 1rem 0;
   }
 }
 
@@ -348,7 +394,7 @@ ul li {
     color: var(--nav__color) !important;
   }
   .navbar-custom > .container {
-    width: 90%;
+    width: 100%;
   }
   .navbar-custom .logo .logo-dark {
     display: inline-block !important;
@@ -920,7 +966,7 @@ ul li {
 
 .section {
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 25px;
   position: relative;
   overflow: hidden;
 }
@@ -2178,6 +2224,7 @@ ul li {
 
 .dv-button {
   display: flex;
+  width: 80%;
   height: 32px;
   justify-content: center;
   align-items: center;
@@ -2237,9 +2284,9 @@ ul li {
   height: 48px;
   font-size: 18px;
 }
-@media (max-width: 1120px) {
-  .dv-button--big {
-    font-size: 16px;
+@media (max-width: 720px) {
+  .dv-button--small {
+    font-size: 12px;
   }
 }
 .dv-button--big a {
