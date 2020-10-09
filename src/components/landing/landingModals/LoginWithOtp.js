@@ -2,11 +2,9 @@ import React, { useContext, useState } from "react";
 import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
 import { Button, Grid, Link, makeStyles } from "@material-ui/core";
-import LoginWithMail from "./LoginWithMail";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
 import LoginOtpVerification from "./LoginOtpVerification";
-import ForgotPasswordOtpVerification from "./ForgotPasswordOtpVerification";
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
@@ -28,15 +26,18 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
     },
   },
+  asterisk: {
+    display: "none",
+  },
 }));
 
-const LoginWithOtp = (props) => {
+const LoginWithOtp = () => {
   const classes = useStyles();
   const [mobile_number, setMobile_Number] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [otpSent, setOtpSent] = useState(false);
-
-  // let history = useHistory();
+  const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleClick = () => {
     setUserAuth("1");
@@ -44,6 +45,9 @@ const LoginWithOtp = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setOtpSent(false);
+    setErrorMsg("");
+    setMsg("");
 
     const otpData = {
       mobile_number,
@@ -56,13 +60,15 @@ const LoginWithOtp = (props) => {
         if (response.data.response_code === 200) {
           localStorage.setItem("lmits_login_mob", mobile_number);
           localStorage.setItem("lmits_otp_details", response.data.otp.Details);
-          alert(response.data.message);
+          // alert(response.data.message);
+          setMsg(response.data.message);
           setOtpSent(true);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
+          setErrorMsg(response.data.message);
           setMobile_Number("");
         }
       })
@@ -71,26 +77,28 @@ const LoginWithOtp = (props) => {
 
   return (
     <>
-      {/* <img
+      <img
         src={lmitsLogo}
         style={{
-          width: '25%',
-          margin: '0.5em',
-          padding: '0.5rem',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: "25%",
+          marginLeft: "0.5em",
+          padding: "0.5rem",
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      /> */}
+      />
       <div>
-        <h5
+        <h3
           className="text-black"
           style={{
+            fontSize: "20px",
             margin: "0.5em",
             padding: "0.5rem",
+            paddingBottom: "0px",
           }}
         >
           Login
-        </h5>
+        </h3>
         <p
           className="login-card-description mb-0 pb-0"
           style={{
@@ -119,8 +127,17 @@ const LoginWithOtp = (props) => {
             id="MobileNumber"
             type="number"
             value={mobile_number}
-            onChange={(e) => setMobile_Number(e.target.value)}
+            onChange={(e) => {
+              setMobile_Number(e.target.value);
+              setOtpSent(false);
+            }}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Enter Mobile Number"
             size="small"
@@ -133,6 +150,7 @@ const LoginWithOtp = (props) => {
           }}
         >
           <Button
+            disabled={otpSent}
             className={classes.loginButton}
             type="submit"
             variant="contained"
@@ -143,22 +161,53 @@ const LoginWithOtp = (props) => {
           >
             Generate OTP
           </Button>
-          <Grid container style={{ marginTop: "0.6em" }}>
+          {/* <Grid container style={{ marginTop: '0.6em' }}>
             <Link onClick={handleClick}>
               <p
                 className="login-card-forgot f-12"
-                style={{ color: "#000", cursor: "pointer" }}
+                style={{ color: '#000', cursor: 'pointer' }}
                 onClick={() => {
-                  setUserAuth("1");
+                  setUserAuth('1');
                 }}
               >
                 Login with Password
               </p>
             </Link>
-          </Grid>
+          </Grid> */}
         </div>
       </form>
       {otpSent ? <LoginOtpVerification /> : null}
+      <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
+        <div className="d-inline-block">
+          <Link onClick={onSubmit}>
+            <p
+              className="login-card-forgot f-12"
+              style={{ color: "#000", cursor: "pointer" }}
+            >
+              Resend OTP?
+            </p>
+          </Link>
+        </div>
+        <div className="pb-0 mb-0">
+          <p>
+            New to LMiTS?{" "}
+            <span
+              className="text-black"
+              onClick={() => {
+                setUserAuth("5");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              SignUp
+            </span>
+          </p>
+        </div>
+      </div>
+      {errorMsg !== " " ? (
+        <div>
+          <p style={{ color: "red" }}>{errorMsg}</p>
+        </div>
+      ) : null}
     </>
   );
 };

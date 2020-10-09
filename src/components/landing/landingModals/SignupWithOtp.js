@@ -1,17 +1,48 @@
 import React, { useState } from "react";
 import lmitsLogo from "../../../assets/images/Logo.png";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import SignupOtpVerification from "./SignupOtpVerification";
 import LoginOtpVerification from "./LoginOtpVerification";
 
+const useStyles = makeStyles((theme) => ({
+  loginButton: {
+    color: "#fff",
+    background: "#8845d0",
+    textTransform: "capitalize",
+    marginLeft: "auto",
+    fontSize: "15px",
+    padding: "0.5rem 1rem",
+    outline: "none",
+    border: "none",
+    borderRadius: "0.5rem",
+    opacity: "0.7",
+    cursor: "pointer",
+    transition: "0.3s",
+    "&:hover": {
+      border: "none",
+      background: "#8845d0",
+      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
+    },
+  },
+  asterisk: {
+    display: "none",
+  },
+}));
+
 const SignupWithOtp = () => {
+  const classes = useStyles();
   const [mobile_number, setMobile_Number] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg("");
+    setMsg("");
+    setOtpSent(false);
 
     const otpSignUpData = {
       mobile_number,
@@ -30,13 +61,15 @@ const SignupWithOtp = () => {
           localStorage.setItem("lmits_login_mob", mobile_number);
           localStorage.setItem("lmits_otp_details", response.data.otp.Details);
           setOtpSent(true);
-          alert(response.data.message);
+          setMsg(response.data.message);
+          // alert(response.data.message);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
           setMobile_Number("");
+          setErrorMsg(response.data.message);
         }
       })
       .catch((err) => alert(err));
@@ -44,29 +77,25 @@ const SignupWithOtp = () => {
 
   return (
     <>
-      <img
-        src={lmitsLogo}
-        style={{
-          width: "25%",
-          margin: "0.5em",
-          padding: "0.5rem",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        alt="LogoImg"
-      />
-      <h3
-        style={{
-          margin: "0.5em",
-          padding: "0.5rem",
-          marginTop: "0",
-          paddingTop: "0",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Verification
-      </h3>
+      <div>
+        <img
+          src={lmitsLogo}
+          style={{
+            width: "25%",
+            margin: "0.5em",
+            padding: "0.5rem",
+          }}
+          alt="LogoImg"
+        />
+        {/* <h5
+          className="text-black"
+          style={{
+            paddingLeft: '0.8rem',
+          }}
+        >
+          Verification
+        </h5> */}
+      </div>
       <form onSubmit={onSubmit}>
         <div
           style={{
@@ -80,12 +109,21 @@ const SignupWithOtp = () => {
             id="MobileNumber"
             type="number"
             value={mobile_number}
-            onChange={(e) => setMobile_Number(e.target.value)}
+            onChange={(e) => {
+              setMobile_Number(e.target.value);
+              setOtpSent(false);
+            }}
             required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
             variant="outlined"
             label="Enter Mobile Number"
             size="small"
-            style={{ minWidth: "15vw" }}
+            style={{ minWidth: "100%" }}
           />
         </div>
         <div
@@ -94,20 +132,23 @@ const SignupWithOtp = () => {
           }}
         >
           <Button
+            disabled={otpSent}
+            className={classes.loginButton}
             type="submit"
             variant="contained"
             color="primary"
             style={{
-              paddingRight: "4rem",
-              paddingLeft: "4rem",
-              paddingTop: "1rem",
-              fontSize: "1rem",
-              minWidth: "350px",
+              minWidth: "100%",
             }}
           >
             Generate OTP
           </Button>
         </div>
+        {errorMsg !== " " ? (
+          <div>
+            <p style={{ color: "red" }}>{errorMsg}</p>
+          </div>
+        ) : null}
       </form>
       {otpSent ? <SignupOtpVerification /> : null}
     </>

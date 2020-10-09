@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
     },
   },
+  asterisk: {
+    display: "none",
+  },
 }));
 
 const LoginWithMail = (props) => {
@@ -32,6 +35,10 @@ const LoginWithMail = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
+  const [changeDet, setChangeDet] = useState(false);
 
   // let history = useHistory();
 
@@ -41,6 +48,9 @@ const LoginWithMail = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setChangeDet(false);
+    setMsg("");
+    setErrorMsg("");
 
     const signIn = {
       session: {
@@ -55,12 +65,16 @@ const LoginWithMail = (props) => {
         console.log(response.data);
         if (response.data.response_code === 200) {
           localStorage.setItem("lmits_auth_key", response.data.auth_token);
-          alert(response.data.message);
+          setMsg(response.data.message);
+          setIsValidated(true);
+          // alert(response.data.message);
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
         ) {
-          alert(response.data.message);
+          // alert(response.data.message);
+          setErrorMsg(response.data.message);
+          setIsValidated(false);
         }
       })
       .catch((err) => alert(err));
@@ -74,21 +88,19 @@ const LoginWithMail = (props) => {
           src={lmitsLogo}
           style={{
             width: "25%",
-            margin: "0.5em",
+            marginLeft: "0.8em",
             padding: "0.5rem",
             justifyContent: "center",
             alignItems: "center",
           }}
         />
         <h3
+          className="text-black"
           style={{
             fontSize: "20px",
             margin: "0.5em",
             padding: "0.5rem",
-            marginTop: "0",
-            paddingTop: "0",
-            justifyContent: "center",
-            alignItems: "center",
+            paddingBottom: "0px",
           }}
         >
           Hello, Welcome Back
@@ -108,7 +120,18 @@ const LoginWithMail = (props) => {
             id="Email"
             // type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+              style: { fontSize: 15 },
+            }}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setChangeDet(true);
+            }}
             variant="outlined"
             required
             label="Email/Phone Number"
@@ -129,7 +152,17 @@ const LoginWithMail = (props) => {
             id="Password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+              style: { fontSize: 15 },
+            }}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setChangeDet(true);
+            }}
             variant="outlined"
             label="Password"
             required
@@ -161,6 +194,17 @@ const LoginWithMail = (props) => {
               Forgot Password?
             </p>
           </div>
+        </div>
+        <div>
+          {!changeDet ? (
+            <>
+              {isValidated ? (
+                <p style={{ color: "purple" }}>{msg}</p>
+              ) : (
+                <p style={{ color: "red" }}>{errorMsg}</p>
+              )}
+            </>
+          ) : null}
         </div>
         <div
           className="text-center mt-0 pt-0"
