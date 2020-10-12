@@ -162,6 +162,7 @@ const ForgotPasswordOtp = () => {
           />
         </div>
         <div
+          className="text-center"
           style={{
             margin: '1rem',
           }}
@@ -173,7 +174,7 @@ const ForgotPasswordOtp = () => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: '100%',
+              minWidth: '50%',
             }}
           >
             Get OTP
