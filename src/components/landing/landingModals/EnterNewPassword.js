@@ -109,7 +109,9 @@ const EnterNewPassword = () => {
               <Alert severity="error">{errorMsg}</Alert>
             ) : null}
           </>
+
           <>{msg !== "" ? <Alert severity="success">{msg}</Alert> : null}</>
+
         </div>
         <div
           style={{
@@ -120,6 +122,7 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            className={classes.root}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
@@ -151,6 +154,7 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            className={classes.root}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
