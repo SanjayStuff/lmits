@@ -1409,6 +1409,7 @@ ul li {
 .form-control {
   padding: 18px 14px;
   font-size: 14px;
+
   border: 1px solid rgba(157, 169, 187, 0.2);
 }
 .form-control::-webkit-input-placeholder {
@@ -2539,6 +2540,7 @@ ul li {
 /* Banner */
 .homepage-search-block {
   position: relative;
+  margin-top: 50px;
 }
 .homepage-search-block .banner-overlay {
   background-image: url('./assets/images/home-banner.jpg'),
@@ -2549,7 +2551,7 @@ ul li {
   background-position: center center;
   width: 100%;
   position: absolute;
-  filter: blur(1.5px);
+  filter: blur(1px);
 }
 
 .homepage-search-form .form-control {

@@ -64,23 +64,17 @@ const LandingFooter = () => {
                   <ul className="list-unstyled company-sub-menu">
                     <li>
                       <p className="text-muted">
-                        <a className="text-muted" href="#services">
-                          Hyper Local
-                        </a>
+                        <a className="text-muted">Hyper Local</a>
                       </p>
                     </li>
                     <li>
                       <p className="text-muted">
-                        <a className="text-muted" href="#services">
-                          Courier
-                        </a>
+                        <a className="text-muted">Courier</a>
                       </p>
                     </li>
                     <li>
                       <p className="text-muted">
-                        <a className="text-muted" href="#services">
-                          Intracity Delivery
-                        </a>
+                        <a className="text-muted">Intracity Delivery</a>
                       </p>
                     </li>
                   </ul>
@@ -90,23 +84,17 @@ const LandingFooter = () => {
                   <ul className="list-unstyled company-sub-menu">
                     <li>
                       <p className="text-muted">
-                        <a className="text-muted" href="#about">
-                          About Us
-                        </a>
+                        <a className="text-muted">About Us</a>
                       </p>
                     </li>
                     <li>
                       <p className="text-muted">
-                        <a className="text-muted" href="#">
-                          Terms &amp; Conditions
-                        </a>
+                        <a className="text-muted">Terms &amp; Conditions</a>
                       </p>
                     </li>
                     <li>
                       <p className="text-muted">
-                        <a className="text-muted" href="#">
-                          Privacy Policy
-                        </a>
+                        <a className="text-muted">Privacy Policy</a>
                       </p>
                     </li>
                   </ul>
