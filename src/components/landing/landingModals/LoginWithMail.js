@@ -127,15 +127,13 @@ const LoginWithMail = (props) => {
               {isValidated ? (
                 <p style={{ color: '#0ebc7d' }}>{msg}</p>
               ) : (
-                <div>
-                  <p
-                    style={{
-                      color: '#ee4a4a',
-                    }}
-                  >
-                    {errorMsg}
-                  </p>
-                </div>
+                <p
+                  style={{
+                    color: '#ee4a4a',
+                  }}
+                >
+                  {errorMsg}
+                </p>
               )}
             </>
           ) : null}
