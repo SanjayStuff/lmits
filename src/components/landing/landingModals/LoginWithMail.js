@@ -51,8 +51,7 @@ const LoginWithMail = (props) => {
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [errorMsg, setErrorMsg] = useState('');
   const [msg, setMsg] = useState('');
-  const [isValidated, setIsValidated] = useState(false);
-  const [changeDet, setChangeDet] = useState(false);
+  const [changeDet, setChangeDet] = useState(true);
 
   // let history = useHistory();
 
@@ -80,7 +79,6 @@ const LoginWithMail = (props) => {
         if (response.data.response_code === 200) {
           localStorage.setItem('lmits_auth_key', response.data.auth_token);
           setMsg(response.data.message);
-          setIsValidated(true);
           // alert(response.data.message);
         } else if (
           response.data.response_code &&
@@ -88,7 +86,6 @@ const LoginWithMail = (props) => {
         ) {
           // alert(response.data.message);
           setErrorMsg(response.data.message);
-          setIsValidated(false);
         }
       })
       .catch((err) => alert(err));
@@ -122,26 +119,14 @@ const LoginWithMail = (props) => {
       </div>
       <form container onSubmit={onSubmit} className="form">
         <div className="text-center" style={{ paddingLeft: '.9rem' }}>
-          {!changeDet ? (
-            <>
-              {isValidated ? (
-                <p style={{ color: '#0ebc7d' }}>
-                  <Alert severity="success">{msg}</Alert>
-                </p>
-              ) : (
-                <>
-                  <p
-                    style={{
-                      color: '#ee4a4a',
-                    }}
-                  >
-                    <Alert severity="error">{errorMsg}</Alert>
-                  </p>
-                </>
-              )}
-            </>
+          {!changeDet && errorMsg !== '' ? (
+            <Alert severity="error">{errorMsg}</Alert>
+          ) : null}
+          {!changeDet && msg !== '' ? (
+            <Alert severity="success">{msg}</Alert>
           ) : null}
         </div>
+
         <div
           className="form__div"
           style={{
