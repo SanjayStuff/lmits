@@ -241,7 +241,7 @@ const LoginWithMail = (props) => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: '100%',
+              minWidth: '50%',
             }}
           >
             Login

@@ -174,6 +174,7 @@ const EnterNewPassword = () => {
           />
         </div>
         <div
+          className="text-center"
           style={{
             margin: '.8rem',
           }}
@@ -184,7 +185,7 @@ const EnterNewPassword = () => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: '100%',
+              minWidth: '50%',
             }}
           >
             Change Password

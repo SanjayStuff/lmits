@@ -1,46 +1,46 @@
-import React, { useEffect, useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import { Button, Link, makeStyles } from "@material-ui/core";
-import ForgotPasswordOtpVerification from "./ForgotPasswordOtpVerification";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import React, { useEffect, useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import { Button, Link, makeStyles } from '@material-ui/core';
+import ForgotPasswordOtpVerification from './ForgotPasswordOtpVerification';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#8845d0",
+    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#8845d0',
     },
   },
   loginButton: {
-    color: "#fff",
-    background: "#8845d0",
-    textTransform: "capitalize",
-    marginLeft: "auto",
-    fontSize: "15px",
-    padding: "0.5rem 1rem",
-    outline: "none",
-    border: "none",
-    borderRadius: "0.5rem",
-    opacity: "0.7",
-    cursor: "pointer",
-    transition: "0.3s",
-    "&:hover": {
-      border: "none",
-      background: "#8845d0",
-      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
+    color: '#fff',
+    background: '#8845d0',
+    textTransform: 'capitalize',
+    marginLeft: 'auto',
+    fontSize: '15px',
+    padding: '0.5rem 1rem',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '0.5rem',
+    opacity: '0.7',
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      border: 'none',
+      background: '#8845d0',
+      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
   asterisk: {
-    display: "none",
+    display: 'none',
   },
 }));
 
 const ForgotPasswordOtp = () => {
   const classes = useStyles();
-  const [mobile_number, setMobile_Number] = useState("");
+  const [mobile_number, setMobile_Number] = useState('');
   const [otpSent, setOtpSent] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState('');
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const ForgotPasswordOtp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setOtpSent(false);
-    setErrorMsg("");
+    setErrorMsg('');
 
     if (mobile_number.length === 10) {
       const mobileNumber = {
@@ -67,9 +67,9 @@ const ForgotPasswordOtp = () => {
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            localStorage.setItem("lmits_login_mob", mobile_number);
+            localStorage.setItem('lmits_login_mob', mobile_number);
             localStorage.setItem(
-              "lmits_otp_details",
+              'lmits_otp_details',
               response.data.otp.Details
             );
             // alert(response.data.message);
@@ -81,13 +81,13 @@ const ForgotPasswordOtp = () => {
           ) {
             // alert(response.data.message);
             setErrorMsg(response.data.message);
-            setMobile_Number("");
+            setMobile_Number('');
           }
         })
         .catch((err) => alert(err));
     } else {
-      setErrorMsg("Enter a valid Mobile Number");
-      setMobile_Number("");
+      setErrorMsg('Enter a valid Mobile Number');
+      setMobile_Number('');
     }
   };
 
@@ -97,19 +97,19 @@ const ForgotPasswordOtp = () => {
         <img
           src={lmitsLogo}
           style={{
-            width: "25%",
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '25%',
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         />
 
         <p
           className="login-card-description mb-0 pb-0"
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
+            margin: '0.5em',
+            padding: '0.5rem',
           }}
         >
           We will send you a OTP(One Time Password) to verify the below mobile
@@ -118,18 +118,18 @@ const ForgotPasswordOtp = () => {
       </div>
       <form onSubmit={onSubmit}>
         <div className="pl-3 mt-2">
-          {errorMsg !== " " ? (
+          {errorMsg !== ' ' ? (
             <div>
-              <p style={{ color: "#ee4a4a" }}>{errorMsg}</p>
+              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
             </div>
           ) : null}
         </div>
         <div
           style={{
-            margin: "0.5em",
-            padding: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center",
+            margin: '0.5em',
+            padding: '0.5rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextField
@@ -150,18 +150,21 @@ const ForgotPasswordOtp = () => {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">+91</InputAdornment>
+                <InputAdornment disableTypography="true" position="start">
+                  +91 |
+                </InputAdornment>
               ),
             }}
             variant="outlined"
             label="Enter Mobile Number"
             size="small"
-            style={{ minWidth: "100%" }}
+            style={{ minWidth: '100%' }}
           />
         </div>
         <div
+          className="text-center"
           style={{
-            margin: "1rem",
+            margin: '1rem',
           }}
         >
           <Button
@@ -171,7 +174,7 @@ const ForgotPasswordOtp = () => {
             variant="contained"
             color="primary"
             style={{
-              minWidth: "100%",
+              minWidth: '50%',
             }}
           >
             Get OTP
@@ -184,7 +187,7 @@ const ForgotPasswordOtp = () => {
           <div className="d-inline-block">
             <p
               className="login-card-forgot f-12"
-              style={{ color: "#000", fontVariantNumeric: "tabular-nums" }}
+              style={{ color: '#000', fontVariantNumeric: 'tabular-nums' }}
             >
               Resend OTP in {counter} sec
             </p>
@@ -196,7 +199,7 @@ const ForgotPasswordOtp = () => {
             <Link onClick={onSubmit}>
               <p
                 className="login-card-forgot f-12"
-                style={{ color: "#000", cursor: "pointer" }}
+                style={{ color: '#000', cursor: 'pointer' }}
               >
                 Resend OTP
               </p>
