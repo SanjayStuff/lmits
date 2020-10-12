@@ -125,15 +125,19 @@ const LoginWithMail = (props) => {
           {!changeDet ? (
             <>
               {isValidated ? (
-                <p style={{ color: '#0ebc7d' }}>{msg}</p>
-              ) : (
-                <p
-                  style={{
-                    color: '#ee4a4a',
-                  }}
-                >
-                  {errorMsg}
+                <p style={{ color: '#0ebc7d' }}>
+                  <Alert severity="success">{msg}</Alert>
                 </p>
+              ) : (
+                <>
+                  <p
+                    style={{
+                      color: '#ee4a4a',
+                    }}
+                  >
+                    <Alert severity="error">{errorMsg}</Alert>
+                  </p>
+                </>
               )}
             </>
           ) : null}

@@ -109,7 +109,7 @@ const EnterNewPassword = () => {
               <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
             ) : null}
           </>
-          <>{msg !== '' ? <p>{msg}</p> : null}</>
+          <>{msg !== '' ? <p style={{ color: '#0ebc7d' }}>{msg}</p> : null}</>
         </div>
         <div
           style={{
@@ -120,6 +120,7 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            className={classes.root}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
@@ -151,6 +152,7 @@ const EnterNewPassword = () => {
           }}
         >
           <TextField
+            className={classes.root}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
