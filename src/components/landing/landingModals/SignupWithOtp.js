@@ -69,6 +69,7 @@ const SignupWithOtp = () => {
           mobile_number,
         },
       };
+
       console.log(otpSignUpData);
       axios
         .post(`${process.env.REACT_APP_SIGNUP_WITH_OTP}`, otpSignUpData)
@@ -125,7 +126,7 @@ const SignupWithOtp = () => {
       <form onSubmit={onSubmit}>
         {errorMsg !== " " ? (
           <div className="pl-3">
-            <p style={{ color: "#ee4a4a" }}>{errorMsg}</p>
+            <p style={{ color: "red" }}>{errorMsg}</p>
           </div>
         ) : null}
         <div

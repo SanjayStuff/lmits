@@ -1,54 +1,54 @@
-import React, { useState } from 'react';
-import { Button, makeStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React, { useState } from "react";
+import { Button, makeStyles } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import axios from "axios";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
   loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    fontSize: '15px',
-    padding: '0.5rem 7rem',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    color: "#fff",
+    background: "#8845d0",
+    textTransform: "capitalize",
+    fontSize: "15px",
+    padding: "0.5rem 7rem",
+    outline: "none",
+    border: "none",
+    borderRadius: "0.5rem",
+    opacity: "0.7",
+    cursor: "pointer",
+    transition: "0.3s",
+    "&:hover": {
+      border: "none",
+      background: "#8845d0",
+      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
     },
   },
-  paper: { maxWidth: '800px' },
+  paper: { maxWidth: "800px" },
   asterisk: {
-    color: 'red',
+    color: "red",
   },
 }));
 
 const SignUpForm = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
-  const [email, setEmail] = useState('');
-  const [msg, setMsg] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [scroll, setScroll] = React.useState("paper");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPasswordConfirmation] = useState("");
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   // const [image, setImage] = useState(null);
 
   const handleClickOpen = (scrollType) => () => {
@@ -72,8 +72,8 @@ const SignUpForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setMsg('');
-    setErrorMsg('');
+    setMsg("");
+    setErrorMsg("");
 
     if (password === password_confirmation) {
       const signUp = {
@@ -82,10 +82,10 @@ const SignUpForm = () => {
         email,
         password,
         password_confirmation,
-        mobile_number: localStorage.getItem('lmits_login_mob'),
+        mobile_number: localStorage.getItem("lmits_login_mob"),
         image: null,
       };
-      setErrorMsg('');
+      setErrorMsg("");
       console.log(signUp);
       axios
         .post(`${process.env.REACT_APP_SIGNUP_DATA}`, signUp)
@@ -105,9 +105,9 @@ const SignUpForm = () => {
         .catch((err) => alert(err));
     } else {
       // alert("Passwords do not match");
-      setPassword('');
-      setPasswordConfirmation('');
-      setErrorMsg('Passwords Do Not Match!');
+      setPassword("");
+      setPasswordConfirmation("");
+      setErrorMsg("Passwords Do Not Match!");
     }
   };
 
@@ -116,12 +116,12 @@ const SignUpForm = () => {
       <h3
         className="text-black f-20"
         style={{
-          margin: '0.5em',
-          padding: '0.5rem',
-          marginTop: '0',
-          paddingTop: '0',
-          justifyContent: 'center',
-          alignItems: 'center',
+          margin: "0.5em",
+          padding: "0.5rem",
+          marginTop: "0",
+          paddingTop: "0",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         Sign Up
@@ -129,10 +129,10 @@ const SignUpForm = () => {
       <form onSubmit={onSubmit}>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -150,16 +150,18 @@ const SignUpForm = () => {
               style: { fontSize: 15 },
             }}
             size="small"
-            style={{ minWidth: '100%' }}
-            onChange={(e) => setFirstName(e.target.value)}
+            style={{ minWidth: "100%" }}
+            onChange={(e) => {
+              if (e.charCodeAt) setFirstName(e.target.value);
+            }}
           />
         </div>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -177,16 +179,16 @@ const SignUpForm = () => {
               style: { fontSize: 15 },
             }}
             size="small"
-            style={{ minWidth: '100%' }}
+            style={{ minWidth: "100%" }}
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -198,15 +200,15 @@ const SignUpForm = () => {
             variant="outlined"
             label="Email"
             size="small"
-            style={{ minWidth: '100%' }}
+            style={{ minWidth: "100%" }}
           />
         </div>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -220,7 +222,7 @@ const SignUpForm = () => {
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setErrorMsg('');
+              setErrorMsg("");
             }}
             required
             InputLabelProps={{
@@ -233,15 +235,15 @@ const SignUpForm = () => {
             variant="outlined"
             label="Password"
             size="small"
-            style={{ minWidth: '100%' }}
+            style={{ minWidth: "100%" }}
           />
         </div>
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: "0.5em",
+            padding: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -255,7 +257,7 @@ const SignUpForm = () => {
             value={password_confirmation}
             onChange={(e) => {
               setPasswordConfirmation(e.target.value);
-              setErrorMsg('');
+              setErrorMsg("");
             }}
             required
             InputLabelProps={{
@@ -268,7 +270,7 @@ const SignUpForm = () => {
             variant="outlined"
             label="Confirm Password"
             size="small"
-            style={{ minWidth: '100%' }}
+            style={{ minWidth: "100%" }}
           />
         </div>
         <div className="custom-control custom-checkbox ml-3">
@@ -276,13 +278,14 @@ const SignUpForm = () => {
             type="checkbox"
             className="custom-control-input"
             id="customCheck1"
+            required
           />
           <label className="custom-control-label" htmlFor="customCheck1">
-            I accept the{' '}
+            I accept the{" "}
             <span
               className="login-card-description f-10"
-              style={{ color: '#8845d0', cursor: 'pointer' }}
-              onClick={handleClickOpen('paper')}
+              style={{ color: "#8845d0", cursor: "pointer" }}
+              onClick={handleClickOpen("paper")}
             >
               Terms and Conditions
             </span>
@@ -300,7 +303,7 @@ const SignUpForm = () => {
           <DialogTitle id="scroll-dialog-title">
             Terms and Conditions
           </DialogTitle>
-          <DialogContent dividers={scroll === 'paper'}>
+          <DialogContent dividers={scroll === "paper"}>
             <DialogContentText
               id="scroll-dialog-description"
               ref={descriptionElementRef}
@@ -313,7 +316,7 @@ Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
                 )
-                .join('\n')}
+                .join("\n")}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -325,8 +328,8 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
 
         <div
           style={{
-            margin: '0.5em',
-            padding: '0.5rem',
+            margin: "0.5em",
+            padding: "0.5rem",
           }}
         >
           <Button
@@ -335,21 +338,21 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
             variant="contained"
             color="primary"
             style={{
-              minWidth: '100%',
+              minWidth: "100%",
             }}
           >
             Register
           </Button>
         </div>
         <div className="pl-3 text-center">
-          {msg !== '' ? (
+          {msg !== "" ? (
             <div>
-              <p style={{ color: '#0ebc7d' }}>{msg}</p>
+              <p style={{ color: "#0ebc7d" }}>{msg}</p>
             </div>
           ) : null}
-          {errorMsg !== ' ' ? (
+          {errorMsg !== " " ? (
             <div>
-              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+              <p style={{ color: "#ee4a4a" }}>{errorMsg}</p>
             </div>
           ) : null}
         </div>

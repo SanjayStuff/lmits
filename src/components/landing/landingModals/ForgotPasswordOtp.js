@@ -42,7 +42,6 @@ const ForgotPasswordOtp = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [counter, setCounter] = useState(0);
-  const [counterValid, setCounterValid] = useState(false);
 
   useEffect(() => {
     const timer =

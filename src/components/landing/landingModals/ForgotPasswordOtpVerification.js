@@ -39,12 +39,11 @@ const ForgotPasswordOtpVerification = () => {
   const [otp, setOtp] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [errorMsg, setErrorMsg] = useState("");
-  const [isValidated, setIsValidated] = useState(false);
+  // const [isValidated, setIsValidated] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
     setErrorMsg("");
-    setIsValidated(true);
 
     if (otp.length === 6) {
       const otpVerifyData = {
@@ -66,7 +65,8 @@ const ForgotPasswordOtpVerification = () => {
             response.data.response_code &&
             response.data.response_code !== 200
           ) {
-            alert(response.data.message);
+            // alert(response.data.message);
+            setErrorMsg(response.data.message);
           }
         })
         .catch((err) => alert(err));
@@ -139,7 +139,7 @@ const ForgotPasswordOtpVerification = () => {
           </Button>
         </div>
         <>
-          {isValidated && errorMsg !== "" ? (
+          {errorMsg !== "" ? (
             <div>
               <p>{errorMsg}</p>
             </div>
