@@ -7,6 +7,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -151,9 +152,7 @@ const SignUpForm = () => {
             }}
             size="small"
             style={{ minWidth: "100%" }}
-            onChange={(e) => {
-              if (e.charCodeAt) setFirstName(e.target.value);
-            }}
+            onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div
@@ -347,12 +346,13 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
         <div className="pl-3 text-center">
           {msg !== "" ? (
             <div>
-              <p style={{ color: "#0ebc7d" }}>{msg}</p>
+              <Alert severity="success">{msg}</Alert>
             </div>
           ) : null}
-          {errorMsg !== " " ? (
+          {errorMsg !== "" ? (
             <div>
-              <p style={{ color: "#ee4a4a" }}>{errorMsg}</p>
+              {/*<p style={{ color: "#ee4a4a" }}>{errorMsg}</p>*/}
+              <Alert severity="error">{errorMsg}</Alert>
             </div>
           ) : null}
         </div>
