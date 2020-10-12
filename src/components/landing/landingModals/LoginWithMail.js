@@ -5,6 +5,7 @@ import { Button, Link, makeStyles } from '@material-ui/core';
 import LoginWithOtp from './LoginWithOtp';
 import axios from 'axios';
 import { UserContext } from '../../../context/UserContext';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
   asterisk: {
     display: 'none',
+  },
+  errMsg: {
+    borderRadius: '10px',
+    padding: '10px',
+    color: '#000',
+    backgroundColor: '#f8d7da',
+    borderColor: '#f5c6cb',
   },
 }));
 
@@ -119,7 +127,13 @@ const LoginWithMail = (props) => {
               {isValidated ? (
                 <p style={{ color: '#0ebc7d' }}>{msg}</p>
               ) : (
-                <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+                <p
+                  style={{
+                    color: '#ee4a4a',
+                  }}
+                >
+                  {errorMsg}
+                </p>
               )}
             </>
           ) : null}

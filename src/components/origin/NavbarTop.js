@@ -13,8 +13,49 @@ import EnterNewPassword from "../landing/landingModals/EnterNewPassword";
 import SignupWithOtp from "../landing/landingModals/SignupWithOtp";
 import SignUpForm from "../landing/landingModals/SignUpForm";
 
+// Dialog
+import { withStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
+
 const NavbarTop = () => {
   const [userAuth, setUserAuth] = useContext(UserContext);
+  // Dialog
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const authentication = (
     <div className="dv-desktop-menu__login-button b-header__login-button header-login-action">
@@ -67,11 +108,11 @@ const NavbarTop = () => {
         <a href className="navbar-brand logo">
           <img src={logo} alt="LMiTS" height={20} />
         </a>
-
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ui className="navbar-nav ml-auto navbar-center" id="mySidenav"></ui>
           <div className="nav-item">
             <a
+              onClick={handleClickOpen}
               className="font-weight-medium pb-0 mb-0 nav-name"
               style={{ color: "#9da9bb" }}
             >
@@ -97,7 +138,11 @@ const NavbarTop = () => {
           {/*  : profHolder}*/}
           {authentication}
         </div>
-        <section>
+        <section
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
           <div className="row">
             <div className="container">
               <div className="popup" id="popupotplogin">
@@ -116,6 +161,33 @@ const NavbarTop = () => {
             </div>
           </div>
         </section>
+
+        <Dialog
+          className={styles.root}
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+          disableBackdropClick="true"
+        >
+          <DialogActions>
+            <a onClick={handleClose} className="popup__close m-4" href="#">
+              <i className="fa fa-close"></i>
+            </a>
+          </DialogActions>
+
+          <DialogContent>
+            <div className="container dialog-anim">
+              <div className="row ">
+                <div className="popup__photo col-md-5 m-auto">
+                  <img src={loginImg} alt="" />
+                </div>
+                <div className="popup__text col-md-7">
+                  <div className="card-body p-0">{modalComponent()}</div>
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </nav>
   );
