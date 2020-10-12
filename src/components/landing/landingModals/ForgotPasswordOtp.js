@@ -116,7 +116,7 @@ const ForgotPasswordOtp = () => {
           number provide by you.
         </p>
       </div>
-      <form onSubmit={onSubmit} className="form">
+      <form onSubmit={onSubmit}>
         <div className="pl-3 mt-2">
           {errorMsg !== " " ? (
             <div>
@@ -177,34 +177,33 @@ const ForgotPasswordOtp = () => {
             Get OTP
           </Button>
         </div>
+      </form>
+      {otpSent ? <ForgotPasswordOtpVerification /> : null}
+      <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
+        {otpSent && counter !== 0 ? (
+          <div className="d-inline-block">
+            <p
+              className="login-card-forgot f-12"
+              style={{ color: "#000", fontVariantNumeric: "tabular-nums" }}
+            >
+              Resend OTP in {counter} sec
+            </p>
+          </div>
+        ) : null}
 
-        {otpSent ? <ForgotPasswordOtpVerification /> : null}
-        <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
-          {otpSent && counter !== 0 ? (
-            <div className="d-inline-block">
+        {otpSent && counter === 0 ? (
+          <div className="d-inline-block">
+            <Link onClick={onSubmit}>
               <p
                 className="login-card-forgot f-12"
-                style={{ color: "#000", fontVariantNumeric: "tabular-nums" }}
+                style={{ color: "#000", cursor: "pointer" }}
               >
-                Resend OTP in {counter} sec
+                Resend OTP
               </p>
-            </div>
-          ) : null}
-
-          {otpSent && counter === 0 ? (
-            <div className="d-inline-block">
-              <Link onClick={onSubmit}>
-                <p
-                  className="login-card-forgot f-12"
-                  style={{ color: "#000", cursor: "pointer" }}
-                >
-                  Resend OTP
-                </p>
-              </Link>
-            </div>
-          ) : null}
-        </div>
-      </form>
+            </Link>
+          </div>
+        ) : null}
+      </div>
     </>
   );
 };
