@@ -138,11 +138,7 @@ const NavbarTop = () => {
           {/*  : profHolder}*/}
           {authentication}
         </div>
-        <section
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
+        <section>
           <div className="row">
             <div className="container">
               <div className="popup" id="popupotplogin">
