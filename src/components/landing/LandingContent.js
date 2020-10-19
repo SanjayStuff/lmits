@@ -9,12 +9,12 @@ import LandingFooter from './LandingFooter';
 const LandingContent = () => {
   return (
     <>
-      <LandingBanner />
+      {/* <LandingBanner />
       <LookingFor />
       <AboutUs />
       <PartnerWithUs />
       <Partners />
-      <LandingFooter />
+      <LandingFooter /> */}
     </>
   );
 };

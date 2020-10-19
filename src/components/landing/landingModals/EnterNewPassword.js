@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import lmitsLogo from '../../../assets/images/Logo.png';
 import TextField from '@material-ui/core/TextField';
 import { Button, makeStyles } from '@material-ui/core';
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { UserContext } from '../../../context/UserContext';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,11 +38,10 @@ const EnterNewPassword = () => {
   const classes = useStyles();
   const [new_password, setNewPassword] = useState('');
   const [password_confirmation, setPasswordConfirmation] = useState('');
+  // const [userAuth, setUserAuth] = useContext(UserContext);
   const [errorMsg, setErrorMsg] = useState('');
   const [msg, setMsg] = useState('');
-  const [validated, setValidated] = useState(false);
-
-  // let history = useHistory();
+  // const [validated, setValidated] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -103,13 +103,14 @@ const EnterNewPassword = () => {
         Change Forgot Password
       </h4>
       <form onSubmit={onSubmit}>
-        <div className="pl-3 text-center">
+        <div className="pl-3 text-center margin: '0.8em'">
           <>
             {errorMsg !== '' ? (
-              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
+              <Alert severity="error">{errorMsg}</Alert>
             ) : null}
           </>
-          <>{msg !== '' ? <p style={{ color: '#0ebc7d' }}>{msg}</p> : null}</>
+
+          <>{msg !== '' ? <Alert severity="success">{msg}</Alert> : null}</>
         </div>
         <div
           style={{

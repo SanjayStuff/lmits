@@ -6,6 +6,7 @@ import { UserContext } from '../../../context/UserContext';
 import axios from 'axios';
 import LoginOtpVerification from './LoginOtpVerification';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,9 +43,9 @@ const LoginWithOtp = () => {
   const [mobile_number, setMobile_Number] = useState('');
   const [userAuth, setUserAuth] = useContext(UserContext);
   const [otpSent, setOtpSent] = useState(false);
-  const [msg, setMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [counter, setCounter] = useState(0);
+  const [changeDet, setChangeDet] = useState(true);
 
   const handleClick = () => {
     setUserAuth('1');
@@ -62,7 +63,7 @@ const LoginWithOtp = () => {
     e.preventDefault();
     setOtpSent(false);
     setErrorMsg('');
-    setMsg('');
+    setChangeDet(false);
 
     if (mobile_number.length === 10) {
       const otpData = {
@@ -80,7 +81,6 @@ const LoginWithOtp = () => {
               response.data.otp.Details
             );
             // alert(response.data.message);
-            setMsg(response.data.message);
             setOtpSent(true);
             setCounter(15);
           } else if (
@@ -140,10 +140,12 @@ const LoginWithOtp = () => {
       {/*</h6>*/}
       <form onSubmit={onSubmit} className="mb-0 pb-0">
         <div className="pl-3 mt-2">
-          {errorMsg !== ' ' ? (
-            <div>
-              <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
-            </div>
+          {!otpSent ? (
+            !changeDet && errorMsg !== '' ? (
+              <div>
+                <Alert severity="error">{errorMsg}</Alert>
+              </div>
+            ) : null
           ) : null}
         </div>
         <div
@@ -162,6 +164,7 @@ const LoginWithOtp = () => {
             onChange={(e) => {
               setMobile_Number(e.target.value);
               setOtpSent(false);
+              setChangeDet(true);
             }}
             required
             InputLabelProps={{
@@ -217,7 +220,7 @@ const LoginWithOtp = () => {
         </div>
       </form>
       {otpSent ? <LoginOtpVerification /> : null}
-      <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
+      <div className="form__div text-center" style={{ margin: '0.8em' }}>
         {/*{otpSent ? (*/}
         {/*  <div className="d-inline-block">*/}
         {/*    <Link onClick={onSubmit}>*/}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, Grid, Link, makeStyles } from '@material-ui/core';
 import axios from 'axios';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +39,15 @@ const LoginOtpVerification = () => {
   const [otp, setOtp] = useState('');
   const [msg, setMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isValidated, setIsValidated] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
     setMsg('');
     setErrorMsg('');
+    setIsSubmitted(false);
+    setIsValidated(false);
 
     if (otp.length === 6) {
       const otpVerifyData = {
@@ -57,17 +62,20 @@ const LoginOtpVerification = () => {
           console.log(response.data);
           if (response.data.response_code == 200) {
             // alert(response.data.message);
+            setIsValidated(true);
             setMsg(response.data.message);
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
           ) {
             // alert(response.data.message);
+            setIsSubmitted(true);
             setErrorMsg(response.data.message);
           }
         })
         .catch((err) => alert(err));
     } else {
+      setIsSubmitted(true);
       setErrorMsg('Enter valid OTP');
       setOtp('');
     }
@@ -85,6 +93,19 @@ const LoginOtpVerification = () => {
         </p>
       </div>
       <form onSubmit={onSubmit}>
+        <div className="text-center" style={{ margin: '0.8em' }}>
+          {isSubmitted && errorMsg !== '' ? (
+            <div className="pl-3">
+              <Alert severity="error">{errorMsg}</Alert>
+            </div>
+          ) : null}
+
+          {isValidated && msg !== '' ? (
+            <div className="pl-3">
+              <Alert severity="success">{msg}</Alert>
+            </div>
+          ) : null}
+        </div>
         <div
           style={{
             margin: '0.5em',
@@ -99,7 +120,11 @@ const LoginOtpVerification = () => {
             type="number"
             value={otp}
             autoFocus
-            onChange={(e) => setOtp(e.target.value)}
+            onChange={(e) => {
+              setOtp(e.target.value);
+              setIsSubmitted(false);
+              setIsValidated(false);
+            }}
             required
             InputLabelProps={{
               classes: {
@@ -113,17 +138,7 @@ const LoginOtpVerification = () => {
             style={{ minWidth: '100%' }}
           />
         </div>
-        {errorMsg !== ' ' ? (
-          <div className="pl-3">
-            <p style={{ color: '#ee4a4a' }}>{errorMsg}</p>
-          </div>
-        ) : null}
 
-        {msg !== '' ? (
-          <div className="pl-3">
-            <p style={{ color: '#0ebc7d' }}>{msg}</p>
-          </div>
-        ) : null}
         <div
           className="text-center"
           style={{

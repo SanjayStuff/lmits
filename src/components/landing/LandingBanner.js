@@ -1,44 +1,37 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
+import { Row, Col } from 'antd';
 
 const LandingBanner = () => {
   return (
     <Container maxWidth="false">
-      <section className="pt-5 pb-5 homepage-search-block position-relative">
+      <section className="section homepage-search-block">
         <div className="banner-overlay" />
-        <div className="container text-center mb-4">
-          <div className="row ">
-            <div className="col-md-12 text-center">
-              <div className="homepage-search-title pt-5 mt-5">
-                <h1 className="mb-2 font-weight-normal">
+        <div className="about-container" style={{ padding: '70px 0 90px 0' }}>
+          <Row justify="space-around">
+            <Col span={24} align="middle">
+              <div className="homepage-search-title service-title">
+                <h1 className="font-weight-normal">
                   <span className="font-weight-bold">Easy Booking</span> Fast
                   Delivery
                 </h1>
-                <h5 className="mb-5 text-secondary font-weight-normal" />
               </div>
 
-              <div className="homepage-search-form ">
-                <form className="form-noborder">
-                  <div className="form-row d-flex justify-content-center">
-                    <div className="col-lg-7 col-md-7 col-sm-12 ">
+              <div className="homepage-search-form">
+                <form>
+                  <Row justify="space-around" align="middle">
+                    <Col span={12} xs={18} sm={16} md={14} lg={14} xl={10}>
                       <input
-                        disabled
                         type="text"
                         placeholder="Enter your pickup location"
-                        className="form-control form-control-lg"
+                        className="form-control"
                       />
-                      <a className="locate-me">
-                        <i
-                          className="fa fa-map-marker"
-                          style={{ color: '#000' }}
-                        ></i>
-                      </a>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
                 </form>
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       </section>
     </Container>

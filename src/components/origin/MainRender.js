@@ -1,13 +1,13 @@
-import React from "react";
-import NavbarTop from "./NavbarTop";
-import MainContent from "./MainContent";
-import { UserProvider } from "../../context/UserContext";
+import React from 'react';
+import NavbarTop from './NavbarTop';
+import MainContent from './MainContent';
+import { UserProvider } from '../../context/UserContext';
 
 const MainRender = () => {
   return (
     <>
       <UserProvider>
-        <NavbarTop />
+        {/* <NavbarTop /> */}
         <MainContent />
       </UserProvider>
     </>
