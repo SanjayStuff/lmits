@@ -70,8 +70,8 @@ const SignupWithOtp = () => {
           mobile_number,
         },
       };
-
       console.log(otpSignUpData);
+
       axios
         .post(`${process.env.REACT_APP_SIGNUP_WITH_OTP}`, otpSignUpData)
         .then(function (response) {

@@ -2551,7 +2551,6 @@ ul li {
   background-position: center center;
   width: 100%;
   position: absolute;
-  filter: blur(1px);
 }
 
 .homepage-search-form .form-control {
@@ -2604,3 +2603,4 @@ ul li {
     padding: 3rem 0 !important;
   }
 }
+

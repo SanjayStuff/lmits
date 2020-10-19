@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import MyOrders from "./MyOrders";
+import AllOrders from "./AllOrders";
 import MyProfile from "./MyProfile";
 import AddressBook from "./AddressBook";
 import Support from "./Support";
@@ -12,7 +12,7 @@ const Dashboard = () => {
       <Sidebar />
       <MyProfile />
       <AddressBook />
-      <MyOrders />
+      <AllOrders />
       <Support />
       <Logout />
     </>
