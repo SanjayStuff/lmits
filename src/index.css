@@ -2856,3 +2856,27 @@ p {
     max-width: 1140px;
   }
 }
+
+/*Carousel*/
+
+.carousel-indicators li{
+  background-color: black;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  outline: black;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  color: black;
+}
+
+/*End of Carousel*/

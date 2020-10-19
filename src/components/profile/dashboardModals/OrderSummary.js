@@ -7,6 +7,8 @@ import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import { Button, CardContent } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
+import Carousel from "react-bootstrap/Carousel";
+import TextField from "@material-ui/core/TextField";
 
 const OrderSummary = (props) => {
   const {
@@ -17,12 +19,28 @@ const OrderSummary = (props) => {
     setSelectedOrderId,
   } = props;
 
+  let month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   const [allDetails, setAllDetails] = useState({});
   const [pickupDetails, setPickupDetails] = useState({});
   const [pickupName, setPickupName] = useState("");
   const [pickupNumber, setPickupNumber] = useState("");
   const [paymentDetails, setPaymentDetails] = useState({});
-  const [deliveryDetails, setDeliveryDetails] = useState();
+  const [deliveryDetails, setDeliveryDetails] = useState([]);
+  const [createdTime, setCreatedTime] = useState("");
 
   useEffect(() => {
     if (openOrderSummary && id === selectedOrderId) {
@@ -41,17 +59,8 @@ const OrderSummary = (props) => {
           .then(function (response) {
             console.log(response.data);
             setAllDetails(response.data);
-
-            // const deliveryContent = [];
-            // response.data.sub_orders.map((val) => {
-            //   Object.entries(val).map(([key, value]) => {
-            //     console.log(key);
-            //     console.log(value);
-            //   });
-            // });
-            // (r) => deliveryContent.push(r));
-            // setDeliveryDetails(deliveryContent);
-
+            setDeliveryDetails(response.data.sub_orders);
+            setCreatedTime(response.data.order.created_at);
             setPickupDetails(
               response.data.sub_orders[0].pickup_location.address
             );
@@ -110,44 +119,120 @@ const OrderSummary = (props) => {
                     {pickupDetails.city}
                     {" - "}
                     {pickupDetails.zip}
+                    <br />
+                    {pickupDetails.state}
                   </p>
                 </div>
               </CardContent>
             </Card>
 
-            {/*{deliveryDetails.map((deliveryDetail) => {*/}
-            {/*  return (*/}
-            {/*    <div>*/}
-            {/*      <Card variant="outlined" style={{ margin: "15px" }}>*/}
-            {/*        <CardContent>*/}
-            {/*          <ul>*/}
-            {/*            <li>*/}
-            {/*              {deliveryDetail.delivery_location.contact_person_name}*/}
-            {/*            </li>*/}
-            {/*          </ul>*/}
-            {/*        </CardContent>*/}
-            {/*      </Card>*/}
-            {/*    </div>*/}
-            {/*  );*/}
-            {/*})}*/}
+            <Card variant="outlined" style={{ margin: "15px" }}>
+              <CardContent>
+                <Carousel interval="100000">
+                  {deliveryDetails.map((details) => {
+                    return (
+                      <Carousel.Item
+                        key={details.delivery_location.sub_order_id}
+                      >
+                        <Card>
+                          <CardContent>
+                            <ul>
+                              <li>Product Name : {details.package.product}</li>
+                              <li>
+                                Product Value : {details.package.product_value}
+                              </li>
+                              <li>
+                                Product weight :{" "}
+                                {details.package.weight_in_gram}gms
+                              </li>
+                              <li>Quantity : {details.package.quantity}</li>
+                            </ul>
+                            <div>
+                              <span>
+                                <p>
+                                  Pick-up Date and Time :
+                                  {new Date(createdTime).getDate()}
+                                  {"-"}
+                                  {month[new Date(createdTime).getMonth()]}
+                                  {"-"}
+                                  {new Date(createdTime).getFullYear()}{" "}
+                                  {new Date(createdTime).getHours()}
+                                  {":"}
+                                  {new Date(createdTime).getMinutes()}
+                                </p>
+                              </span>
 
-            {allDetails.sub_orders.map((details) => {
-              return (
-                <div>
-                  <Card>
-                    <CardContent>
-                      <ul>
-                        <li>{details.pickup_location.contact_person_name}</li>
-                        <li>
-                          {details.delivery_location.contact_person_phone}
-                        </li>
-                        <li>{details.package.sub_order_id}</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              );
-            })}
+                              <span>
+                                Product Dimension(in cm)
+                                <br />
+                                <TextField
+                                  disabled
+                                  variant="outlined"
+                                  value={details.package.length}
+                                  label="Length"
+                                  size="small"
+                                />
+                                <TextField
+                                  disabled
+                                  variant="outlined"
+                                  value={details.package.breadth}
+                                  label="Breadth"
+                                  size="small"
+                                />
+                                <TextField
+                                  disabled
+                                  variant="outlined"
+                                  value={details.package.height}
+                                  label="Height"
+                                  size="small"
+                                />
+                              </span>
+                            </div>
+                            <Card variant="outlined" style={{ margin: "15px" }}>
+                              <CardContent>
+                                <h6>Drop Address</h6>
+                                <p>
+                                  {
+                                    details.delivery_location.address
+                                      .contact_person
+                                  }
+                                  <br />
+                                  {
+                                    details.delivery_location.address
+                                      .door_number
+                                  }{" "}
+                                  {details.delivery_location.address.street}
+                                  <br />
+                                  {details.delivery_location.address.address_1}
+                                  <br />
+                                  {details.delivery_location.address.address_2}
+                                  <br />
+                                  {details.delivery_location.address.landmark}
+                                  {details.delivery_location.address
+                                    .landmark !== "" ? (
+                                    <br />
+                                  ) : null}
+                                  {details.delivery_location.address.city}
+                                  {" - "}
+                                  {details.delivery_location.address.zip}
+                                  <br />
+                                  {details.delivery_location.address.state}
+                                  <br />
+                                  {
+                                    details.delivery_location.address
+                                      .contact_person_number
+                                  }
+                                </p>
+                              </CardContent>
+                            </Card>
+                          </CardContent>
+                        </Card>
+                      </Carousel.Item>
+                    );
+                  })}
+                </Carousel>
+              </CardContent>
+            </Card>
 
             <Card variant="outlined" style={{ margin: "15px" }}>
               <CardContent>
@@ -164,6 +249,15 @@ const OrderSummary = (props) => {
                 </div>
                 <div>
                   <p>
+                    Order Placed On :{new Date(createdTime).getDate()}
+                    {"-"}
+                    {month[new Date(createdTime).getMonth()]}
+                    {"-"}
+                    {new Date(createdTime).getFullYear()}{" "}
+                    {new Date(createdTime).getHours()}
+                    {":"}
+                    {new Date(createdTime).getMinutes()}
+                    <br />
                     Payment Method:
                     <span style={{ textTransform: "uppercase" }}>
                       {paymentDetails.method}
