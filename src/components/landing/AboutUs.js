@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Layout, Row, Col } from 'antd';
 
 const AboutUs = () => {
   const [open, setOpen] = React.useState(false);
@@ -29,41 +30,38 @@ const AboutUs = () => {
       }
     }
   }, [open]);
+
   return (
-    <>
-      <section className="section bg-light" id="about">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4 features-img">
-              <img
-                src={aboutImg}
-                alt=""
-                className="img-fluid mx-auto d-block"
-              />
-            </div>
-            <div className="col-md-7 offset-md-1">
-              <div className="row">
-                <div className="title text-center mb-5 pl-3">
-                  <h3 className="font-weight-normal text-left text-dark mb-3">
+    <Layout>
+      <section className="section bg-light">
+        <div className="about-container">
+          <Row justify="space-around" align="middle">
+            <Col md={9} className="features-img">
+              <img src={aboutImg} alt="LMiTS About Img" className="img-fluid" />
+            </Col>
+
+            <Col md={14} md={{ span: 14, offset: 1 }}>
+              <Row>
+                <div className="title">
+                  <h3 className="font-weight-normal text-left text-dark ">
                     About
                     <span className="text-warning font-weight-medium"> Us</span>
                   </h3>
-                  <p className="text-muted font-weight-normal text-left">
+                  <p className="about-text text-muted font-weight-normal text-left">
                     Logistics is the process of planning and executing the
                     efficient transportation and storage of goods from the point
                     of origin to the point of consumption. The goal of LMiTS is
                     to meet customer requirements in a timely, cost-effective
                     and ease of access with us innovative technology.
                   </p>
-                  <div className="row pl-3">
+                  <Row>
                     <a
-                      href="#"
                       onClick={handleClickOpen('paper')}
-                      className="mt-3 font-weight-normal read-more"
+                      className=" font-weight-normal read-more"
                     >
                       Read more <span className="right-icon">→</span>
                     </a>
-                  </div>
+                  </Row>
                 </div>
                 <Dialog
                   open={open}
@@ -79,7 +77,7 @@ const AboutUs = () => {
                       ref={descriptionElementRef}
                       tabIndex={-1}
                     >
-                      <p>
+                      <p className="about-text">
                         The era of technological innovation has revolutionized
                         the way the world use to function. It has impacted every
                         other industry we know and is helping to transform them
@@ -89,7 +87,7 @@ const AboutUs = () => {
                         world of logistics but is also making it a more
                         efficient and automated process.
                       </p>
-                      <p>
+                      <p className="about-text">
                         The new-age start-ups that are backed by technological
                         advancements are able to adapt to emerging imperatives
                         such as agility, customer centricity and the need to
@@ -125,13 +123,18 @@ const AboutUs = () => {
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button
+                      style={{ outLine: 'none' }}
+                      onClick={handleClose}
+                      color="primary"
+                    >
                       Close
                     </Button>
                   </DialogActions>
                 </Dialog>
-                <div className="col-md-6">
-                  <h6 className="text-dark f-20 mb-3">Our Vision</h6>
+
+                <Col md={12}>
+                  <h6 className="text-dark f-20">Our Vision</h6>
                   <p className="text-muted font-weight-normal">
                     We aim to simplify the logistics industry process. Our
                     vision is to enable the LMiTS Solutions &amp; technology in
@@ -139,22 +142,22 @@ const AboutUs = () => {
                     partner to all our clients. We envision to surpass our
                     success &amp; customer loyalty level year by year.
                   </p>
-                </div>
-                <div className="col-md-6">
-                  <h6 className="text-dark f-18 mb-3">Our Mission</h6>
+                </Col>
+                <Col md={11} md={{ span: 11, offset: 1 }}>
+                  <h6 className="text-dark f-18 ">Our Mission</h6>
                   <p className="text-muted font-weight-normal">
                     To promote teamwork &amp; create a work environment
                     encouraging the workforce to continuously strive for quality
                     &amp; excellence, providing high-quality service to
                     customers under one roof.
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         </div>
       </section>
-    </>
+    </Layout>
   );
 };
 

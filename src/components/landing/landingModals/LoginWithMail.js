@@ -118,7 +118,7 @@ const LoginWithMail = (props) => {
         </h3>
       </div>
       <form container onSubmit={onSubmit} className="form">
-        <div className="text-center" style={{ paddingLeft: '.9rem' }}>
+        <div className="text-center" style={{ margin: '0.8em' }}>
           {!changeDet && errorMsg !== '' ? (
             <Alert severity="error">{errorMsg}</Alert>
           ) : null}
@@ -193,11 +193,17 @@ const LoginWithMail = (props) => {
           />
         </div>
 
-        <div className="form__div otp-forget mt-2 mb-0 pb-0 m-2 p-2">
-          <div className="d-inline-block">
+        <div
+          className="form__div otp-forget "
+          style={{
+            margin: '.5rem !important',
+            padding: '.5rem !important',
+          }}
+        >
+          <div>
             <Link onClick={handleClick}>
               <p
-                className="login-card-description f-12"
+                className="login-card-description "
                 style={{ color: '#000', cursor: 'pointer' }}
               >
                 Login with OTP
@@ -205,9 +211,9 @@ const LoginWithMail = (props) => {
             </Link>
           </div>
 
-          <div className="pb-0 mb-0">
+          <div>
             <p
-              className="login-card-description f-12"
+              className="login-card-description"
               style={{ color: '#ee4a4a', cursor: 'pointer' }}
               onClick={() => {
                 setUserAuth('3');
@@ -219,7 +225,7 @@ const LoginWithMail = (props) => {
         </div>
 
         <div
-          className="text-center mt-0 pt-0"
+          align="middle"
           style={{
             margin: '.8rem',
           }}

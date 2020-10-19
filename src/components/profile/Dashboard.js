@@ -10,11 +10,11 @@ const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      <MyProfile />
+      {/*<MyProfile />
       <AddressBook />
       <AllOrders />
       <Support />
-      <Logout />
+      <Logout /> */}
     </>
   );
 };
