@@ -2,104 +2,140 @@ import React from 'react';
 import logo from '../../assets/images/Logo.png';
 import FAppStore from '../../assets/images/footer/footer-appstore.png';
 import FPlayStore from '../../assets/images/footer/footer-playstore.png';
+import { Layout, Row, Col, Typography } from 'antd';
+import { Container } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const LandingFooter = () => {
   return (
-    <>
-      <section className="footer bg-light">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="mb-4">
-                <a href>
-                  <img src={logo} alt="" className="logo-dark" height={26} />
-                </a>
-                <p className="text-muted mt-4 mb-2">
-                  LMiTS is the first super application with tech enabled
-                  logistics booking service provider started in India.
-                </p>
-                <ul className="list-unstyled footer-social-list mt-4">
+    <Layout>
+      <section className=" footer bg-light">
+        <div className="about-container">
+          <Row>
+            <Col lg={7}>
+              <div style={{ marginBottom: '4px' }}>
+                <Typography.Link>
+                  <Link>
+                    <img
+                      src="/static/media/Logo.0463a001.png"
+                      alt=""
+                      className="logo-dark"
+                      height={26}
+                    />
+                  </Link>
+                </Typography.Link>
+
+                <div className="footer-desc">
+                  <p
+                    className="text-muted"
+                    style={{ marginTop: '1.5rem !important' }}
+                  >
+                    LMiTS is the first super application with tech enabled
+                    logistics booking service provider started in India.
+                  </p>
+                </div>
+
+                <ul
+                  className="list-unstyled footer-social-list "
+                  style={{ marginTop: '4px' }}
+                >
                   <li className="list-inline-item ">
-                    <a href="#">
-                      <i className="fa fa-facebook" />
-                    </a>
+                    <Typography.Link>
+                      <Link>
+                        <i className="fa fa-facebook" />
+                      </Link>
+                    </Typography.Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-instagram" />
-                    </a>
+                    <Typography.Link>
+                      <Link>
+                        <i className="fa fa-instagram" />
+                      </Link>
+                    </Typography.Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-linkedin" />
-                    </a>
+                    <Typography.Link>
+                      <Link>
+                        <i className="fa fa-linkedin" />
+                      </Link>
+                    </Typography.Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-twitter" />
-                    </a>
+                    <Typography.Link>
+                      <Link>
+                        <i className="fa fa-twitter" />
+                      </Link>
+                    </Typography.Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-whatsapp" />
-                    </a>
+                    <Typography.Link>
+                      <Link>
+                        <i className="fa fa-whatsapp" />
+                      </Link>
+                    </Typography.Link>
                   </li>
                 </ul>
-                <div>
-                  <a href="#" className="mr-3">
-                    <img src={FAppStore} alt="" height="auto" />
-                  </a>
-                  <a href>
-                    <img src={FPlayStore} alt="" height="auto" />
-                  </a>
+                <div className="footer-btn">
+                  <Typography.Link>
+                    <Link style={{ marginRight: '.7rem' }}>
+                      <img src={FAppStore} alt="" height="auto" />
+                    </Link>
+                  </Typography.Link>
+                  <Typography.Link>
+                    <Link>
+                      <img src={FPlayStore} alt="" height="auto" />
+                    </Link>
+                  </Typography.Link>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-8">
-              <div className="row">
-                <div className="col-md-4">
+            </Col>
+            <Col lg={17}>
+              <Row>
+                <Col md={8} style={{ marginRight: '.5rem' }}>
                   <h6 className="footer-list-title text-dark mb-3">
                     Our Services
                   </h6>
-                  <ul className="list-unstyled company-sub-menu">
+                  <ul className="company-sub-menu">
                     <li>
-                      <p className="text-muted">
-                        <a className="text-muted">Hyper Local</a>
-                      </p>
+                      <Typography>
+                        <p className="text-muted">Hyper Local</p>
+                      </Typography>
                     </li>
                     <li>
-                      <p className="text-muted">
-                        <a className="text-muted">Courier</a>
-                      </p>
+                      <Typography>
+                        <p className="text-muted">Courier</p>
+                      </Typography>
                     </li>
                     <li>
-                      <p className="text-muted">
-                        <a className="text-muted">Intracity Delivery</a>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-                <div className="col-md-4">
-                  <h6 className="footer-list-title text-dark mb-3">Company</h6>
-                  <ul className="list-unstyled company-sub-menu">
-                    <li>
-                      <p className="text-muted">
-                        <a className="text-muted">About Us</a>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="text-muted">
-                        <a className="text-muted">Terms &amp; Conditions</a>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="text-muted">
-                        <a className="text-muted">Privacy Policy</a>
-                      </p>
+                      <Typography>
+                        <p className="text-muted">Intracity Delivery</p>
+                      </Typography>
                     </li>
                   </ul>
-                </div>
-                <div className="col-md-4">
+                </Col>
+                <Col md={7}>
+                  <h6 className="footer-list-title text-dark mb-3">
+                    Our Company
+                  </h6>
+                  <ul className=" company-sub-menu">
+                    <li>
+                      <Typography>
+                        <p className="text-muted">About Us</p>
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography>
+                        <p className="text-muted">Terms &amp; Conditions</p>
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography>
+                        <p className="text-muted">Privacy Policy</p>
+                      </Typography>
+                    </li>
+                  </ul>
+                </Col>
+                <Col md={8}>
                   <h6 className="footer-list-title text-dark mb-3">
                     LMiTS Solutions Pvt.Ltd
                   </h6>
@@ -118,20 +154,18 @@ const LandingFooter = () => {
                       <i className="fa fa-phone" /> Phone: +91 86200 87300
                     </a>
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-5">
-            <div className="col-md-12">
-              <div className="text-center text-muted">
-                <p className="mb-0 f-15">2020 © LMiTS Solutions Pvt Ltd.</p>
-              </div>
-            </div>
-          </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row className="footer-copyright">
+            <Col md={24} align="middle">
+              <p className="text-muted f-15">2020 © LMiTS Solutions Pvt Ltd.</p>
+            </Col>
+          </Row>
         </div>
       </section>
-    </>
+    </Layout>
   );
 };
 
