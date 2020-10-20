@@ -29,17 +29,17 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useTheme, withStyles } from "@material-ui/core/styles";
 
-import { MenuList, MenuItem } from "@material-ui/core";
+
+import { MenuList, MenuItem, Container } from '@material-ui/core';
 import Logout from "./Logout";
+
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
+
+    display: 'flex',
 
     "& .MuiAppBar-colorPrimary": {
       backgroundColor: "transparent",
@@ -53,9 +53,11 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth,
       flexShrink: 0,
     },
-    "& .makeStyles-drawerPaper-6": {
-      borderRadius: "10px",
-      margin: "90px 10px",
+    '& .makeStyles-drawerPaper-6': {
+      position: 'absolute',
+      borderRadius: '10px',
+      margin: '90px 10px',
+
       // background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
       color: "#000",
     },
@@ -125,7 +127,9 @@ const Sidebar = (props) => {
         </Upload>
 
         <div>
-          <h5 style={{ color: "#fff", marginTop: "10px" }}>Dhanush</h5>
+
+          <h5 style={{ marginTop: '10px' }}>Dhanush</h5>
+
         </div>
       </div>
 
@@ -209,12 +213,15 @@ const Sidebar = (props) => {
     <>
       <div className="header-fluid">
         <div className="header">
+
           <Toolbar style={{ minHeight: "0px" }}>
+
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               style={{ outline: "none" }}
+
               onClick={handleDrawerToggle}
               className={classes.menuButton}
             >
@@ -235,6 +242,7 @@ const Sidebar = (props) => {
         </div>
       </div>
       <div className={classes.root}>
+
         <CssBaseline />
         <nav className={classes.drawer} aria-label="mailbox folders">
           <Hidden smUp implementation="css">
