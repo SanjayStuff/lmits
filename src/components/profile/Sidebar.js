@@ -29,16 +29,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useTheme, withStyles } from '@material-ui/core/styles';
 
-import { MenuList, MenuItem } from '@material-ui/core';
+import { MenuList, MenuItem, Container } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
 
     '& .MuiAppBar-colorPrimary': {
       backgroundColor: 'transparent',
@@ -53,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
     '& .makeStyles-drawerPaper-6': {
+      position: 'absolute',
       borderRadius: '10px',
       margin: '90px 10px',
       // background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
@@ -111,7 +109,7 @@ const Sidebar = (props) => {
         </Upload>
 
         <div>
-          <h5 style={{ color: '#fff', marginTop: '10px' }}>Dhanush</h5>
+          <h5 style={{ marginTop: '10px' }}>Dhanush</h5>
         </div>
       </div>
       {/* <List>
@@ -130,7 +128,7 @@ const Sidebar = (props) => {
         <MenuItem
           button
           component={Link}
-          to="/profile"
+          to="/Profile"
           selected={selectedIndex === 1}
           onClick={(event) => handleListItemClick(event, 1)}
         >
@@ -143,7 +141,7 @@ const Sidebar = (props) => {
         <MenuItem
           button
           component={Link}
-          to="/orders"
+          to="/Orders"
           selected={selectedIndex === 2}
           onClick={(event) => handleListItemClick(event, 2)}
         >
@@ -156,7 +154,7 @@ const Sidebar = (props) => {
         <MenuItem
           button
           component={Link}
-          to="/address"
+          to="/Address"
           selected={selectedIndex === 3}
           onClick={(event) => handleListItemClick(event, 3)}
         >
@@ -169,7 +167,7 @@ const Sidebar = (props) => {
         <MenuItem
           button
           component={Link}
-          to="/support"
+          to="/Support"
           selected={selectedIndex === 4}
           onClick={(event) => handleListItemClick(event, 4)}
         >
@@ -193,82 +191,80 @@ const Sidebar = (props) => {
     window !== undefined ? () => window().document.body : undefined;
   return (
     <>
-      <Layout className="layout">
-        <div className="header-fluid">
-          <div className="header">
-            <Toolbar style={{ minHeight: '0px' }}>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                style={{ outline: 'none' }}
-                onClick={handleDrawerToggle}
-                className={classes.menuButton}
-              >
-                <MenuIcon />
-              </IconButton>
-              <div className="logo">
-                <img src={logo} alt="LMiTS" height={20} />
+      <div className="header-fluid">
+        <div className="header">
+          <Toolbar style={{ minHeight: '0px' }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              style={{ outline: 'none' }}
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+            <div className="logo">
+              <img src={logo} alt="LMiTS" height={20} />
+            </div>
+          </Toolbar>
+
+          <Menu mode="horizontal">
+            <Menu.Item>
+              <div className="header_img">
+                <img src={profileImg} alt="" width={30} />
               </div>
-            </Toolbar>
-
-            <Menu mode="horizontal">
-              <Menu.Item>
-                <div className="header_img">
-                  <img src={profileImg} alt="" width={30} />
-                </div>
-              </Menu.Item>
-            </Menu>
-          </div>
+            </Menu.Item>
+          </Menu>
         </div>
-        <div className={classes.root}>
-          <Router>
-            <CssBaseline />
-            <nav className={classes.drawer} aria-label="mailbox folders">
-              <Hidden smUp implementation="css">
-                <Drawer
-                  container={container}
-                  variant="temporary"
-                  anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                  open={mobileOpen}
-                  onClose={handleDrawerToggle}
-                  classes={{
-                    paper: classes.drawerPaper,
-                  }}
-                  ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                  }}
-                >
-                  {drawer}
-                </Drawer>
-              </Hidden>
-              <Hidden xsDown implementation="css">
-                <Drawer
-                  classes={{
-                    paper: classes.drawerPaper,
-                  }}
-                  variant="permanent"
-                  open
-                >
-                  {drawer}
-                </Drawer>
-              </Hidden>
-            </nav>
+      </div>
+      <div className={classes.root}>
+        <Router>
+          <CssBaseline />
+          <nav className={classes.drawer} aria-label="mailbox folders">
+            <Hidden smUp implementation="css">
+              <Drawer
+                container={container}
+                variant="temporary"
+                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                variant="permanent"
+                open
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </nav>
 
-            <main className={classes.content}>
-              <Switch>
-                <Route path="/profile" exact component={MyProfile} />
+          <main className={classes.content}>
+            <Switch>
+              <Route path="/profile" exact component={MyProfile} />
 
-                <Route path="/orders" exact component={MyOrders} />
+              <Route path="/orders" exact component={MyOrders} />
 
-                <Route path="/address" exact component={AddressBook} />
+              <Route path="/address" exact component={AddressBook} />
 
-                <Route path="/support" exact component={Support} />
-              </Switch>
-            </main>
-          </Router>
-        </div>
-      </Layout>
+              <Route path="/support" exact component={Support} />
+            </Switch>
+          </main>
+        </Router>
+      </div>
     </>
   );
 };
