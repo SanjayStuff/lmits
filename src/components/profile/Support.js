@@ -10,11 +10,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
-
     color: theme.palette.text.secondary,
   },
   marginAutoContainer: {
@@ -33,25 +33,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'pink',
-  },
-  loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '15px',
-    padding: '0.5rem 1rem',
-    outline: 'none',
-    border: 'none',
-
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
-    },
   },
 }));
 
@@ -74,11 +55,11 @@ const Support = () => {
   };
 
   return (
-    <>
+    <div classes={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            <Title level={3}>Contact</Title>
+            <Title level={4}>Contact</Title>
             <Box display="flex">
               <Box>
                 Reach our customer support representatives for any of your
@@ -87,18 +68,20 @@ const Support = () => {
               </Box>
             </Box>
             <Button
-              onClick={handleClickOpen}
-              className={classes.loginButton}
-              type="submit"
-              variant="contained"
-              color="primary"
               style={{
-                marginTop: '1.5rem',
-                minWidth: 'auto',
+                margin: '15px 0px',
+                background: '#8845d0',
+                opacity: '0.7',
+                outline: 'none',
+                border: 'none',
               }}
+              onClick={handleClickOpen}
+              color="primary"
+              variant="contained"
             >
               Call Us
             </Button>
+
             <Dialog
               open={open}
               TransitionComponent={Transition}
@@ -107,25 +90,38 @@ const Support = () => {
               aria-labelledby="alert-dialog-slide-title"
               aria-describedby="alert-dialog-slide-description"
             >
-              <DialogTitle id="alert-dialog-slide-title">
-                {'Call Us'}
-              </DialogTitle>
+              <div style={{ display: 'flex' }}>
+                <DialogTitle
+                  style={{ flexGrow: 2 }}
+                  id="alert-dialog-slide-title"
+                >
+                  {'Customer Support'}
+
+                  {/* <Button
+                    disableFocusRipple="true"
+                    disableRipple
+                    disableTouchRipple
+                    onClick={handleClose}
+                    style={{ outline: 'none' }}
+                  >
+                    <CancelIcon />
+                  </Button> */}
+                </DialogTitle>
+              </div>
+
               <DialogContent maxWidth="100px">
                 <DialogContentText id="alert-dialog-slide-description">
-                  +91 86200 87300
+                  <Title align="middle" level={4}>
+                    +91 86200 87300
+                  </Title>
                 </DialogContentText>
               </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  Close
-                </Button>
-              </DialogActions>
             </Dialog>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            <Title level={3}>Email</Title>
+            <Title level={4}>Email</Title>
             <Box display="flex">
               <Box>
                 Drop us an email at any point of time for any of your queries
@@ -135,14 +131,16 @@ const Support = () => {
             </Box>
             <a href={'mailto:'}>
               <Button
-                className={classes.loginButton}
-                type="submit"
-                variant="contained"
-                color="primary"
                 style={{
-                  marginTop: '1.5rem',
-                  minWidth: 'auto',
+                  margin: '15px 0px',
+                  background: '#8845d0',
+                  opacity: '0.7',
+                  outline: 'none',
+                  border: 'none',
                 }}
+                onClick={handleClickOpen}
+                color="primary"
+                variant="contained"
               >
                 Email Us
               </Button>
@@ -150,7 +148,7 @@ const Support = () => {
           </Paper>
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
 
