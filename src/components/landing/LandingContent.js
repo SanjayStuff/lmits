@@ -9,16 +9,14 @@ import LandingFooter from "./LandingFooter";
 const LandingContent = () => {
   return (
     <>
-      {/*{!localStorage.getItem("lmits_auth_key") ? (*/}
-      {/*  <>*/}
-      {/*<LandingBanner />*/}
-      {/*<LookingFor />*/}
-      {/*<AboutUs />*/}
-      {/*<PartnerWithUs />*/}
-      {/*<Partners />*/}
-      {/*<LandingFooter />*/}
-      {/*  </>*/}
-      {/*) : null}*/}
+      <>
+        <LandingBanner />
+        <LookingFor />
+        <AboutUs />
+        <PartnerWithUs />
+        <Partners />
+        <LandingFooter />
+      </>
     </>
   );
 };
