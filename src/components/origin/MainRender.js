@@ -1,19 +1,14 @@
 import React from "react";
 import NavbarTop from "./NavbarTop";
-import MainContent from "./MainContent";
 import { UserProvider } from "../../context/UserContext";
-import MyProfile from "../profile/MyProfile";
-import AllOrders from "../profile/AllOrders";
-import MyOrders from "../profile/MyOrders";
+import LandingContent from "../landing/LandingContent";
 
 const MainRender = () => {
   return (
     <>
       <UserProvider>
-        {/*<NavbarTop />*/}
-        {/*<MainContent />*/}
-        {/*<MyProfile />*/}
-        <MyOrders />
+        <NavbarTop />
+        <LandingContent />
       </UserProvider>
     </>
   );

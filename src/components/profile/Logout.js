@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import LandingContent from "../landing/LandingContent";
+import { useHistory } from "react-router";
 
 const Logout = () => {
   const [msg, setMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  let history = useHistory();
 
   useEffect(() => {
     axios
@@ -28,6 +30,7 @@ const Logout = () => {
           localStorage.removeItem("lmits_mob_num");
           localStorage.removeItem("lmits_email_id");
           setMsg(response.data.message);
+          history.push("/");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200

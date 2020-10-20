@@ -1,13 +1,13 @@
-import React from 'react';
-import { Container } from '@material-ui/core';
-import { Row, Col } from 'antd';
+import React from "react";
+import { Container } from "@material-ui/core";
+import { Row, Col } from "antd";
 
 const LandingBanner = () => {
   return (
     <Container maxWidth="false">
       <section className="section homepage-search-block">
         <div className="banner-overlay" />
-        <div className="about-container" style={{ padding: '70px 0 90px 0' }}>
+        <div className="about-container" style={{ padding: "70px 0 90px 0" }}>
           <Row justify="space-around">
             <Col span={24} align="middle">
               <div className="homepage-search-title service-title">
@@ -22,7 +22,7 @@ const LandingBanner = () => {
                   <Row justify="space-around" align="middle">
                     <Col span={12} xs={18} sm={16} md={14} lg={14} xl={10}>
                       <input
-                        type="text"
+                        disabled
                         placeholder="Enter your pickup location"
                         className="form-control"
                       />
