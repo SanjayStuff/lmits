@@ -6,40 +6,31 @@ import addressIcon from "../../assets/images/dashboard/my_add.png";
 import supportIcon from "../../assets/images/dashboard/support.png";
 import logoutIcon from "../../assets/images/dashboard/logout.png";
 import profileIcon from "../../assets/images/dashboard/my_profile.png";
-import { Layout, Menu, Typography } from "antd";
+import { Menu } from "antd";
 import MyProfile from "../profile/MyProfile";
 import AddressBook from "../profile/AddressBook";
 import MyOrders from "../profile/MyOrders";
 import Support from "../profile/Support";
 import { makeStyles } from "@material-ui/core/styles";
 import { Upload } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
-import { useTheme, withStyles } from "@material-ui/core/styles";
-
-
-import { MenuList, MenuItem, Container } from '@material-ui/core';
+import { useTheme } from "@material-ui/core/styles";
+import { MenuList, MenuItem } from "@material-ui/core";
 import Logout from "./Logout";
-
+import { useHistory } from "react-router";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
-    display: 'flex',
+    display: "flex",
 
     "& .MuiAppBar-colorPrimary": {
       backgroundColor: "transparent",
@@ -53,10 +44,10 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth,
       flexShrink: 0,
     },
-    '& .makeStyles-drawerPaper-6': {
-      position: 'absolute',
-      borderRadius: '10px',
-      margin: '90px 10px',
+    "& .makeStyles-drawerPaper-6": {
+      position: "absolute",
+      borderRadius: "10px",
+      margin: "90px 10px",
 
       // background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
       color: "#000",
@@ -89,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = (props) => {
   const classes = useStyles();
+  let history = useHistory();
   const [dashboardContent, setDashboardContent] = useState("My Profile");
   const { window } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -127,9 +119,7 @@ const Sidebar = (props) => {
         </Upload>
 
         <div>
-
-          <h5 style={{ marginTop: '10px' }}>Dhanush</h5>
-
+          <h5 style={{ marginTop: "10px" }}>Dhanush</h5>
         </div>
       </div>
 
@@ -209,19 +199,22 @@ const Sidebar = (props) => {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  return (
+
+  return !localStorage.getItem("lmits_auth_key") ? (
+    <>
+      {alert("You are not Logged in!")}
+      {history.push("/")}
+    </>
+  ) : (
     <>
       <div className="header-fluid">
         <div className="header">
-
           <Toolbar style={{ minHeight: "0px" }}>
-
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               style={{ outline: "none" }}
-
               onClick={handleDrawerToggle}
               className={classes.menuButton}
             >
@@ -242,7 +235,6 @@ const Sidebar = (props) => {
         </div>
       </div>
       <div className={classes.root}>
-
         <CssBaseline />
         <nav className={classes.drawer} aria-label="mailbox folders">
           <Hidden smUp implementation="css">
