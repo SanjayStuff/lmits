@@ -1,0 +1,50 @@
+.signup__img img {
+  width: 25%;
+  margin: 0 1rem;
+}
+
+.signup__title {
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0.9rem 0.9rem;
+}
+
+.signup__error {
+  margin: 0 0.9rem;
+}
+
+.signup__form__div {
+  position: relative;
+  height: 48px;
+  margin: 0.6rem 0.9rem 0 0.9rem;
+}
+
+.signup__form__div .signup__textfield {
+  font-size: 0.9375rem;
+  min-width: 100%;
+}
+
+.signup__btn_div {
+  margin: 0.8rem;
+  text-align: center;
+}
+
+.signup__btn {
+  opacity: 0.8;
+  min-width: 50% !important;
+}
+
+.signup__btn:focus {
+  outline: none;
+  border: none;
+}
+
+.sigup_otp__resend_div {
+  margin: 0.6rem 0.9rem 0 0.9rem;
+}
+
+.sigup_otp__resend {
+  color: #000;
+  margin-top: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}

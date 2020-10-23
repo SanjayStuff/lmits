@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import { Button, makeStyles, Container } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
 import { UserContext } from '../../../context/UserContext';
 import { Alert } from '@material-ui/lab';
+import styles from '../../../styles/SignupOtpVerification.module.css';
 
 // Ant Design
 import { Row, Col } from 'antd';
@@ -15,25 +15,7 @@ const useStyles = makeStyles((theme) => ({
       borderColor: '#8845d0',
     },
   },
-  loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '15px',
-    padding: '0.5rem 1rem',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
-    },
-  },
+
   asterisk: {
     display: 'none',
   },
@@ -92,20 +74,15 @@ const SignupOtpVerification = () => {
       {/*</p>*/}
       <Row>
         <Col>
-          <h5
-            className="text-muted"
-            style={{
-              padding: '0.8rem 0 0 0',
-            }}
-          >
+          <h5 className={styles.signup_otp_title}>
             Enter the 6 digit OTP you received.
           </h5>
         </Col>
       </Row>
 
-      <form onSubmit={onSubmit}>
-        <Row justify="start" align="start">
-          <Col>
+      <form container onSubmit={onSubmit}>
+        <Row>
+          <Col className={styles.signup_otp__error}>
             {isSubmitted && errorMsg !== '' ? (
               <div>
                 <Alert severity="error">{errorMsg}</Alert>
@@ -114,9 +91,10 @@ const SignupOtpVerification = () => {
           </Col>
         </Row>
         <Row>
-          <Col style={{ padding: '1rem 0 0 0' }}>
+          <Col>
             <TextField
-              className={classes.root}
+              className={styles.signup_otp__textfield}
+              classes={classes.root}
               id="OTP"
               autoFocus
               type="number"
@@ -127,30 +105,21 @@ const SignupOtpVerification = () => {
                 classes: {
                   asterisk: classes.asterisk,
                 },
-                style: { fontSize: 15 },
               }}
               variant="outlined"
               label="Enter OTP"
               size="small"
-              style={{ minWidth: '100%' }}
             />
           </Col>
         </Row>
 
         <Row>
-          <Col
-            style={{
-              margin: '1rem 0 0 0',
-            }}
-          >
+          <Col className={styles.signup_otp__btn_div}>
             <Button
-              className={classes.loginButton}
+              className={styles.signup_otp__btn}
               type="submit"
               variant="contained"
               color="primary"
-              style={{
-                minWidth: '50%',
-              }}
             >
               Submit
             </Button>

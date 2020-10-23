@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Paper from '@material-ui/core/Paper';
+
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+
 import Button from '@material-ui/core/Button';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import OrderSummary from './dashboardModals/OrderSummary';
@@ -11,9 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AllOrders = () => {
-  const classes = useStyles();
   // const [errorMsg, setErrorMsg] = useState("");
   const [ordersDetails, setOrdersDetails] = useState([]);
   const [selectedOrderId, setSelectedOrderId] = useState(0);
@@ -66,14 +64,17 @@ const AllOrders = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {/* {errorMsg !== "" ? { errorMsg } : null} */}
       <div>
         {ordersDetails.map((order) => {
           return (
             <div key={order.order_id}>
               <Table aria-label="simple table">
-                <Card variant="outlined" style={{ margin: '10px 0' }}>
+                <Card
+                  variant="outlined"
+                  style={{ margin: '10px 0', width: 'fit-content' }}
+                >
                   <TableRow>
                     <TableCell>Order ID</TableCell>
                     <TableCell align="left">Order Date</TableCell>
@@ -172,7 +173,7 @@ const AllOrders = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

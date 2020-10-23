@@ -2,21 +2,21 @@ import React from 'react';
 import hyperLocalImg from '../../assets/images/service/hyper_local.svg';
 import courierImg from '../../assets/images/service/courier.svg';
 import intraCityImg from '../../assets/images/service/intracity_delivery.svg';
-import { Container } from '@material-ui/core';
+import { Button, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const LookingFor = () => {
   return (
-    <Container maxWidth="false">
+    <Container maxWidth={false}>
       <section className="services">
-        <div className="title">
+        <div className="serbices-div">
           <div className="services-title">
             <span className="section_title">How can we help ?</span>
           </div>
         </div>
 
         <div className="s-box-container">
-          <Link>
+          <Link to="">
             <div className="s-box">
               <div className="bar" />
               <img alt={1} src={hyperLocalImg} />
@@ -26,7 +26,7 @@ const LookingFor = () => {
               </p>
             </div>
           </Link>
-          <Link>
+          <Link to="">
             <div className="s-box">
               <div className="bar" />
               <img alt={1} src={courierImg} />
@@ -37,7 +37,7 @@ const LookingFor = () => {
               </p>
             </div>
           </Link>
-          <Link>
+          <Link to="">
             <div className="s-box">
               <div className="bar" />
               <img alt={1} src={intraCityImg} />
