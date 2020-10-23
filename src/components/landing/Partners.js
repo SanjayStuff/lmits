@@ -12,7 +12,9 @@ const Partners = () => {
         <Row justify="space-around">
           <Col lg={12} md={16} align="middle">
             <div className="services-title">
-              <span className="section_title">OUR PARTNERS</span>
+              <span className="section_title font-weight-normal">
+                Our Partners
+              </span>
             </div>
           </Col>
         </Row>

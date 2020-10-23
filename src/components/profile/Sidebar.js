@@ -1,85 +1,93 @@
-import React, { useState } from "react";
-import logo from "../../assets/images/Logo.png";
-import profileImg from "../../assets/images/navicons/profile.png";
-import ordersIcon from "../../assets/images/dashboard/my_ordrs.png";
-import addressIcon from "../../assets/images/dashboard/my_add.png";
-import supportIcon from "../../assets/images/dashboard/support.png";
-import logoutIcon from "../../assets/images/dashboard/logout.png";
-import profileIcon from "../../assets/images/dashboard/my_profile.png";
-import { Layout, Menu, Typography } from "antd";
-import MyProfile from "../profile/MyProfile";
-import AddressBook from "../profile/AddressBook";
-import MyOrders from "../profile/MyOrders";
-import Support from "../profile/Support";
-import { makeStyles } from "@material-ui/core/styles";
-import { Upload } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import PropTypes from "prop-types";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MenuIcon from "@material-ui/icons/Menu";
-import Toolbar from "@material-ui/core/Toolbar";
-import { useTheme, withStyles } from "@material-ui/core/styles";
-
+import React, { useState } from 'react';
+import logo from '../../assets/images/Logo.png';
+import profileImg from '../../assets/images/navicons/profile.png';
+import ordersIcon from '../../assets/images/dashboard/svg/orders.svg';
+import addressIcon from '../../assets/images/dashboard/svg/address.svg';
+import supportIcon from '../../assets/images/dashboard/svg/support.svg';
+import logoutIcon from '../../assets/images/dashboard/svg/logout.svg';
+import profileIcon from '../../assets/images/dashboard/svg/profile.svg';
+import { Menu } from 'antd';
+import MyProfile from '../profile/MyProfile';
+import AddressBook from '../profile/AddressBook';
+import MyOrders from '../profile/MyOrders';
+import Support from '../profile/Support';
+import { makeStyles } from '@material-ui/core/styles';
+import { Upload } from 'antd';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import { useTheme, withStyles } from '@material-ui/core/styles';
 
 import { MenuList, MenuItem, Container } from '@material-ui/core';
-import Logout from "./Logout";
-
+import Logout from './Logout';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
-
-    "& .MuiAppBar-colorPrimary": {
-      backgroundColor: "transparent",
+    // position: 'relative',
+    // display: 'flex',
+    '& .MuiAppBar-colorPrimary': {
+      backgroundColor: 'transparent',
     },
-    "& .MuiToolbar-regular": {
-      minHeight: "0px",
+    '& .MuiToolbar-regular': {
+      minHeight: '0px',
+    },
+    '& .makeStyles-content-7': {
+      padding: '2rem 3.5rem',
+    },
+    '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+      // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
     '& .makeStyles-drawerPaper-6': {
-      position: 'absolute',
+      position: 'relative',
       borderRadius: '10px',
-      margin: '90px 10px',
-
-      // background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
-      color: "#000",
+      margin: '20px 20px 20px 20px',
+      minHeight: '100vh',
+      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+      color: '#fff',
+    },
+    '& .MuiDrawer-paperAnchorLeft': {
+      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    },
+    '& .MuiList-root': {
+      marginBottom: '2.5rem',
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor: "#fff",
-      boxShadow: "none",
+      backgroundColor: '#fff',
+      boxShadow: 'none',
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    color: '#fff',
+    background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
   },
   content: {
     flexGrow: 1,
@@ -89,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = (props) => {
   const classes = useStyles();
-  const [dashboardContent, setDashboardContent] = useState("My Profile");
+  const [dashboardContent, setDashboardContent] = useState('My Profile');
   const { window } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -106,30 +114,31 @@ const Sidebar = (props) => {
 
   const mainContent = () => {
     switch (dashboardContent) {
-      case "My Profile":
+      case 'My Profile':
         return <MyProfile />;
-      case "My Orders":
+      case 'My Orders':
         return <MyOrders />;
-      case "Address Book":
+      case 'Address Book':
         return <AddressBook />;
-      case "Support":
+      case 'Support':
         return <Support />;
-      case "Logout":
+      case 'Logout':
         return <Logout />;
     }
   };
 
   const drawer = (
     <div>
-      <div align="middle" style={{ padding: "30px 0" }}>
+      <div align="middle" style={{ padding: '30px 0' }}>
         <Upload>
           <img src={profileImg} alt="" width="80px" />
         </Upload>
 
         <div>
-
-          <h5 style={{ marginTop: '10px' }}>Dhanush</h5>
-
+          <h5 style={{ color: '#fff', marginTop: '10px' }}>
+            {localStorage.getItem('lmits_first_name')} {''}
+            {localStorage.getItem('lmits_last_name')}
+          </h5>
         </div>
       </div>
 
@@ -139,7 +148,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 1}
           onClick={(event) => {
             handleListItemClick(event, 1);
-            setDashboardContent("My Profile");
+            setDashboardContent('My Profile');
           }}
         >
           <ListItemIcon>
@@ -153,7 +162,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 2}
           onClick={(event) => {
             handleListItemClick(event, 2);
-            setDashboardContent("My Orders");
+            setDashboardContent('My Orders');
           }}
         >
           <ListItemIcon>
@@ -167,7 +176,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 3}
           onClick={(event) => {
             handleListItemClick(event, 3);
-            setDashboardContent("Address Book");
+            setDashboardContent('Address Book');
           }}
         >
           <ListItemIcon>
@@ -181,7 +190,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 4}
           onClick={(event) => {
             handleListItemClick(event, 4);
-            setDashboardContent("Support");
+            setDashboardContent('Support');
           }}
         >
           <ListItemIcon>
@@ -195,7 +204,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 5}
           onClick={(event) => {
             handleListItemClick(event, 5);
-            setDashboardContent("Logout");
+            setDashboardContent('Logout');
           }}
         >
           <ListItemIcon>
@@ -213,15 +222,12 @@ const Sidebar = (props) => {
     <>
       <div className="header-fluid">
         <div className="header">
-
-          <Toolbar style={{ minHeight: "0px" }}>
-
+          <Toolbar style={{ minHeight: '0px' }}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
-              style={{ outline: "none" }}
-
+              style={{ outline: 'none' }}
               onClick={handleDrawerToggle}
               className={classes.menuButton}
             >
@@ -242,14 +248,13 @@ const Sidebar = (props) => {
         </div>
       </div>
       <div className={classes.root}>
-
         <CssBaseline />
         <nav className={classes.drawer} aria-label="mailbox folders">
           <Hidden smUp implementation="css">
             <Drawer
               container={container}
               variant="temporary"
-              anchor={theme.direction === "rtl" ? "right" : "left"}
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{

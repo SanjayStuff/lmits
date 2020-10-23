@@ -18,18 +18,22 @@ const { Title } = Typography;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
     '& .MuiButton-containedPrimary': {
-      color: '#fff',
-      background: '#8845d0',
-      opacity: '0.7',
+      opacity: '.8',
+      padding: '.5rem 2.3rem',
       outline: 'none',
       border: 'none',
+    },
+    '& .MuiCard-root': {
+      width: '70%',
     },
     '& .MuiIconButton-sizeSmall': {
       outline: 'none',
       border: 'none',
+    },
+
+    '& .MuiCardContent-root': {
+      padding: '1.8rem',
     },
   },
   paper: {
@@ -48,26 +52,28 @@ const MyProfile = () => {
   return (
     <div className={classes.root}>
       <Paper elevation={3} style={{ padding: '5px' }}>
-        <Title level={4} style={{ margin: '15px' }}>
-          Profile
+        <Title level={4} style={{ margin: '1.2rem 2.7rem' }}>
+          My Profile
         </Title>
-        <Card variant="outlined" style={{ margin: '15px', padding: '15px' }}>
-          <Grid container spacing={3}>
+
+        <Card variant="outlined" style={{ margin: '1rem 3rem' }}>
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                margin="dense"
-                id="FirstName"
-                disabled
-                label="First Name"
-                variant="outlined"
-                value={localStorage.getItem('lmits_first_name')}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <div>
+              <CardContent>
                 <TextField
-                  fullWidth
+                  margin="dense"
+                  id="FirstName"
+                  disabled
+                  label="First Name"
+                  variant="outlined"
+                  value={localStorage.getItem('lmits_first_name')}
+                />
+              </CardContent>
+            </Grid>
+
+            <Grid item xs={12} sm={5}>
+              <CardContent>
+                <TextField
                   margin="dense"
                   id="LastName"
                   disabled
@@ -76,7 +82,7 @@ const MyProfile = () => {
                   value={localStorage.getItem('lmits_last_name')}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment disableTypography="true" position="start">
+                      <InputAdornment disableTypography={true} position="start">
                         <IconButton
                           size="small"
                           onClick={() => {
@@ -89,77 +95,90 @@ const MyProfile = () => {
                     ),
                   }}
                 />
-              </div>
+              </CardContent>
             </Grid>
           </Grid>
         </Card>
 
-        <Card variant="outlined" style={{ margin: '15px', padding: '15px' }}>
-          <Grid container spacing={3}>
+        <Card elevation={0} style={{ margin: '1rem 3rem' }}>
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <div>
-                <TextField
-                  fullWidth
-                  margin="dense"
-                  id="Email"
-                  disabled
-                  label="Email"
-                  variant="outlined"
-                  value={localStorage.getItem('lmits_email_id')}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment disableTypography="true" position="start">
-                        <IconButton
-                          size="small"
-                          onClick={() => {
-                            setOpenEmail(true);
-                          }}
+              <Card variant="outlined" style={{ width: 'auto' }}>
+                <CardContent>
+                  <TextField
+                    fullWidth
+                    margin="dense"
+                    id="Email"
+                    disabled
+                    label="Email"
+                    variant="outlined"
+                    value={localStorage.getItem('lmits_email_id')}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment
+                          disableTypography={true}
+                          position="start"
                         >
-                          <CreateOutlinedIcon />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </div>
+                          <IconButton
+                            size="small"
+                            onClick={() => {
+                              setOpenEmail(true);
+                            }}
+                          >
+                            <CreateOutlinedIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </CardContent>
+              </Card>
             </Grid>
+
             <Grid item xs={12} sm={6}>
-              <div>
-                <TextField
-                  fullWidth
-                  margin="dense"
-                  id="Phone Number"
-                  disabled
-                  label="Phone Number"
-                  variant="outlined"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment disableTypography="true" position="start">
-                        +91 |
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment disableTypography="true" position="start">
-                        <IconButton
-                          size="small"
-                          onClick={() => {
-                            setOpenPhone(true);
-                          }}
+              <Card variant="outlined" style={{ width: 'auto' }}>
+                <CardContent>
+                  <TextField
+                    margin="dense"
+                    id="Phone Number"
+                    disabled
+                    label="Phone Number"
+                    variant="outlined"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment
+                          disableTypography={true}
+                          position="start"
                         >
-                          <CreateOutlinedIcon />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  value={localStorage.getItem('lmits_mob_num')}
-                />
-              </div>
+                          +91 |
+                        </InputAdornment>
+                      ),
+                      endAdornment: (
+                        <InputAdornment
+                          disableTypography={true}
+                          position="start"
+                        >
+                          <IconButton
+                            size="small"
+                            onClick={() => {
+                              setOpenPhone(true);
+                            }}
+                          >
+                            <CreateOutlinedIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    value={localStorage.getItem('lmits_mob_num')}
+                  />
+                </CardContent>
+              </Card>
             </Grid>
           </Grid>
         </Card>
 
-        <Grid container>
-          <Grid xs={12} sm={10} align="start">
+        <Grid container style={{ margin: '1rem 2rem' }}>
+          <Grid item xs={12} sm={10} align="start">
             <div style={{ margin: '15px' }}>
               {/*<Card variant="outlined">*/}
               {/*  <CardContent>*/}
@@ -168,9 +187,6 @@ const MyProfile = () => {
                 variant="contained"
                 onClick={() => {
                   setOpenPassword(true);
-                }}
-                style={{
-                  minWidth: 'auto',
                 }}
               >
                 Change Password

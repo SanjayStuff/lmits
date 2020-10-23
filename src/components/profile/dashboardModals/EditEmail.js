@@ -50,7 +50,10 @@ const EditEmail = (props) => {
       <Dialog open={openEmail}>
         <div style={{ display: 'flex' }}>
           <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
-          <Button>
+          <Button
+            disableRipple={true}
+            style={{ outline: 'none', border: 'none' }}
+          >
             <CancelIcon
               onClick={() => {
                 setOpenEmail(false);

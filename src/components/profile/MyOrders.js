@@ -7,6 +7,7 @@ import CourierOrders from './CourierOrders';
 import HyperlocalOrders from './HyperlocalOrders';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from 'antd';
+import { Container } from '@material-ui/core';
 
 const { Title } = Typography;
 
@@ -26,22 +27,18 @@ const MyOrders = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper elevation={3} style={{ padding: '5px' }}>
-        <Title level={4} style={{ margin: '15px' }}>
-          My Orders
-        </Title>
+    <Paper elevation={3} style={{ padding: '5px' }} className={classes.root}>
+      <Container style={{ margin: '1.2rem .8rem' }}>
+        <Title level={4}>My Orders</Title>
 
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
+          align="middle"
           activeKey={key}
           onSelect={(k) => setKey(k)}
           variant="pills"
-          style={{ margin: '15px' }}
+          style={{ margin: '2rem 0 0 ' }}
         >
           <Tab eventKey="All Orders" title="All Orders">
             <AllOrders />
@@ -65,8 +62,8 @@ const MyOrders = () => {
             <CourierOrders />
           </Tab>
         </Tabs> */}
-      </Paper>
-    </div>
+      </Container>
+    </Paper>
   );
 };
 

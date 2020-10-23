@@ -8,6 +8,7 @@ import LoginOtpVerification from './LoginOtpVerification';
 import Link from '@material-ui/core/Link';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Alert from '@material-ui/lab/Alert';
+import styles from '../../../styles/SignupWithOtp.module.css';
 
 // Ant Design
 import { Row, Col } from 'antd';
@@ -105,31 +106,20 @@ const SignupWithOtp = () => {
   };
 
   return (
-    <Container>
+    <>
       <Row>
         <Col>
-          <img
-            src={lmitsLogo}
-            style={{
-              width: '25%',
-            }}
-            alt="LogoImg"
-          />
-          <h3
-            className="text-black"
-            style={{
-              padding: '0.5rem 0 0 0',
-              fontSize: '16px',
-            }}
-          >
-            Sign Up with OTP
-          </h3>
+          <div className={styles.signup__img}>
+            <img src={lmitsLogo} alt="LogoImg" />
+
+            <h3 className={styles.signup__title}>Sign Up with OTP</h3>
+          </div>
         </Col>
       </Row>
 
-      <form onSubmit={onSubmit}>
+      <form container onSubmit={onSubmit}>
         <Row>
-          <Col>
+          <Col className={styles.signup__error}>
             {!otpSent ? (
               !changeDet && errorMsg !== '' ? (
                 <div>
@@ -140,93 +130,72 @@ const SignupWithOtp = () => {
           </Col>
         </Row>
 
-        <Row>
-          <Col style={{ padding: '1rem 0 0 0' }}>
-            <TextField
-              autoFocus
-              className={classes.root}
-              id="MobileNumber"
-              type="number"
-              value={mobile_number}
-              onChange={(e) => {
-                setMobile_Number(e.target.value);
-                setOtpSent(false);
-                setChangeDet(true);
-              }}
-              required
-              InputLabelProps={{
-                classes: {
-                  asterisk: classes.asterisk,
-                },
-                style: { fontSize: 15 },
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment disableTypography="true" position="start">
-                    +91 |
-                  </InputAdornment>
-                ),
-              }}
-              variant="outlined"
-              label="Enter Mobile Number"
-              size="small"
-              style={{ minWidth: '100%' }}
-            />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col
-            style={{
-              margin: '1rem 0 0 0',
+        <div className={styles.signup__form__div}>
+          <TextField
+            autoFocus
+            className={styles.signup__textfield}
+            classes={classes.root}
+            id="MobileNumber"
+            type="number"
+            value={mobile_number}
+            onChange={(e) => {
+              setMobile_Number(e.target.value);
+              setOtpSent(false);
+              setChangeDet(true);
             }}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+              },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment disableTypography="true" position="start">
+                  +91 |
+                </InputAdornment>
+              ),
+            }}
+            variant="outlined"
+            label="Enter Mobile Number"
+            size="small"
+          />
+        </div>
+
+        <div align="middle">
+          <Button
+            disabled={otpSent}
+            className={styles.signup__btn}
+            type="submit"
+            variant="contained"
+            color="primary"
           >
-            <Button
-              disabled={otpSent}
-              className={classes.loginButton}
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{
-                minWidth: '50%',
-              }}
-            >
-              Generate OTP
-            </Button>
-          </Col>
-        </Row>
+            Send OTP
+          </Button>
+        </div>
       </form>
+
       <Row>
-        <Col>
+        <Col className={styles.sigup_otp__resend_div}>
           {otpSent ? <SignupOtpVerification /> : null}
-          <div className="form__div otp-forget mt-2 mb-0 pb-0">
+          <div align="middle">
             {otpSent && counter !== 0 ? (
-              <div className="d-inline-block">
-                <p
-                  className="login-card-forgot f-12"
-                  style={{ color: '#000', fontVariantNumeric: 'tabular-nums' }}
-                >
-                  Resend OTP in {counter} sec
-                </p>
-              </div>
+              <p className={styles.sigup_otp__resend}>
+                Resend OTP in {counter} sec
+              </p>
             ) : null}
 
             {otpSent && counter === 0 ? (
-              <div className="d-inline-block">
+              <div>
                 <Link onClick={onSubmit}>
-                  <p
-                    className="login-card-forgot f-12"
-                    style={{ color: '#000', cursor: 'pointer' }}
-                  >
-                    Resend OTP
-                  </p>
+                  <p className={styles.sigup_otp__resend}>Resend OTP</p>
                 </Link>
               </div>
             ) : null}
           </div>
         </Col>
       </Row>
-    </Container>
+    </>
   );
 };
 

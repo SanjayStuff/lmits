@@ -1,0 +1,67 @@
+.login__img img {
+  width: 25%;
+  margin: 0 1rem;
+}
+
+.login__title {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0.9rem 0.9rem;
+}
+
+.login__error {
+  margin: 0 0.9rem;
+}
+
+.login__form__div {
+  position: relative;
+  height: 48px;
+  margin: 0.6rem 0.9rem 0 0.9rem;
+}
+
+.login__form__div .login__textfield {
+  font-size: 0.9375rem;
+  min-width: 100%;
+}
+
+.login__otp__forget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.9rem;
+}
+
+.login__with_otp {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000 !important;
+  cursor: pointer;
+}
+
+.login__forgot_pass {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #ee4a4a !important;
+  cursor: pointer;
+}
+
+.login__btn {
+  opacity: 0.8;
+  min-width: 50% !important;
+}
+
+.login__btn:focus {
+  outline: none;
+  border: none;
+}
+
+.login__div_signup {
+  margin: 0.5rem 0;
+}
+
+.login__txt_signup {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #000 !important;
+  cursor: pointer;
+}

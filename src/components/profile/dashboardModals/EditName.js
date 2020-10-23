@@ -4,11 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Alert from '@material-ui/lab/Alert';
-import Grid from '@material-ui/core/Grid';
 import { Row, Col } from 'antd';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,12 +16,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     display: 'flex',
     flexWrap: 'wrap',
-    '& .MuiButton-containedPrimary': {
-      color: '#fff',
-      background: '#8845d0',
-      outline: 'none',
-      border: 'none',
-    },
+
     '& .MuiIconButton-sizeSmall': {
       outline: 'none',
       border: 'none',
@@ -82,7 +76,10 @@ const EditName = (props) => {
         <div>
           <div style={{ display: 'flex' }}>
             <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
-            <Button>
+            <Button
+              disableRipple={true}
+              style={{ outline: 'none', border: 'none' }}
+            >
               <CancelIcon
                 onClick={() => {
                   setOpenName(false);
@@ -92,6 +89,14 @@ const EditName = (props) => {
           </div>
 
           <form onSubmit={onSubmit}>
+            <Row>
+              <Col>
+                {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
+                {errorMsg !== '' ? (
+                  <Alert severity="error">{errorMsg}</Alert>
+                ) : null}
+              </Col>
+            </Row>
             <DialogContent>
               <Row>
                 <Col>
@@ -119,25 +124,15 @@ const EditName = (props) => {
                     onChange={(e) => setLastName(e.target.value)}
                   />
                 </Col>
-
-                {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
-                {errorMsg !== '' ? (
-                  <Alert severity="error">{errorMsg}</Alert>
-                ) : null}
               </Row>
             </DialogContent>
 
             <div style={{ margin: '15px 0 15px 22px' }}>
               <Button
-                style={{
-                  background: '#8845d0',
-                  outline: 'none',
-                  border: 'none',
-                  opacity: '0.7',
-                }}
-                type="submit"
-                color="primary"
+                style={{ opacity: '.8', outline: 'none', border: 'none' }}
                 variant="contained"
+                color="primary"
+                type="submit"
               >
                 Update Details
               </Button>

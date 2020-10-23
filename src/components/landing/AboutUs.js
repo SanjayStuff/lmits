@@ -37,13 +37,13 @@ const AboutUs = () => {
         <div className="about-container">
           <Row justify="space-around" align="middle">
             <Col md={9} className="features-img">
-              <img src={aboutImg} alt="LMiTS About Img" className="img-fluid" />
+              <img src={aboutImg} alt="LMiTS About" className="img-fluid" />
             </Col>
 
-            <Col md={14} md={{ span: 14, offset: 1 }}>
+            <Col md={{ span: 14, offset: 1 }}>
               <Row>
                 <div className="title">
-                  <h3 className="font-weight-normal text-left text-dark ">
+                  <h3 className="font-weight-normal">
                     About
                     <span className="text-warning font-weight-medium"> Us</span>
                   </h3>
@@ -143,7 +143,7 @@ const AboutUs = () => {
                     success &amp; customer loyalty level year by year.
                   </p>
                 </Col>
-                <Col md={11} md={{ span: 11, offset: 1 }}>
+                <Col md={{ span: 11, offset: 1 }}>
                   <h6 className="text-dark f-18 ">Our Mission</h6>
                   <p className="text-muted font-weight-normal">
                     To promote teamwork &amp; create a work environment
