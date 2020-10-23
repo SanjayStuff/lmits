@@ -56,8 +56,7 @@ const LoginWithMail = (props) => {
         console.log(response.data);
         if (response.data.response_code === 200) {
           localStorage.setItem('lmits_auth_key', response.data.auth_token);
-          // setMsg(response.data.message);
-          // alert(response.data.message);
+
           history.push('/dashboard');
         } else if (
           response.data.response_code &&

@@ -24,7 +24,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useTheme, withStyles } from '@material-ui/core/styles';
-
+import { useHistory } from 'react-router';
 import { MenuList, MenuItem, Container } from '@material-ui/core';
 import Logout from './Logout';
 
@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = (props) => {
   const classes = useStyles();
+  let history = useHistory();
   const [dashboardContent, setDashboardContent] = useState('My Profile');
   const { window } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -218,7 +219,13 @@ const Sidebar = (props) => {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  return (
+
+  return !localStorage.getItem('lmits_auth_key') ? (
+    <>
+      {alert('You are not Logged in!')}
+      {history.push('/')}
+    </>
+  ) : (
     <>
       <div className="header-fluid">
         <div className="header">

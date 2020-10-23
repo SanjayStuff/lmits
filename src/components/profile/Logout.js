@@ -22,7 +22,7 @@ const Logout = () => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.removeItem("lmits_auth_key");
+          // localStorage.removeItem("lmits_auth_key");
           localStorage.removeItem("lmits_first_name");
           localStorage.removeItem("lmits_last_name");
           localStorage.removeItem("lmits_otp_details");
@@ -30,7 +30,7 @@ const Logout = () => {
           localStorage.removeItem("lmits_mob_num");
           localStorage.removeItem("lmits_email_id");
           setMsg(response.data.message);
-          history.push("/");
+          // history.push("/");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
