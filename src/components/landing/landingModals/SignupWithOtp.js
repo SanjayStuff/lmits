@@ -8,7 +8,7 @@ import LoginOtpVerification from './LoginOtpVerification';
 import Link from '@material-ui/core/Link';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Alert from '@material-ui/lab/Alert';
-import styles from '../../../styles/SignupWithOtp.module.css';
+import styles from '../../../styles/landing/SignupWithOtp.module.css';
 
 // Ant Design
 import { Row, Col } from 'antd';

@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button, makeStyles } from '@material-ui/core';
 import axios from 'axios';
 import { Alert } from '@material-ui/lab';
-import styles from '../../../styles/LoginOtpVerification.module.css';
+import styles from '../../../styles/landing/LoginOtpVerification.module.css';
 import { Row, Col } from 'antd';
 
 const useStyles = makeStyles((theme) => ({

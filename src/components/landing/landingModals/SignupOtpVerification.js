@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button, makeStyles, Container } from '@material-ui/core';
 import { UserContext } from '../../../context/UserContext';
 import { Alert } from '@material-ui/lab';
-import styles from '../../../styles/SignupOtpVerification.module.css';
+import styles from '../../../styles/landing/SignupOtpVerification.module.css';
 
 // Ant Design
 import { Row, Col } from 'antd';

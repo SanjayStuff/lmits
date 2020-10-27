@@ -4,11 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
-import { Button, Grid } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Alert from '@material-ui/lab/Alert';
 import { Row, Col } from 'antd';
+import styles from '../../../styles/profile/dashboardModals/EditName.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,10 +77,7 @@ const EditName = (props) => {
         <div>
           <div style={{ display: 'flex' }}>
             <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
-            <Button
-              disableRipple={true}
-              style={{ outline: 'none', border: 'none' }}
-            >
+            <Button disableRipple={true}>
               <CancelIcon
                 onClick={() => {
                   setOpenName(false);
@@ -125,18 +123,13 @@ const EditName = (props) => {
                   />
                 </Col>
               </Row>
-            </DialogContent>
 
-            <div style={{ margin: '15px 0 15px 22px' }}>
-              <Button
-                style={{ opacity: '.8', outline: 'none', border: 'none' }}
-                variant="contained"
-                color="primary"
-                type="submit"
-              >
-                Update Details
-              </Button>
-            </div>
+              <div className={styles.btn_margin}>
+                <Button variant="contained" color="primary" type="submit">
+                  Update Details
+                </Button>
+              </div>
+            </DialogContent>
           </form>
         </div>
       </Dialog>

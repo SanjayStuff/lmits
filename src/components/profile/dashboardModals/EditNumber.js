@@ -3,7 +3,6 @@ import axios from 'axios';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
-import DialogActions from '@material-ui/core/DialogActions';
 import { Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -78,10 +77,7 @@ const EditNumber = (props) => {
       <Dialog open={openPhone}>
         <div style={{ display: 'flex' }}>
           <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
-          <Button
-            disableRipple={true}
-            style={{ outline: 'none', border: 'none' }}
-          >
+          <Button disableRipple={true}>
             <CancelIcon
               onClick={() => {
                 setOpenPhone(false);

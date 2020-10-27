@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import { Row, Col } from 'antd';
-import styles from '../../styles/LandingBanner.module.css';
+import styles from '../../styles/landing/LandingBanner.module.css';
 
 const LandingBanner = () => {
   return (

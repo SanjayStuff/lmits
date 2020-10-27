@@ -4,7 +4,7 @@ import { Button, makeStyles } from '@material-ui/core';
 import axios from 'axios';
 import { UserContext } from '../../../context/UserContext';
 import { Alert } from '@material-ui/lab';
-import styles from '../../../styles/ForgotPasswordOtpVerification.module.css';
+import styles from '../../../styles/landing/ForgotPasswordOtpVerification.module.css';
 import { Row, Col } from 'antd';
 
 const useStyles = makeStyles((theme) => ({

@@ -17,16 +17,16 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import { useTheme, withStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 import { MenuList, MenuItem, Container } from '@material-ui/core';
 import Logout from './Logout';
+import { Link } from 'react-router-dom';
+import styles from '../../styles/profile/Sidebar.module.css';
 
 const drawerWidth = 240;
 
@@ -34,16 +34,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     // position: 'relative',
-    // display: 'flex',
     '& .MuiAppBar-colorPrimary': {
       backgroundColor: 'transparent',
     },
     '& .MuiToolbar-regular': {
       minHeight: '0px',
     },
-    '& .makeStyles-content-7': {
-      padding: '2rem 3.5rem',
-    },
+    // '& .makeStyles-content-7': {
+    //   padding: '1.5rem 3.5rem 1.5rem 3.5rem',
+    // },
     '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
@@ -58,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: '10px',
       margin: '20px 20px 20px 20px',
       minHeight: '100vh',
-      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
       color: '#fff',
     },
     '& .MuiDrawer-paperAnchorLeft': {
@@ -78,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    outline: 'none !important',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -130,17 +129,15 @@ const Sidebar = (props) => {
 
   const drawer = (
     <div>
-      <div align="middle" style={{ padding: '30px 0' }}>
+      <div className={styles.sidebar_profile_padd}>
         <Upload>
-          <img src={profileImg} alt="" width="80px" />
+          <img src={profileImg} alt="Profile" />
         </Upload>
 
-        <div>
-          <h5 style={{ color: '#fff', marginTop: '10px' }}>
-            {localStorage.getItem('lmits_first_name')} {''}
-            {localStorage.getItem('lmits_last_name')}
-          </h5>
-        </div>
+        <h5>
+          {localStorage.getItem('lmits_first_name')} {''}
+          {localStorage.getItem('lmits_last_name')}
+        </h5>
       </div>
 
       <MenuList>
@@ -229,26 +226,27 @@ const Sidebar = (props) => {
     <>
       <div className="header-fluid">
         <div className="header">
-          <Toolbar style={{ minHeight: '0px' }}>
+          <Toolbar className={styles.sidebar_profile_toolbar}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
-              style={{ outline: 'none' }}
               onClick={handleDrawerToggle}
               className={classes.menuButton}
             >
               <MenuIcon />
             </IconButton>
             <div className="logo">
-              <img src={logo} alt="LMiTS" height={20} />
+              <Link to="">
+                <img src={logo} alt="LMiTS" height={20} />
+              </Link>
             </div>
           </Toolbar>
 
           <Menu mode="horizontal">
             <Menu.Item>
               <div className="header_img">
-                <img src={profileImg} alt="" width={30} />
+                <img src={profileImg} alt="Profile" width={30} />
               </div>
             </Menu.Item>
           </Menu>
@@ -286,7 +284,10 @@ const Sidebar = (props) => {
             </Drawer>
           </Hidden>
         </nav>
-        <main className={classes.content}>{mainContent()}</main>
+
+        <main className={classes.content}>
+          <Container>{mainContent()}</Container>
+        </main>
       </div>
     </>
   );

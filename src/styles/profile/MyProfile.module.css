@@ -1,0 +1,31 @@
+.paper_padd {
+  height: 100vh;
+  padding: 0.3125rem 0.3125rem 0 0.3125rem;
+}
+
+.title_padd {
+  padding: 0.5rem;
+  margin: 1rem 1.2rem 0 1.5rem;
+}
+
+.content_padd {
+  padding: 0 0.5rem;
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.card_padd {
+  margin: 1rem 2rem;
+  width: fit-content;
+}
+
+.btn_padd {
+  margin: 1rem 2rem;
+}
+
+.btn_padd button {
+  opacity: 0.8;
+}
+
+.btn_padd button:focus {
+  outline: none;
+}

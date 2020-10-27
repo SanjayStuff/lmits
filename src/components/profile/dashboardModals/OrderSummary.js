@@ -12,7 +12,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { Row, Col } from 'antd';
-import styles from '../../../styles/OrderSummary.module.css';
+import styles from '../../../styles/profile/OrderSummary.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,16 +1,15 @@
 import React from 'react';
 import { Typography, Row, Col } from 'antd';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Button, Card, Container } from '@material-ui/core';
+import { Box, Button, Card } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import styles from '../../styles/Support.module.css';
+import styles from '../../styles/profile/Support.module.css';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -55,7 +54,7 @@ const Support = () => {
   };
 
   return (
-    <Paper elevation={3} className={styles.paper_padd}>
+    <Paper elevation={2} className={styles.paper_padd}>
       <Row>
         <Col className={styles.title_padd}>
           <Title level={4}>Support</Title>
@@ -64,10 +63,7 @@ const Support = () => {
         <Col className={styles.content_padd}>
           <Grid container spacing={1}>
             <Grid item xs={12} sm={6}>
-              <Card
-                variant="outlined"
-                style={{ margin: '15px', padding: '15px' }}
-              >
+              <Card variant="outlined" className={styles.card_padd}>
                 <Title level={4}>Contact</Title>
                 <Box display="flex">
                   <Box>
@@ -77,13 +73,7 @@ const Support = () => {
                   </Box>
                 </Box>
                 <Button
-                  style={{
-                    margin: '15px 0px',
-                    background: '#8845d0',
-                    opacity: '0.7',
-                    outline: 'none',
-                    border: 'none',
-                  }}
+                  className={styles.btn}
                   onClick={handleClickOpen}
                   color="primary"
                   variant="contained"
@@ -108,11 +98,15 @@ const Support = () => {
                     </DialogTitle>
                   </div>
 
-                  <DialogContent maxWidth="100px">
+                  <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                      <Title align="middle" level={4}>
+                      <Typography
+                        className="text-center"
+                        component={'span'}
+                        variant={'body2'}
+                      >
                         +91 86200 87300
-                      </Title>
+                      </Typography>
                     </DialogContentText>
                   </DialogContent>
                 </Dialog>
@@ -120,27 +114,19 @@ const Support = () => {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <Card
-                variant="outlined"
-                style={{ margin: '15px', padding: '15px' }}
-              >
+              <Card variant="outlined" className={styles.card_padd}>
                 <Title level={4}>Email</Title>
                 <Box display="flex">
                   <Box>
                     Drop us an email at any point of time for any of your
                     queries and/or feedback and to report any issue. our supoort
-                    teak will get back to you within 24 hours.
+                    teak will get back to you within 24 hours. <br />
+                    Email: support@lmits.in
                   </Box>
                 </Box>
-                <a href={'mailto:'}>
+                <a href={'mailto:support@lmits.in'}>
                   <Button
-                    style={{
-                      margin: '15px 0px',
-                      background: '#8845d0',
-                      opacity: '0.7',
-                      outline: 'none',
-                      border: 'none',
-                    }}
+                    className={styles.btn}
                     color="primary"
                     variant="contained"
                   >

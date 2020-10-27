@@ -1,15 +1,10 @@
 import React, { useContext } from 'react';
-// Images
 import logo from '../../assets/images/Logo.png';
 import appStoreImg from '../../assets/images/navicons/Appstore.png';
 import playStoreImg from '../../assets/images/navicons/Playstore.png';
 import profileImg from '../../assets/images/navicons/profile.png';
-
 import loginImg from '../../assets/images/login.svg';
-// Material UI
 import { Button, Container } from '@material-ui/core';
-
-// Components
 import LoginWithMail from '../landing/landingModals/LoginWithMail';
 import { UserContext } from '../../context/UserContext';
 import LoginWithOtp from '../landing/landingModals/LoginWithOtp';
@@ -17,22 +12,15 @@ import ForgotPasswordOtp from '../landing/landingModals/ForgotPasswordOtp';
 import EnterNewPassword from '../landing/landingModals/EnterNewPassword';
 import SignupWithOtp from '../landing/landingModals/SignupWithOtp';
 import SignUpForm from '../landing/landingModals/SignUpForm';
-
-// React Router
 import { Link } from 'react-router-dom';
-
-// Dialog
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-// Ant Design
 import { Menu, Typography, Row, Col } from 'antd';
 
-//Material UI Styles
 const styles = (theme) => ({
   root: {
     overflowX: 'hidden',

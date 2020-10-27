@@ -10,7 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Alert } from '@material-ui/lab';
 import { Row, Col } from 'antd';
-import styles from '../../../styles/SignUpForm.module.css';
+import styles from '../../../styles/landing/SignUpForm.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {

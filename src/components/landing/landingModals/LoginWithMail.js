@@ -8,8 +8,7 @@ import { UserContext } from '../../../context/UserContext';
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router';
 import { Row, Col } from 'antd';
-
-import styles from '../../../styles/LoginWithMail.module.css';
+import styles from '../../../styles/landing/LoginWithMail.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {

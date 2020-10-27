@@ -4,11 +4,11 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import OrderSummary from './dashboardModals/OrderSummary';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import styles from '../../styles/profile/HyperlocalOrders.module.css';
 
 const HyperlocalOrders = () => {
   // const [errorMsg, setErrorMsg] = useState("");
@@ -61,10 +61,7 @@ const HyperlocalOrders = () => {
           return (
             <div key={order.order_id}>
               <Table aria-label="simple table">
-                <Card
-                  variant="outlined"
-                  style={{ margin: '10px 0', width: 'fit-content' }}
-                >
+                <Card variant="outlined" className={styles.hyper_card}>
                   <TableRow>
                     <TableCell>Order ID</TableCell>
                     <TableCell align="left">Order Date</TableCell>
@@ -95,11 +92,6 @@ const HyperlocalOrders = () => {
 
                       <TableCell component="th" scope="row">
                         <Button
-                          style={{
-                            background: '#8845d0',
-                            fontSize: '12px',
-                            outline: 'none',
-                          }}
                           variant="contained"
                           color="primary"
                           onClick={() => {

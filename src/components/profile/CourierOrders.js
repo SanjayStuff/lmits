@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import OrderSummary from './dashboardModals/OrderSummary';
 import axios from 'axios';
+import styles from '../../styles/profile/CourierOrders.module.css';
 
 import {
   TableHead,
@@ -65,10 +66,7 @@ const CourierOrders = () => {
         return (
           <TableContainer key={order.order_id}>
             <Table aria-label="simple table">
-              <Card
-                variant="outlined"
-                style={{ margin: '10px 0', width: 'fit-content' }}
-              >
+              <Card variant="outlined" className={styles.cour_card}>
                 <TableHead>
                   <TableRow>
                     <TableCell>Order ID</TableCell>
@@ -101,11 +99,6 @@ const CourierOrders = () => {
 
                     <TableCell component="th" scope="row">
                       <Button
-                        style={{
-                          background: '#8845d0',
-                          fontSize: '12px',
-                          outline: 'none',
-                        }}
                         variant="contained"
                         color="primary"
                         onClick={() => {
