@@ -1,39 +1,39 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { Button, Card } from '@material-ui/core';
-import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
-import EditName from './dashboardModals/EditName';
-import EditEmail from './dashboardModals/EditEmail';
-import EditNumber from './dashboardModals/EditNumber';
-import ChangePassword from './dashboardModals/ChangePassword';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { Typography } from 'antd';
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import { Button, Card } from "@material-ui/core";
+import CardContent from "@material-ui/core/CardContent";
+import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
+import EditName from "./dashboardModals/EditName";
+import EditEmail from "./dashboardModals/EditEmail";
+import EditNumber from "./dashboardModals/EditNumber";
+import ChangePassword from "./dashboardModals/ChangePassword";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { Typography } from "antd";
 
 const { Title } = Typography;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiButton-containedPrimary': {
-      opacity: '.8',
-      padding: '.5rem 2.3rem',
-      outline: 'none',
-      border: 'none',
+    "& .MuiButton-containedPrimary": {
+      opacity: ".8",
+      padding: ".5rem 2.3rem",
+      outline: "none",
+      border: "none",
     },
-    '& .MuiCard-root': {
-      width: '70%',
+    "& .MuiCard-root": {
+      width: "70%",
     },
-    '& .MuiIconButton-sizeSmall': {
-      outline: 'none',
-      border: 'none',
+    "& .MuiIconButton-sizeSmall": {
+      outline: "none",
+      border: "none",
     },
 
-    '& .MuiCardContent-root': {
-      padding: '1.8rem',
+    "& .MuiCardContent-root": {
+      padding: "1.8rem",
     },
   },
   paper: {
@@ -51,12 +51,12 @@ const MyProfile = () => {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={3} style={{ padding: '5px' }}>
-        <Title level={4} style={{ margin: '1.2rem 2.7rem' }}>
+      <Paper elevation={3} style={{ padding: "5px" }}>
+        <Title level={4} style={{ margin: "1.2rem 2.7rem" }}>
           My Profile
         </Title>
 
-        <Card variant="outlined" style={{ margin: '1rem 3rem' }}>
+        <Card variant="outlined" style={{ margin: "1rem 3rem" }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <CardContent>
@@ -66,12 +66,26 @@ const MyProfile = () => {
                   disabled
                   label="First Name"
                   variant="outlined"
-                  value={localStorage.getItem('lmits_first_name')}
+                  value={localStorage.getItem("lmits_first_name")}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment disableTypography={true} position="start">
+                        <IconButton
+                          size="small"
+                          onClick={() => {
+                            setOpenName(true);
+                          }}
+                        >
+                          <CreateOutlinedIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </CardContent>
             </Grid>
 
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={6}>
               <CardContent>
                 <TextField
                   margin="dense"
@@ -79,7 +93,7 @@ const MyProfile = () => {
                   disabled
                   label="Last Name"
                   variant="outlined"
-                  value={localStorage.getItem('lmits_last_name')}
+                  value={localStorage.getItem("lmits_last_name")}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment disableTypography={true} position="start">
@@ -100,10 +114,10 @@ const MyProfile = () => {
           </Grid>
         </Card>
 
-        <Card elevation={0} style={{ margin: '1rem 3rem' }}>
+        <Card elevation={0} style={{ margin: "1rem 3rem" }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <Card variant="outlined" style={{ width: 'auto' }}>
+              <Card variant="outlined" style={{ width: "auto" }}>
                 <CardContent>
                   <TextField
                     fullWidth
@@ -112,7 +126,11 @@ const MyProfile = () => {
                     disabled
                     label="Email"
                     variant="outlined"
-                    value={localStorage.getItem('lmits_email_id')}
+                    value={
+                      localStorage.getItem("lmits_email_id") !== "null"
+                        ? localStorage.getItem("lmits_email_id")
+                        : ""
+                    }
                     InputProps={{
                       endAdornment: (
                         <InputAdornment
@@ -136,7 +154,7 @@ const MyProfile = () => {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <Card variant="outlined" style={{ width: 'auto' }}>
+              <Card variant="outlined" style={{ width: "auto" }}>
                 <CardContent>
                   <TextField
                     margin="dense"
@@ -169,7 +187,7 @@ const MyProfile = () => {
                         </InputAdornment>
                       ),
                     }}
-                    value={localStorage.getItem('lmits_mob_num')}
+                    value={localStorage.getItem("lmits_mob_num")}
                   />
                 </CardContent>
               </Card>
@@ -177,9 +195,21 @@ const MyProfile = () => {
           </Grid>
         </Card>
 
-        <Grid container style={{ margin: '1rem 2rem' }}>
+        <Card variant="outlined">
+          <CardContent>
+            <Button variant="contained" color="primary">
+              Cancel
+            </Button>
+
+            <Button variant="contained" color="primary" type="submit">
+              Save Details
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Grid container style={{ margin: "1rem 2rem" }}>
           <Grid item xs={12} sm={10} align="start">
-            <div style={{ margin: '15px' }}>
+            <div style={{ margin: "15px" }}>
               {/*<Card variant="outlined">*/}
               {/*  <CardContent>*/}
               <Button

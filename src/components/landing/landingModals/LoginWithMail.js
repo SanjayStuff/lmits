@@ -1,47 +1,46 @@
-import React, { useContext, useState } from 'react';
-import lmitsLogo from '../../../assets/images/Logo.png';
-import TextField from '@material-ui/core/TextField';
-import { Button, Link, makeStyles } from '@material-ui/core';
-import LoginWithOtp from './LoginWithOtp';
-import axios from 'axios';
-import { UserContext } from '../../../context/UserContext';
-import Alert from '@material-ui/lab/Alert';
-import { useHistory } from 'react-router';
-import { Row, Col } from 'antd';
+import React, { useContext, useState } from "react";
+import lmitsLogo from "../../../assets/images/Logo.png";
+import TextField from "@material-ui/core/TextField";
+import { Button, Link, makeStyles } from "@material-ui/core";
+import axios from "axios";
+import { UserContext } from "../../../context/UserContext";
+import Alert from "@material-ui/lab/Alert";
+import { useHistory } from "react-router";
+import { Row, Col } from "antd";
 
-import styles from '../../../styles/LoginWithMail.module.css';
+import styles from "../../../styles/LoginWithMail.module.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const LoginWithMail = (props) => {
   const classes = useStyles();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [msg, setMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
   const [changeDet, setChangeDet] = useState(true);
 
   let history = useHistory();
 
   const handleClick = () => {
-    setUserAuth('2');
+    setUserAuth("2");
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     setChangeDet(false);
-    setMsg('');
-    setErrorMsg('');
+    setMsg("");
+    setErrorMsg("");
 
     const signIn = {
       session: {
@@ -55,9 +54,23 @@ const LoginWithMail = (props) => {
       .then(function (response) {
         console.log(response.data);
         if (response.data.response_code === 200) {
-          localStorage.setItem('lmits_auth_key', response.data.auth_token);
+          localStorage.setItem("lmits_auth_key", response.data.auth_token);
+          localStorage.setItem(
+            "lmits_first_name",
+            response.data.user_info.first_name
+          );
+          localStorage.setItem(
+            "lmits_last_name",
+            response.data.user_info.last_name
+          );
+          localStorage.setItem(
+            "lmits_mob_num",
+            response.data.user_info.mobile_number
+          );
+          localStorage.setItem("lmits_email_id", response.data.user_info.email);
+          localStorage.setItem("lmits_prof_img", response.data.image);
 
-          history.push('/dashboard');
+          history.push("/dashboard");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200
@@ -82,10 +95,10 @@ const LoginWithMail = (props) => {
       <form container onSubmit={onSubmit}>
         <Row>
           <Col className={styles.login__error}>
-            {!changeDet && errorMsg !== '' ? (
+            {!changeDet && errorMsg !== "" ? (
               <Alert severity="error">{errorMsg}</Alert>
             ) : null}
-            {!changeDet && msg !== '' ? (
+            {!changeDet && msg !== "" ? (
               <Alert severity="success">{msg}</Alert>
             ) : null}
           </Col>
@@ -147,7 +160,7 @@ const LoginWithMail = (props) => {
           <p
             className={styles.login__forgot_pass}
             onClick={() => {
-              setUserAuth('3');
+              setUserAuth("3");
             }}
           >
             Forgot Password?
@@ -166,13 +179,13 @@ const LoginWithMail = (props) => {
         </div>
         <div align="middle" className={styles.login__div_signup}>
           <p>
-            New to LMiTS? {''}
+            New to LMiTS? {""}
             <span
               className={styles.login__txt_signup}
               onClick={() => {
-                setUserAuth('5');
+                setUserAuth("5");
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               SignUp
             </span>
