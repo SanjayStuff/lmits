@@ -1,60 +1,66 @@
-import React, { useContext } from "react";
-import logo from "../../assets/images/Logo.png";
-import appStoreImg from "../../assets/images/navicons/Appstore.png";
-import playStoreImg from "../../assets/images/navicons/Playstore.png";
-import profileImg from "../../assets/images/navicons/profile.png";
-import loginImg from "../../assets/images/login.svg";
-import { Button } from "@material-ui/core";
-import LoginWithMail from "../landing/landingModals/LoginWithMail";
-import { UserContext } from "../../context/UserContext";
-import LoginWithOtp from "../landing/landingModals/LoginWithOtp";
-import ForgotPasswordOtp from "../landing/landingModals/ForgotPasswordOtp";
-import EnterNewPassword from "../landing/landingModals/EnterNewPassword";
-import SignupWithOtp from "../landing/landingModals/SignupWithOtp";
-import SignUpForm from "../landing/landingModals/SignUpForm";
+import React, { useContext } from 'react';
+// Images
+import logo from '../../assets/images/Logo.png';
+import appStoreImg from '../../assets/images/navicons/Appstore.png';
+import playStoreImg from '../../assets/images/navicons/Playstore.png';
+import profileImg from '../../assets/images/navicons/profile.png';
 
-import { Link } from "react-router-dom";
+import loginImg from '../../assets/images/login.svg';
+// Material UI
+import { Button, Container } from '@material-ui/core';
+
+// Components
+import LoginWithMail from '../landing/landingModals/LoginWithMail';
+import { UserContext } from '../../context/UserContext';
+import LoginWithOtp from '../landing/landingModals/LoginWithOtp';
+import ForgotPasswordOtp from '../landing/landingModals/ForgotPasswordOtp';
+import EnterNewPassword from '../landing/landingModals/EnterNewPassword';
+import SignupWithOtp from '../landing/landingModals/SignupWithOtp';
+import SignUpForm from '../landing/landingModals/SignUpForm';
+
+// React Router
+import { Link } from 'react-router-dom';
 
 // Dialog
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 // Ant Design
-import { Layout, Menu, Typography, Row, Col } from "antd";
+import { Menu, Typography, Row, Col } from 'antd';
 
+//Material UI Styles
 const styles = (theme) => ({
   root: {
-    overflowX: "hidden",
+    overflowX: 'hidden',
     margin: 0,
     padding: theme.spacing(2),
   },
   closeButton: {
-    position: "absolute",
-    right: "-1rem",
-    top: "-1rem",
-    // right: theme.spacing(1),
-    // top: theme.spacing(1),
-    color: "#fff",
-    backgroundColor: "#8845d0",
-    "& :hover": {
-      color: "#8845d0",
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: '#fff',
+    backgroundColor: '#8845d0',
+    '& :hover': {
+      color: '#8845d0',
     },
   },
 });
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiDialog-paperWidthSm": {
-      maxWidth: "700px",
-      transition: "all 0.64s ease-in-out",
+    '& .MuiDialog-container': {
+      transition: ' 0.64s ease-in-out !important',
     },
-    "& .MuiDialogContent-root": {
-      overflow: "hidden",
+    '& .MuiDialog-paperWidthSm': {
+      maxWidth: '700px',
+    },
+    '& .MuiDialogContent-root': {
+      overflow: 'visible',
     },
   },
 }));
@@ -65,8 +71,8 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle className={classes.root} {...other}>
       {onClose ? (
         <IconButton
-          style={{ outline: "none" }}
-          disableRipple="true"
+          style={{ outline: 'none' }}
+          disableRipple={true}
           aria-label="close"
           className={classes.closeButton}
           onClick={onClose}
@@ -84,13 +90,6 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
 const NavbarTop = () => {
   const [userAuth, setUserAuth] = useContext(UserContext);
   // Dialog
@@ -102,7 +101,7 @@ const NavbarTop = () => {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setUserAuth("1");
+    setUserAuth('1');
   };
   const handleClose = () => {
     setOpen(false);
@@ -118,17 +117,17 @@ const NavbarTop = () => {
 
   const modalComponent = () => {
     switch (userAuth) {
-      case "1":
+      case '1':
         return <LoginWithMail />;
-      case "2":
+      case '2':
         return <LoginWithOtp />;
-      case "3":
+      case '3':
         return <ForgotPasswordOtp />;
-      case "4":
+      case '4':
         return <EnterNewPassword />;
-      case "5":
+      case '5':
         return <SignupWithOtp />;
-      case "6":
+      case '6':
         return <SignUpForm />;
       default:
         return <LoginWithMail />;
@@ -143,7 +142,7 @@ const NavbarTop = () => {
 
       <Dialog
         className={classes.root}
-        disableBackdropClick="true"
+        disableBackdropClick={true}
         maxWidth="sm"
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -154,16 +153,16 @@ const NavbarTop = () => {
           onClose={handleClose}
         ></DialogTitle>
         <DialogContent>
-          <div className="container">
+          <Container>
             <Row>
               <Col md={10} className="popup__photo m-auto">
-                <img src={loginImg} alt="LMiTS Login Image" />
+                <img src={loginImg} alt="LMiTS Login" />
               </Col>
-              <Col md={13} className="popup__text ">
+              <Col md={13} className="popup__text">
                 <div className="card-body p-0">{modalComponent()}</div>
               </Col>
             </Row>
-          </div>
+          </Container>
         </DialogContent>
       </Dialog>
     </Menu.Item>
@@ -173,36 +172,41 @@ const NavbarTop = () => {
     <div className="header-fluid">
       <div className="header">
         <div className="logo">
-          <img src={logo} alt="LMiTS" height={20} />
+          <Link to="">
+            <img src={logo} alt="LMiTS Logo" height={20} />
+          </Link>
         </div>
 
         <Menu mode="horizontal">
-          <Menu.Item></Menu.Item>
           <Menu.Item className="ant_text_disable nav-name">
-            <Text className="font-weight-medium" style={{ color: "#303952" }}>
+            <Text className="font-weight-medium" style={{ color: '#303952' }}>
               Download
             </Text>
           </Menu.Item>
 
-          <Typography.Link>
-            <Link
-              className="app-store"
-              to={{ pathname: "https://www.apple.com/in/ios/app-store/" }}
-              target="_blank"
-            >
-              <img src={appStoreImg} alt="App Store" width={30} />
-            </Link>
-          </Typography.Link>
+          <Menu.Item>
+            <Row>
+              <Col>
+                <Link
+                  className="app-store"
+                  to={{ pathname: 'https://www.apple.com/in/ios/app-store/' }}
+                  target="_blank"
+                >
+                  <img src={appStoreImg} alt="App Store" width={30} />
+                </Link>
+              </Col>
+              <Col>
+                <Link
+                  className="play-store"
+                  to={{ pathname: 'https://play.google.com/store?hl=en_IN' }}
+                  target="_blank"
+                >
+                  <img src={playStoreImg} alt="Play Store" width={30} />
+                </Link>
+              </Col>
+            </Row>
+          </Menu.Item>
 
-          <Typography.Link>
-            <Link
-              className="play-store"
-              to={{ pathname: "https://play.google.com/store?hl=en_IN" }}
-              target="_blank"
-            >
-              <img src={playStoreImg} alt="Play Store" width={25} />
-            </Link>
-          </Typography.Link>
           {authentication}
         </Menu>
       </div>

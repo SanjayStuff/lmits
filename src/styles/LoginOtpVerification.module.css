@@ -1,0 +1,32 @@
+.login_otp_title {
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.8rem 0 0.4rem 0;
+}
+.login_otp__error {
+  margin: 0 0 0.9rem 0;
+}
+
+.login_otp__form__div {
+  position: relative;
+  height: 48px;
+  margin: 0.6rem 0.9rem 0 0.9rem;
+}
+
+.login_otp__form__div .login_otp__textfield {
+  font-size: 0.9375rem;
+  min-width: 100%;
+}
+
+.login_otp__btn_div {
+  padding: 0.6rem 0 0 0;
+}
+.login_otp__btn {
+  opacity: 0.8;
+  min-width: 50% !important;
+}
+
+.login_otp__btn:focus {
+  outline: none;
+  border: none;
+}

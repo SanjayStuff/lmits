@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
 import { Button, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
@@ -8,6 +9,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Alert } from '@material-ui/lab';
+import { Row, Col } from 'antd';
+import styles from '../../../styles/SignUpForm.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#8845d0',
     textTransform: 'capitalize',
     fontSize: '15px',
-    padding: '0.5rem 6.1rem',
+    padding: '0.5rem 5rem',
     outline: 'none',
     border: 'none',
     borderRadius: '0.5rem',
@@ -33,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
-  paper: { maxWidth: '800px' },
+
   asterisk: {
     color: 'red',
   },
@@ -114,252 +117,195 @@ const SignUpForm = () => {
 
   return (
     <>
-      <div className="container">
-        <h3
-          className="text-black f-20"
-          style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            marginTop: '0',
-            paddingTop: '0',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+      <Row>
+        <Col>
+          <div className={styles.sign_up__img}>
+            <img alt="LMiTS Logo" src={lmitsLogo} />
+            <h3 className={styles.sign_up__title}>Sign Up</h3>
+          </div>
+        </Col>
+      </Row>
+
+      <form onSubmit={onSubmit}>
+        <div className={styles.sign_up__error}>
+          {msg !== '' ? (
+            <div>
+              <Alert severity="success">{msg}</Alert>
+            </div>
+          ) : null}
+          {errorMsg !== '' ? (
+            <div>
+              <Alert severity="error">{errorMsg}</Alert>
+            </div>
+          ) : null}
+        </div>
+
+        <div className={styles.sign_up__form__div}>
+          <TextField
+            className={styles.sign_up__textfield}
+            classes={classes.root}
+            id="FirstName"
+            variant="outlined"
+            label="First Name"
+            value={first_name}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+            }}
+            size="small"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div className={styles.sign_up__form__div}>
+          <TextField
+            className={styles.sign_up__textfield}
+            classes={classes.root}
+            id="LastName"
+            variant="outlined"
+            label="Last Name"
+            value={last_name}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+            }}
+            size="small"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+        <div className={styles.sign_up__form__div}>
+          <TextField
+            className={styles.sign_up__textfield}
+            classes={classes.root}
+            id="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            variant="outlined"
+            label="Email"
+            size="small"
+          />
+        </div>
+        <div className={styles.sign_up__form__div}>
+          <TextField
+            className={styles.sign_up__textfield}
+            classes={classes.root}
+            error={
+              password !== password_confirmation &&
+              password_confirmation.length > 0
+            }
+            id="Password"
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrorMsg('');
+            }}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+            }}
+            variant="outlined"
+            label="Password"
+            size="small"
+          />
+        </div>
+        <div className={styles.sign_up__form__div}>
+          <TextField
+            className={styles.sign_up__textfield}
+            classes={classes.root}
+            error={
+              password !== password_confirmation &&
+              password_confirmation.length > 0
+            }
+            id="ConfirmPassword"
+            type="password"
+            value={password_confirmation}
+            onChange={(e) => {
+              setPasswordConfirmation(e.target.value);
+              setErrorMsg('');
+            }}
+            required
+            InputLabelProps={{
+              classes: {
+                asterisk: classes.asterisk,
+                input: classes.resize,
+              },
+            }}
+            variant="outlined"
+            label="Confirm Password"
+            size="small"
+          />
+        </div>
+
+        <div
+          className={`custom-control custom-checkbox ${styles.sign_up__checkbox}`}
         >
-          Sign Up
-        </h3>
+          <input
+            type="checkbox"
+            className="custom-control-input"
+            id="customCheck1"
+            required
+          />
+          <label className="custom-control-label" htmlFor="customCheck1">
+            I accept the{' '}
+            <span onClick={handleClickOpen('paper')}>Terms and Conditions</span>
+          </label>
+        </div>
 
-        <form onSubmit={onSubmit}>
-          <div
-            style={{
-              margin: '0.5em',
-              padding: '0.5rem',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TextField
-              className={classes.root}
-              id="FirstName"
-              variant="outlined"
-              label="First Name"
-              value={first_name}
-              required
-              InputLabelProps={{
-                classes: {
-                  asterisk: classes.asterisk,
-                  input: classes.resize,
-                },
-                style: { fontSize: 15 },
-              }}
-              size="small"
-              style={{ minWidth: '100%' }}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </div>
-          <div
-            style={{
-              margin: '0.5em',
-              padding: '0.5rem',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TextField
-              className={classes.root}
-              id="LastName"
-              variant="outlined"
-              label="Last Name"
-              value={last_name}
-              required
-              InputLabelProps={{
-                classes: {
-                  asterisk: classes.asterisk,
-                  input: classes.resize,
-                },
-                style: { fontSize: 15 },
-              }}
-              size="small"
-              style={{ minWidth: '100%' }}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-          <div
-            style={{
-              margin: '0.5em',
-              padding: '0.5rem',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TextField
-              className={classes.root}
-              id="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              variant="outlined"
-              label="Email"
-              size="small"
-              style={{ minWidth: '100%' }}
-            />
-          </div>
-          <div
-            style={{
-              margin: '0.5em',
-              padding: '0.5rem',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TextField
-              className={classes.root}
-              error={
-                password !== password_confirmation &&
-                password_confirmation.length > 0
-              }
-              id="Password"
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setErrorMsg('');
-              }}
-              required
-              InputLabelProps={{
-                classes: {
-                  asterisk: classes.asterisk,
-                  input: classes.resize,
-                },
-                style: { fontSize: 15 },
-              }}
-              variant="outlined"
-              label="Password"
-              size="small"
-              style={{ minWidth: '100%' }}
-            />
-          </div>
-          <div
-            style={{
-              margin: '0.5em',
-              padding: '0.5rem',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TextField
-              className={classes.root}
-              error={
-                password !== password_confirmation &&
-                password_confirmation.length > 0
-              }
-              id="ConfirmPassword"
-              type="password"
-              value={password_confirmation}
-              onChange={(e) => {
-                setPasswordConfirmation(e.target.value);
-                setErrorMsg('');
-              }}
-              required
-              InputLabelProps={{
-                classes: {
-                  asterisk: classes.asterisk,
-                  input: classes.resize,
-                },
-                style: { fontSize: 15 },
-              }}
-              variant="outlined"
-              label="Confirm Password"
-              size="small"
-              style={{ minWidth: '100%' }}
-            />
-          </div>
-          <div className="custom-control custom-checkbox ml-3">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-              required
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              I accept the{' '}
-              <span
-                className="login-card-description f-10"
-                style={{ color: '#8845d0', cursor: 'pointer' }}
-                onClick={handleClickOpen('paper')}
-              >
-                Terms and Conditions
-              </span>
-            </label>
-          </div>
-
-          <Dialog
-            classes={{ paper: classes.paper }}
-            open={open}
-            onClose={handleClose}
-            scroll={scroll}
-            aria-labelledby="scroll-dialog-title"
-            aria-describedby="scroll-dialog-description"
-          >
-            <DialogTitle id="scroll-dialog-title">
-              Terms and Conditions
-            </DialogTitle>
-            <DialogContent dividers={scroll === 'paper'}>
-              <DialogContentText
-                id="scroll-dialog-description"
-                ref={descriptionElementRef}
-                tabIndex={-1}
-              >
-                {[...new Array(50)]
-                  .map(
-                    () => `Cras mattis consectetur purus sit amet fermentum.
+        <Dialog
+          classes={{ paper: classes.paper }}
+          open={open}
+          onClose={handleClose}
+          scroll={scroll}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+        >
+          <DialogTitle id="scroll-dialog-title">
+            Terms and Conditions
+          </DialogTitle>
+          <DialogContent dividers={scroll === 'paper'}>
+            <DialogContentText
+              id="scroll-dialog-description"
+              ref={descriptionElementRef}
+              tabIndex={-1}
+            >
+              {[...new Array(50)]
+                .map(
+                  () => `Cras mattis consectetur purus sit amet fermentum.
 Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-                  )
-                  .join('\n')}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Close
-              </Button>
-            </DialogActions>
-          </Dialog>
-
-          <div
-            className="text-center mt-2 pt-0"
-            style={{
-              margin: '.8rem',
-            }}
-          >
-            <Button
-              className={classes.loginButton}
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{
-                minWidth: '100%',
-              }}
-            >
-              SignUp
+                )
+                .join('\n')}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Close
             </Button>
-          </div>
-          <div className="pl-3 text-center">
-            {msg !== '' ? (
-              <div>
-                <Alert severity="success">{msg}</Alert>
-              </div>
-            ) : null}
-            {errorMsg !== '' ? (
-              <div>
-                {/*<p style={{ color: "#ee4a4a" }}>{errorMsg}</p>*/}
-                <Alert severity="error">{errorMsg}</Alert>
-              </div>
-            ) : null}
-          </div>
-        </form>
-      </div>
+          </DialogActions>
+        </Dialog>
+
+        <div className={styles.sign_up__btn_div}>
+          <Button
+            className={styles.sign_up__btn}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
+            SignUp
+          </Button>
+        </div>
+      </form>
     </>
   );
 };

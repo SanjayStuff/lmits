@@ -61,7 +61,10 @@ const ChangePassword = (props) => {
       <Dialog open={openPassword}>
         <div style={{ display: 'flex' }}>
           <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
-          <Button>
+          <Button
+            disableRipple={true}
+            style={{ outline: 'none', border: 'none' }}
+          >
             <CancelIcon
               onClick={() => {
                 setOpenPassword(false);

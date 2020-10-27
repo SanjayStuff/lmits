@@ -2,11 +2,12 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: #343a40;
-
   overflow-x: hidden;
 }
 
 .header-fluid {
+  position: sticky;
+  top: 0;
   z-index: 999;
   background: #fff;
   max-width: 100%;
@@ -16,40 +17,12 @@ body {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06);
 }
 
-.ant-layout {
+/* .ant-layout {
   height: 100vh;
-}
-
-.ant-layout-sider-children {
-  height: auto;
-  margin-top: -0.1px;
-  padding-top: 0.1px;
-}
-
-.ant-layout-sider {
-  position: relative;
-  min-width: 0;
-  background: #fff !important;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
+} */
 
 .site-layout-background {
   height: 100vh;
-}
-
-.ant-layout-sider-trigger {
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
-  height: 48px;
-  color: #fff;
-  line-height: 48px;
-  text-align: center;
-  background: #8845d0;
-  cursor: pointer;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
 }
 
 @media all and (min-width: 200px) and (max-width: 576px) {

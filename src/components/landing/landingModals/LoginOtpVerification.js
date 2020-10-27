@@ -1,32 +1,15 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Button, Grid, Link, makeStyles } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import axios from 'axios';
 import { Alert } from '@material-ui/lab';
+import styles from '../../../styles/LoginOtpVerification.module.css';
+import { Row, Col } from 'antd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderColor: '#8845d0',
-    },
-  },
-  loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '15px',
-    padding: '0.5rem 1rem',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
   asterisk: {
@@ -83,77 +66,64 @@ const LoginOtpVerification = () => {
 
   return (
     <>
-      <div
-        style={{
-          marginLeft: '1rem',
-        }}
-      >
-        <p className="login-card-description mb-0 pb-0">
-          Enter the 6 digit OTP you received.
-        </p>
-      </div>
-      <form onSubmit={onSubmit}>
-        <div className="text-center" style={{ margin: '0.8em' }}>
-          {isSubmitted && errorMsg !== '' ? (
-            <div className="pl-3">
-              <Alert severity="error">{errorMsg}</Alert>
-            </div>
-          ) : null}
+      <Row>
+        <Col>
+          <h5 className={styles.login_otp_title}>
+            Enter the 6 digit OTP you received.
+          </h5>
+        </Col>
+      </Row>
 
-          {isValidated && msg !== '' ? (
-            <div className="pl-3">
-              <Alert severity="success">{msg}</Alert>
-            </div>
-          ) : null}
-        </div>
-        <div
-          style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <TextField
-            className={classes.root}
-            id="OTP"
-            type="number"
-            value={otp}
-            autoFocus
-            onChange={(e) => {
-              setOtp(e.target.value);
-              setIsSubmitted(false);
-              setIsValidated(false);
-            }}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-              },
-              style: { fontSize: 15 },
-            }}
-            variant="outlined"
-            label="Enter OTP"
-            size="small"
-            style={{ minWidth: '100%' }}
-          />
-        </div>
+      <form container onSubmit={onSubmit}>
+        <Row>
+          <Col className={styles.login_otp__error}>
+            {isSubmitted && errorMsg !== '' ? (
+              <div>
+                <Alert severity="error">{errorMsg}</Alert>
+              </div>
+            ) : null}
 
-        <div
-          className="text-center"
-          style={{
-            margin: '0.5em',
-            padding: '0.5rem',
-          }}
-        >
+            {isValidated && msg !== '' ? (
+              <div>
+                <Alert severity="success">{msg}</Alert>
+              </div>
+            ) : null}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <TextField
+              className={styles.login_otp__textfield}
+              classes={classes.root}
+              id="OTP"
+              type="number"
+              value={otp}
+              autoFocus
+              onChange={(e) => {
+                setOtp(e.target.value);
+                setIsSubmitted(false);
+                setIsValidated(false);
+              }}
+              required
+              InputLabelProps={{
+                classes: {
+                  asterisk: classes.asterisk,
+                },
+              }}
+              variant="outlined"
+              label="Enter OTP"
+              size="small"
+            />
+          </Col>
+        </Row>
+
+        <div className={styles.login_otp__btn_div}>
           <Button
-            className={classes.loginButton}
+            className={styles.login_otp__btn}
             type="submit"
             variant="contained"
             color="primary"
-            style={{
-              minWidth: '50%',
-            }}
           >
             Submit
           </Button>

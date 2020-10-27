@@ -1,13 +1,14 @@
-import React from "react";
-import { Container } from "@material-ui/core";
-import { Row, Col } from "antd";
+import React from 'react';
+import { Container } from '@material-ui/core';
+import { Row, Col } from 'antd';
+import styles from '../../styles/LandingBanner.module.css';
 
 const LandingBanner = () => {
   return (
-    <Container maxWidth="false">
+    <Container maxWidth={false}>
       <section className="section homepage-search-block">
         <div className="banner-overlay" />
-        <div className="about-container" style={{ padding: "70px 0 90px 0" }}>
+        <div className={`about-container ${styles.about_con_padd}`}>
           <Row justify="space-around">
             <Col span={24} align="middle">
               <div className="homepage-search-title service-title">

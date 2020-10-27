@@ -1,32 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import lmitsLogo from '../../../assets/images/Logo.png';
 import TextField from '@material-ui/core/TextField';
 import { Button, makeStyles } from '@material-ui/core';
 import axios from 'axios';
-import { UserContext } from '../../../context/UserContext';
 import { Alert } from '@material-ui/lab';
+import styles from '../../../styles/EnterNewPassword.module.css';
+import { Row, Col } from 'antd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderColor: '#8845d0',
-    },
-  },
-  loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    fontSize: '15px',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
     },
   },
   asterisk: {
@@ -84,26 +68,17 @@ const EnterNewPassword = () => {
 
   return (
     <>
-      <img
-        src={lmitsLogo}
-        style={{
-          width: '25%',
-          margin: '0.5em',
-          padding: '0.5rem',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      />
-      <h4
-        className="text-black f-18"
-        style={{
-          marginLeft: '0.8em',
-        }}
-      >
-        Change Forgot Password
-      </h4>
+      <Row>
+        <Col>
+          <div className={styles.new_pass__img}>
+            <img alt="LMiTS Logo" src={lmitsLogo} />
+            <h3 className={styles.new_pass__title}>Change Forgot Password</h3>
+          </div>
+        </Col>
+      </Row>
+
       <form onSubmit={onSubmit}>
-        <div className="pl-3 text-center margin: '0.8em'">
+        <div className={styles.new_pass__error}>
           <>
             {errorMsg !== '' ? (
               <Alert severity="error">{errorMsg}</Alert>
@@ -112,16 +87,10 @@ const EnterNewPassword = () => {
 
           <>{msg !== '' ? <Alert severity="success">{msg}</Alert> : null}</>
         </div>
-        <div
-          style={{
-            margin: '0.5em',
-            padding: '0.5em',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <div className={styles.new_pass__form__div}>
           <TextField
-            className={classes.root}
+            className={styles.new_pass__textfield}
+            classes={classes.root}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
@@ -136,24 +105,16 @@ const EnterNewPassword = () => {
                 asterisk: classes.asterisk,
                 input: classes.resize,
               },
-              style: { fontSize: 15 },
             }}
             variant="outlined"
             label="Enter New Password"
             size="small"
-            style={{ minWidth: '100%' }}
           />
         </div>
-        <div
-          style={{
-            margin: '0.5em',
-            padding: '0.5em',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <div className={styles.new_pass__form__div}>
           <TextField
-            className={classes.root}
+            className={styles.new_pass__textfield}
+            classes={classes.root}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
@@ -168,28 +129,18 @@ const EnterNewPassword = () => {
                 asterisk: classes.asterisk,
                 input: classes.resize,
               },
-              style: { fontSize: 15 },
             }}
             variant="outlined"
             label="Confirm New Password"
             size="small"
-            style={{ minWidth: '100%' }}
           />
         </div>
-        <div
-          className="text-center"
-          style={{
-            margin: '.8rem',
-          }}
-        >
+        <div className={styles.new_pass__btn_div}>
           <Button
-            className={classes.loginButton}
+            className={styles.new_pass__btn}
             type="submit"
             variant="contained"
             color="primary"
-            style={{
-              minWidth: '50%',
-            }}
           >
             Change Password
           </Button>

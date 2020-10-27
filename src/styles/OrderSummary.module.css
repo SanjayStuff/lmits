@@ -1,0 +1,29 @@
+.order_pickup_info {
+  font-weight: 500;
+}
+
+.order_input_border {
+  font-weight: 500;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.order_pickup_address,
+.order_drop_address {
+  color: #8845d0;
+}
+
+.order_ser_prov {
+  font-size: 0.8rem;
+  font-weight: 500;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.order_total {
+  font-weight: 500;
+}

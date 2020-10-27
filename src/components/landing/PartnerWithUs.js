@@ -11,7 +11,10 @@ const PartnerWithUs = () => {
             <Col lg={12} md={16} align="middle">
               <div className="title">
                 <div className="services-title">
-                  <span className="section_title">PARTNER WITH US</span>
+                  <span className="section_title font-weight-normal">
+                    Parther with
+                    <span className="text-warning font-weight-medium"> Us</span>
+                  </span>
                 </div>
                 <p className="about-text text-muted">
                   Let’s jointly move your business forward with our leading
@@ -26,19 +29,19 @@ const PartnerWithUs = () => {
               <div className="features-img">
                 <img
                   src={partnerImg}
-                  alt="Partner Image"
+                  alt="LMiTS Partner"
                   className="img-fluid mx-auto"
                 />
               </div>
             </Col>
-            <Col md={10} md={{ span: 10, offset: 1 }}>
+            <Col md={{ span: 10, offset: 1 }}>
               <Row>
                 <Col md={24}>
                   <p className="about-text text-dark font-weight-medium f-15">
                     Help us with below details in order to server you better
                   </p>
                   <div className="custom-form">
-                    <form action method="POST">
+                    <form method="POST">
                       <Row>
                         <Col sm={22} xs={24}>
                           <div className="form-field">

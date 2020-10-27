@@ -3,7 +3,7 @@ import logo from '../../assets/images/Logo.png';
 import FAppStore from '../../assets/images/footer/footer-appstore.png';
 import FPlayStore from '../../assets/images/footer/footer-playstore.png';
 import { Layout, Row, Col, Typography } from 'antd';
-import { Container } from '@material-ui/core';
+import styles from '../../styles/LandingFooter.module.css';
 import { Link } from 'react-router-dom';
 
 const LandingFooter = () => {
@@ -13,85 +13,64 @@ const LandingFooter = () => {
         <div className="about-container">
           <Row>
             <Col lg={7}>
-              <div style={{ marginBottom: '4px' }}>
-                <Typography.Link>
-                  <Link>
-                    <img
-                      src="/static/media/Logo.0463a001.png"
-                      alt=""
-                      className="logo-dark"
-                      height={26}
-                    />
-                  </Link>
-                </Typography.Link>
+              <div className={styles.footer_logo_bottom}>
+                <Link to="">
+                  <img
+                    src={logo}
+                    alt="LMiTS Logo"
+                    className="logo-dark"
+                    height={26}
+                  />
+                </Link>
 
                 <div className="footer-desc">
-                  <p
-                    className="text-muted"
-                    style={{ marginTop: '1.5rem !important' }}
-                  >
+                  <p className="text-muted">
                     LMiTS is the first super application with tech enabled
                     logistics booking service provider started in India.
                   </p>
                 </div>
 
-                <ul
-                  className="list-unstyled footer-social-list "
-                  style={{ marginTop: '4px' }}
-                >
+                <ul className="list-unstyled footer-social-list ">
                   <li className="list-inline-item ">
-                    <Typography.Link>
-                      <Link>
-                        <i className="fa fa-facebook" />
-                      </Link>
-                    </Typography.Link>
+                    <Link to="">
+                      <i className="fa fa-facebook" />
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Typography.Link>
-                      <Link>
-                        <i className="fa fa-instagram" />
-                      </Link>
-                    </Typography.Link>
+                    <Link to="">
+                      <i className="fa fa-instagram" />
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Typography.Link>
-                      <Link>
-                        <i className="fa fa-linkedin" />
-                      </Link>
-                    </Typography.Link>
+                    <Link to="">
+                      <i className="fa fa-linkedin" />
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Typography.Link>
-                      <Link>
-                        <i className="fa fa-twitter" />
-                      </Link>
-                    </Typography.Link>
+                    <Link to="">
+                      <i className="fa fa-twitter" />
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Typography.Link>
-                      <Link>
-                        <i className="fa fa-whatsapp" />
-                      </Link>
-                    </Typography.Link>
+                    <Link to="">
+                      <i className="fa fa-whatsapp" />
+                    </Link>
                   </li>
                 </ul>
                 <div className="footer-btn">
-                  <Typography.Link>
-                    <Link style={{ marginRight: '.7rem' }}>
-                      <img src={FAppStore} alt="" height="auto" />
-                    </Link>
-                  </Typography.Link>
-                  <Typography.Link>
-                    <Link>
-                      <img src={FPlayStore} alt="" height="auto" />
-                    </Link>
-                  </Typography.Link>
+                  <Link to="" className={styles.footer_social}>
+                    <img src={FAppStore} alt="" height="auto" />
+                  </Link>
+
+                  <Link to="">
+                    <img src={FPlayStore} alt="" height="auto" />
+                  </Link>
                 </div>
               </div>
             </Col>
             <Col lg={17}>
               <Row>
-                <Col md={8} style={{ marginRight: '.5rem' }}>
+                <Col md={8} className={styles.footer_services}>
                   <h6 className="footer-list-title text-dark mb-3">
                     Our Services
                   </h6>
@@ -159,7 +138,7 @@ const LandingFooter = () => {
             </Col>
           </Row>
           <Row className="footer-copyright">
-            <Col md={24} align="middle">
+            <Col xs={24} md={24} align="middle">
               <p className="text-muted f-15">2020 © LMiTS Solutions Pvt Ltd.</p>
             </Col>
           </Row>

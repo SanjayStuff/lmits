@@ -1,0 +1,51 @@
+.sign_up__img img {
+  width: 25%;
+  margin: 0 1rem;
+}
+
+.sign_up__title {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0.9rem 0.9rem;
+}
+
+.sign_up__error {
+  margin: 0 0.9rem;
+}
+
+.sign_up__form__div {
+  position: relative;
+  height: 48px;
+  margin: 0.6rem 0.9rem 0 0.9rem;
+}
+
+.sign_up__form__div .sign_up__textfield {
+  font-size: 0.9375rem;
+  min-width: 100%;
+}
+
+.sign_up__checkbox {
+  margin: 0 0.9rem;
+}
+
+.sign_up__checkbox span {
+  color: #8845d0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sign_up__btn_div {
+  margin: 0.8rem;
+  text-align: center;
+}
+
+.sign_up__btn {
+  opacity: 0.8;
+  min-width: 50% !important;
+}
+
+.sign_up__btn:focus {
+  outline: none;
+  border: none;
+}
