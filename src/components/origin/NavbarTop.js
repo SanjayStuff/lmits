@@ -1,54 +1,54 @@
-import React, { useContext } from 'react';
-import logo from '../../assets/images/Logo.png';
-import appStoreImg from '../../assets/images/navicons/Appstore.png';
-import playStoreImg from '../../assets/images/navicons/Playstore.png';
-import profileImg from '../../assets/images/navicons/profile.png';
-import loginImg from '../../assets/images/login.svg';
-import { Button, Container } from '@material-ui/core';
-import LoginWithMail from '../landing/landingModals/LoginWithMail';
-import { UserContext } from '../../context/UserContext';
-import LoginWithOtp from '../landing/landingModals/LoginWithOtp';
-import ForgotPasswordOtp from '../landing/landingModals/ForgotPasswordOtp';
-import EnterNewPassword from '../landing/landingModals/EnterNewPassword';
-import SignupWithOtp from '../landing/landingModals/SignupWithOtp';
-import SignUpForm from '../landing/landingModals/SignUpForm';
-import { Link } from 'react-router-dom';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import { Menu, Typography, Row, Col } from 'antd';
+import React, { useContext } from "react";
+import logo from "../../assets/images/Logo.png";
+import appStoreImg from "../../assets/images/navicons/Appstore.png";
+import playStoreImg from "../../assets/images/navicons/Playstore.png";
+import profileImg from "../../assets/images/navicons/profile.png";
+import loginImg from "../../assets/images/login.svg";
+import { Button, Container } from "@material-ui/core";
+import LoginWithMail from "../landing/landingModals/LoginWithMail";
+import { UserContext } from "../../context/UserContext";
+import LoginWithOtp from "../landing/landingModals/LoginWithOtp";
+import ForgotPasswordOtp from "../landing/landingModals/ForgotPasswordOtp";
+import EnterNewPassword from "../landing/landingModals/EnterNewPassword";
+import SignupWithOtp from "../landing/landingModals/SignupWithOtp";
+import SignUpForm from "../landing/landingModals/SignUpForm";
+import { Link } from "react-router-dom";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import { Menu, Typography, Row, Col } from "antd";
 
 const styles = (theme) => ({
   root: {
-    overflowX: 'hidden',
+    overflowX: "hidden",
     margin: 0,
     padding: theme.spacing(2),
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: '#fff',
-    backgroundColor: '#8845d0',
-    '& :hover': {
-      color: '#8845d0',
+    color: "#fff",
+    backgroundColor: "#8845d0",
+    "& :hover": {
+      color: "#8845d0",
     },
   },
 });
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiDialog-container': {
-      transition: ' 0.64s ease-in-out !important',
+    "& .MuiDialog-container": {
+      transition: " 0.64s ease-in-out !important",
     },
-    '& .MuiDialog-paperWidthSm': {
-      maxWidth: '700px',
+    "& .MuiDialog-paperWidthSm": {
+      maxWidth: "700px",
     },
-    '& .MuiDialogContent-root': {
-      overflow: 'visible',
+    "& .MuiDialogContent-root": {
+      overflow: "visible",
     },
   },
 }));
@@ -59,7 +59,7 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle className={classes.root} {...other}>
       {onClose ? (
         <IconButton
-          style={{ outline: 'none' }}
+          style={{ outline: "none" }}
           disableRipple={true}
           aria-label="close"
           className={classes.closeButton}
@@ -89,33 +89,25 @@ const NavbarTop = () => {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setUserAuth('1');
+    setUserAuth("1");
   };
   const handleClose = () => {
     setOpen(false);
   };
 
-  const profHolder = (
-    <div className="header_img">
-      <a href="">
-        <img src={profileImg} alt="" />
-      </a>
-    </div>
-  );
-
   const modalComponent = () => {
     switch (userAuth) {
-      case '1':
+      case "1":
         return <LoginWithMail />;
-      case '2':
+      case "2":
         return <LoginWithOtp />;
-      case '3':
+      case "3":
         return <ForgotPasswordOtp />;
-      case '4':
+      case "4":
         return <EnterNewPassword />;
-      case '5':
+      case "5":
         return <SignupWithOtp />;
-      case '6':
+      case "6":
         return <SignUpForm />;
       default:
         return <LoginWithMail />;
@@ -167,7 +159,7 @@ const NavbarTop = () => {
 
         <Menu mode="horizontal">
           <Menu.Item className="ant_text_disable nav-name">
-            <Text className="font-weight-medium" style={{ color: '#303952' }}>
+            <Text className="font-weight-medium" style={{ color: "#303952" }}>
               Download
             </Text>
           </Menu.Item>
@@ -177,7 +169,7 @@ const NavbarTop = () => {
               <Col>
                 <Link
                   className="app-store"
-                  to={{ pathname: 'https://www.apple.com/in/ios/app-store/' }}
+                  to={{ pathname: "https://www.apple.com/in/ios/app-store/" }}
                   target="_blank"
                 >
                   <img src={appStoreImg} alt="App Store" width={30} />
@@ -186,7 +178,7 @@ const NavbarTop = () => {
               <Col>
                 <Link
                   className="play-store"
-                  to={{ pathname: 'https://play.google.com/store?hl=en_IN' }}
+                  to={{ pathname: "https://play.google.com/store?hl=en_IN" }}
                   target="_blank"
                 >
                   <img src={playStoreImg} alt="Play Store" width={30} />

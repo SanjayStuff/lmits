@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Button, makeStyles } from '@material-ui/core';
-import axios from 'axios';
-import { Alert } from '@material-ui/lab';
-import styles from '../../../styles/landing/LoginOtpVerification.module.css';
-import { Row, Col } from 'antd';
+import React, { useState } from "react";
+import TextField from "@material-ui/core/TextField";
+import { Button, makeStyles } from "@material-ui/core";
+import axios from "axios";
+import { Alert } from "@material-ui/lab";
+import styles from "../../../styles/landing/LoginOtpVerification.module.css";
+import { Row, Col } from "antd";
 import { useHistory } from "react-router";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +68,7 @@ const LoginOtpVerification = () => {
             );
             localStorage.setItem("lmits_prof_img", response.data.image);
 
-            history.push("/dashboard");
+            history.push("/Homepage");
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200

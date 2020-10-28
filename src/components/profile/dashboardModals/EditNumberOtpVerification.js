@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import DialogContent from '@material-ui/core/DialogContent';
-import TextField from '@material-ui/core/TextField';
-import { Alert } from '@material-ui/lab';
-import { Button } from '@material-ui/core';
+import React, { useState } from "react";
+import axios from "axios";
+import DialogContent from "@material-ui/core/DialogContent";
+import TextField from "@material-ui/core/TextField";
+import { Alert } from "@material-ui/lab";
+import { Button } from "@material-ui/core";
 
 const EditNumberOtpVerification = () => {
-  const [otp, setOtp] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-  const [msg, setMsg] = useState('');
+  const [otp, setOtp] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setMsg('');
-    setErrorMsg('');
+    setMsg("");
+    setErrorMsg("");
     setIsSubmitted(false);
 
     if (otp.length === 6) {
       const otpVerifyData = {
         otp,
-        details: localStorage.getItem('lmits_otp_details'),
-        controller: 'users',
-        action: 'verify_otp',
+        details: localStorage.getItem("lmits_otp_details"),
+        controller: "users",
+        action: "verify_otp",
       };
       console.log(otpVerifyData);
       axios
@@ -31,14 +31,14 @@ const EditNumberOtpVerification = () => {
           console.log(response.data);
           if (response.data.response_code === 200) {
             const newPhoneData = {
-              old_phone: localStorage.getItem('lmits_mob_num'),
-              new_phone: localStorage.getItem('lmits_login_mob'),
+              old_phone: localStorage.getItem("lmits_mob_num"),
+              new_phone: localStorage.getItem("lmits_login_mob"),
             };
             console.log(newPhoneData);
             axios
               .post(`${process.env.REACT_APP_EDIT_NUMBER}`, newPhoneData, {
                 headers: {
-                  Authorization: localStorage.getItem('lmits_auth_key'),
+                  Authorization: localStorage.getItem("lmits_auth_key"),
                 },
               })
               .then(function (response) {
@@ -46,6 +46,12 @@ const EditNumberOtpVerification = () => {
                 if (response.data.response_code === 200) {
                   setIsSubmitted(true);
                   setMsg(response.data.message);
+                  localStorage.setItem(
+                    "lmits_mob_num",
+                    localStorage.getItem("lmits_login_mob")
+                  );
+                  localStorage.removeItem("lmits_login_mob");
+                  localStorage.removeItem("lmits_otp_details");
                 } else if (
                   response.data.response_code &&
                   response.data.response_code !== 200
@@ -67,49 +73,50 @@ const EditNumberOtpVerification = () => {
         .catch((err) => alert(err));
     } else {
       setIsSubmitted(true);
-      setErrorMsg('Enter valid OTP');
-      setOtp('');
+      setErrorMsg("Enter valid OTP");
+      setOtp("");
     }
   };
 
   return (
     <>
-      <DialogContent>
-        <div>
-          <p>Enter the 6 digit OTP you received</p>
-        </div>
-        <div>
-          <TextField
-            id="OTP"
-            autoFocus
-            type="number"
-            value={otp}
-            required
-            variant="outlined"
-            label="Enter OTP"
-            onChange={(e) => setOtp(e.target.value)}
-          />
-        </div>
-        {isSubmitted && errorMsg !== '' ? (
-          <div>
-            <Alert severity="error">{errorMsg}</Alert>
-          </div>
-        ) : null}
-
-        {isSubmitted && msg !== '' ? (
-          <div>
-            <Alert severity="success">{msg}</Alert>
-          </div>
-        ) : null}
-      </DialogContent>
       <form onSubmit={onSubmit}>
-        <div style={{ margin: '15px 0 15px 22px' }}>
+        <DialogContent>
+          <div>
+            <p>Enter the 6 digit OTP you received</p>
+          </div>
+          <div>
+            <TextField
+              id="OTP"
+              autoFocus
+              type="number"
+              value={otp}
+              required
+              variant="outlined"
+              label="Enter OTP"
+              onChange={(e) => setOtp(e.target.value)}
+            />
+          </div>
+          {isSubmitted && errorMsg !== "" ? (
+            <div>
+              <Alert severity="error">{errorMsg}</Alert>
+            </div>
+          ) : null}
+
+          {isSubmitted && msg !== "" ? (
+            <div>
+              <Alert severity="success">{msg}</Alert>
+            </div>
+          ) : null}
+        </DialogContent>
+
+        <div style={{ margin: "15px 0 15px 22px" }}>
           <Button
             style={{
-              background: '#8845d0',
-              outline: 'none',
-              border: 'none',
-              opacity: '0.7',
+              background: "#8845d0",
+              outline: "none",
+              border: "none",
+              opacity: "0.7",
             }}
             type="submit"
             color="primary"

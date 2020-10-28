@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
-import logo from '../../assets/images/Logo.png';
-import profileImg from '../../assets/images/navicons/profile.png';
-import ordersIcon from '../../assets/images/dashboard/svg/orders.svg';
-import addressIcon from '../../assets/images/dashboard/svg/address.svg';
-import supportIcon from '../../assets/images/dashboard/svg/support.svg';
-import logoutIcon from '../../assets/images/dashboard/svg/logout.svg';
-import profileIcon from '../../assets/images/dashboard/svg/profile.svg';
-import { Menu } from 'antd';
-import MyProfile from '../profile/MyProfile';
-import AddressBook from '../profile/AddressBook';
-import MyOrders from '../profile/MyOrders';
-import Support from '../profile/Support';
-import { makeStyles } from '@material-ui/core/styles';
-import { Upload } from 'antd';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import { useTheme } from '@material-ui/core/styles';
-import { useHistory } from 'react-router';
-import { MenuList, MenuItem, Container } from '@material-ui/core';
-import Logout from './Logout';
-import { Link } from 'react-router-dom';
-import styles from '../../styles/profile/Sidebar.module.css';
+import React, { useState } from "react";
+import logo from "../../assets/images/Logo.png";
+import profileImg from "../../assets/images/navicons/profile.png";
+import ordersIcon from "../../assets/images/dashboard/svg/orders.svg";
+import addressIcon from "../../assets/images/dashboard/svg/address.svg";
+import supportIcon from "../../assets/images/dashboard/svg/support.svg";
+import logoutIcon from "../../assets/images/dashboard/svg/logout.svg";
+import profileIcon from "../../assets/images/dashboard/svg/profile.svg";
+import { Menu } from "antd";
+import MyProfile from "../profile/MyProfile";
+import AddressBook from "../profile/AddressBook";
+import MyOrders from "../profile/MyOrders";
+import Support from "../profile/Support";
+import { makeStyles } from "@material-ui/core/styles";
+import { Upload } from "antd";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuIcon from "@material-ui/icons/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import { useTheme } from "@material-ui/core/styles";
+import { useHistory } from "react-router";
+import { MenuList, MenuItem, Container } from "@material-ui/core";
+import Logout from "./Logout";
+import { Link } from "react-router-dom";
+import styles from "../../styles/profile/Sidebar.module.css";
 import MyProfileNew from "./MyProfileNew";
-
 
 const drawerWidth = 240;
 
@@ -36,9 +35,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     // position: 'relative',
-    '& .MuiAppBar-colorPrimary': {
-      backgroundColor: 'transparent',
-
+    "& .MuiAppBar-colorPrimary": {
+      backgroundColor: "transparent",
     },
     "& .MuiToolbar-regular": {
       minHeight: "0px",
@@ -47,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
     // '& .makeStyles-content-7': {
     //   padding: '1.5rem 3.5rem 1.5rem 3.5rem',
     // },
-    '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
-
+    "& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover": {
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
   },
@@ -58,13 +55,12 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
 
-    '& .makeStyles-drawerPaper-6': {
-      position: 'relative',
-      borderRadius: '10px',
-      margin: '20px 20px 20px 20px',
-      minHeight: '100vh',
-      color: '#fff',
-
+    "& .makeStyles-drawerPaper-6": {
+      position: "relative",
+      borderRadius: "10px",
+      margin: "20px 20px 20px 20px",
+      minHeight: "100vh",
+      color: "#fff",
     },
     "& .MuiDrawer-paperAnchorLeft": {
       background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
@@ -83,10 +79,9 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    outline: 'none !important',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-
+    outline: "none !important",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
     },
   },
   // necessary for content to be below app bar
@@ -108,6 +103,7 @@ const Sidebar = (props) => {
   const [dashboardContent, setDashboardContent] = useState("My Profile");
   const { window } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [openLogout, setOpenLogout] = useState(false);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -130,27 +126,29 @@ const Sidebar = (props) => {
         return <AddressBook />;
       case "Support":
         return <Support />;
-      case "Logout":
-        return <Logout />;
+      // case "Logout":
+      //   return <Logout />;
     }
   };
 
   const drawer = (
     <div>
       <div className={styles.sidebar_profile_padd}>
-        <Upload>
-          <img src={profileImg} alt="Profile" />
-    {/*{localStorage.getItem("lmits_prof_img")*/}
-          {/*  ? localStorage.getItem("lmits_prof_img")*/}
-          {/*  : profileImg}*/}
+        <Upload method={"post"}>
+          <img
+            src={
+              localStorage.getItem("lmits_prof_img")
+                ? localStorage.getItem("lmits_prof_img")
+                : profileImg
+            }
+            alt="Profile"
+          />
         </Upload>
 
         <h5>
-          {localStorage.getItem('lmits_first_name')} {''}
-          {localStorage.getItem('lmits_last_name')}
+          {localStorage.getItem("lmits_first_name")} {""}
+          {localStorage.getItem("lmits_last_name")}
         </h5>
-
-
       </div>
 
       <MenuList>
@@ -215,7 +213,8 @@ const Sidebar = (props) => {
           selected={selectedIndex === 5}
           onClick={(event) => {
             handleListItemClick(event, 5);
-            setDashboardContent("Logout");
+            // setDashboardContent("Logout");
+            setOpenLogout(true);
           }}
         >
           <ListItemIcon>
@@ -231,16 +230,12 @@ const Sidebar = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return !localStorage.getItem("lmits_auth_key") ? (
-    <>
-      {alert("You are not Logged in!")}
-      {history.push("/")}
-    </>
+    <>{history.push("/")}</>
   ) : (
     <>
       <div className="header-fluid">
         <div className="header">
           <Toolbar className={styles.sidebar_profile_toolbar}>
-
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -260,8 +255,16 @@ const Sidebar = (props) => {
           <Menu mode="horizontal">
             <Menu.Item>
               <div className="header_img">
-                <img src={profileImg} alt="Profile" width={30} />
-
+                <img
+                  className="rounded"
+                  src={
+                    localStorage.getItem("lmits_prof_img")
+                      ? localStorage.getItem("lmits_prof_img")
+                      : profileImg
+                  }
+                  alt="Profile"
+                  width={30}
+                />
               </div>
             </Menu.Item>
           </Menu>
@@ -303,6 +306,7 @@ const Sidebar = (props) => {
         <main className={classes.content}>
           <Container>{mainContent()}</Container>
         </main>
+        <Logout openLogout={openLogout} setOpenLogout={setOpenLogout} />
       </div>
     </>
   );
