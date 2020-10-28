@@ -83,6 +83,7 @@ const EditNumber = (props) => {
               onClick={() => {
                 setOpenPhone(false);
                 setOtpSent(false);
+                setNewPhone('');
               }}
             />
           </Button>

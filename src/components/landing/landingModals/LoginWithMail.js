@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
-import lmitsLogo from '../../../assets/images/Logo.png';
-import TextField from '@material-ui/core/TextField';
-import { Button, Link, makeStyles } from '@material-ui/core';
+import React, { useContext, useState } from "react";
+import lmitsLogo from "../../../assets/images/Logo.png";
+import TextField from "@material-ui/core/TextField";
+import { Button, Link, makeStyles } from "@material-ui/core";
 
-import axios from 'axios';
-import { UserContext } from '../../../context/UserContext';
-import Alert from '@material-ui/lab/Alert';
-import { useHistory } from 'react-router';
-import { Row, Col } from 'antd';
-import styles from '../../../styles/landing/LoginWithMail.module.css';
-
+import axios from "axios";
+import { UserContext } from "../../../context/UserContext";
+import Alert from "@material-ui/lab/Alert";
+import { useHistory } from "react-router";
+import { Row, Col } from "antd";
+import styles from "../../../styles/landing/LoginWithMail.module.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,8 +69,7 @@ const LoginWithMail = (props) => {
           );
           localStorage.setItem("lmits_email_id", response.data.user_info.email);
           localStorage.setItem("lmits_prof_img", response.data.image);
-
-          history.push("/dashboard");
+          history.push("/Homepage");
         } else if (
           response.data.response_code &&
           response.data.response_code !== 200

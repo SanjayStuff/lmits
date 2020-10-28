@@ -48,6 +48,12 @@ const EditNumberOtpVerification = () => {
                 if (response.data.response_code === 200) {
                   setIsSubmitted(true);
                   setMsg(response.data.message);
+                  localStorage.setItem(
+                    'lmits_mob_num',
+                    localStorage.getItem('lmits_login_mob')
+                  );
+                  localStorage.removeItem('lmits_login_mob');
+                  localStorage.removeItem('lmits_otp_details');
                 } else if (
                   response.data.response_code &&
                   response.data.response_code !== 200
