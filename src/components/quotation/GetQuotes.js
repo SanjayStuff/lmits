@@ -4,7 +4,9 @@ import appStoreImg from '../../assets/images/navicons/Appstore.png';
 import playStoreImg from '../../assets/images/navicons/Playstore.png';
 import profileImg from '../../assets/images/navicons/profile.png';
 import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, Row, Col, Typography } from 'antd';
+
+const { Text } = Typography;
 
 const GetQuotes = () => {
   return (
@@ -17,6 +19,11 @@ const GetQuotes = () => {
         </div>
 
         <Menu mode="horizontal">
+          <Menu.Item className="ant_text_disable nav-name">
+            <Text className="font-weight-medium" style={{ color: '#303952' }}>
+              Download
+            </Text>
+          </Menu.Item>
           <Menu.Item className="ant_text_disable nav-name">
             <Row>
               <Col>

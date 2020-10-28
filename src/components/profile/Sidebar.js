@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../assets/images/Logo.png';
+import appStoreImg from '../../assets/images/navicons/Appstore.png';
+import playStoreImg from '../../assets/images/navicons/Playstore.png';
 import profileImg from '../../assets/images/navicons/profile.png';
 import ordersIcon from '../../assets/images/dashboard/svg/orders.svg';
 import addressIcon from '../../assets/images/dashboard/svg/address.svg';
@@ -12,7 +14,7 @@ import AddressBook from '../profile/AddressBook';
 import MyOrders from '../profile/MyOrders';
 import Support from '../profile/Support';
 import { makeStyles } from '@material-ui/core/styles';
-import { Upload } from 'antd';
+import { Upload, Row, Col, Typography } from 'antd';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -28,6 +30,7 @@ import Logout from './Logout';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/profile/Sidebar.module.css';
 
+const { Text } = Typography;
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -244,6 +247,33 @@ const Sidebar = (props) => {
           </Toolbar>
 
           <Menu mode="horizontal">
+            <Menu.Item className="ant_text_disable nav-name">
+              <Text className="font-weight-medium" style={{ color: '#303952' }}>
+                Download
+              </Text>
+            </Menu.Item>
+            <Menu.Item className="ant_text_disable nav-name">
+              <Row>
+                <Col>
+                  <Link
+                    className="app-store"
+                    to={{ pathname: 'https://www.apple.com/in/ios/app-store/' }}
+                    target="_blank"
+                  >
+                    <img src={appStoreImg} alt="App Store" width={30} />
+                  </Link>
+                </Col>
+                <Col>
+                  <Link
+                    className="play-store"
+                    to={{ pathname: 'https://play.google.com/store?hl=en_IN' }}
+                    target="_blank"
+                  >
+                    <img src={playStoreImg} alt="Play Store" width={30} />
+                  </Link>
+                </Col>
+              </Row>
+            </Menu.Item>
             <Menu.Item>
               <div className="header_img">
                 <img src={profileImg} alt="Profile" width={30} />

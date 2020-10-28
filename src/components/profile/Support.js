@@ -68,18 +68,22 @@ const Support = () => {
                 <Box display="flex">
                   <Box>
                     Reach our customer support representatives for any of your
-                    queries and/or feedback and to any issue. Our on phone
-                    support is available between 9AM - 6PM from Monday - Friday.
+                    queries and/or feedback and to any issue. Our phone support
+                    is available between 9AM - 6PM from Monday - Friday.
                   </Box>
                 </Box>
-                <Button
+                <br />
+                <Typography className="text-center" variant="h4" component="h4">
+                  +91 86200 87300
+                </Typography>
+                {/* <Button
                   className={styles.btn}
                   onClick={handleClickOpen}
                   color="primary"
                   variant="contained"
                 >
                   Call Us
-                </Button>
+                </Button> 
 
                 <Dialog
                   open={open}
@@ -109,7 +113,7 @@ const Support = () => {
                       </Typography>
                     </DialogContentText>
                   </DialogContent>
-                </Dialog>
+                </Dialog>*/}
               </Card>
             </Grid>
 
@@ -124,15 +128,17 @@ const Support = () => {
                     Email: support@lmits.in
                   </Box>
                 </Box>
-                <a href={'mailto:support@lmits.in'}>
-                  <Button
-                    className={styles.btn}
-                    color="primary"
-                    variant="contained"
-                  >
-                    Email Us
-                  </Button>
-                </a>
+                <div className="text-center">
+                  <a href={'mailto:support@lmits.in'}>
+                    <Button
+                      className={styles.btn}
+                      color="primary"
+                      variant="contained"
+                    >
+                      Email Us
+                    </Button>
+                  </a>
+                </div>
               </Card>
             </Grid>
           </Grid>
