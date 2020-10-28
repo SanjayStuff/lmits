@@ -5,38 +5,42 @@ import axios from 'axios';
 import { Alert } from '@material-ui/lab';
 import styles from '../../../styles/landing/LoginOtpVerification.module.css';
 import { Row, Col } from 'antd';
+import { useHistory } from "react-router";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const LoginOtpVerification = () => {
+  let history = useHistory();
+
   const classes = useStyles();
-  const [otp, setOtp] = useState('');
-  const [msg, setMsg] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [otp, setOtp] = useState("");
+  const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isValidated, setIsValidated] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setMsg('');
-    setErrorMsg('');
+    setMsg("");
+    setErrorMsg("");
     setIsSubmitted(false);
     setIsValidated(false);
 
     if (otp.length === 6) {
       const otpVerifyData = {
-        Details: localStorage.getItem('lmits_otp_details'),
+        Details: localStorage.getItem("lmits_otp_details"),
         otp,
-        mobile_number: localStorage.getItem('lmits_login_mob'),
+        mobile_number: localStorage.getItem("lmits_login_mob"),
       };
       console.log(otpVerifyData);
       axios
@@ -46,7 +50,26 @@ const LoginOtpVerification = () => {
           if (response.data.response_code == 200) {
             // alert(response.data.message);
             setIsValidated(true);
-            setMsg(response.data.message);
+            localStorage.setItem("lmits_auth_key", response.data.auth_token);
+            localStorage.setItem(
+              "lmits_first_name",
+              response.data.user_info.first_name
+            );
+            localStorage.setItem(
+              "lmits_last_name",
+              response.data.user_info.last_name
+            );
+            localStorage.setItem(
+              "lmits_mob_num",
+              response.data.user_info.mobile_number
+            );
+            localStorage.setItem(
+              "lmits_email_id",
+              response.data.user_info.email
+            );
+            localStorage.setItem("lmits_prof_img", response.data.image);
+
+            history.push("/dashboard");
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
@@ -59,8 +82,8 @@ const LoginOtpVerification = () => {
         .catch((err) => alert(err));
     } else {
       setIsSubmitted(true);
-      setErrorMsg('Enter valid OTP');
-      setOtp('');
+      setErrorMsg("Enter valid OTP");
+      setOtp("");
     }
   };
 
@@ -77,13 +100,13 @@ const LoginOtpVerification = () => {
       <form container onSubmit={onSubmit}>
         <Row>
           <Col className={styles.login_otp__error}>
-            {isSubmitted && errorMsg !== '' ? (
+            {isSubmitted && errorMsg !== "" ? (
               <div>
                 <Alert severity="error">{errorMsg}</Alert>
               </div>
             ) : null}
 
-            {isValidated && msg !== '' ? (
+            {isValidated && msg !== "" ? (
               <div>
                 <Alert severity="success">{msg}</Alert>
               </div>

@@ -15,6 +15,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography, Row, Col } from 'antd';
 import styles from '../../styles/profile/MyProfile.module.css';
 
+
 const { Title } = Typography;
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
       border: 'none',
     },
 
-    '& .MuiCardContent-root': {
-      padding: '1.8rem',
+    "& .MuiCardContent-root": {
+      padding: "1.8rem",
     },
   },
   paper: {
@@ -42,6 +43,7 @@ const MyProfile = () => {
   const [openPassword, setOpenPassword] = useState(false);
 
   return (
+
     <Paper elevation={2} className={styles.paper_padd}>
       <Row>
         <Col md={12}>
@@ -60,12 +62,10 @@ const MyProfile = () => {
                     id="FirstName"
                     disabled
                     label="First Name"
-                    variant="outlined"
-                    value={localStorage.getItem('lmits_first_name')}
+                    value={localStorage.getItem('lmits_first_name')}                    
                   />
                 </CardContent>
               </Grid>
-
               <Grid item xs={12} sm={5}>
                 <CardContent>
                   <TextField
@@ -189,6 +189,7 @@ const MyProfile = () => {
         </Col>
       </Row>
 
+       
       <EditName openName={openName} setOpenName={setOpenName} />
       <EditEmail openEmail={openEmail} setOpenEmail={setOpenEmail} />
       <EditNumber openPhone={openPhone} setOpenPhone={setOpenPhone} />
