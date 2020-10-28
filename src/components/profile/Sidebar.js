@@ -27,51 +27,58 @@ import { MenuList, MenuItem, Container } from '@material-ui/core';
 import Logout from './Logout';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/profile/Sidebar.module.css';
+import MyProfileNew from "./MyProfileNew";
+
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
     // position: 'relative',
     '& .MuiAppBar-colorPrimary': {
       backgroundColor: 'transparent',
+
     },
-    '& .MuiToolbar-regular': {
-      minHeight: '0px',
+    "& .MuiToolbar-regular": {
+      minHeight: "0px",
     },
+
     // '& .makeStyles-content-7': {
     //   padding: '1.5rem 3.5rem 1.5rem 3.5rem',
     // },
     '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
+
     '& .makeStyles-drawerPaper-6': {
       position: 'relative',
       borderRadius: '10px',
       margin: '20px 20px 20px 20px',
       minHeight: '100vh',
       color: '#fff',
+
     },
-    '& .MuiDrawer-paperAnchorLeft': {
-      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    "& .MuiDrawer-paperAnchorLeft": {
+      background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
     },
-    '& .MuiList-root': {
-      marginBottom: '2.5rem',
+    "& .MuiList-root": {
+      marginBottom: "2.5rem",
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor: '#fff',
-      boxShadow: 'none',
+      backgroundColor: "#fff",
+      boxShadow: "none",
     },
   },
   menuButton: {
@@ -79,14 +86,15 @@ const useStyles = makeStyles((theme) => ({
     outline: 'none !important',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
+
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    color: '#fff',
-    background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    color: "#fff",
+    background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
   },
   content: {
     flexGrow: 1,
@@ -97,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
 const Sidebar = (props) => {
   const classes = useStyles();
   let history = useHistory();
-  const [dashboardContent, setDashboardContent] = useState('My Profile');
+  const [dashboardContent, setDashboardContent] = useState("My Profile");
   const { window } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -114,15 +122,15 @@ const Sidebar = (props) => {
 
   const mainContent = () => {
     switch (dashboardContent) {
-      case 'My Profile':
-        return <MyProfile />;
-      case 'My Orders':
+      case "My Profile":
+        return <MyProfileNew />;
+      case "My Orders":
         return <MyOrders />;
-      case 'Address Book':
+      case "Address Book":
         return <AddressBook />;
-      case 'Support':
+      case "Support":
         return <Support />;
-      case 'Logout':
+      case "Logout":
         return <Logout />;
     }
   };
@@ -132,12 +140,17 @@ const Sidebar = (props) => {
       <div className={styles.sidebar_profile_padd}>
         <Upload>
           <img src={profileImg} alt="Profile" />
+    {/*{localStorage.getItem("lmits_prof_img")*/}
+          {/*  ? localStorage.getItem("lmits_prof_img")*/}
+          {/*  : profileImg}*/}
         </Upload>
 
         <h5>
           {localStorage.getItem('lmits_first_name')} {''}
           {localStorage.getItem('lmits_last_name')}
         </h5>
+
+
       </div>
 
       <MenuList>
@@ -146,7 +159,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 1}
           onClick={(event) => {
             handleListItemClick(event, 1);
-            setDashboardContent('My Profile');
+            setDashboardContent("My Profile");
           }}
         >
           <ListItemIcon>
@@ -160,7 +173,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 2}
           onClick={(event) => {
             handleListItemClick(event, 2);
-            setDashboardContent('My Orders');
+            setDashboardContent("My Orders");
           }}
         >
           <ListItemIcon>
@@ -174,7 +187,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 3}
           onClick={(event) => {
             handleListItemClick(event, 3);
-            setDashboardContent('Address Book');
+            setDashboardContent("Address Book");
           }}
         >
           <ListItemIcon>
@@ -188,7 +201,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 4}
           onClick={(event) => {
             handleListItemClick(event, 4);
-            setDashboardContent('Support');
+            setDashboardContent("Support");
           }}
         >
           <ListItemIcon>
@@ -202,7 +215,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 5}
           onClick={(event) => {
             handleListItemClick(event, 5);
-            setDashboardContent('Logout');
+            setDashboardContent("Logout");
           }}
         >
           <ListItemIcon>
@@ -217,16 +230,17 @@ const Sidebar = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  return !localStorage.getItem('lmits_auth_key') ? (
+  return !localStorage.getItem("lmits_auth_key") ? (
     <>
-      {alert('You are not Logged in!')}
-      {history.push('/')}
+      {alert("You are not Logged in!")}
+      {history.push("/")}
     </>
   ) : (
     <>
       <div className="header-fluid">
         <div className="header">
           <Toolbar className={styles.sidebar_profile_toolbar}>
+
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -247,6 +261,7 @@ const Sidebar = (props) => {
             <Menu.Item>
               <div className="header_img">
                 <img src={profileImg} alt="Profile" width={30} />
+
               </div>
             </Menu.Item>
           </Menu>
@@ -259,7 +274,7 @@ const Sidebar = (props) => {
             <Drawer
               container={container}
               variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              anchor={theme.direction === "rtl" ? "right" : "left"}
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{
