@@ -1,15 +1,17 @@
-import React from "react";
-import logo from "../../assets/images/Logo.png";
-import appStoreImg from "../../assets/images/navicons/Appstore.png";
-import playStoreImg from "../../assets/images/navicons/Playstore.png";
-import profileImg from "../../assets/images/navicons/profile.png";
-import { Link, useHistory } from "react-router-dom";
-import { Row, Menu, Col } from "antd";
+import React from 'react';
+import logo from '../../assets/images/Logo.png';
+import appStoreImg from '../../assets/images/navicons/Appstore.png';
+import playStoreImg from '../../assets/images/navicons/Playstore.png';
+import profileImg from '../../assets/images/navicons/profile.png';
+import { Link, useHistory } from 'react-router-dom';
+import { Menu, Row, Col, Typography } from 'antd';
+
+const { Text } = Typography;
 
 const GetQuotes = () => {
   let history = useHistory();
-  return !localStorage.getItem("lmits_auth_key") ? (
-    <>{history.push("/")}</>
+  return !localStorage.getItem('lmits_auth_key') ? (
+    <>{history.push('/')}</>
   ) : (
     <div className="header-fluid">
       <div className="header">
@@ -21,11 +23,16 @@ const GetQuotes = () => {
 
         <Menu mode="horizontal">
           <Menu.Item className="ant_text_disable nav-name">
+            <Text className="font-weight-medium" style={{ color: '#303952' }}>
+              Download
+            </Text>
+          </Menu.Item>
+          <Menu.Item className="ant_text_disable nav-name">
             <Row>
               <Col>
                 <Link
                   className="app-store"
-                  to={{ pathname: "https://www.apple.com/in/ios/app-store/" }}
+                  to={{ pathname: 'https://www.apple.com/in/ios/app-store/' }}
                   target="_blank"
                 >
                   <img src={appStoreImg} alt="App Store" width={30} />
@@ -34,7 +41,7 @@ const GetQuotes = () => {
               <Col>
                 <Link
                   className="play-store"
-                  to={{ pathname: "https://play.google.com/store?hl=en_IN" }}
+                  to={{ pathname: 'https://play.google.com/store?hl=en_IN' }}
                   target="_blank"
                 >
                   <img src={playStoreImg} alt="Play Store" width={30} />
@@ -47,13 +54,13 @@ const GetQuotes = () => {
             <div className="header_img">
               <img
                 src={
-                  localStorage.getItem("lmits_prof_img")
-                    ? localStorage.getItem("lmits_prof_img")
+                  localStorage.getItem('lmits_prof_img')
+                    ? localStorage.getItem('lmits_prof_img')
                     : profileImg
                 }
                 alt="Profile"
                 width={30}
-                onClick={() => history.push("/dashboard")}
+                onClick={() => history.push('/dashboard')}
               />
             </div>
           </Menu.Item>

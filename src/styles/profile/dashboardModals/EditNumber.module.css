@@ -1,0 +1,13 @@
+.change_num_btn_div {
+  text-align: center;
+  margin-bottom: 0.875rem;
+}
+
+.change_num_btn_div button {
+  opacity: 0.8;
+}
+
+.change_num_btn_div button:focus {
+  outline: none;
+  border: none;
+}

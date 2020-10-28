@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Alert from '@material-ui/lab/Alert';
+import styles from '../../../styles/profile/dashboardModals/ChangePassword.module.css';
 
 const ChangePassword = (props) => {
   const { openPassword, setOpenPassword } = props;
@@ -60,7 +61,7 @@ const ChangePassword = (props) => {
     <>
       <Dialog open={openPassword}>
         <div style={{ display: 'flex' }}>
-          <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
+          <DialogTitle style={{ flexGrow: 1 }}>Change Password</DialogTitle>
           <Button
             disableRipple={true}
             style={{ outline: 'none', border: 'none' }}
@@ -74,6 +75,10 @@ const ChangePassword = (props) => {
         </div>
         <form onSubmit={onSubmit}>
           <DialogContent>
+            {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
+            {errorMsg !== '' ? (
+              <Alert severity="error">{errorMsg}</Alert>
+            ) : null}
             <div>
               <TextField
                 variant="outlined"
@@ -83,7 +88,7 @@ const ChangePassword = (props) => {
                 fullWidth
                 margin="dense"
                 id="CurrentPassword"
-                label="Enter Current Password"
+                label="Current Password"
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
             </div>
@@ -99,7 +104,7 @@ const ChangePassword = (props) => {
                 fullWidth
                 margin="dense"
                 id="newPassword"
-                label="Enter New Password"
+                label="New Password"
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
@@ -115,29 +120,15 @@ const ChangePassword = (props) => {
                 fullWidth
                 margin="dense"
                 id="confirmPassword"
-                label="Re-Enter New Password"
+                label="Confirm Password"
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
               />
             </div>
-            {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
-            {errorMsg !== '' ? (
-              <Alert severity="error">{errorMsg}</Alert>
-            ) : null}
           </DialogContent>
 
-          <div style={{ margin: '15px 0 15px 22px' }}>
-            <Button
-              style={{
-                background: '#8845d0',
-                outline: 'none',
-                border: 'none',
-                opacity: '0.7',
-              }}
-              type="submit"
-              color="primary"
-              variant="contained"
-            >
-              Change Password
+          <div className={styles.change_pass_btn_div}>
+            <Button type="submit" color="primary" variant="contained">
+              Save
             </Button>
           </div>
         </form>
