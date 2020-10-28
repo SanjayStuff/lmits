@@ -125,7 +125,7 @@ const Sidebar = (props) => {
       case "Support":
         return <Support />;
       case "Logout":
-        return <MyProfile />;
+        return <Logout />;
     }
   };
 
