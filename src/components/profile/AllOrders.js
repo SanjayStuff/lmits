@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import Card from '@material-ui/core/Card';
-
 import Button from '@material-ui/core/Button';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import OrderSummary from './dashboardModals/OrderSummary';
-import { makeStyles } from '@material-ui/core/styles';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import { Container } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexWrap: 'wrap',
-  },
-}));
+import styles from '../../styles/profile/AllOrders.module.css';
 
 const AllOrders = () => {
   // const [errorMsg, setErrorMsg] = useState("");
@@ -71,10 +61,7 @@ const AllOrders = () => {
           return (
             <div key={order.order_id}>
               <Table aria-label="simple table">
-                <Card
-                  variant="outlined"
-                  style={{ margin: '10px 0', width: 'fit-content' }}
-                >
+                <Card variant="outlined" className={styles.all_ord_card}>
                   <TableRow>
                     <TableCell>Order ID</TableCell>
                     <TableCell align="left">Order Date</TableCell>
@@ -101,11 +88,6 @@ const AllOrders = () => {
 
                       <TableCell align="left">
                         <Button
-                          style={{
-                            background: '#8845d0',
-                            fontSize: '12px',
-                            outline: 'none',
-                          }}
                           variant="contained"
                           color="primary"
                           onClick={() => {

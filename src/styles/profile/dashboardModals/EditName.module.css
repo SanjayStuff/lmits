@@ -1,0 +1,8 @@
+.btn_margin {
+  margin: 1rem 0 0.5rem 0;
+}
+
+.btn_margin button:focus {
+  outline: none;
+  border: none;
+}

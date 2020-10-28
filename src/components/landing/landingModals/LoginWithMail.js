@@ -1,14 +1,15 @@
-import React, { useContext, useState } from "react";
-import lmitsLogo from "../../../assets/images/Logo.png";
-import TextField from "@material-ui/core/TextField";
-import { Button, Link, makeStyles } from "@material-ui/core";
-import axios from "axios";
-import { UserContext } from "../../../context/UserContext";
-import Alert from "@material-ui/lab/Alert";
-import { useHistory } from "react-router";
-import { Row, Col } from "antd";
+import React, { useContext, useState } from 'react';
+import lmitsLogo from '../../../assets/images/Logo.png';
+import TextField from '@material-ui/core/TextField';
+import { Button, Link, makeStyles } from '@material-ui/core';
 
-import styles from "../../../styles/LoginWithMail.module.css";
+import axios from 'axios';
+import { UserContext } from '../../../context/UserContext';
+import Alert from '@material-ui/lab/Alert';
+import { useHistory } from 'react-router';
+import { Row, Col } from 'antd';
+import styles from '../../../styles/landing/LoginWithMail.module.css';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,0 +1,21 @@
+.sidebar_profile_padd {
+  text-align: center;
+  padding: 1.875rem 0;
+}
+
+.sidebar_profile_padd img {
+  width: 80px;
+}
+
+.sidebar_profile_padd h5 {
+  color: #fff;
+  margin-top: 0.625rem;
+}
+
+.sidebar_profile_toolbar {
+  min-height: 0 !important;
+}
+
+.sidebar_profile_menu {
+  outline: none;
+}

@@ -7,7 +7,7 @@ import ForgotPasswordOtpVerification from './ForgotPasswordOtpVerification';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Alert from '@material-ui/lab/Alert';
 import { Row, Col } from 'antd';
-import styles from '../../../styles/ForgotPasswordOtp.module.css';
+import styles from '../../../styles/landing/ForgotPasswordOtp.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {

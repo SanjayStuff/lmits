@@ -1,4 +1,5 @@
 .paper_padd {
+  height: 100vh;
   padding: 0.3125rem;
 }
 
@@ -10,4 +11,8 @@
 .content_padd {
   padding: 0 0.5rem;
   margin: 0 0.5rem 0 0.5rem;
+}
+
+.tab_margin {
+  margin: 2rem 0 0;
 }
