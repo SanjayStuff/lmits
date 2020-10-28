@@ -1,0 +1,17 @@
+.edit_num_otp__error {
+  margin: 0 0 0.9rem 0;
+}
+
+.edit_num_otp_btn_div {
+  text-align: center;
+  margin-bottom: 0.875rem;
+}
+
+.edit_num_otp_btn_div button {
+  opacity: 0.8;
+}
+
+.edit_num_otp_btn_div button:focus {
+  outline: none;
+  border: none;
+}

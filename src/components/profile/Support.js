@@ -1,14 +1,14 @@
 import React from 'react';
 import { Typography, Row, Col } from 'antd';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Button, Card } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import {
+  Box,
+  Button,
+  Card,
+  Grid,
+  Paper,
+  Slide,
+  makeStyles,
+} from '@material-ui/core';
 import styles from '../../styles/profile/Support.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +66,7 @@ const Support = () => {
               <Card variant="outlined" className={styles.card_padd}>
                 <Title level={4}>Contact</Title>
                 <Box display="flex">
-                  <Box>
+                  <Box className="text-muted">
                     Reach our customer support representatives for any of your
                     queries and/or feedback and to any issue. Our phone support
                     is available between 9AM - 6PM from Monday - Friday.
@@ -121,7 +121,7 @@ const Support = () => {
               <Card variant="outlined" className={styles.card_padd}>
                 <Title level={4}>Email</Title>
                 <Box display="flex">
-                  <Box>
+                  <Box className="text-muted">
                     Drop us an email at any point of time for any of your
                     queries and/or feedback and to report any issue. our supoort
                     teak will get back to you within 24 hours. <br />

@@ -4,6 +4,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import { Alert } from '@material-ui/lab';
 import { Button } from '@material-ui/core';
+import { Row, Col } from 'antd';
+import styles from '../../../styles/profile/dashboardModals/EditNumberOtpVerification.module.css';
 
 const EditNumberOtpVerification = () => {
   const [otp, setOtp] = useState('');
@@ -74,47 +76,39 @@ const EditNumberOtpVerification = () => {
 
   return (
     <>
-      <DialogContent>
-        <div>
-          <p>Enter the 6 digit OTP you received</p>
-        </div>
-        <div>
-          <TextField
-            id="OTP"
-            autoFocus
-            type="number"
-            value={otp}
-            required
-            variant="outlined"
-            label="Enter OTP"
-            onChange={(e) => setOtp(e.target.value)}
-          />
-        </div>
-        {isSubmitted && errorMsg !== '' ? (
-          <div>
-            <Alert severity="error">{errorMsg}</Alert>
-          </div>
-        ) : null}
-
-        {isSubmitted && msg !== '' ? (
-          <div>
-            <Alert severity="success">{msg}</Alert>
-          </div>
-        ) : null}
-      </DialogContent>
       <form onSubmit={onSubmit}>
-        <div style={{ margin: '15px 0 15px 22px' }}>
-          <Button
-            style={{
-              background: '#8845d0',
-              outline: 'none',
-              border: 'none',
-              opacity: '0.7',
-            }}
-            type="submit"
-            color="primary"
-            variant="contained"
-          >
+        <DialogContent>
+          <div>
+            <p>Enter the 6 digit OTP you received</p>
+          </div>
+          <Row>
+            <Col className={styles.edit_num_otp__error}>
+              {isSubmitted && errorMsg !== '' ? (
+                <Alert severity="error">{errorMsg}</Alert>
+              ) : null}
+
+              {isSubmitted && msg !== '' ? (
+                <Alert severity="success">{msg}</Alert>
+              ) : null}
+            </Col>
+          </Row>
+          <div>
+            <TextField
+              id="OTP"
+              autoFocus
+              type="number"
+              value={otp}
+              required
+              size="small"
+              variant="outlined"
+              label="Enter OTP"
+              onChange={(e) => setOtp(e.target.value)}
+            />
+          </div>
+        </DialogContent>
+
+        <div className={styles.edit_num_otp_btn_div}>
+          <Button type="submit" color="primary" variant="contained">
             Submit
           </Button>
         </div>

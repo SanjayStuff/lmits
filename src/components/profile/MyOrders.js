@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import { Typography } from 'antd';
+import { Container, Paper } from '@material-ui/core';
 import AllOrders from './AllOrders';
 import CourierOrders from './CourierOrders';
 import HyperlocalOrders from './HyperlocalOrders';
-import Paper from '@material-ui/core/Paper';
-import { Typography } from 'antd';
-import { Container } from '@material-ui/core';
 import styles from '../../styles/profile/MyOrders.module.css';
 
 const { Title } = Typography;
@@ -20,7 +19,7 @@ const MyOrders = () => {
   };
 
   return (
-    <Paper elevation={3} className={styles.paper_padd}>
+    <Paper elevation={2} className={styles.paper_padd}>
       <Container className={styles.title_padd}>
         <Title level={4}>My Orders</Title>
 

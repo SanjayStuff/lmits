@@ -100,7 +100,7 @@ const OrderSummary = (props) => {
   }, []);
 
   return (
-    <div classes={classes.root}>
+    <div className={classes.root}>
       <Dialog open={openOrderSummary} maxWidth="lg">
         <Paper elevation={3}>
           <DialogTitle>Order Details</DialogTitle>
@@ -112,12 +112,15 @@ const OrderSummary = (props) => {
               }}
             />
           </Button>
-          <DialogContent classes={classes.root}>
+          <DialogContent className={classes.root}>
             <Row>
               <Col md={14}>
                 <Row>
                   <Col md={24}>
-                    <Card variant="outlined" style={{ margin: '15px' }}>
+                    <Card
+                      variant="outlined"
+                      className={styles.order_pickup_margin}
+                    >
                       <CardContent>
                         <h6 className={styles.order_pickup_address}>
                           Pick-up Address
@@ -159,12 +162,9 @@ const OrderSummary = (props) => {
                     </Card>
                   </Col>
                   <Col md={24}>
-                    <Card
-                      variant="outlined"
-                      style={{ margin: '15px', padding: '1rem' }}
-                    >
+                    <Card variant="outlined" className={styles.order_product}>
                       <h5>Product Details</h5>
-                      <Carousel interval="100000">
+                      <Carousel interval={100000}>
                         {deliveryDetails.map((details) => {
                           return (
                             <Carousel.Item
@@ -341,7 +341,10 @@ const OrderSummary = (props) => {
                     </Card>
                   </Col>
                   <Col md={24}>
-                    <Card variant="outlined" style={{ margin: '15px' }}>
+                    <Card
+                      variant="outlined"
+                      className={styles.order_pickup_margin}
+                    >
                       <CardContent>
                         <h5>Payment Details</h5>
                         <Row>
@@ -483,7 +486,7 @@ const OrderSummary = (props) => {
               </Col>
 
               <Col md={8}>
-                <Card variant="outlined" style={{ margin: '15px' }}>
+                <Card variant="outlined" className={styles.order_pickup_margin}>
                   <CardContent>
                     <h5>Order Status</h5>
                   </CardContent>

@@ -10,6 +10,7 @@ import Alert from '@material-ui/lab/Alert';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EditNumberOtpVerification from './EditNumberOtpVerification';
 import Link from '@material-ui/core/Link';
+import styles from '../../../styles/profile/dashboardModals/EditNumber.module.css';
 
 const EditNumber = (props) => {
   const { openPhone, setOpenPhone } = props;
@@ -76,7 +77,7 @@ const EditNumber = (props) => {
     <>
       <Dialog open={openPhone}>
         <div style={{ display: 'flex' }}>
-          <DialogTitle style={{ flexGrow: 1 }}>Edit Details</DialogTitle>
+          <DialogTitle style={{ flexGrow: 1 }}>Change Number</DialogTitle>
           <Button disableRipple={true}>
             <CancelIcon
               onClick={() => {
@@ -86,43 +87,40 @@ const EditNumber = (props) => {
             />
           </Button>
         </div>
-        <DialogContent>
-          <div>
-            <TextField
-              variant="outlined"
-              value={new_phone}
-              type="number"
-              autoFocus
-              fullWidth
-              required
-              margin="dense"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment disableTypography={true} position="start">
-                    +91 |
-                  </InputAdornment>
-                ),
-              }}
-              id="newNumber"
-              label="Update Phone Number"
-              onChange={(e) => {
-                setNewPhone(e.target.value);
-                setOtpSent(false);
-              }}
-            />
-          </div>
-          {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
-          {errorMsg !== '' ? <Alert severity="error">{errorMsg}</Alert> : null}
-        </DialogContent>
         <form onSubmit={submitNumber}>
-          <div style={{ margin: '15px 0 15px 22px' }}>
+          <DialogContent>
+            {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
+            {errorMsg !== '' ? (
+              <Alert severity="error">{errorMsg}</Alert>
+            ) : null}
+            <div>
+              <TextField
+                variant="outlined"
+                value={new_phone}
+                type="number"
+                autoFocus
+                fullWidth
+                required
+                margin="dense"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment disableTypography={true} position="start">
+                      +91 |
+                    </InputAdornment>
+                  ),
+                }}
+                id="newNumber"
+                label="Update Phone Number"
+                onChange={(e) => {
+                  setNewPhone(e.target.value);
+                  setOtpSent(false);
+                }}
+              />
+            </div>
+          </DialogContent>
+
+          <div className={styles.change_num_btn_div}>
             <Button
-              style={{
-                background: '#8845d0',
-                outline: 'none',
-                border: 'none',
-                opacity: '0.7',
-              }}
               type="submit"
               color="primary"
               variant="contained"
@@ -135,29 +133,25 @@ const EditNumber = (props) => {
 
         {otpSent ? <EditNumberOtpVerification /> : null}
 
-        <div>
+        <div className={styles.change_num_btn_div}>
           {otpSent && counter !== 0 ? (
-            <div className="d-inline-block">
-              <p
-                className="login-card-forgot f-12"
-                style={{ color: '#000', fontVariantNumeric: 'tabular-nums' }}
-              >
-                Resend OTP in {counter} sec
-              </p>
-            </div>
+            <p
+              className="login-card-forgot f-12"
+              style={{ color: '#000', fontVariantNumeric: 'tabular-nums' }}
+            >
+              Resend OTP in {counter} sec
+            </p>
           ) : null}
 
           {otpSent && counter === 0 ? (
-            <div className="d-inline-block">
-              <Link onClick={submitNumber}>
-                <p
-                  className="login-card-forgot f-12"
-                  style={{ color: '#000', cursor: 'pointer' }}
-                >
-                  Resend OTP
-                </p>
-              </Link>
-            </div>
+            <Link onClick={submitNumber}>
+              <p
+                className="login-card-forgot f-12"
+                style={{ color: '#000', cursor: 'pointer' }}
+              >
+                Resend OTP
+              </p>
+            </Link>
           ) : null}
         </div>
       </Dialog>

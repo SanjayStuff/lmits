@@ -14,7 +14,12 @@
 }
 
 .card_padd {
-  margin: 1rem 2rem;
+  margin: 0.5rem 2rem;
+  width: fit-content;
+}
+
+.card_inner_padd {
+  margin: 0.5rem 1rem;
   width: fit-content;
 }
 
@@ -28,4 +33,10 @@
 
 .btn_padd button:focus {
   outline: none;
+}
+
+.cancel_btn {
+  /* background-color: #979797 !important;
+  color: #fff !important; */
+  margin: 0 1rem 0 0 !important;
 }

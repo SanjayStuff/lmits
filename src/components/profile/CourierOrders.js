@@ -59,14 +59,14 @@ const CourierOrders = () => {
   }, []);
 
   return (
-    <>
+    <Card elevation={0}>
       {/* {errorMsg !== "" ? { errorMsg } : null} */}
 
       {ordersDetails.map((order) => {
         return (
           <TableContainer key={order.order_id}>
-            <Table aria-label="simple table">
-              <Card variant="outlined" className={styles.cour_card}>
+            <Card variant="outlined" className={styles.cour_card}>
+              <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Order ID</TableCell>
@@ -120,12 +120,12 @@ const CourierOrders = () => {
                     setSelectedOrderId={setSelectedOrderId}
                   />
                 ) : null}
-              </Card>
-            </Table>
+              </Table>
+            </Card>
           </TableContainer>
         );
       })}
-    </>
+    </Card>
   );
 };
 

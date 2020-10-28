@@ -1,3 +1,7 @@
+.order_pickup_margin {
+  margin: 0.9375rem;
+}
+
 .order_pickup_info {
   font-weight: 500;
 }
@@ -8,6 +12,11 @@
   border-radius: 10px;
   padding: 0.4rem 0.8rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.order_product {
+  margin: 0.9375rem;
+  padding: 1rem;
 }
 
 .order_pickup_address,

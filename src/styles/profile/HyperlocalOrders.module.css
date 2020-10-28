@@ -2,3 +2,8 @@
   margin: 0.625rem 0;
   width: fit-content;
 }
+
+.hyper_card button:focus {
+  outline: none;
+  border: none;
+}
