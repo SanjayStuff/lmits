@@ -1,9 +1,9 @@
-import React from 'react';
-import hyperLocalImg from '../../assets/images/service/hyper_local.svg';
-import courierImg from '../../assets/images/service/courier.svg';
-import intraCityImg from '../../assets/images/service/intracity_delivery.svg';
-import { Button, Container } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import React from "react";
+import hyperLocalImg from "../../assets/images/service/hyper_local.svg";
+import courierImg from "../../assets/images/service/courier.svg";
+import intraCityImg from "../../assets/images/service/intracity_delivery.svg";
+import { Button, Container } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const LookingFor = () => {
   return (

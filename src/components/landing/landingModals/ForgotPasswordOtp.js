@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import lmitsLogo from '../../../assets/images/Logo.png';
-import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import { Button, Link, makeStyles } from '@material-ui/core';
-import ForgotPasswordOtpVerification from './ForgotPasswordOtpVerification';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Alert from '@material-ui/lab/Alert';
-import { Row, Col } from 'antd';
-import styles from '../../../styles/landing/ForgotPasswordOtp.module.css';
+import React, { useEffect, useState } from "react";
+import lmitsLogo from "../../../assets/images/Logo.png";
+import axios from "axios";
+import TextField from "@material-ui/core/TextField";
+import { Button, Link, makeStyles } from "@material-ui/core";
+import ForgotPasswordOtpVerification from "./ForgotPasswordOtpVerification";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Alert from "@material-ui/lab/Alert";
+import { Row, Col } from "antd";
+import styles from "../../../styles/landing/ForgotPasswordOtp.module.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
 
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const ForgotPasswordOtp = () => {
   const classes = useStyles();
-  const [mobile_number, setMobile_Number] = useState('');
+  const [mobile_number, setMobile_Number] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
   const [counter, setCounter] = useState(0);
   const [changeDet, setChangeDet] = useState(true);
 
@@ -40,7 +40,7 @@ const ForgotPasswordOtp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setOtpSent(false);
-    setErrorMsg('');
+    setErrorMsg("");
     setChangeDet(false);
 
     if (mobile_number.length === 10) {
@@ -54,9 +54,9 @@ const ForgotPasswordOtp = () => {
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            localStorage.setItem('lmits_login_mob', mobile_number);
+            localStorage.setItem("lmits_login_mob", mobile_number);
             localStorage.setItem(
-              'lmits_otp_details',
+              "lmits_otp_details",
               response.data.otp.Details
             );
             // alert(response.data.message);
@@ -68,13 +68,13 @@ const ForgotPasswordOtp = () => {
           ) {
             // alert(response.data.message);
             setErrorMsg(response.data.message);
-            setMobile_Number('');
+            setMobile_Number("");
           }
         })
         .catch((err) => alert(err));
     } else {
-      setErrorMsg('Enter a valid Mobile Number');
-      setMobile_Number('');
+      setErrorMsg("Enter a valid Mobile Number");
+      setMobile_Number("");
     }
   };
 
@@ -97,7 +97,7 @@ const ForgotPasswordOtp = () => {
       <form onSubmit={onSubmit}>
         <div className={styles.login_forgot__error}>
           {!otpSent ? (
-            !changeDet && errorMsg !== '' ? (
+            !changeDet && errorMsg !== "" ? (
               <div>
                 <Alert severity="error">{errorMsg}</Alert>
               </div>

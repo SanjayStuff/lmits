@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import lmitsLogo from '../../../assets/images/Logo.png';
-import TextField from '@material-ui/core/TextField';
-import { Button, makeStyles } from '@material-ui/core';
-import axios from 'axios';
-import { Alert } from '@material-ui/lab';
-import styles from '../../../styles/landing/EnterNewPassword.module.css';
-import { Row, Col } from 'antd';
+import React, { useState } from "react";
+import lmitsLogo from "../../../assets/images/Logo.png";
+import TextField from "@material-ui/core/TextField";
+import { Button, makeStyles } from "@material-ui/core";
+import axios from "axios";
+import { Alert } from "@material-ui/lab";
+import styles from "../../../styles/landing/EnterNewPassword.module.css";
+import { Row, Col } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const EnterNewPassword = () => {
   const classes = useStyles();
-  const [new_password, setNewPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [new_password, setNewPassword] = useState("");
+  const [password_confirmation, setPasswordConfirmation] = useState("");
   // const [userAuth, setUserAuth] = useContext(UserContext);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [msg, setMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
   // const [validated, setValidated] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setErrorMsg('');
-    setMsg('');
+    setErrorMsg("");
+    setMsg("");
 
     if (new_password === password_confirmation) {
       const changePass = {
         update_password_params: {
-          phone: localStorage.getItem('lmits_login_mob'),
+          phone: localStorage.getItem("lmits_login_mob"),
           new_password,
           password_confirmation,
         },
@@ -47,8 +47,8 @@ const EnterNewPassword = () => {
           console.log(response.data);
           if (response.data.response_code === 200) {
             // alert(response.data.message);
-            localStorage.removeItem('lmits_login_mob');
-            setMsg('Password has been changed');
+            localStorage.removeItem("lmits_login_mob");
+            setMsg("Password has been changed");
             // history.push("/");
           } else if (
             response.data.response_code &&
@@ -60,9 +60,9 @@ const EnterNewPassword = () => {
         })
         .catch((err) => alert(err));
     } else {
-      setNewPassword('');
-      setPasswordConfirmation('');
-      setErrorMsg('Passwords Do Not Match!');
+      setNewPassword("");
+      setPasswordConfirmation("");
+      setErrorMsg("Passwords Do Not Match!");
     }
   };
 
@@ -80,12 +80,12 @@ const EnterNewPassword = () => {
       <form onSubmit={onSubmit}>
         <div className={styles.new_pass__error}>
           <>
-            {errorMsg !== '' ? (
+            {errorMsg !== "" ? (
               <Alert severity="error">{errorMsg}</Alert>
             ) : null}
           </>
 
-          <>{msg !== '' ? <Alert severity="success">{msg}</Alert> : null}</>
+          <>{msg !== "" ? <Alert severity="success">{msg}</Alert> : null}</>
         </div>
         <div className={styles.new_pass__form__div}>
           <TextField

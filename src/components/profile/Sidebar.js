@@ -1,111 +1,111 @@
-import React, { useState } from 'react';
-import logo from '../../assets/images/Logo.png';
-import appStoreImg from '../../assets/images/navicons/Appstore.png';
-import playStoreImg from '../../assets/images/navicons/Playstore.png';
-import profileImg from '../../assets/images/navicons/profile.png';
-import ordersIcon from '../../assets/images/dashboard/svg/orders.svg';
-import addressIcon from '../../assets/images/dashboard/svg/address.svg';
-import supportIcon from '../../assets/images/dashboard/svg/support.svg';
-import logoutIcon from '../../assets/images/dashboard/svg/logout.svg';
-import profileIcon from '../../assets/images/dashboard/svg/profile.svg';
-import { Menu } from 'antd';
-import MyProfile from '../profile/MyProfile';
-import AddressBook from '../profile/AddressBook';
-import MyOrders from '../profile/MyOrders';
-import Support from '../profile/Support';
-import { makeStyles } from '@material-ui/core/styles';
-import { Upload } from 'antd';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import { useTheme } from '@material-ui/core/styles';
-import { useHistory } from 'react-router';
-import { MenuList, MenuItem, Container } from '@material-ui/core';
-import Logout from './Logout';
-import { Link } from 'react-router-dom';
-import styles from '../../styles/profile/Sidebar.module.css';
-import MyProfileNew from './MyProfileNew';
-import { Row, Col, Typography } from 'antd';
-import Avatar from '@material-ui/core/Avatar';
+import React, { useState } from "react";
+import logo from "../../assets/images/Logo.png";
+import appStoreImg from "../../assets/images/navicons/Appstore.png";
+import playStoreImg from "../../assets/images/navicons/Playstore.png";
+import profileImg from "../../assets/images/navicons/profile.png";
+import ordersIcon from "../../assets/images/dashboard/svg/orders.svg";
+import addressIcon from "../../assets/images/dashboard/svg/address.svg";
+import supportIcon from "../../assets/images/dashboard/svg/support.svg";
+import logoutIcon from "../../assets/images/dashboard/svg/logout.svg";
+import profileIcon from "../../assets/images/dashboard/svg/profile.svg";
+import { Menu } from "antd";
+import MyProfile from "../profile/MyProfile";
+import AddressBook from "../profile/AddressBook";
+import MyOrders from "../profile/MyOrders";
+import Support from "../profile/Support";
+import { makeStyles } from "@material-ui/core/styles";
+import { Upload } from "antd";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuIcon from "@material-ui/icons/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import { useTheme } from "@material-ui/core/styles";
+import { useHistory } from "react-router";
+import { MenuList, MenuItem, Container } from "@material-ui/core";
+import Logout from "./Logout";
+import { Link } from "react-router-dom";
+import styles from "../../styles/profile/Sidebar.module.css";
+import MyProfileNew from "./MyProfileNew";
+import { Row, Col, Typography } from "antd";
+import Avatar from "@material-ui/core/Avatar";
 
 const { Text } = Typography;
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    position: 'relative',
-    '& .MuiAppBar-colorPrimary': {
-      backgroundColor: 'transparent',
+    display: "flex",
+    position: "relative",
+    "& .MuiAppBar-colorPrimary": {
+      backgroundColor: "transparent",
     },
-    '& .MuiToolbar-regular': {
-      minHeight: '0px',
+    "& .MuiToolbar-regular": {
+      minHeight: "0px",
     },
-    '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+    "& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover": {
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
-    '& .MuiListItemIcon-root': {
-      minWidth: '36px',
+    "& .MuiListItemIcon-root": {
+      minWidth: "36px",
     },
-    '& .makeStyles-drawerPaper-6': {
-      position: 'relative !important',
-      borderRadius: '0.625rem !important',
-      margin: '1.25rem !important',
-      minHeight: '100vh !important',
-      color: '#fff',
+    "& .makeStyles-drawerPaper-6": {
+      position: "relative !important",
+      borderRadius: "0.625rem !important",
+      margin: "1.25rem !important",
+      minHeight: "100vh !important",
+      color: "#fff",
     },
-    '& .MuiDrawer-paperAnchorLeft': {
-      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    "& .MuiDrawer-paperAnchorLeft": {
+      background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
     },
-    '& .MuiList-root': {
-      marginBottom: '2.5rem',
+    "& .MuiList-root": {
+      marginBottom: "2.5rem",
     },
   },
 
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-      display: 'none',
+      display: "none",
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor: '#fff',
-      boxShadow: 'none',
+      backgroundColor: "#fff",
+      boxShadow: "none",
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    outline: 'none !important',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
+    outline: "none !important",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    color: '#fff',
-    background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    color: "#fff",
+    background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
   large: {
-    margin: '0 auto',
+    margin: "0 auto",
     width: theme.spacing(10),
     height: theme.spacing(10),
   },
@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
 const Sidebar = (props) => {
   const classes = useStyles();
   let history = useHistory();
-  const [dashboardContent, setDashboardContent] = useState('My Profile');
+  const [dashboardContent, setDashboardContent] = useState("My Profile");
   const { window } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const [openLogout, setOpenLogout] = useState(false);
@@ -132,13 +132,13 @@ const Sidebar = (props) => {
 
   const mainContent = () => {
     switch (dashboardContent) {
-      case 'My Profile':
+      case "My Profile":
         return <MyProfileNew />;
-      case 'My Orders':
+      case "My Orders":
         return <MyOrders />;
-      case 'Address Book':
+      case "Address Book":
         return <AddressBook />;
-      case 'Support':
+      case "Support":
         return <Support />;
       // case "Logout":
       //   return <Logout />;
@@ -152,16 +152,16 @@ const Sidebar = (props) => {
           align="middle"
           alt="Profile"
           src={
-            localStorage.getItem('lmits_prof_img')
-              ? localStorage.getItem('lmits_prof_img')
+            localStorage.getItem("lmits_prof_img")
+              ? localStorage.getItem("lmits_prof_img")
               : profileImg
           }
           className={classes.large}
         />
 
         <h5>
-          {localStorage.getItem('lmits_first_name')} {''}
-          {localStorage.getItem('lmits_last_name')}
+          {localStorage.getItem("lmits_first_name")} {""}
+          {localStorage.getItem("lmits_last_name")}
         </h5>
       </div>
 
@@ -171,7 +171,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 1}
           onClick={(event) => {
             handleListItemClick(event, 1);
-            setDashboardContent('My Profile');
+            setDashboardContent("My Profile");
           }}
         >
           <ListItemIcon>
@@ -185,7 +185,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 3}
           onClick={(event) => {
             handleListItemClick(event, 3);
-            setDashboardContent('Address Book');
+            setDashboardContent("Address Book");
           }}
         >
           <ListItemIcon>
@@ -199,7 +199,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 2}
           onClick={(event) => {
             handleListItemClick(event, 2);
-            setDashboardContent('My Orders');
+            setDashboardContent("My Orders");
           }}
         >
           <ListItemIcon>
@@ -213,7 +213,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 4}
           onClick={(event) => {
             handleListItemClick(event, 4);
-            setDashboardContent('Support');
+            setDashboardContent("Support");
           }}
         >
           <ListItemIcon>
@@ -243,8 +243,8 @@ const Sidebar = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  return !localStorage.getItem('lmits_auth_key') ? (
-    <>{history.push('/')}</>
+  return !localStorage.getItem("lmits_auth_key") ? (
+    <>{history.push("/")}</>
   ) : (
     <>
       <div className="header-fluid">
@@ -268,7 +268,7 @@ const Sidebar = (props) => {
 
           <Menu mode="horizontal">
             <Menu.Item className="ant_text_disable nav-name">
-              <Text className="font-weight-medium" style={{ color: '#303952' }}>
+              <Text className="font-weight-medium" style={{ color: "#303952" }}>
                 Download
               </Text>
             </Menu.Item>
@@ -277,7 +277,7 @@ const Sidebar = (props) => {
                 <Col>
                   <Link
                     className="app-store"
-                    to={{ pathname: 'https://www.apple.com/in/ios/app-store/' }}
+                    to={{ pathname: "https://www.apple.com/in/ios/app-store/" }}
                     target="_blank"
                   >
                     <img src={appStoreImg} alt="App Store" width={30} />
@@ -286,7 +286,7 @@ const Sidebar = (props) => {
                 <Col>
                   <Link
                     className="play-store"
-                    to={{ pathname: 'https://play.google.com/store?hl=en_IN' }}
+                    to={{ pathname: "https://play.google.com/store?hl=en_IN" }}
                     target="_blank"
                   >
                     <img src={playStoreImg} alt="Play Store" width={30} />
@@ -298,8 +298,8 @@ const Sidebar = (props) => {
               <Avatar
                 alt="Profile"
                 src={
-                  localStorage.getItem('lmits_prof_img')
-                    ? localStorage.getItem('lmits_prof_img')
+                  localStorage.getItem("lmits_prof_img")
+                    ? localStorage.getItem("lmits_prof_img")
                     : profileImg
                 }
               />
@@ -314,7 +314,7 @@ const Sidebar = (props) => {
             <Drawer
               container={container}
               variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              anchor={theme.direction === "rtl" ? "right" : "left"}
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{

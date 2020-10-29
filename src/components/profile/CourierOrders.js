@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
-import FastForwardIcon from '@material-ui/icons/FastForward';
-import OrderSummary from './dashboardModals/OrderSummary';
-import axios from 'axios';
-import styles from '../../styles/profile/CourierOrders.module.css';
+import React, { useEffect, useState } from "react";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
+import FastForwardIcon from "@material-ui/icons/FastForward";
+import OrderSummary from "./dashboardModals/OrderSummary";
+import axios from "axios";
+import styles from "../../styles/profile/CourierOrders.module.css";
 
 import {
   TableHead,
@@ -13,7 +13,7 @@ import {
   TableCell,
   TableBody,
   Table,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const CourierOrders = () => {
   // const [errorMsg, setErrorMsg] = useState("");
@@ -21,25 +21,25 @@ const CourierOrders = () => {
   const [selectedOrderId, setSelectedOrderId] = useState(0);
   const [openOrderSummary, setOpenOrderSummary] = useState(false);
   let month = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_COURIER_DETAILS}`, {
         headers: {
-          Authorization: localStorage.getItem('lmits_auth_key'),
+          Authorization: localStorage.getItem("lmits_auth_key"),
         },
       })
       .then(function (response) {
@@ -84,12 +84,12 @@ const CourierOrders = () => {
 
                     <TableCell component="th" scope="row">
                       {new Date(order.order_date).getDate()}
-                      {'-'}
+                      {"-"}
                       {month[new Date(order.order_date).getMonth()]}
-                      {'-'}
-                      {new Date(order.order_date).getFullYear()}{' '}
+                      {"-"}
+                      {new Date(order.order_date).getFullYear()}{" "}
                       {new Date(order.order_date).getHours()}
-                      {':'}
+                      {":"}
                       {new Date(order.order_date).getMinutes()}
                     </TableCell>
 

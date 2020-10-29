@@ -1,6 +1,6 @@
-import React from 'react';
-import partnerImg from '../../assets/images/partner.svg';
-import { Layout, Row, Col } from 'antd';
+import React from "react";
+import partnerImg from "../../assets/images/partner.svg";
+import { Layout, Row, Col } from "antd";
 
 const PartnerWithUs = () => {
   return (
@@ -124,7 +124,7 @@ const PartnerWithUs = () => {
                                 className="form-field__textarea"
                                 placeholder=" "
                                 required
-                                defaultValue={''}
+                                defaultValue={""}
                               />
                               <label
                                 htmlFor="message"

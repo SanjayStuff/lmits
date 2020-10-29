@@ -1,53 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import lmitsLogo from '../../../assets/images/Logo.png';
-import TextField from '@material-ui/core/TextField';
-import { Button, makeStyles, Container } from '@material-ui/core';
-import axios from 'axios';
-import SignupOtpVerification from './SignupOtpVerification';
-import LoginOtpVerification from './LoginOtpVerification';
-import Link from '@material-ui/core/Link';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Alert from '@material-ui/lab/Alert';
-import styles from '../../../styles/landing/SignupWithOtp.module.css';
+import React, { useEffect, useState } from "react";
+import lmitsLogo from "../../../assets/images/Logo.png";
+import TextField from "@material-ui/core/TextField";
+import { Button, makeStyles, Container } from "@material-ui/core";
+import axios from "axios";
+import SignupOtpVerification from "./SignupOtpVerification";
+import LoginOtpVerification from "./LoginOtpVerification";
+import Link from "@material-ui/core/Link";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Alert from "@material-ui/lab/Alert";
+import styles from "../../../styles/landing/SignupWithOtp.module.css";
 
 // Ant Design
-import { Row, Col } from 'antd';
+import { Row, Col } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
   loginButton: {
-    color: '#fff',
-    background: '#8845d0',
-    textTransform: 'capitalize',
-    marginLeft: 'auto',
-    fontSize: '15px',
-    padding: '0.5rem 1rem',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '0.5rem',
-    opacity: '0.7',
-    cursor: 'pointer',
-    transition: '0.3s',
-    '&:hover': {
-      border: 'none',
-      background: '#8845d0',
-      boxShadow: '0 10px 36px rgba(0, 0, 0, 0.15)',
+    color: "#fff",
+    background: "#8845d0",
+    textTransform: "capitalize",
+    marginLeft: "auto",
+    fontSize: "15px",
+    padding: "0.5rem 1rem",
+    outline: "none",
+    border: "none",
+    borderRadius: "0.5rem",
+    opacity: "0.7",
+    cursor: "pointer",
+    transition: "0.3s",
+    "&:hover": {
+      border: "none",
+      background: "#8845d0",
+      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
     },
   },
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const SignupWithOtp = () => {
   const classes = useStyles();
-  const [mobile_number, setMobile_Number] = useState('');
+  const [mobile_number, setMobile_Number] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
   const [counter, setCounter] = useState(0);
   const [changeDet, setChangeDet] = useState(true);
 
@@ -61,15 +61,15 @@ const SignupWithOtp = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setErrorMsg('');
+    setErrorMsg("");
     setOtpSent(false);
     setChangeDet(false);
 
     if (mobile_number.length === 10) {
       const otpSignUpData = {
         mobile_number,
-        controller: 'users',
-        action: 'verify_mobile',
+        controller: "users",
+        action: "verify_mobile",
         user: {
           mobile_number,
         },
@@ -81,9 +81,9 @@ const SignupWithOtp = () => {
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            localStorage.setItem('lmits_login_mob', mobile_number);
+            localStorage.setItem("lmits_login_mob", mobile_number);
             localStorage.setItem(
-              'lmits_otp_details',
+              "lmits_otp_details",
               response.data.otp.Details
             );
             setOtpSent(true);
@@ -94,14 +94,14 @@ const SignupWithOtp = () => {
             response.data.response_code !== 200
           ) {
             // alert(response.data.message);
-            setMobile_Number('');
+            setMobile_Number("");
             setErrorMsg(response.data.message);
           }
         })
         .catch((err) => alert(err));
     } else {
-      setErrorMsg('Enter a valid Mobile Number');
-      setMobile_Number('');
+      setErrorMsg("Enter a valid Mobile Number");
+      setMobile_Number("");
     }
   };
 
@@ -121,7 +121,7 @@ const SignupWithOtp = () => {
         <Row>
           <Col className={styles.signup__error}>
             {!otpSent ? (
-              !changeDet && errorMsg !== '' ? (
+              !changeDet && errorMsg !== "" ? (
                 <div>
                   <Alert severity="error">{errorMsg}</Alert>
                 </div>
