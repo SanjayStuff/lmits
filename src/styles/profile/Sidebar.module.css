@@ -19,3 +19,9 @@
 .sidebar_profile_menu {
   outline: none;
 }
+
+.user_profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

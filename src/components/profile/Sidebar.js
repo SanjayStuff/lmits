@@ -31,6 +31,7 @@ import { Link } from 'react-router-dom';
 import styles from '../../styles/profile/Sidebar.module.css';
 import MyProfileNew from './MyProfileNew';
 import { Row, Col, Typography } from 'antd';
+import Avatar from '@material-ui/core/Avatar';
 
 const { Text } = Typography;
 const drawerWidth = 240;
@@ -38,24 +39,34 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    // position: 'relative',
+    position: 'relative',
     '& .MuiAppBar-colorPrimary': {
       backgroundColor: 'transparent',
     },
     '& .MuiToolbar-regular': {
       minHeight: '0px',
     },
-
-    // '& .makeStyles-content-7': {
-    //   padding: '1.5rem 3.5rem 1.5rem 3.5rem',
-    // },
     '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
     '& .MuiListItemIcon-root': {
       minWidth: '36px',
     },
+    '& .makeStyles-drawerPaper-6': {
+      position: 'relative !important',
+      borderRadius: '0.625rem !important',
+      margin: '1.25rem !important',
+      minHeight: '100vh !important',
+      color: '#fff',
+    },
+    '& .MuiDrawer-paperAnchorLeft': {
+      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    },
+    '& .MuiList-root': {
+      marginBottom: '2.5rem',
+    },
   },
+
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -65,20 +76,6 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth,
       flexShrink: 0,
       display: 'none',
-    },
-
-    '& .makeStyles-drawerPaper-6': {
-      position: 'relative',
-      borderRadius: '10px',
-      margin: '20px 20px 20px 20px',
-      minHeight: '100vh',
-      color: '#fff',
-    },
-    '& .MuiDrawer-paperAnchorLeft': {
-      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
-    },
-    '& .MuiList-root': {
-      marginBottom: '2.5rem',
     },
   },
   appBar: {
@@ -106,6 +103,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  large: {
+    margin: '0 auto',
+    width: theme.spacing(10),
+    height: theme.spacing(10),
   },
 }));
 
@@ -146,16 +148,16 @@ const Sidebar = (props) => {
   const drawer = (
     <div>
       <div className={styles.sidebar_profile_padd}>
-        <Upload method={'post'}>
-          <img
-            src={
-              localStorage.getItem('lmits_prof_img')
-                ? localStorage.getItem('lmits_prof_img')
-                : profileImg
-            }
-            alt="Profile"
-          />
-        </Upload>
+        <Avatar
+          align="middle"
+          alt="Profile"
+          src={
+            localStorage.getItem('lmits_prof_img')
+              ? localStorage.getItem('lmits_prof_img')
+              : profileImg
+          }
+          className={classes.large}
+        />
 
         <h5>
           {localStorage.getItem('lmits_first_name')} {''}
@@ -293,18 +295,14 @@ const Sidebar = (props) => {
               </Row>
             </Menu.Item>
             <Menu.Item>
-              <div className="header_img">
-                <img
-                  className="rounded"
-                  src={
-                    localStorage.getItem('lmits_prof_img')
-                      ? localStorage.getItem('lmits_prof_img')
-                      : profileImg
-                  }
-                  alt="Profile"
-                  width={30}
-                />
-              </div>
+              <Avatar
+                alt="Profile"
+                src={
+                  localStorage.getItem('lmits_prof_img')
+                    ? localStorage.getItem('lmits_prof_img')
+                    : profileImg
+                }
+              />
             </Menu.Item>
           </Menu>
         </div>

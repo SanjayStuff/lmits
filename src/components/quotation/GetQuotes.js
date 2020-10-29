@@ -5,6 +5,8 @@ import playStoreImg from '../../assets/images/navicons/Playstore.png';
 import profileImg from '../../assets/images/navicons/profile.png';
 import { Link, useHistory } from 'react-router-dom';
 import { Menu, Row, Col, Typography } from 'antd';
+import Avatar from '@material-ui/core/Avatar';
+import styles from '../../styles/quotation/GetQuotes.module.css';
 
 const { Text } = Typography;
 
@@ -51,18 +53,16 @@ const GetQuotes = () => {
           </Menu.Item>
 
           <Menu.Item>
-            <div className="header_img">
-              <img
-                src={
-                  localStorage.getItem('lmits_prof_img')
-                    ? localStorage.getItem('lmits_prof_img')
-                    : profileImg
-                }
-                alt="Profile"
-                width={30}
-                onClick={() => history.push('/dashboard')}
-              />
-            </div>
+            <Avatar
+              src={
+                localStorage.getItem('lmits_prof_img')
+                  ? localStorage.getItem('lmits_prof_img')
+                  : profileImg
+              }
+              className={styles.user_profile}
+              alt="Profile"
+              onClick={() => history.push('/dashboard')}
+            />
           </Menu.Item>
         </Menu>
       </div>
