@@ -156,8 +156,7 @@ const ForgotPasswordOtp = () => {
         </div>
         <div className={styles.login_forgot__form__div}>
           <TextField
-            className={styles.login_forgot__textfield}
-            classes={classes.root}
+            className={`${styles.login_forgot__textfield} ${classes.root}`}
             id="MobileNumber"
             type="number"
             value={mobile_number}

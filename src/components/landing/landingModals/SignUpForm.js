@@ -18,25 +18,6 @@ const useStyles = makeStyles((theme) => ({
       borderColor: "#8845d0",
     },
   },
-  loginButton: {
-    color: "#fff",
-    background: "#8845d0",
-    textTransform: "capitalize",
-    fontSize: "15px",
-    padding: "0.5rem 5rem",
-    outline: "none",
-    border: "none",
-    borderRadius: "0.5rem",
-    opacity: "0.7",
-    cursor: "pointer",
-    transition: "0.3s",
-    "&:hover": {
-      border: "none",
-      background: "#8845d0",
-      boxShadow: "0 10px 36px rgba(0, 0, 0, 0.15)",
-    },
-  },
-
   asterisk: {
     color: "red",
   },
@@ -142,8 +123,7 @@ const SignUpForm = () => {
 
         <div className={styles.sign_up__form__div}>
           <TextField
-            className={styles.sign_up__textfield}
-            classes={classes.root}
+            className={`${styles.sign_up__textfield} ${classes.root}`}
             id="FirstName"
             variant="outlined"
             label="First Name"
@@ -161,8 +141,7 @@ const SignUpForm = () => {
         </div>
         <div className={styles.sign_up__form__div}>
           <TextField
-            className={styles.sign_up__textfield}
-            classes={classes.root}
+            className={`${styles.sign_up__textfield} ${classes.root}`}
             id="LastName"
             variant="outlined"
             label="Last Name"
@@ -180,8 +159,7 @@ const SignUpForm = () => {
         </div>
         <div className={styles.sign_up__form__div}>
           <TextField
-            className={styles.sign_up__textfield}
-            classes={classes.root}
+            className={`${styles.sign_up__textfield} ${classes.root}`}
             id="Email"
             type="email"
             value={email}
@@ -193,8 +171,7 @@ const SignUpForm = () => {
         </div>
         <div className={styles.sign_up__form__div}>
           <TextField
-            className={styles.sign_up__textfield}
-            classes={classes.root}
+            className={`${styles.sign_up__textfield} ${classes.root}`}
             error={
               password !== password_confirmation &&
               password_confirmation.length > 0
@@ -220,8 +197,7 @@ const SignUpForm = () => {
         </div>
         <div className={styles.sign_up__form__div}>
           <TextField
-            className={styles.sign_up__textfield}
-            classes={classes.root}
+            className={`${styles.sign_up__textfield} ${classes.root}`}
             error={
               password !== password_confirmation &&
               password_confirmation.length > 0

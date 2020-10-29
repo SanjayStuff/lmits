@@ -87,8 +87,7 @@ const ForgotPasswordOtpVerification = () => {
 
         <div>
           <TextField
-            className={styles.login_forgot_otp__textfield}
-            classes={classes.root}
+            className={`${styles.login_forgot_otp__textfield} ${classes.root}`}
             id="OTP"
             type="number"
             autoFocus

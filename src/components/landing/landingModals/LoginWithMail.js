@@ -91,7 +91,7 @@ const LoginWithMail = (props) => {
           <h3 className={styles.login__title}>Hello, Welcome Back</h3>
         </Col>
       </Row>
-      <form container onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <Row>
           <Col className={styles.login__error}>
             {!changeDet && errorMsg !== "" ? (
@@ -105,8 +105,7 @@ const LoginWithMail = (props) => {
 
         <div className={styles.login__form__div}>
           <TextField
-            className={styles.login__textfield}
-            classes={classes.root}
+            className={`${styles.login__textfield} ${classes.root}`}
             id="Email"
             // type="email"
             value={email}
@@ -129,8 +128,7 @@ const LoginWithMail = (props) => {
         </div>
         <div className={styles.login__form__div}>
           <TextField
-            className={styles.login__textfield}
-            classes={classes.root}
+            className={`${styles.login__textfield} ${classes.root}`}
             id="Password"
             type="password"
             value={password}

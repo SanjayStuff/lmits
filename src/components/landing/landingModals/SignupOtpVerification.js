@@ -93,8 +93,7 @@ const SignupOtpVerification = () => {
         <Row>
           <Col>
             <TextField
-              className={styles.signup_otp__textfield}
-              classes={classes.root}
+              className={`${styles.signup_otp__textfield} ${classes.root}`}
               id="OTP"
               autoFocus
               type="number"

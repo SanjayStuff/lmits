@@ -158,8 +158,7 @@ const LoginWithOtp = () => {
 
         <div className={styles.login_otp__form__div}>
           <TextField
-            className={styles.login_otp__textfield}
-            classes={classes.root}
+            className={`${styles.login_otp__textfield} ${classes.root}`}
             id="MobileNumber"
             type="number"
             value={mobile_number}

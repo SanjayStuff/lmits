@@ -5,7 +5,7 @@
 
 .login__title {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   margin: 0.9rem 0.9rem;
 }
 
@@ -47,7 +47,7 @@
 
 .login__btn {
   opacity: 0.8;
-  min-width: 50% !important;
+  padding: 0.5rem 2rem !important;
 }
 
 .login__btn:focus {
