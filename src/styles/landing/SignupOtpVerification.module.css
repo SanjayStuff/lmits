@@ -23,7 +23,7 @@
 }
 .signup_otp__btn {
   opacity: 0.8;
-  min-width: 50% !important;
+  padding: 0.5rem 1rem !important;
 }
 
 .signup_otp__btn:focus {

@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import MainRender from "./components/origin/MainRender";
 import Sidebar from "./components/profile/Sidebar";
 import GetQuotes from "./components/quotation/GetQuotes";
@@ -36,7 +36,7 @@ const THEME = createMuiTheme({
 
 function App() {
   return (
-    <MuiThemeProvider theme={THEME}>
+    <ThemeProvider theme={THEME}>
       <Router>
         <Switch>
           <Route path="/homepage" exact component={GetQuotes} />
@@ -51,7 +51,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 
