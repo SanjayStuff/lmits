@@ -43,14 +43,14 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiAppBar-colorPrimary': {
       backgroundColor: 'transparent',
     },
-    '& .MuiToolbar-regular': {
-      minHeight: '0px',
+    "& .MuiToolbar-regular": {
+      minHeight: "0px",
     },
     '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
-    '& .MuiListItemIcon-root': {
-      minWidth: '36px',
+    "& .MuiListItemIcon-root": {
+      minWidth: "36px",
     },
     '& .makeStyles-drawerPaper-6': {
       position: 'relative !important',
@@ -68,37 +68,37 @@ const useStyles = makeStyles((theme) => ({
   },
 
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-      display: 'none',
+      display: "none",
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor: '#fff',
-      boxShadow: 'none',
+      backgroundColor: "#fff",
+      boxShadow: "none",
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    outline: 'none !important',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
+    outline: "none !important",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    color: '#fff',
-    background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    color: "#fff",
+    background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
   },
   content: {
     flexGrow: 1,
@@ -114,9 +114,9 @@ const useStyles = makeStyles((theme) => ({
 const Sidebar = (props) => {
   const classes = useStyles();
   let history = useHistory();
-  const [dashboardContent, setDashboardContent] = useState('My Profile');
+  const [dashboardContent, setDashboardContent] = useState("My Profile");
   const { window } = props;
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const [openLogout, setOpenLogout] = useState(false);
 
   const handleListItemClick = (event, index) => {
@@ -124,7 +124,7 @@ const Sidebar = (props) => {
   };
 
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -132,13 +132,13 @@ const Sidebar = (props) => {
 
   const mainContent = () => {
     switch (dashboardContent) {
-      case 'My Profile':
+      case "My Profile":
         return <MyProfileNew />;
-      case 'My Orders':
+      case "My Orders":
         return <MyOrders />;
-      case 'Address Book':
+      case "Address Book":
         return <AddressBook />;
-      case 'Support':
+      case "Support":
         return <Support />;
       // case "Logout":
       //   return <Logout />;
@@ -160,8 +160,8 @@ const Sidebar = (props) => {
         />
 
         <h5>
-          {localStorage.getItem('lmits_first_name')} {''}
-          {localStorage.getItem('lmits_last_name')}
+          {localStorage.getItem("lmits_first_name")} {""}
+          {localStorage.getItem("lmits_last_name")}
         </h5>
       </div>
 
@@ -171,7 +171,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 1}
           onClick={(event) => {
             handleListItemClick(event, 1);
-            setDashboardContent('My Profile');
+            setDashboardContent("My Profile");
           }}
         >
           <ListItemIcon>
@@ -185,7 +185,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 3}
           onClick={(event) => {
             handleListItemClick(event, 3);
-            setDashboardContent('Address Book');
+            setDashboardContent("Address Book");
           }}
         >
           <ListItemIcon>
@@ -199,7 +199,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 2}
           onClick={(event) => {
             handleListItemClick(event, 2);
-            setDashboardContent('My Orders');
+            setDashboardContent("My Orders");
           }}
         >
           <ListItemIcon>
@@ -213,7 +213,7 @@ const Sidebar = (props) => {
           selected={selectedIndex === 4}
           onClick={(event) => {
             handleListItemClick(event, 4);
-            setDashboardContent('Support');
+            setDashboardContent("Support");
           }}
         >
           <ListItemIcon>
@@ -243,8 +243,8 @@ const Sidebar = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  return !localStorage.getItem('lmits_auth_key') ? (
-    <>{history.push('/')}</>
+  return !localStorage.getItem("lmits_auth_key") ? (
+    <>{history.push("/")}</>
   ) : (
     <>
       <div className="header-fluid">
@@ -268,7 +268,7 @@ const Sidebar = (props) => {
 
           <Menu mode="horizontal">
             <Menu.Item className="ant_text_disable nav-name">
-              <Text className="font-weight-medium" style={{ color: '#303952' }}>
+              <Text className="font-weight-medium" style={{ color: "#303952" }}>
                 Download
               </Text>
             </Menu.Item>
@@ -277,7 +277,7 @@ const Sidebar = (props) => {
                 <Col>
                   <Link
                     className="app-store"
-                    to={{ pathname: 'https://www.apple.com/in/ios/app-store/' }}
+                    to={{ pathname: "https://www.apple.com/in/ios/app-store/" }}
                     target="_blank"
                   >
                     <img src={appStoreImg} alt="App Store" width={30} />
@@ -286,7 +286,7 @@ const Sidebar = (props) => {
                 <Col>
                   <Link
                     className="play-store"
-                    to={{ pathname: 'https://play.google.com/store?hl=en_IN' }}
+                    to={{ pathname: "https://play.google.com/store?hl=en_IN" }}
                     target="_blank"
                   >
                     <img src={playStoreImg} alt="Play Store" width={30} />
@@ -314,7 +314,7 @@ const Sidebar = (props) => {
             <Drawer
               container={container}
               variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              anchor={theme.direction === "rtl" ? "right" : "left"}
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{
