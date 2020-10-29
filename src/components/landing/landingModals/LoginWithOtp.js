@@ -32,10 +32,7 @@ const LoginWithOtp = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [counter, setCounter] = useState(0);
   const [changeDet, setChangeDet] = useState(true);
-
-  const handleClick = () => {
-    setUserAuth("1");
-  };
+  const [otpCounter, setOtpCounter] = useState(0);
 
   useEffect(() => {
     const timer =
@@ -44,6 +41,14 @@ const LoginWithOtp = () => {
       clearInterval(timer);
     };
   }, [counter]);
+
+  useEffect(() => {
+    const otpTimer =
+      otpCounter > 0 && setInterval(() => setOtpCounter(otpCounter - 1), 1000);
+    return () => {
+      clearInterval(otpTimer);
+    };
+  }, [otpCounter]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -66,14 +71,49 @@ const LoginWithOtp = () => {
               "lmits_otp_details",
               response.data.otp.Details
             );
-            // alert(response.data.message);
             setOtpSent(true);
             setCounter(15);
+            setOtpCounter(3);
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
           ) {
-            // alert(response.data.message);
+            setErrorMsg(response.data.message);
+            setMobile_Number("");
+          }
+        })
+        .catch((err) => alert(err));
+    } else {
+      setErrorMsg("Enter a valid Mobile Number");
+      setMobile_Number("");
+    }
+  };
+
+  const resendOtp = (e) => {
+    e.preventDefault();
+    setErrorMsg("");
+
+    if (mobile_number.length === 10) {
+      const otpData = {
+        mobile_number,
+      };
+      console.log(otpData);
+      axios
+        .post(`${process.env.REACT_APP_LOGIN_WITH_OTP}`, otpData)
+        .then(function (response) {
+          console.log(response.data);
+          if (response.data.response_code === 200) {
+            localStorage.setItem("lmits_login_mob", mobile_number);
+            localStorage.setItem(
+              "lmits_otp_details",
+              response.data.otp.Details
+            );
+            setCounter(15);
+            setOtpCounter(3);
+          } else if (
+            response.data.response_code &&
+            response.data.response_code !== 200
+          ) {
             setErrorMsg(response.data.message);
             setMobile_Number("");
           }
@@ -111,6 +151,11 @@ const LoginWithOtp = () => {
             ) : null
           ) : null}
         </div>
+
+        {otpCounter !== 0 ? (
+          <Alert severity="success">Otp Sent Successfully</Alert>
+        ) : null}
+
         <div className={styles.login_otp__form__div}>
           <TextField
             className={styles.login_otp__textfield}
@@ -212,7 +257,7 @@ const LoginWithOtp = () => {
 
             {otpSent && counter === 0 ? (
               <div>
-                <Link onClick={onSubmit}>
+                <Link onClick={resendOtp}>
                   <p className={styles.login_otp__resend}>Resend OTP</p>
                 </Link>
               </div>
