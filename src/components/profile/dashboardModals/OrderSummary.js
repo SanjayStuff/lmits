@@ -415,24 +415,56 @@ const OrderSummary = (props) => {
                                         borderTop: "2px dashed black",
                                       }}
                                     />
-                                    <p className={styles.order_total}>
-                                      Delivery Charges : Rs.
-                                      {paymentDetails.vendor_charge}
-                                      <br />
-                                      Service Charges : Rs.
-                                      {paymentDetails.lmits_charge}
-                                      <br />
-                                      GST: Rs.{paymentDetails.lmits_tax}
-                                    </p>
+                                    <Row>
+                                      <Col sm={17}>
+                                        <p className={styles.order_total}>
+                                          Delivery Charges
+                                          {/* {paymentDetails.vendor_charge} */}
+                                          <br />
+                                          Service Charges
+                                          {/* {paymentDetails.lmits_charge} */}
+                                          <br />
+                                          GST
+                                          {/* GST: Rs.{paymentDetails.lmits_tax} */}
+                                        </p>
+                                      </Col>
+
+                                      <Row>
+                                        <Col sm={12}>
+                                          <p className={styles.order_total}>
+                                            Rs.
+                                            {paymentDetails.vendor_charge}
+                                            <br />
+                                            Rs.
+                                            {paymentDetails.lmits_charge}
+                                            <br />
+                                            Rs.{paymentDetails.lmits_tax}
+                                          </p>
+                                        </Col>
+                                      </Row>
+                                    </Row>
+
                                     <hr
                                       style={{
                                         borderTop: "2px dashed black",
                                       }}
                                     />
-                                    <p className={styles.order_total}>
-                                      Order Total : Rs.
-                                      {paymentDetails.amount}
-                                    </p>
+                                    <Row>
+                                      <Col sm={17}>
+                                        <p className={styles.order_total}>
+                                          Order Total
+                                        </p>
+                                      </Col>
+
+                                      <Row>
+                                        <Col sm={12}>
+                                          <p className={styles.order_total}>
+                                            Rs.
+                                            {paymentDetails.amount}
+                                          </p>
+                                        </Col>
+                                      </Row>
+                                    </Row>
                                   </div>
                                 </Grid>
                               </Col>

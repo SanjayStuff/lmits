@@ -2,16 +2,18 @@ import React from "react";
 import hyperLocalImg from "../../assets/images/service/hyper_local.svg";
 import courierImg from "../../assets/images/service/courier.svg";
 import intraCityImg from "../../assets/images/service/intracity_delivery.svg";
-import { Button, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const LookingFor = () => {
   return (
     <Container maxWidth={false}>
       <section className="services">
-        <div className="serbices-div">
+        <div className="services-div">
           <div className="services-title">
-            <span className="section_title">How can we help ?</span>
+            <span className="section_title font-weight-normal">
+              Our <span className="text-warning">Services</span>
+            </span>
           </div>
         </div>
 

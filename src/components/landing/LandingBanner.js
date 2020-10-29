@@ -6,7 +6,7 @@ import styles from "../../styles/landing/LandingBanner.module.css";
 const LandingBanner = () => {
   return (
     <Container maxWidth={false}>
-      <section className="section homepage-search-block">
+      <section className="homepage-search-block">
         <div className="banner-overlay" />
         <div className={`about-container ${styles.about_con_padd}`}>
           <Row justify="space-around">

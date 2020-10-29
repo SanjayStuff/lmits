@@ -74,7 +74,7 @@ const ForgotPasswordOtpVerification = () => {
         </p>
       </div>
 
-      <form container onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <Row>
           <Col className={styles.login_forgot_otp__error}>
             {isSubmitted && errorMsg !== "" ? (

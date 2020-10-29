@@ -1,0 +1,21 @@
+.yes_btn {
+  padding: 0.5rem 2rem !important;
+  color: #303952 !important;
+  background-color: #e7e7e7 !important;
+}
+
+.yes_btn:focus {
+  outline: none;
+  border: none;
+}
+
+.no_btn {
+  padding: 0.5rem 2rem !important;
+  color: #fff !important;
+  background-color: #8845d0 !important;
+}
+
+.no_btn:focus {
+  outline: none;
+  border: none;
+}

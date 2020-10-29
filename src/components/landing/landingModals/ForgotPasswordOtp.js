@@ -123,7 +123,7 @@ const ForgotPasswordOtp = () => {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment disableTypography="true" position="start">
+                <InputAdornment disableTypography={true} position="start">
                   +91 |
                 </InputAdornment>
               ),

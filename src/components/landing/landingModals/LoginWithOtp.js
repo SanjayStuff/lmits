@@ -130,7 +130,7 @@ const LoginWithOtp = () => {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment disableTypography="true" position="start">
+                <InputAdornment disableTypography={true} position="start">
                   +91 |
                 </InputAdornment>
               ),
@@ -183,7 +183,7 @@ const LoginWithOtp = () => {
           ) : null}
         </div>
         <Row>
-          <Col className={styles.login_otp__resend_div}>
+          <Col md={24} className={styles.login_otp__resend_div}>
             {otpSent ? <LoginOtpVerification /> : null}
 
             {/*{otpSent ? (*/}

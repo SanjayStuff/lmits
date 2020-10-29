@@ -39,7 +39,6 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-
     "& .MuiAppBar-colorPrimary": {
       backgroundColor: "transparent",
     },
@@ -63,6 +62,13 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth,
       flexShrink: 0,
       display: "none",
+    },
+
+    "& .MuiDrawer-paperAnchorLeft": {
+      background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
+    },
+    "& .MuiList-root": {
+      marginBottom: "2.5rem",
     },
   },
 

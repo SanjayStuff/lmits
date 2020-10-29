@@ -96,7 +96,7 @@ const LoginOtpVerification = () => {
         </Col>
       </Row>
 
-      <form container onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <Row>
           <Col className={styles.login_otp__error}>
             {isSubmitted && errorMsg !== "" ? (
@@ -114,7 +114,7 @@ const LoginOtpVerification = () => {
         </Row>
 
         <Row>
-          <Col>
+          <Col md={24}>
             <TextField
               className={`${styles.login_otp__textfield} ${classes.root}`}
               id="OTP"
