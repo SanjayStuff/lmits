@@ -80,7 +80,7 @@ const SignupOtpVerification = () => {
         </Col>
       </Row>
 
-      <form container onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <Row>
           <Col className={styles.signup_otp__error}>
             {isSubmitted && errorMsg !== "" ? (

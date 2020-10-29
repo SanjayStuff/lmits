@@ -80,11 +80,8 @@ const DialogContent = withStyles((theme) => ({
 
 const NavbarTop = () => {
   const [userAuth, setUserAuth] = useContext(UserContext);
-  // Dialog
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
-
-  // Ant Design
   const { Text } = Typography;
 
   const handleClickOpen = () => {

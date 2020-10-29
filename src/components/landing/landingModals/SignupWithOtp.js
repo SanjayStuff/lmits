@@ -169,7 +169,7 @@ const SignupWithOtp = () => {
         </Col>
       </Row>
 
-      <form container onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <Row>
           <Col className={styles.signup__error}>
             {!otpSent ? (
@@ -206,7 +206,7 @@ const SignupWithOtp = () => {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment disableTypography="true" position="start">
+                <InputAdornment disableTypography={true} position="start">
                   +91 |
                 </InputAdornment>
               ),
