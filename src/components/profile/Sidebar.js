@@ -39,7 +39,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    position: "relative",
+
     "& .MuiAppBar-colorPrimary": {
       backgroundColor: "transparent",
     },
@@ -51,19 +51,6 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiListItemIcon-root": {
       minWidth: "36px",
-    },
-    "& .makeStyles-drawerPaper-6": {
-      position: "relative !important",
-      borderRadius: "0.625rem !important",
-      margin: "1.25rem !important",
-      minHeight: "100vh !important",
-      color: "#fff",
-    },
-    "& .MuiDrawer-paperAnchorLeft": {
-      background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
-    },
-    "& .MuiList-root": {
-      marginBottom: "2.5rem",
     },
   },
 
@@ -78,8 +65,9 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+
   appBar: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
       backgroundColor: "#fff",
@@ -89,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
     outline: "none !important",
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       display: "none",
     },
   },
@@ -99,6 +87,10 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     color: "#fff",
     background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
+    position: "relative ",
+    borderRadius: "0.625rem ",
+    margin: "1.25rem ",
+    minHeight: "100vh",
   },
   content: {
     flexGrow: 1,

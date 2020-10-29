@@ -116,8 +116,7 @@ const LoginOtpVerification = () => {
         <Row>
           <Col>
             <TextField
-              className={styles.login_otp__textfield}
-              classes={classes.root}
+              className={`${styles.login_otp__textfield} ${classes.root}`}
               id="OTP"
               type="number"
               value={otp}

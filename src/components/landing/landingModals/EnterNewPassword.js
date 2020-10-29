@@ -89,8 +89,7 @@ const EnterNewPassword = () => {
         </div>
         <div className={styles.new_pass__form__div}>
           <TextField
-            className={styles.new_pass__textfield}
-            classes={classes.root}
+            className={`${styles.new_pass__textfield} ${classes.root}`}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0
@@ -113,8 +112,7 @@ const EnterNewPassword = () => {
         </div>
         <div className={styles.new_pass__form__div}>
           <TextField
-            className={styles.new_pass__textfield}
-            classes={classes.root}
+            className={`${styles.new_pass__textfield} ${classes.root}`}
             error={
               new_password !== password_confirmation &&
               password_confirmation.length > 0

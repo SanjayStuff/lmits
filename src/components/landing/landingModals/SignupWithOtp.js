@@ -133,8 +133,7 @@ const SignupWithOtp = () => {
         <div className={styles.signup__form__div}>
           <TextField
             autoFocus
-            className={styles.signup__textfield}
-            classes={classes.root}
+            className={`${styles.signup__textfield} ${classes.root}`}
             id="MobileNumber"
             type="number"
             value={mobile_number}
