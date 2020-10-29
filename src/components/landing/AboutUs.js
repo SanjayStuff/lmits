@@ -1,16 +1,16 @@
-import React from 'react';
-import aboutImg from '../../assets/images/about.svg';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Layout, Row, Col } from 'antd';
+import React from "react";
+import aboutImg from "../../assets/images/about.svg";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { Layout, Row, Col } from "antd";
 
 const AboutUs = () => {
   const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
+  const [scroll, setScroll] = React.useState("paper");
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -56,7 +56,7 @@ const AboutUs = () => {
                   </p>
                   <Row>
                     <a
-                      onClick={handleClickOpen('paper')}
+                      onClick={handleClickOpen("paper")}
                       className=" font-weight-normal read-more"
                     >
                       Read more <span className="right-icon">→</span>
@@ -71,7 +71,7 @@ const AboutUs = () => {
                   aria-describedby="scroll-dialog-description"
                 >
                   <DialogTitle id="scroll-dialog-title">About Us</DialogTitle>
-                  <DialogContent dividers={scroll === 'paper'}>
+                  <DialogContent dividers={scroll === "paper"}>
                     <DialogContentText
                       id="scroll-dialog-description"
                       ref={descriptionElementRef}
@@ -124,7 +124,7 @@ const AboutUs = () => {
                   </DialogContent>
                   <DialogActions>
                     <Button
-                      style={{ outLine: 'none' }}
+                      style={{ outLine: "none" }}
                       onClick={handleClose}
                       color="primary"
                     >

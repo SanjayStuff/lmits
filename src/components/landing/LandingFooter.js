@@ -1,10 +1,10 @@
-import React from 'react';
-import logo from '../../assets/images/Logo.png';
-import FAppStore from '../../assets/images/footer/footer-appstore.png';
-import FPlayStore from '../../assets/images/footer/footer-playstore.png';
-import { Layout, Row, Col, Typography } from 'antd';
-import styles from '../../styles/landing/LandingFooter.module.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import logo from "../../assets/images/Logo.png";
+import FAppStore from "../../assets/images/footer/footer-appstore.png";
+import FPlayStore from "../../assets/images/footer/footer-playstore.png";
+import { Layout, Row, Col, Typography } from "antd";
+import styles from "../../styles/landing/LandingFooter.module.css";
+import { Link } from "react-router-dom";
 
 const LandingFooter = () => {
   return (

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import CardContent from '@material-ui/core/CardContent';
+import React, { useState } from "react";
+import CardContent from "@material-ui/core/CardContent";
 import {
   Button,
   Grid,
@@ -9,20 +9,20 @@ import {
   Card,
   InputAdornment,
   IconButton,
-} from '@material-ui/core';
-import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
-import EditNumber from './dashboardModals/EditNumber';
-import ChangePassword from './dashboardModals/ChangePassword';
-import axios from 'axios';
-import Alert from '@material-ui/lab/Alert';
-import styles from '../../styles/profile/MyProfileNew.module.css';
-import { Row, Col, Typography } from 'antd';
+} from "@material-ui/core";
+import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
+import EditNumber from "./dashboardModals/EditNumber";
+import ChangePassword from "./dashboardModals/ChangePassword";
+import axios from "axios";
+import Alert from "@material-ui/lab/Alert";
+import styles from "../../styles/profile/MyProfileNew.module.css";
+import { Row, Col, Typography } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiIconButton-sizeSmall': {
-      outline: 'none',
-      border: 'none',
+    "& .MuiIconButton-sizeSmall": {
+      outline: "none",
+      border: "none",
     },
   },
 }));
@@ -38,43 +38,43 @@ const MyProfileNew = () => {
   const [openPassword, setOpenPassword] = useState(false);
 
   const [first_name, setFirstName] = useState(
-    localStorage.getItem('lmits_first_name')
+    localStorage.getItem("lmits_first_name")
   );
   const [last_name, setLastName] = useState(
-    localStorage.getItem('lmits_last_name')
+    localStorage.getItem("lmits_last_name")
   );
   const [new_email, setEmailId] = useState(
-    localStorage.getItem('lmits_email_id')
+    localStorage.getItem("lmits_email_id")
   );
-  const mobile_number = localStorage.getItem('lmits_mob_num');
+  const mobile_number = localStorage.getItem("lmits_mob_num");
 
   const [openButton, setOpenButton] = useState(false);
 
-  const [nameMsg, setNameMsg] = useState('');
-  const [errorNameMsg, setErrorNameMsg] = useState('');
-  const [emailMsg, setEmailMsg] = useState('');
-  const [errorEmailMsg, setErrorEmailMsg] = useState('');
+  const [nameMsg, setNameMsg] = useState("");
+  const [errorNameMsg, setErrorNameMsg] = useState("");
+  const [emailMsg, setEmailMsg] = useState("");
+  const [errorEmailMsg, setErrorEmailMsg] = useState("");
 
   const handleCancelClick = () => {
     setOpenButton(false);
     setEditFirstName(false);
     setEditLastName(false);
     setEditEmailId(false);
-    setFirstName(localStorage.getItem('lmits_first_name'));
-    setLastName(localStorage.getItem('lmits_last_name'));
-    setEmailId(localStorage.getItem('lmits_email_id'));
+    setFirstName(localStorage.getItem("lmits_first_name"));
+    setLastName(localStorage.getItem("lmits_last_name"));
+    setEmailId(localStorage.getItem("lmits_email_id"));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setNameMsg('');
-    setErrorNameMsg('');
-    setEmailMsg('');
-    setErrorEmailMsg('');
+    setNameMsg("");
+    setErrorNameMsg("");
+    setEmailMsg("");
+    setErrorEmailMsg("");
 
     if (
-      first_name !== localStorage.getItem('lmits_first_name') ||
-      last_name !== localStorage.getItem('lmits_last_name')
+      first_name !== localStorage.getItem("lmits_first_name") ||
+      last_name !== localStorage.getItem("lmits_last_name")
     ) {
       const name = {
         first_name,
@@ -85,14 +85,14 @@ const MyProfileNew = () => {
       axios
         .post(`${process.env.REACT_APP_EDIT_NAME}`, name, {
           headers: {
-            Authorization: localStorage.getItem('lmits_auth_key'),
+            Authorization: localStorage.getItem("lmits_auth_key"),
           },
         })
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            localStorage.setItem('lmits_first_name', first_name);
-            localStorage.setItem('lmits_last_name', last_name);
+            localStorage.setItem("lmits_first_name", first_name);
+            localStorage.setItem("lmits_last_name", last_name);
             setNameMsg(response.data.message);
             setOpenButton(false);
             setEditFirstName(false);
@@ -108,9 +108,9 @@ const MyProfileNew = () => {
         .catch((err) => alert(err));
     }
 
-    if (new_email !== localStorage.getItem('lmits_email_id')) {
+    if (new_email !== localStorage.getItem("lmits_email_id")) {
       const email = {
-        old_email: localStorage.getItem('lmits_email_id'),
+        old_email: localStorage.getItem("lmits_email_id"),
         new_email,
       };
       console.log(email);
@@ -118,13 +118,13 @@ const MyProfileNew = () => {
       axios
         .post(`${process.env.REACT_APP_EDIT_EMAIL}`, email, {
           headers: {
-            Authorization: localStorage.getItem('lmits_auth_key'),
+            Authorization: localStorage.getItem("lmits_auth_key"),
           },
         })
         .then(function (response) {
           console.log(response.data);
           if (response.data.response_code === 200) {
-            localStorage.setItem('lmits_email_id', new_email);
+            localStorage.setItem("lmits_email_id", new_email);
             setEmailMsg(response.data.message);
             setOpenButton(false);
             setEditFirstName(false);
@@ -161,16 +161,16 @@ const MyProfileNew = () => {
               <form onSubmit={onSubmit} className={styles.card_inner_padd}>
                 <Grid container spacing={3} align="middle">
                   <Grid item md={10}>
-                    {nameMsg !== '' ? (
+                    {nameMsg !== "" ? (
                       <Alert severity="success">{nameMsg}</Alert>
                     ) : null}
-                    {errorNameMsg !== '' ? (
+                    {errorNameMsg !== "" ? (
                       <Alert severity="error">{errorNameMsg}</Alert>
                     ) : null}
-                    {emailMsg !== '' ? (
+                    {emailMsg !== "" ? (
                       <Alert severity="success">{emailMsg}</Alert>
                     ) : null}
-                    {errorEmailMsg !== '' ? (
+                    {errorEmailMsg !== "" ? (
                       <Alert severity="error">{errorEmailMsg}</Alert>
                     ) : null}
                   </Grid>
@@ -244,7 +244,7 @@ const MyProfileNew = () => {
                   </Grid>
                 </Grid>
 
-                <Grid container spacing={3} style={{ padding: '2rem 0' }}>
+                <Grid container spacing={3} style={{ padding: "2rem 0" }}>
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth

@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import { Button, CardContent } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
-import Carousel from 'react-bootstrap/Carousel';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import { Row, Col } from 'antd';
-import styles from '../../../styles/profile/OrderSummary.module.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
+import { Button, CardContent } from "@material-ui/core";
+import CancelIcon from "@material-ui/icons/Cancel";
+import Carousel from "react-bootstrap/Carousel";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import { Row, Col } from "antd";
+import styles from "../../../styles/profile/OrderSummary.module.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
@@ -41,27 +41,27 @@ const OrderSummary = (props) => {
   } = props;
 
   let month = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const [allDetails, setAllDetails] = useState({});
   const [pickupDetails, setPickupDetails] = useState({});
-  const [pickupName, setPickupName] = useState('');
-  const [pickupNumber, setPickupNumber] = useState('');
+  const [pickupName, setPickupName] = useState("");
+  const [pickupNumber, setPickupNumber] = useState("");
   const [paymentDetails, setPaymentDetails] = useState({});
   const [deliveryDetails, setDeliveryDetails] = useState([]);
-  const [createdTime, setCreatedTime] = useState('');
+  const [createdTime, setCreatedTime] = useState("");
 
   useEffect(() => {
     if (openOrderSummary && id === selectedOrderId) {
@@ -74,7 +74,7 @@ const OrderSummary = (props) => {
         axios
           .post(`${process.env.REACT_APP_ORDER_SUMMARY}`, summaryData, {
             headers: {
-              Authorization: localStorage.getItem('lmits_auth_key'),
+              Authorization: localStorage.getItem("lmits_auth_key"),
             },
           })
           .then(function (response) {
@@ -140,17 +140,17 @@ const OrderSummary = (props) => {
                           <Grid item xs={12} sm={8}>
                             <div>
                               <p>
-                                {pickupDetails.door_number}{' '}
-                                {pickupDetails.street} {''}
+                                {pickupDetails.door_number}{" "}
+                                {pickupDetails.street} {""}
                                 {pickupDetails.address_1}
-                                {''}
+                                {""}
                                 {pickupDetails.address_2}
-                                {''}
+                                {""}
                                 {pickupDetails.landmark}
-                                {''}
-                                {pickupDetails.landmark !== '' ? <br /> : null}
+                                {""}
+                                {pickupDetails.landmark !== "" ? <br /> : null}
                                 {pickupDetails.city}
-                                {' - '}
+                                {" - "}
                                 {pickupDetails.zip}
                                 <br />
                                 {pickupDetails.state}
@@ -173,21 +173,21 @@ const OrderSummary = (props) => {
                               <CardContent>
                                 <Row>
                                   <Grid item xs={12} sm={4}>
-                                    Product Name {''}
+                                    Product Name {""}
                                     <p className={styles.order_input_border}>
                                       {details.package.product}
                                     </p>
                                   </Grid>
                                   <Grid item xs={12} sm={6}>
-                                    Pick-up Date and Time {''}
+                                    Pick-up Date and Time {""}
                                     <p className={styles.order_input_border}>
                                       {new Date(createdTime).getDate()}
-                                      {'-'}
+                                      {"-"}
                                       {month[new Date(createdTime).getMonth()]}
-                                      {'-'}
-                                      {new Date(createdTime).getFullYear()}{' '}
+                                      {"-"}
+                                      {new Date(createdTime).getFullYear()}{" "}
                                       {new Date(createdTime).getHours()}
-                                      {':'}
+                                      {":"}
                                       {new Date(createdTime).getMinutes()}
                                     </p>
                                   </Grid>
@@ -195,7 +195,7 @@ const OrderSummary = (props) => {
 
                                 <Row>
                                   <Grid item xs={12} sm={4}>
-                                    Product Value {''}
+                                    Product Value {""}
                                     <p className={styles.order_input_border}>
                                       {details.package.product_value}
                                     </p>
@@ -206,7 +206,7 @@ const OrderSummary = (props) => {
                                     <Grid
                                       container
                                       spacing={1}
-                                      style={{ margin: '.5rem 0' }}
+                                      style={{ margin: ".5rem 0" }}
                                     >
                                       <Grid item xs={3} sm={3}>
                                         <TextField
@@ -244,7 +244,7 @@ const OrderSummary = (props) => {
                                     <Row>
                                       <Col md={8}>
                                         <Grid item xs={12} md={12}>
-                                          Product weight {''}
+                                          Product weight {""}
                                           <p
                                             className={
                                               styles.order_input_border
@@ -256,7 +256,7 @@ const OrderSummary = (props) => {
                                         </Grid>
 
                                         <Grid item xs={12} md={12}>
-                                          Product Quantity {''}
+                                          Product Quantity {""}
                                           <p
                                             className={
                                               styles.order_input_border
@@ -288,40 +288,40 @@ const OrderSummary = (props) => {
                                               {
                                                 details.delivery_location
                                                   .address.door_number
-                                              }{' '}
+                                              }{" "}
                                               {
                                                 details.delivery_location
                                                   .address.street
-                                              }{' '}
+                                              }{" "}
                                               {
                                                 details.delivery_location
                                                   .address.address_1
-                                              }{' '}
+                                              }{" "}
                                               {
                                                 details.delivery_location
                                                   .address.address_2
-                                              }{' '}
+                                              }{" "}
                                               {
                                                 details.delivery_location
                                                   .address.landmark
-                                              }{' '}
+                                              }{" "}
                                               {details.delivery_location.address
-                                                .landmark !== '' ? (
+                                                .landmark !== "" ? (
                                                 <br />
-                                              ) : null}{' '}
+                                              ) : null}{" "}
                                               {
                                                 details.delivery_location
                                                   .address.city
                                               }
-                                              {' - '}
+                                              {" - "}
                                               {
                                                 details.delivery_location
                                                   .address.zip
-                                              }{' '}
+                                              }{" "}
                                               {
                                                 details.delivery_location
                                                   .address.state
-                                              }{' '}
+                                              }{" "}
                                               {
                                                 details.delivery_location
                                                   .address.contact_person_number
@@ -353,22 +353,22 @@ const OrderSummary = (props) => {
                               <Col md={14}>
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} sm={4}>
-                                    Order ID{''}
+                                    Order ID{""}
                                     <p className={styles.order_input_border}>
                                       {paymentDetails.order_id}
                                     </p>
                                   </Grid>
 
                                   <Grid item xs={12} sm={8}>
-                                    Order Placed On{''}
+                                    Order Placed On{""}
                                     <p className={styles.order_input_border}>
                                       {new Date(createdTime).getDate()}
-                                      {'-'}
+                                      {"-"}
                                       {month[new Date(createdTime).getMonth()]}
-                                      {'-'}
-                                      {new Date(createdTime).getFullYear()}{' '}
+                                      {"-"}
+                                      {new Date(createdTime).getFullYear()}{" "}
                                       {new Date(createdTime).getHours()}
-                                      {':'}
+                                      {":"}
                                       {new Date(createdTime).getMinutes()}
                                     </p>
                                   </Grid>
@@ -376,7 +376,7 @@ const OrderSummary = (props) => {
 
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} sm={4}>
-                                    Vendor{''}
+                                    Vendor{""}
                                     <div>
                                       <img
                                         height={50}
@@ -387,10 +387,10 @@ const OrderSummary = (props) => {
                                   </Grid>
 
                                   <Grid item xs={12} sm={8}>
-                                    Payment Method {''}
+                                    Payment Method {""}
                                     <p
                                       className={styles.order_input_border}
-                                      style={{ textTransform: 'uppercase' }}
+                                      style={{ textTransform: "uppercase" }}
                                     >
                                       {paymentDetails.method}
                                     </p>
@@ -399,7 +399,7 @@ const OrderSummary = (props) => {
 
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} sm={8}>
-                                    Service Provider {''}
+                                    Service Provider {""}
                                     <p className={styles.order_ser_prov}>
                                       LMiTS Solutions Pvt. Ltd.
                                     </p>
@@ -412,7 +412,7 @@ const OrderSummary = (props) => {
                                   <div>
                                     <hr
                                       style={{
-                                        borderTop: '2px dashed black',
+                                        borderTop: "2px dashed black",
                                       }}
                                     />
                                     <p className={styles.order_total}>
@@ -426,7 +426,7 @@ const OrderSummary = (props) => {
                                     </p>
                                     <hr
                                       style={{
-                                        borderTop: '2px dashed black',
+                                        borderTop: "2px dashed black",
                                       }}
                                     />
                                     <p className={styles.order_total}>

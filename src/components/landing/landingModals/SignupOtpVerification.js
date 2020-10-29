@@ -1,44 +1,44 @@
-import React, { useContext, useState } from 'react';
-import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import { Button, makeStyles, Container } from '@material-ui/core';
-import { UserContext } from '../../../context/UserContext';
-import { Alert } from '@material-ui/lab';
-import styles from '../../../styles/landing/SignupOtpVerification.module.css';
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import TextField from "@material-ui/core/TextField";
+import { Button, makeStyles, Container } from "@material-ui/core";
+import { UserContext } from "../../../context/UserContext";
+import { Alert } from "@material-ui/lab";
+import styles from "../../../styles/landing/SignupOtpVerification.module.css";
 
 // Ant Design
-import { Row, Col } from 'antd';
+import { Row, Col } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#8845d0',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#8845d0",
     },
   },
 
   asterisk: {
-    display: 'none',
+    display: "none",
   },
 }));
 
 const SignupOtpVerification = () => {
   const classes = useStyles();
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
   const [userAuth, setUserAuth] = useContext(UserContext);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setErrorMsg('');
+    setErrorMsg("");
     setIsSubmitted(false);
 
     if (otp.length === 6) {
       const otpVerifyData = {
         otp,
-        details: localStorage.getItem('lmits_otp_details'),
-        controller: 'users',
-        action: 'verify_otp',
+        details: localStorage.getItem("lmits_otp_details"),
+        controller: "users",
+        action: "verify_otp",
       };
       console.log(otpVerifyData);
       axios
@@ -47,7 +47,7 @@ const SignupOtpVerification = () => {
           console.log(response.data);
           if (response.data.response_code === 200) {
             // alert(response.data.message);
-            setUserAuth('6');
+            setUserAuth("6");
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
@@ -60,8 +60,8 @@ const SignupOtpVerification = () => {
         .catch((err) => alert(err));
     } else {
       setIsSubmitted(true);
-      setErrorMsg('Enter valid OTP');
-      setOtp('');
+      setErrorMsg("Enter valid OTP");
+      setOtp("");
     }
   };
 
@@ -83,7 +83,7 @@ const SignupOtpVerification = () => {
       <form container onSubmit={onSubmit}>
         <Row>
           <Col className={styles.signup_otp__error}>
-            {isSubmitted && errorMsg !== '' ? (
+            {isSubmitted && errorMsg !== "" ? (
               <div>
                 <Alert severity="error">{errorMsg}</Alert>
               </div>

@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import CancelIcon from '@material-ui/icons/Cancel';
-import Alert from '@material-ui/lab/Alert';
-import styles from '../../../styles/profile/dashboardModals/ChangePassword.module.css';
+import React, { useState } from "react";
+import axios from "axios";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import TextField from "@material-ui/core/TextField";
+import { Button } from "@material-ui/core";
+import Dialog from "@material-ui/core/Dialog";
+import CancelIcon from "@material-ui/icons/Cancel";
+import Alert from "@material-ui/lab/Alert";
+import styles from "../../../styles/profile/dashboardModals/ChangePassword.module.css";
 
 const ChangePassword = (props) => {
   const { openPassword, setOpenPassword } = props;
-  const [current_password, setCurrentPassword] = useState('');
-  const [new_password, setNewPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
-  const [msg, setMsg] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [current_password, setCurrentPassword] = useState("");
+  const [new_password, setNewPassword] = useState("");
+  const [password_confirmation, setPasswordConfirmation] = useState("");
+  const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setMsg('');
-    setErrorMsg('');
+    setMsg("");
+    setErrorMsg("");
 
     if (new_password === password_confirmation) {
       const password = {
@@ -35,7 +35,7 @@ const ChangePassword = (props) => {
       axios
         .post(`${process.env.REACT_APP_EDIT_PASSWORD}`, password, {
           headers: {
-            Authorization: localStorage.getItem('lmits_auth_key'),
+            Authorization: localStorage.getItem("lmits_auth_key"),
           },
         })
         .then(function (response) {
@@ -51,20 +51,20 @@ const ChangePassword = (props) => {
         })
         .catch((err) => alert(err));
     } else {
-      setNewPassword('');
-      setPasswordConfirmation('');
-      setErrorMsg('Passwords Do Not Match');
+      setNewPassword("");
+      setPasswordConfirmation("");
+      setErrorMsg("Passwords Do Not Match");
     }
   };
 
   return (
     <>
       <Dialog open={openPassword}>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: "flex" }}>
           <DialogTitle style={{ flexGrow: 1 }}>Change Password</DialogTitle>
           <Button
             disableRipple={true}
-            style={{ outline: 'none', border: 'none' }}
+            style={{ outline: "none", border: "none" }}
           >
             <CancelIcon
               onClick={() => {
@@ -75,8 +75,8 @@ const ChangePassword = (props) => {
         </div>
         <form onSubmit={onSubmit}>
           <DialogContent>
-            {msg !== '' ? <Alert severity="success">{msg}</Alert> : null}
-            {errorMsg !== '' ? (
+            {msg !== "" ? <Alert severity="success">{msg}</Alert> : null}
+            {errorMsg !== "" ? (
               <Alert severity="error">{errorMsg}</Alert>
             ) : null}
             <div>

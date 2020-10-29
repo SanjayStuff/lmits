@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import { Typography } from 'antd';
-import { Container, Paper } from '@material-ui/core';
-import AllOrders from './AllOrders';
-import CourierOrders from './CourierOrders';
-import HyperlocalOrders from './HyperlocalOrders';
-import styles from '../../styles/profile/MyOrders.module.css';
+import React, { useState } from "react";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import { Typography } from "antd";
+import { Container, Paper } from "@material-ui/core";
+import AllOrders from "./AllOrders";
+import CourierOrders from "./CourierOrders";
+import HyperlocalOrders from "./HyperlocalOrders";
+import styles from "../../styles/profile/MyOrders.module.css";
 
 const { Title } = Typography;
 
 const MyOrders = () => {
-  const [key, setKey] = useState('All Orders');
+  const [key, setKey] = useState("All Orders");
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

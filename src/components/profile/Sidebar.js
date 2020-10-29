@@ -1,69 +1,69 @@
-import React, { useState } from 'react';
-import logo from '../../assets/images/Logo.png';
-import appStoreImg from '../../assets/images/navicons/Appstore.png';
-import playStoreImg from '../../assets/images/navicons/Playstore.png';
-import profileImg from '../../assets/images/navicons/profile.png';
-import ordersIcon from '../../assets/images/dashboard/svg/orders.svg';
-import addressIcon from '../../assets/images/dashboard/svg/address.svg';
-import supportIcon from '../../assets/images/dashboard/svg/support.svg';
-import logoutIcon from '../../assets/images/dashboard/svg/logout.svg';
-import profileIcon from '../../assets/images/dashboard/svg/profile.svg';
-import { Menu } from 'antd';
-import MyProfile from '../profile/MyProfile';
-import AddressBook from '../profile/AddressBook';
-import MyOrders from '../profile/MyOrders';
-import Support from '../profile/Support';
-import { makeStyles } from '@material-ui/core/styles';
-import { Upload } from 'antd';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import { useTheme } from '@material-ui/core/styles';
-import { useHistory } from 'react-router';
-import { MenuList, MenuItem, Container } from '@material-ui/core';
-import Logout from './Logout';
-import { Link } from 'react-router-dom';
-import styles from '../../styles/profile/Sidebar.module.css';
-import MyProfileNew from './MyProfileNew';
-import { Row, Col, Typography } from 'antd';
-import Avatar from '@material-ui/core/Avatar';
+import React, { useState } from "react";
+import logo from "../../assets/images/Logo.png";
+import appStoreImg from "../../assets/images/navicons/Appstore.png";
+import playStoreImg from "../../assets/images/navicons/Playstore.png";
+import profileImg from "../../assets/images/navicons/profile.png";
+import ordersIcon from "../../assets/images/dashboard/svg/orders.svg";
+import addressIcon from "../../assets/images/dashboard/svg/address.svg";
+import supportIcon from "../../assets/images/dashboard/svg/support.svg";
+import logoutIcon from "../../assets/images/dashboard/svg/logout.svg";
+import profileIcon from "../../assets/images/dashboard/svg/profile.svg";
+import { Menu } from "antd";
+import MyProfile from "../profile/MyProfile";
+import AddressBook from "../profile/AddressBook";
+import MyOrders from "../profile/MyOrders";
+import Support from "../profile/Support";
+import { makeStyles } from "@material-ui/core/styles";
+import { Upload } from "antd";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuIcon from "@material-ui/icons/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import { useTheme } from "@material-ui/core/styles";
+import { useHistory } from "react-router";
+import { MenuList, MenuItem, Container } from "@material-ui/core";
+import Logout from "./Logout";
+import { Link } from "react-router-dom";
+import styles from "../../styles/profile/Sidebar.module.css";
+import MyProfileNew from "./MyProfileNew";
+import { Row, Col, Typography } from "antd";
+import Avatar from "@material-ui/core/Avatar";
 
 const { Text } = Typography;
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    position: 'relative',
-    '& .MuiAppBar-colorPrimary': {
-      backgroundColor: 'transparent',
+    display: "flex",
+    position: "relative",
+    "& .MuiAppBar-colorPrimary": {
+      backgroundColor: "transparent",
     },
     "& .MuiToolbar-regular": {
       minHeight: "0px",
     },
-    '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+    "& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover": {
       // background: '-webkit-linear-gradient(-120deg, #fff, transparent)',
     },
     "& .MuiListItemIcon-root": {
       minWidth: "36px",
     },
-    '& .makeStyles-drawerPaper-6': {
-      position: 'relative !important',
-      borderRadius: '0.625rem !important',
-      margin: '1.25rem !important',
-      minHeight: '100vh !important',
-      color: '#fff',
+    "& .makeStyles-drawerPaper-6": {
+      position: "relative !important",
+      borderRadius: "0.625rem !important",
+      margin: "1.25rem !important",
+      minHeight: "100vh !important",
+      color: "#fff",
     },
-    '& .MuiDrawer-paperAnchorLeft': {
-      background: '-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)',
+    "& .MuiDrawer-paperAnchorLeft": {
+      background: "-webkit-linear-gradient(-120deg, #B65FDD, #241D8C)",
     },
-    '& .MuiList-root': {
-      marginBottom: '2.5rem',
+    "& .MuiList-root": {
+      marginBottom: "2.5rem",
     },
   },
 
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   large: {
-    margin: '0 auto',
+    margin: "0 auto",
     width: theme.spacing(10),
     height: theme.spacing(10),
   },
@@ -152,8 +152,8 @@ const Sidebar = (props) => {
           align="middle"
           alt="Profile"
           src={
-            localStorage.getItem('lmits_prof_img')
-              ? localStorage.getItem('lmits_prof_img')
+            localStorage.getItem("lmits_prof_img")
+              ? localStorage.getItem("lmits_prof_img")
               : profileImg
           }
           className={classes.large}
@@ -298,8 +298,8 @@ const Sidebar = (props) => {
               <Avatar
                 alt="Profile"
                 src={
-                  localStorage.getItem('lmits_prof_img')
-                    ? localStorage.getItem('lmits_prof_img')
+                  localStorage.getItem("lmits_prof_img")
+                    ? localStorage.getItem("lmits_prof_img")
                     : profileImg
                 }
               />

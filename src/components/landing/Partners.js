@@ -1,9 +1,9 @@
-import React from 'react';
-import EcourierzImg from '../../assets/images/partner/Ecourierz.png';
-import TelyportImg from '../../assets/images/partner/Telyport.png';
-import VamashipImg from '../../assets/images/partner/Vamaship.png';
-import WefastImg from '../../assets/images/partner/Wefast.png';
-import { Layout, Row, Col } from 'antd';
+import React from "react";
+import EcourierzImg from "../../assets/images/partner/Ecourierz.png";
+import TelyportImg from "../../assets/images/partner/Telyport.png";
+import VamashipImg from "../../assets/images/partner/Vamaship.png";
+import WefastImg from "../../assets/images/partner/Wefast.png";
+import { Layout, Row, Col } from "antd";
 
 const Partners = () => {
   return (

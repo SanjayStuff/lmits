@@ -1,5 +1,5 @@
-import React from 'react';
-import supportImg from '../../assets/images/support.svg';
+import React from "react";
+import supportImg from "../../assets/images/support.svg";
 
 const Support = () => {
   return (

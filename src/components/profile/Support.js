@@ -1,5 +1,5 @@
-import React from 'react';
-import { Typography, Row, Col } from 'antd';
+import React from "react";
+import { Typography, Row, Col } from "antd";
 import {
   Box,
   Button,
@@ -8,8 +8,8 @@ import {
   Paper,
   Slide,
   makeStyles,
-} from '@material-ui/core';
-import styles from '../../styles/profile/Support.module.css';
+} from "@material-ui/core";
+import styles from "../../styles/profile/Support.module.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,19 +19,19 @@ const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
     width: 500,
     height: 80,
-    display: 'flex',
-    backgroundColor: 'gold',
+    display: "flex",
+    backgroundColor: "gold",
   },
   marginAutoItem: {
-    margin: 'auto',
+    margin: "auto",
   },
   alignItemsAndJustifyContent: {
     width: 500,
     height: 80,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'pink',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "pink",
   },
 }));
 
@@ -129,7 +129,7 @@ const Support = () => {
                   </Box>
                 </Box>
                 <div className="text-center">
-                  <a href={'mailto:support@lmits.in'}>
+                  <a href={"mailto:support@lmits.in"}>
                     <Button
                       className={styles.btn}
                       color="primary"
