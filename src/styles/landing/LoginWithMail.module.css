@@ -45,7 +45,12 @@
   cursor: pointer;
 }
 
+.login__btn_div {
+  margin: 0 0.9rem 0 0.9rem;
+}
+
 .login__btn {
+  width: 100%;
   opacity: 0.8;
   padding: 0.5rem 2rem !important;
 }

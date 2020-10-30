@@ -38,7 +38,7 @@ const PartnerWithUs = () => {
               <Row>
                 <Col md={24}>
                   <p className="about-text text-dark font-weight-medium f-15">
-                    Help us with below details in order to server you better
+                    Provide below details we will get in touch with you
                   </p>
                   <div className="custom-form">
                     <form method="POST">

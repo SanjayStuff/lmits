@@ -35,7 +35,7 @@ body {
 }
 
 .ant-menu-inline .ant-menu-item::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -91,7 +91,7 @@ body {
 
 .header .ant-anchor-link:before,
 .header .ant-anchor-link:after {
-  content: '';
+  content: "";
   width: 1px;
   position: absolute;
   top: 2px;

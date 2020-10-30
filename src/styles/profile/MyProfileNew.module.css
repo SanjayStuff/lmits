@@ -36,7 +36,11 @@
 }
 
 .cancel_btn {
-  /* background-color: #979797 !important;
-  color: #fff !important; */
-  margin: 0 1rem 0 0 !important;
+  background-color: #e7e7e7 !important;
+  color: #303952 !important;
+  box-shadow: none !important;
+}
+
+.save_btn {
+  background-color: #61bb69 !important;
 }

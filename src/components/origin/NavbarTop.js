@@ -114,7 +114,7 @@ const NavbarTop = () => {
   const authentication = (
     <Menu.Item>
       <Button onClick={handleClickOpen} className="login_signup">
-        Login/SignUp
+        Login <span className="f-10"> / </span> SignUp
       </Button>
 
       <Dialog
@@ -154,7 +154,7 @@ const NavbarTop = () => {
           </Link>
         </div>
 
-        <Menu mode="horizontal">
+        <Menu mode="horizontal" className="flex-setting">
           <Menu.Item className="ant_text_disable nav-name">
             <Text className="font-weight-medium" style={{ color: "#303952" }}>
               Download
