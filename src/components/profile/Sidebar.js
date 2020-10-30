@@ -114,7 +114,7 @@ const Sidebar = (props) => {
   let history = useHistory();
   const [dashboardContent, setDashboardContent] = useState("My Profile");
   const { window } = props;
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const [openLogout, setOpenLogout] = useState(false);
 
   const handleListItemClick = (event, index) => {
@@ -122,7 +122,7 @@ const Sidebar = (props) => {
   };
 
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

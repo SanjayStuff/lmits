@@ -20,6 +20,7 @@ const EditNumber = (props) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [counter, setCounter] = useState(0);
   const [changeDet, setChangeDet] = useState(true);
+  const [otpCounter, setOtpCounter] = useState(0);
 
   useEffect(() => {
     const timer =
@@ -28,6 +29,14 @@ const EditNumber = (props) => {
       clearInterval(timer);
     };
   }, [counter]);
+
+  useEffect(() => {
+    const otpTimer =
+      otpCounter > 0 && setInterval(() => setOtpCounter(otpCounter - 1), 1000);
+    return () => {
+      clearInterval(otpTimer);
+    };
+  }, [otpCounter]);
 
   const submitNumber = (e) => {
     e.preventDefault();
@@ -58,6 +67,50 @@ const EditNumber = (props) => {
             );
             setOtpSent(true);
             setCounter(15);
+            setOtpCounter(3);
+          } else if (
+            response.data.response_code &&
+            response.data.response_code !== 200
+          ) {
+            setErrorMsg(response.data.message);
+            setNewPhone("");
+          }
+        })
+        .catch((err) => alert(err));
+    } else {
+      setErrorMsg("Enter a valid Mobile Number");
+      setNewPhone("");
+    }
+  };
+
+  const resendOtp = (e) => {
+    e.preventDefault();
+    setMsg("");
+    setErrorMsg("");
+
+    if (new_phone.length === 10) {
+      const number = {
+        mobile_number: new_phone,
+        controller: "users",
+        action: "verify_mobile",
+        user: {
+          mobile_number: new_phone,
+        },
+      };
+      console.log(number);
+
+      axios
+        .post(`${process.env.REACT_APP_SIGNUP_WITH_OTP}`, number)
+        .then(function (response) {
+          console.log(response.data);
+          if (response.data.response_code === 200) {
+            localStorage.setItem("lmits_login_mob", new_phone);
+            localStorage.setItem(
+              "lmits_otp_details",
+              response.data.otp.Details
+            );
+            setCounter(15);
+            setOtpCounter(3);
           } else if (
             response.data.response_code &&
             response.data.response_code !== 200
@@ -93,6 +146,9 @@ const EditNumber = (props) => {
             {msg !== "" ? <Alert severity="success">{msg}</Alert> : null}
             {errorMsg !== "" ? (
               <Alert severity="error">{errorMsg}</Alert>
+            ) : null}
+            {otpCounter !== 0 ? (
+              <Alert severity="success">Otp Sent Successfully</Alert>
             ) : null}
             <div>
               <TextField
@@ -145,7 +201,7 @@ const EditNumber = (props) => {
           ) : null}
 
           {otpSent && counter === 0 ? (
-            <Link onClick={submitNumber}>
+            <Link onClick={resendOtp}>
               <p
                 className="login-card-forgot f-12"
                 style={{ color: "#000", cursor: "pointer" }}
