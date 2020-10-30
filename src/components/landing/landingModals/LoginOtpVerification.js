@@ -96,7 +96,7 @@ const LoginOtpVerification = () => {
         </Col>
       </Row>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
         <Row>
           <Col className={styles.login_otp__error}>
             {isSubmitted && errorMsg !== "" ? (

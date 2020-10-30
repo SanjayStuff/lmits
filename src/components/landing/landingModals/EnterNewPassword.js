@@ -77,72 +77,79 @@ const EnterNewPassword = () => {
         </Col>
       </Row>
 
-      <form onSubmit={onSubmit}>
-        <div className={styles.new_pass__error}>
-          <>
-            {errorMsg !== "" ? (
-              <Alert severity="error">{errorMsg}</Alert>
-            ) : null}
-          </>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
+        <Row>
+          <Col xs={24} md={22}>
+            <div className={styles.new_pass__error}>
+              {errorMsg !== "" ? (
+                <Alert severity="error">{errorMsg}</Alert>
+              ) : null}
 
-          <>{msg !== "" ? <Alert severity="success">{msg}</Alert> : null}</>
-        </div>
-        <div className={styles.new_pass__form__div}>
-          <TextField
-            className={`${styles.new_pass__textfield} ${classes.root}`}
-            error={
-              new_password !== password_confirmation &&
-              password_confirmation.length > 0
-            }
-            id="new_Password"
-            type="password"
-            value={new_password}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            variant="outlined"
-            label="Enter New Password"
-            size="small"
-          />
-        </div>
-        <div className={styles.new_pass__form__div}>
-          <TextField
-            className={`${styles.new_pass__textfield} ${classes.root}`}
-            error={
-              new_password !== password_confirmation &&
-              password_confirmation.length > 0
-            }
-            id="Password_Confirmation"
-            type="password"
-            value={password_confirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            variant="outlined"
-            label="Confirm New Password"
-            size="small"
-          />
-        </div>
-        <div className={styles.new_pass__btn_div}>
-          <Button
-            className={styles.new_pass__btn}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            Change Password
-          </Button>
-        </div>
+              {msg !== "" ? <Alert severity="success">{msg}</Alert> : null}
+            </div>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xs={24} md={22}>
+            <div className={styles.new_pass__form__div}>
+              <TextField
+                className={`${styles.new_pass__textfield} ${classes.root}`}
+                error={
+                  new_password !== password_confirmation &&
+                  password_confirmation.length > 0
+                }
+                id="new_Password"
+                type="password"
+                value={new_password}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                variant="outlined"
+                label="Enter New Password"
+                size="small"
+              />
+            </div>
+            <div className={styles.new_pass__form__div}>
+              <TextField
+                className={`${styles.new_pass__textfield} ${classes.root}`}
+                error={
+                  new_password !== password_confirmation &&
+                  password_confirmation.length > 0
+                }
+                id="Password_Confirmation"
+                type="password"
+                value={password_confirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                variant="outlined"
+                label="Confirm New Password"
+                size="small"
+              />
+            </div>
+            <div className={styles.new_pass__btn_div}>
+              <Button
+                className={styles.new_pass__btn}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Change Password
+              </Button>
+            </div>
+          </Col>
+        </Row>
       </form>
     </>
   );

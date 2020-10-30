@@ -158,7 +158,12 @@ const MyProfileNew = () => {
         <Col md={24}>
           <Card variant="outlined">
             <CardContent>
-              <form onSubmit={onSubmit} className={styles.card_inner_padd}>
+              <form
+                onSubmit={onSubmit}
+                className={styles.card_inner_padd}
+                noValidate
+                autoComplete="off"
+              >
                 <Grid container spacing={3} align="middle">
                   <Grid item md={10}>
                     {nameMsg !== "" ? (
@@ -209,7 +214,7 @@ const MyProfileNew = () => {
                       }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={5}>
                     <TextField
                       fullWidth
                       id="Last Name"
@@ -279,7 +284,7 @@ const MyProfileNew = () => {
                       }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={5}>
                     <TextField
                       id="Phone Number"
                       label="Phone Number"
@@ -320,7 +325,7 @@ const MyProfileNew = () => {
                 <Grid container spacing={3}>
                   <Grid item sm={6} align="end">
                     <Button
-                      // className={styles.cancel_btn}
+                      className={!openButton ? null : ` ${styles.cancel_btn}`}
                       variant="contained"
                       color="primary"
                       onClick={handleCancelClick}
@@ -331,6 +336,7 @@ const MyProfileNew = () => {
                   </Grid>
                   <Grid item md={6}>
                     <Button
+                      className={!openButton ? null : ` ${styles.save_btn}`}
                       variant="contained"
                       color="primary"
                       type="submit"
@@ -362,134 +368,6 @@ const MyProfileNew = () => {
         openPassword={openPassword}
         setOpenPassword={setOpenPassword}
       />
-
-      {/* <Card>
-        <CardContent>
-          <form onSubmit={onSubmit}>
-            <div>
-              <TextField
-                id="First Name"
-                label="First Name"
-                variant="outlined"
-                required
-                disabled={!editFirstName}
-                value={first_name}
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                  setOpenButton(true);
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment disableTypography={true} position="start">
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          setEditFirstName(true);
-                        }}
-                      >
-                        <CreateOutlinedIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                id="Last Name"
-                label="Last Name"
-                variant="outlined"
-                required
-                disabled={!editLastName}
-                value={last_name}
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                  setOpenButton(true);
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment disableTypography={true} position="start">
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          setEditLastName(true);
-                        }}
-                      >
-                        <CreateOutlinedIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-            <div>
-              <TextField
-                id="Email"
-                label="Email"
-                variant="outlined"
-                type="email"
-                disabled={!editEmailId}
-                value={new_email}
-                onChange={(e) => {
-                  setEmailId(e.target.value);
-                  setOpenButton(true);
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment disableTypography={true} position="start">
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          setEditEmailId(true);
-                        }}
-                      >
-                        <CreateOutlinedIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                id="Phone Number"
-                label="Phone Number"
-                variant="outlined"
-                type="number"
-                disabled
-                value={mobile_number}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment disableTypography={true} position="start">
-                      +91 |
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment disableTypography={true} position="start">
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          setOpenPhone(true);
-                        }}
-                      >
-                        <CreateOutlinedIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-            {nameMsg !== '' ? (
-              <Alert severity="success">{nameMsg}</Alert>
-            ) : null}
-            {errorNameMsg !== '' ? (
-              <Alert severity="error">{errorNameMsg}</Alert>
-            ) : null}
-            {emailMsg !== '' ? (
-              <Alert severity="success">{emailMsg}</Alert>
-            ) : null}
-            {errorEmailMsg !== '' ? (
-              <Alert severity="error">{errorEmailMsg}</Alert>
-            ) : null}
-          </form>
-        </CardContent>
-      </Card>*/}
     </Paper>
   );
 };

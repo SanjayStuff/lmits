@@ -76,18 +76,16 @@ const LandingFooter = () => {
                   </h6>
                   <ul className="company-sub-menu">
                     <li>
+                      <p className="text-muted mb-2">Hyper Local</p>
+                    </li>
+                    <li>
                       <Typography>
-                        <p className="text-muted">Hyper Local</p>
+                        <p className="text-muted mb-2">Courier</p>
                       </Typography>
                     </li>
                     <li>
                       <Typography>
-                        <p className="text-muted">Courier</p>
-                      </Typography>
-                    </li>
-                    <li>
-                      <Typography>
-                        <p className="text-muted">Intracity Delivery</p>
+                        <p className="text-muted mb-2">Intracity Delivery</p>
                       </Typography>
                     </li>
                   </ul>
@@ -99,17 +97,19 @@ const LandingFooter = () => {
                   <ul className=" company-sub-menu">
                     <li>
                       <Typography>
-                        <p className="text-muted">About Us</p>
+                        <p className="text-muted mb-2">About Us</p>
                       </Typography>
                     </li>
                     <li>
                       <Typography>
-                        <p className="text-muted">Terms &amp; Conditions</p>
+                        <p className="text-muted mb-2">
+                          Terms &amp; Conditions
+                        </p>
                       </Typography>
                     </li>
                     <li>
                       <Typography>
-                        <p className="text-muted">Privacy Policy</p>
+                        <p className="text-muted mb-2">Privacy Policy</p>
                       </Typography>
                     </li>
                   </ul>

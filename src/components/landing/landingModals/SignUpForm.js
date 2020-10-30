@@ -107,180 +107,190 @@ const SignUpForm = () => {
         </Col>
       </Row>
 
-      <form onSubmit={onSubmit}>
-        <div className={styles.sign_up__error}>
-          {msg !== "" ? (
-            <div>
-              <Alert severity="success">{msg}</Alert>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
+        <Row>
+          <Col xs={24} md={22}>
+            <div className={styles.sign_up__error}>
+              {msg !== "" ? (
+                <div>
+                  <Alert severity="success">{msg}</Alert>
+                </div>
+              ) : null}
+              {errorMsg !== "" ? (
+                <div>
+                  <Alert severity="error">{errorMsg}</Alert>
+                </div>
+              ) : null}
             </div>
-          ) : null}
-          {errorMsg !== "" ? (
-            <div>
-              <Alert severity="error">{errorMsg}</Alert>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xs={24} md={23}>
+            <div className={styles.sign_up__form__div}>
+              <TextField
+                className={`${styles.sign_up__textfield} ${classes.root}`}
+                id="FirstName"
+                variant="outlined"
+                label="First Name"
+                value={first_name}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                size="small"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
             </div>
-          ) : null}
-        </div>
+            <div className={styles.sign_up__form__div}>
+              <TextField
+                className={`${styles.sign_up__textfield} ${classes.root}`}
+                id="LastName"
+                variant="outlined"
+                label="Last Name"
+                value={last_name}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                size="small"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div className={styles.sign_up__form__div}>
+              <TextField
+                className={`${styles.sign_up__textfield} ${classes.root}`}
+                id="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                variant="outlined"
+                label="Email"
+                size="small"
+              />
+            </div>
+            <div className={styles.sign_up__form__div}>
+              <TextField
+                className={`${styles.sign_up__textfield} ${classes.root}`}
+                error={
+                  password !== password_confirmation &&
+                  password_confirmation.length > 0
+                }
+                id="Password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setErrorMsg("");
+                }}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                variant="outlined"
+                label="Password"
+                size="small"
+              />
+            </div>
+            <div className={styles.sign_up__form__div}>
+              <TextField
+                className={`${styles.sign_up__textfield} ${classes.root}`}
+                error={
+                  password !== password_confirmation &&
+                  password_confirmation.length > 0
+                }
+                id="ConfirmPassword"
+                type="password"
+                value={password_confirmation}
+                onChange={(e) => {
+                  setPasswordConfirmation(e.target.value);
+                  setErrorMsg("");
+                }}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                variant="outlined"
+                label="Confirm Password"
+                size="small"
+              />
+            </div>
 
-        <div className={styles.sign_up__form__div}>
-          <TextField
-            className={`${styles.sign_up__textfield} ${classes.root}`}
-            id="FirstName"
-            variant="outlined"
-            label="First Name"
-            value={first_name}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            size="small"
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
-        <div className={styles.sign_up__form__div}>
-          <TextField
-            className={`${styles.sign_up__textfield} ${classes.root}`}
-            id="LastName"
-            variant="outlined"
-            label="Last Name"
-            value={last_name}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            size="small"
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <div className={styles.sign_up__form__div}>
-          <TextField
-            className={`${styles.sign_up__textfield} ${classes.root}`}
-            id="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            variant="outlined"
-            label="Email"
-            size="small"
-          />
-        </div>
-        <div className={styles.sign_up__form__div}>
-          <TextField
-            className={`${styles.sign_up__textfield} ${classes.root}`}
-            error={
-              password !== password_confirmation &&
-              password_confirmation.length > 0
-            }
-            id="Password"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setErrorMsg("");
-            }}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            variant="outlined"
-            label="Password"
-            size="small"
-          />
-        </div>
-        <div className={styles.sign_up__form__div}>
-          <TextField
-            className={`${styles.sign_up__textfield} ${classes.root}`}
-            error={
-              password !== password_confirmation &&
-              password_confirmation.length > 0
-            }
-            id="ConfirmPassword"
-            type="password"
-            value={password_confirmation}
-            onChange={(e) => {
-              setPasswordConfirmation(e.target.value);
-              setErrorMsg("");
-            }}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            variant="outlined"
-            label="Confirm Password"
-            size="small"
-          />
-        </div>
-
-        <div
-          className={`custom-control custom-checkbox ${styles.sign_up__checkbox}`}
-        >
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="customCheck1"
-            required
-          />
-          <label className="custom-control-label" htmlFor="customCheck1">
-            I accept the{" "}
-            <span onClick={handleClickOpen("paper")}>Terms and Conditions</span>
-          </label>
-        </div>
-
-        <Dialog
-          classes={{ paper: classes.paper }}
-          open={open}
-          onClose={handleClose}
-          scroll={scroll}
-          aria-labelledby="scroll-dialog-title"
-          aria-describedby="scroll-dialog-description"
-        >
-          <DialogTitle id="scroll-dialog-title">
-            Terms and Conditions
-          </DialogTitle>
-          <DialogContent dividers={scroll === "paper"}>
-            <DialogContentText
-              id="scroll-dialog-description"
-              ref={descriptionElementRef}
-              tabIndex={-1}
+            <div
+              className={`custom-control custom-checkbox ${styles.sign_up__checkbox}`}
             >
-              {[...new Array(50)]
-                .map(
-                  () => `Cras mattis consectetur purus sit amet fermentum.
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="customCheck1"
+                required
+              />
+              <label className="custom-control-label" htmlFor="customCheck1">
+                I accept the{" "}
+                <span onClick={handleClickOpen("paper")}>
+                  Terms and Conditions
+                </span>
+              </label>
+            </div>
+
+            <Dialog
+              classes={{ paper: classes.paper }}
+              open={open}
+              onClose={handleClose}
+              scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+            >
+              <DialogTitle id="scroll-dialog-title">
+                Terms and Conditions
+              </DialogTitle>
+              <DialogContent dividers={scroll === "paper"}>
+                <DialogContentText
+                  id="scroll-dialog-description"
+                  ref={descriptionElementRef}
+                  tabIndex={-1}
+                >
+                  {[...new Array(50)]
+                    .map(
+                      () => `Cras mattis consectetur purus sit amet fermentum.
 Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-                )
-                .join("\n")}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
+                    )
+                    .join("\n")}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
 
-        <div className={styles.sign_up__btn_div}>
-          <Button
-            className={styles.sign_up__btn}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            SignUp
-          </Button>
-        </div>
+            <div className={styles.sign_up__btn_div}>
+              <Button
+                className={styles.sign_up__btn}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                SignUp
+              </Button>
+            </div>
+          </Col>
+        </Row>
       </form>
     </>
   );

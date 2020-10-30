@@ -68,10 +68,13 @@ const Support = () => {
                 <Box display="flex">
                   <Box className="text-muted">
                     Reach our customer support representatives for any of your
-                    queries and/or feedback and to any issue. Our phone support
-                    is available between 9AM - 6PM from Monday - Friday.
+                    queries and/or feedback and to any issue. <br />
+                    <br />
+                    Our phone support is available between 9AM - 6PM from Monday
+                    - Friday.
                   </Box>
                 </Box>
+                <br />
                 <br />
                 <Typography className="text-center" variant="h4" component="h4">
                   +91 86200 87300
@@ -123,9 +126,15 @@ const Support = () => {
                 <Box display="flex">
                   <Box className="text-muted">
                     Drop us an email at any point of time for any of your
-                    queries and/or feedback and to report any issue. our supoort
-                    teak will get back to you within 24 hours. <br />
-                    Email: support@lmits.in
+                    queries and/or feedback and to report any issue.
+                    <br />
+                    <br />
+                    our supoort teak will get back to you within 24 hours.{" "}
+                    <br />
+                    <br />
+                    <span className="font-weight-medium f-16">
+                      Email: support@lmits.in
+                    </span>
                   </Box>
                 </Box>
                 <div className="text-center">

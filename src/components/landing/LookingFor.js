@@ -34,8 +34,8 @@ const LookingFor = () => {
               <img alt={1} src={courierImg} />
               <h1 className=" text-center">Courier</h1>
               <p className="font-weight-normal">
-                Door to Door pickup and delivery services to select postal codes
-                across key cities in India for both domestic and international.
+                Door to Door pickup &amp; delivery services to selected postal
+                codes across India.
               </p>
             </div>
           </Link>
@@ -45,7 +45,8 @@ const LookingFor = () => {
               <img alt={1} src={intraCityImg} />
               <h1 className="text-center">Intracity Delivery</h1>
               <p className="font-weight-normal">
-                Delivery services within a city at affordable cost.
+                Delivery services between one city to another city at affordable
+                cost.
               </p>
             </div>
           </Link>

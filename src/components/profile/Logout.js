@@ -6,6 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { Button, Grid, CardContent } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import styles from "../../styles/profile/Logout.module.css";
@@ -79,7 +80,8 @@ const Logout = (props) => {
         <Grid container spacing={6}>
           <Grid item sm={12}>
             <DialogTitle id="customized-dialog-title">
-              Are you sure you want to logout ?
+              <ErrorOutlineIcon fontSize="large" style={{ color: "#ee4a4a" }} />{" "}
+              Logout
             </DialogTitle>
           </Grid>
 
@@ -98,6 +100,7 @@ const Logout = (props) => {
 
         <DialogContent>
           <CardContent>
+            <p>Are you sure you want to logout ?</p>
             <Grid container spacing={3}>
               <Grid item sm={6} align="end">
                 <Button

@@ -71,7 +71,7 @@ const AllOrders = () => {
                     <TableCell>Order ID</TableCell>
                     <TableCell align="left">Order Date</TableCell>
                     <TableCell align="left">Order Total</TableCell>
-                    <TableCell align="left">Order Details</TableCell>
+                    <TableCell align="left">Action</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -101,7 +101,8 @@ const AllOrders = () => {
                           setSelectedOrderId(order.order_id);
                         }}
                       >
-                        View <FastForwardIcon />
+                        View Details
+                        <FastForwardIcon />
                       </Button>
                     </TableCell>
                   </TableRow>

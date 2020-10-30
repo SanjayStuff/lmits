@@ -33,10 +33,6 @@ const LoginWithOtp = () => {
   const [counter, setCounter] = useState(0);
   const [changeDet, setChangeDet] = useState(true);
 
-  const handleClick = () => {
-    setUserAuth("1");
-  };
-
   useEffect(() => {
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
@@ -101,106 +97,93 @@ const LoginWithOtp = () => {
           </div>
         </Col>
       </Row>
-      <form onSubmit={onSubmit} className={classes.root}>
-        <div className={styles.login_otp__error}>
-          {!otpSent ? (
-            !changeDet && errorMsg !== "" ? (
-              <div>
-                <Alert severity="error">{errorMsg}</Alert>
-              </div>
-            ) : null
-          ) : null}
-        </div>
-        <div className={styles.login_otp__form__div}>
-          <TextField
-            className={`${styles.login_otp__textfield} ${classes.root}`}
-            id="MobileNumber"
-            type="number"
-            value={mobile_number}
-            onChange={(e) => {
-              setMobile_Number(e.target.value);
-              setOtpSent(false);
-              setChangeDet(true);
-            }}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-              },
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment disableTypography={true} position="start">
-                  +91 |
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined"
-            label="Enter Mobile Number"
-            size="small"
-          />
-        </div>
-        <div align="middle">
-          <Button
-            className={styles.login_otp__btn}
-            disabled={otpSent}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            Send OTP
-          </Button>
-          {/* <Grid container style={{ marginTop: '0.6em' }}>
-            <Link onClick={handleClick}>
-              <p
-                className="login-card-forgot f-12"
-                style={{ color: '#000', cursor: 'pointer' }}
-                onClick={() => {
-                  setUserAuth('1');
+      <form
+        onSubmit={onSubmit}
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+      >
+        <Row>
+          <Col xs={24} md={21}>
+            <div className={styles.login_otp__error}>
+              {!otpSent ? (
+                !changeDet && errorMsg !== "" ? (
+                  <div>
+                    <Alert severity="error">{errorMsg}</Alert>
+                  </div>
+                ) : null
+              ) : null}
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={24} md={21}>
+            <div className={styles.login_otp__form__div}>
+              <TextField
+                className={`${styles.login_otp__textfield} ${classes.root}`}
+                id="MobileNumber"
+                type="number"
+                value={mobile_number}
+                onChange={(e) => {
+                  setMobile_Number(e.target.value);
+                  setOtpSent(false);
+                  setChangeDet(true);
                 }}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                  },
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment disableTypography={true} position="start">
+                      +91 -
+                    </InputAdornment>
+                  ),
+                }}
+                variant="outlined"
+                label="Enter Mobile Number"
+                size="small"
+              />
+            </div>
+
+            <div className={styles.login_otp__btn__div}>
+              <Button
+                className={styles.login_otp__btn}
+                disabled={otpSent}
+                type="submit"
+                variant="contained"
+                color="primary"
               >
-                Login with Password
-              </p>
-            </Link>
-          </Grid> */}
-        </div>
+                Send OTP
+              </Button>
+            </div>
+          </Col>
+        </Row>
       </form>
 
       <div>
-        <div className={styles.login_otp__div_signup}>
-          {!otpSent ? (
-            <p>
-              New to LMiTS?{" "}
-              <span
-                className={styles.login_otp__txt_signup}
-                onClick={() => {
-                  setUserAuth("5");
-                }}
-              >
-                SignUp
-              </span>
-            </p>
-          ) : null}
-        </div>
         <Row>
-          <Col md={24} className={styles.login_otp__resend_div}>
+          <Col xs={24} md={21}>
+            <div className={styles.login_otp__div_signup}>
+              {!otpSent ? (
+                <p>
+                  New to LMiTS?{" "}
+                  <span
+                    className={styles.login_otp__txt_signup}
+                    onClick={() => {
+                      setUserAuth("5");
+                    }}
+                  >
+                    SignUp
+                  </span>
+                </p>
+              ) : null}
+            </div>
+          </Col>
+          <Col xs={24} md={21} className={styles.login_otp__resend_div}>
             {otpSent ? <LoginOtpVerification /> : null}
-
-            {/*{otpSent ? (*/}
-            {/*  <div className="d-inline-block">*/}
-            {/*    <Link onClick={onSubmit}>*/}
-            {/*      <p*/}
-            {/*        className="login-card-forgot f-12"*/}
-            {/*        style={{ color: "#000", cursor: "pointer" }}*/}
-            {/*      >*/}
-            {/*        Resend OTP?*/}
-            {/*        <span style={{ fontVariantNumeric: "tabular-nums" }}>*/}
-            {/*          {counter} sec*/}
-            {/*        </span>*/}
-            {/*      </p>*/}
-            {/*    </Link>*/}
-            {/*  </div>*/}
-            {/*) : null}*/}
             {otpSent && counter !== 0 ? (
               <div>
                 <p className={styles.login_otp__resend}>

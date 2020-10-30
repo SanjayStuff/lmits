@@ -26,7 +26,6 @@ const MyOrders = () => {
         <Tabs
           value={value}
           onChange={handleChange}
-          align="middle"
           activeKey={key}
           onSelect={(k) => setKey(k)}
           variant="pills"

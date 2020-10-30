@@ -91,89 +91,96 @@ const LoginWithMail = (props) => {
           <h3 className={styles.login__title}>Hello, Welcome Back</h3>
         </Col>
       </Row>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
         <Row>
-          <Col className={styles.login__error}>
-            {!changeDet && errorMsg !== "" ? (
-              <Alert severity="error">{errorMsg}</Alert>
-            ) : null}
-            {!changeDet && msg !== "" ? (
-              <Alert severity="success">{msg}</Alert>
-            ) : null}
+          <Col xs={24} md={23}>
+            <div className={styles.login__error}>
+              {!changeDet && errorMsg !== "" ? (
+                <Alert severity="error">{errorMsg}</Alert>
+              ) : null}
+              {!changeDet && msg !== "" ? (
+                <Alert severity="success">{msg}</Alert>
+              ) : null}
+            </div>
           </Col>
         </Row>
 
-        <div className={styles.login__form__div}>
-          <TextField
-            className={`${styles.login__textfield} ${classes.root}`}
-            id="Email"
-            // type="email"
-            value={email}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-                input: classes.resize,
-              },
-            }}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setChangeDet(true);
-            }}
-            variant="outlined"
-            required
-            label="Email/Phone Number"
-            size="small"
-          />
-        </div>
-        <div className={styles.login__form__div}>
-          <TextField
-            className={`${styles.login__textfield} ${classes.root}`}
-            id="Password"
-            type="password"
-            value={password}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-              },
-            }}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setChangeDet(true);
-            }}
-            variant="outlined"
-            label="Password"
-            required
-            size="small"
-          />
-        </div>
+        <Row>
+          <Col xs={24} md={23}>
+            <div className={styles.login__form__div}>
+              <TextField
+                className={`${styles.login__textfield} ${classes.root}`}
+                id="Email"
+                // type="email"
+                value={email}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                    input: classes.resize,
+                  },
+                }}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setChangeDet(true);
+                }}
+                variant="outlined"
+                required
+                label="Email/Phone Number"
+                size="small"
+              />
+            </div>
+            <div className={styles.login__form__div}>
+              <TextField
+                className={`${styles.login__textfield} ${classes.root}`}
+                id="Password"
+                type="password"
+                value={password}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                  },
+                }}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setChangeDet(true);
+                }}
+                variant="outlined"
+                label="Password"
+                required
+                size="small"
+              />
+            </div>
 
-        <div className={styles.login__otp__forget}>
-          <Link onClick={handleClick}>
-            <p className={styles.login__with_otp}>Login with OTP</p>
-          </Link>
+            <div className={styles.login__otp__forget}>
+              <Link onClick={handleClick}>
+                <p className={styles.login__with_otp}>Login with OTP</p>
+              </Link>
 
-          <p
-            className={styles.login__forgot_pass}
-            onClick={() => {
-              setUserAuth("3");
-            }}
-          >
-            Forgot Password?
-          </p>
-        </div>
+              <p
+                className={styles.login__forgot_pass}
+                onClick={() => {
+                  setUserAuth("3");
+                }}
+              >
+                Forgot Password?
+              </p>
+            </div>
 
-        <div align="middle">
-          <Button
-            className={styles.login__btn}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            Login
-          </Button>
-        </div>
+            <div align="middle" className={styles.login__btn_div}>
+              <Button
+                className={styles.login__btn}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Login
+              </Button>
+            </div>
+          </Col>
+        </Row>
+
         <div align="middle" className={styles.login__div_signup}>
           <p>
             New to LMiTS? {""}

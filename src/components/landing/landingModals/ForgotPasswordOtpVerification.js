@@ -74,7 +74,7 @@ const ForgotPasswordOtpVerification = () => {
         </p>
       </div>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
         <Row>
           <Col className={styles.login_forgot_otp__error}>
             {isSubmitted && errorMsg !== "" ? (

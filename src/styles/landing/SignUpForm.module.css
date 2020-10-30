@@ -41,6 +41,7 @@
 }
 
 .sign_up__btn {
+  width: 100%;
   opacity: 0.8;
   padding: 0.5rem 1rem !important;
 }

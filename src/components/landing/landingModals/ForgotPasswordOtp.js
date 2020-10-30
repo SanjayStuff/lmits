@@ -94,56 +94,65 @@ const ForgotPasswordOtp = () => {
           </div>
         </Col>
       </Row>
-      <form onSubmit={onSubmit}>
-        <div className={styles.login_forgot__error}>
-          {!otpSent ? (
-            !changeDet && errorMsg !== "" ? (
-              <div>
-                <Alert severity="error">{errorMsg}</Alert>
-              </div>
-            ) : null
-          ) : null}
-        </div>
-        <div className={styles.login_forgot__form__div}>
-          <TextField
-            className={`${styles.login_forgot__textfield} ${classes.root}`}
-            id="MobileNumber"
-            type="number"
-            value={mobile_number}
-            onChange={(e) => {
-              setMobile_Number(e.target.value);
-              setOtpSent(false);
-              setChangeDet(true);
-            }}
-            required
-            InputLabelProps={{
-              classes: {
-                asterisk: classes.asterisk,
-              },
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment disableTypography={true} position="start">
-                  +91 |
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined"
-            label="Enter Mobile Number"
-            size="small"
-          />
-        </div>
-        <div align="middle">
-          <Button
-            className={styles.login_forgot__btn}
-            disabled={otpSent}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            Send OTP
-          </Button>
-        </div>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
+        <Row>
+          <Col xs={24} md={22}>
+            <div className={styles.login_forgot__error}>
+              {!otpSent ? (
+                !changeDet && errorMsg !== "" ? (
+                  <div>
+                    <Alert severity="error">{errorMsg}</Alert>
+                  </div>
+                ) : null
+              ) : null}
+            </div>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xs={24} md={22}>
+            <div className={styles.login_forgot__form__div}>
+              <TextField
+                className={`${styles.login_forgot__textfield} ${classes.root}`}
+                id="MobileNumber"
+                type="number"
+                value={mobile_number}
+                onChange={(e) => {
+                  setMobile_Number(e.target.value);
+                  setOtpSent(false);
+                  setChangeDet(true);
+                }}
+                required
+                InputLabelProps={{
+                  classes: {
+                    asterisk: classes.asterisk,
+                  },
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment disableTypography={true} position="start">
+                      +91 |
+                    </InputAdornment>
+                  ),
+                }}
+                variant="outlined"
+                label="Enter Mobile Number"
+                size="small"
+              />
+            </div>
+            <div align="middle" className={styles.login_forgot__btn_div}>
+              <Button
+                className={styles.login_forgot__btn}
+                disabled={otpSent}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Send OTP
+              </Button>
+            </div>
+          </Col>
+        </Row>
       </form>
       <Row>
         <Col className={styles.login_forgot__resend_div}>

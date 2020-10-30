@@ -28,9 +28,16 @@
   min-width: 100%;
 }
 
+.login_otp__btn__div {
+  text-align: center;
+  padding: 0 0.9rem;
+  margin: 0 auto;
+}
+
 .login_otp__btn {
+  width: 100%;
   opacity: 0.8;
-  padding: 0.5rem 1rem !important;
+  /* padding: 0.5rem 1rem !important; */
 }
 
 .login_otp__btn:focus {

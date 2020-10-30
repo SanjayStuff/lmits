@@ -148,12 +148,10 @@ const OrderSummary = (props) => {
                                 {""}
                                 {pickupDetails.landmark}
                                 {""}
-                                {pickupDetails.landmark !== "" ? <br /> : null}
+                                {pickupDetails.landmark !== "" ? " " : null}
                                 {pickupDetails.city}
                                 {" - "}
-                                {pickupDetails.zip}
-                                <br />
-                                {pickupDetails.state}
+                                {pickupDetails.zip} {pickupDetails.state}
                               </p>
                             </div>
                           </Grid>
@@ -200,40 +198,36 @@ const OrderSummary = (props) => {
                                       {details.package.product_value}
                                     </p>
                                   </Grid>
-
                                   <Grid item xs={12} sm={6}>
                                     Product Dimension(in cm)
                                     <Grid
                                       container
                                       spacing={1}
-                                      style={{ margin: ".5rem 0" }}
+                                      style={{ margin: ".3rem 0" }}
                                     >
                                       <Grid item xs={3} sm={3}>
-                                        <TextField
-                                          disabled
-                                          variant="outlined"
-                                          value={details.package.length}
-                                          label="Length"
-                                          size="small"
-                                        />
+                                        Length
+                                        <p
+                                          className={styles.order_input_border}
+                                        >
+                                          {details.package.length}
+                                        </p>
                                       </Grid>
                                       <Grid item xs={3} sm={3}>
-                                        <TextField
-                                          disabled
-                                          variant="outlined"
-                                          value={details.package.breadth}
-                                          label="Breadth"
-                                          size="small"
-                                        />
+                                        Breadth
+                                        <p
+                                          className={styles.order_input_border}
+                                        >
+                                          {details.package.breadth}
+                                        </p>
                                       </Grid>
                                       <Grid item xs={3} sm={3}>
-                                        <TextField
-                                          disabled
-                                          variant="outlined"
-                                          value={details.package.height}
-                                          label="Height"
-                                          size="small"
-                                        />
+                                        Height
+                                        <p
+                                          className={styles.order_input_border}
+                                        >
+                                          {details.package.height}
+                                        </p>
                                       </Grid>
                                     </Grid>
                                   </Grid>
@@ -350,7 +344,7 @@ const OrderSummary = (props) => {
                         <Row>
                           <Col md={24}>
                             <Row>
-                              <Col md={14}>
+                              <Col md={12}>
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} sm={4}>
                                     Order ID{""}
@@ -407,7 +401,7 @@ const OrderSummary = (props) => {
                                 </Grid>
                               </Col>
 
-                              <Col md={10}>
+                              <Col xs={24} md={12}>
                                 <Grid item xs={12} sm={10}>
                                   <div>
                                     <hr
@@ -416,21 +410,18 @@ const OrderSummary = (props) => {
                                       }}
                                     />
                                     <Row>
-                                      <Col sm={17}>
+                                      <Col xs={16} sm={17}>
                                         <p className={styles.order_total}>
                                           Delivery Charges
-                                          {/* {paymentDetails.vendor_charge} */}
                                           <br />
                                           Service Charges
-                                          {/* {paymentDetails.lmits_charge} */}
                                           <br />
                                           GST
-                                          {/* GST: Rs.{paymentDetails.lmits_tax} */}
                                         </p>
                                       </Col>
 
                                       <Row>
-                                        <Col sm={12}>
+                                        <Col xs={8} sm={12}>
                                           <p className={styles.order_total}>
                                             Rs.
                                             {paymentDetails.vendor_charge}
@@ -450,14 +441,14 @@ const OrderSummary = (props) => {
                                       }}
                                     />
                                     <Row>
-                                      <Col sm={17}>
+                                      <Col xs={15} sm={17}>
                                         <p className={styles.order_total}>
                                           Order Total
                                         </p>
                                       </Col>
 
                                       <Row>
-                                        <Col sm={12}>
+                                        <Col xs={12} sm={12}>
                                           <p className={styles.order_total}>
                                             Rs.
                                             {paymentDetails.amount}
@@ -471,46 +462,6 @@ const OrderSummary = (props) => {
                             </Row>
                           </Col>
                         </Row>
-
-                        {/* <Row>
-                          <Col md={24}>
-                            <Row>
-                              <Col container md={11}>
-                                <Grid item xs={12} md={12}>
-                                  Payment Method {''}
-                                  <p
-                                    className={styles.order_input_border}
-                                    style={{ textTransform: 'uppercase' }}
-                                  >
-                                    {paymentDetails.method}
-                                  </p>
-                                </Grid>
-
-                                <Grid item xs={12} md={12}>
-                                  Service Provider {''}
-                                  <p className={styles.order_ser_prov}>
-                                    LMiTS Solutions Pvt. Ltd.
-                                  </p>
-                                </Grid>
-
-                                <Grid item xs={12} sm={6}>
-                                  Vendor{''}
-                                  <div>
-                                    <img
-                                      height={50}
-                                      src={allDetails.supplier_logo}
-                                      alt="Vendor Logo"
-                                    />
-                                  </div>
-                                </Grid>
-                              </Col>
-                              <Col md={12}>
-                                <Grid item xs={12} md={12}></Grid>
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-                       */}
                       </CardContent>
                     </Card>
                   </Col>
@@ -525,275 +476,6 @@ const OrderSummary = (props) => {
                 </Card>
               </Col>
             </Row>
-            {/* <Row>
-              <Col md={16}>
-                <Row>
-                  <Col md={16}>
-                    <Card variant="outlined" style={{ margin: '15px' }}>
-                      <CardContent>
-                        <h5>Pick-up Address</h5>
-                        <Grid container spacing={3}>
-                          <Grid item xs={12} sm={3}>
-                            <div className={classes.paper}>
-                              {pickupName}
-                              <br />
-                              {pickupNumber}
-                            </div>
-                          </Grid>
-                          <Grid item xs={12} sm={8}>
-                            <div className={classes.paper}>
-                              <p>
-                                {pickupDetails.door_number}{' '}
-                                {pickupDetails.street}
-                                {pickupDetails.address_1}
-                                {pickupDetails.address_2}
-                                {pickupDetails.landmark}
-                                {pickupDetails.landmark !== '' ? <br /> : null}
-                                {pickupDetails.city}
-                                {' - '}
-                                {pickupDetails.zip}
-                                <br />
-                                {pickupDetails.state}
-                              </p>
-                            </div>
-                          </Grid>
-                        </Grid>
-                      </CardContent>
-                    </Card>
-                  </Col>
-
-                  <Col md={16}>
-                    <Card
-                      variant="outlined"
-                      style={{ margin: '15px', padding: '1rem' }}
-                    >
-                      <h5>Product Details</h5>
-                      <Carousel interval="100000">
-                        {deliveryDetails.map((details) => {
-                          return (
-                            <Carousel.Item
-                              key={details.delivery_location.sub_order_id}
-                            >
-                              <CardContent>
-                                <Grid container spacing={3}>
-                                  <Grid item xs={12} sm={4}>
-                                    Product Name {''}
-                                    <p className="text-black">
-                                      {details.package.product}
-                                    </p>
-                                  </Grid>
-                                  <Grid item xs={12} sm={6}>
-                                    Pick-up Date and Time {''}
-                                    <p>
-                                      {new Date(createdTime).getDate()}
-                                      {'-'}
-                                      {month[new Date(createdTime).getMonth()]}
-                                      {'-'}
-                                      {new Date(createdTime).getFullYear()}{' '}
-                                      {new Date(createdTime).getHours()}
-                                      {':'}
-                                      {new Date(createdTime).getMinutes()}
-                                    </p>
-                                  </Grid>
-                                </Grid>
-
-                                <Grid container spacing={3}>
-                                  <Grid item xs={12} sm={4}>
-                                    Product Value {''}
-                                    <p className="text-black">
-                                      {details.package.product_value}
-                                    </p>
-                                  </Grid>
-
-                                  <Grid item xs={12} sm={6}>
-                                    Product Dimension(in cm)
-                                    <Grid
-                                      container
-                                      spacing={1}
-                                      style={{ margin: '.5rem 0' }}
-                                    >
-                                      <Grid item xs={3} sm={2}>
-                                        <TextField
-                                          disabled
-                                          variant="outlined"
-                                          value={details.package.length}
-                                          label="Length"
-                                          size="small"
-                                        />
-                                      </Grid>
-                                      <Grid item xs={3} sm={2}>
-                                        <TextField
-                                          disabled
-                                          variant="outlined"
-                                          value={details.package.breadth}
-                                          label="Breadth"
-                                          size="small"
-                                        />
-                                      </Grid>
-                                      <Grid item xs={3} sm={2}>
-                                        <TextField
-                                          disabled
-                                          variant="outlined"
-                                          value={details.package.height}
-                                          label="Height"
-                                          size="small"
-                                        />
-                                      </Grid>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-
-                                <Grid container spacing={3}>
-                                  <Grid item xs={12} sm={4}>
-                                    Product weight {''}
-                                    <p>
-                                      {details.package.weight_in_gram}
-                                      gms
-                                    </p>
-                                  </Grid>
-                                </Grid>
-
-                                <div>
-                                  <span>
-                                    Product Dimension(in cm)
-                                    <br />
-                                    <TextField
-                                      disabled
-                                      variant="outlined"
-                                      value={details.package.length}
-                                      label="Length"
-                                      size="small"
-                                    />
-                                    <TextField
-                                      disabled
-                                      variant="outlined"
-                                      value={details.package.breadth}
-                                      label="Breadth"
-                                      size="small"
-                                    />
-                                    <TextField
-                                      disabled
-                                      variant="outlined"
-                                      value={details.package.height}
-                                      label="Height"
-                                      size="small"
-                                    />
-                                  </span>
-                                </div>
-                                <Card variant="outlined">
-                                  <CardContent>
-                                    <h6>Drop Address</h6>
-                                    <p>
-                                      {
-                                        details.delivery_location.address
-                                          .contact_person
-                                      }
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .door_number
-                                      }{' '}
-                                      {details.delivery_location.address.street}
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .address_1
-                                      }
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .address_2
-                                      }
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .landmark
-                                      }
-                                      {details.delivery_location.address
-                                        .landmark !== '' ? (
-                                        <br />
-                                      ) : null}
-                                      {details.delivery_location.address.city}
-                                      {' - '}
-                                      {details.delivery_location.address.zip}
-                                      <br />
-                                      {details.delivery_location.address.state}
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .contact_person_number
-                                      }
-                                    </p>
-                                  </CardContent>
-                                </Card>
-                              </CardContent>
-                            </Carousel.Item>
-                          );
-                        })}
-                      </Carousel>
-                    </Card>
-                  </Col>
-                </Row>
-              </Col>
-
-              <Col md={6}>
-                <Card variant="outlined" style={{ margin: '15px' }}>
-                  <CardContent>
-                    <h5>Payment Details</h5>
-                    <div>
-                      <p>
-                        Order ID: {paymentDetails.order_id}
-                        <br />
-                        Service Provider: LMiTS Solutions Pvt. Ltd.
-                        <br />
-                        Supplier:
-                        <img
-                          src={allDetails.supplier_logo}
-                          alt="Supplier Logo"
-                        />
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        Order Placed On :{new Date(createdTime).getDate()}
-                        {'-'}
-                        {month[new Date(createdTime).getMonth()]}
-                        {'-'}
-                        {new Date(createdTime).getFullYear()}{' '}
-                        {new Date(createdTime).getHours()}
-                        {':'}
-                        {new Date(createdTime).getMinutes()}
-                        <br />
-                        Payment Method:
-                        <span style={{ textTransform: 'uppercase' }}>
-                          {paymentDetails.method}
-                        </span>
-                      </p>
-                    </div>
-                    <div>
-                      <hr
-                        style={{
-                          borderTop: '1px dashed black',
-                        }}
-                      />
-                      <p>
-                        Delivery Charges : Rs.{paymentDetails.vendor_charge}
-                        <br />
-                        Service Charges : Rs.{paymentDetails.lmits_charge}
-                        <br />
-                        GST: Rs.{paymentDetails.lmits_tax}
-                      </p>
-                      <hr
-                        style={{
-                          borderTop: '1px dashed black',
-                        }}
-                      />
-                      <p>Order Total : Rs.{paymentDetails.amount}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Col>
-            </Row> */}
           </DialogContent>
         </Paper>
       </Dialog>
@@ -802,79 +484,3 @@ const OrderSummary = (props) => {
 };
 
 export default OrderSummary;
-
-{
-  /* <div>
-                                  <span>
-                                    Product Dimension(in cm)
-                                    <br />
-                                    <TextField
-                                      disabled
-                                      variant="outlined"
-                                      value={details.package.length}
-                                      label="Length"
-                                      size="small"
-                                    />
-                                    <TextField
-                                      disabled
-                                      variant="outlined"
-                                      value={details.package.breadth}
-                                      label="Breadth"
-                                      size="small"
-                                    />
-                                    <TextField
-                                      disabled
-                                      variant="outlined"
-                                      value={details.package.height}
-                                      label="Height"
-                                      size="small"
-                                    />
-                                  </span>
-                                </div> 
-                                <Card variant="outlined">
-                                  <CardContent>
-                                    <h6>Drop Address</h6>
-                                    <p>
-                                      {
-                                        details.delivery_location.address
-                                          .contact_person
-                                      }
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .door_number
-                                      }{' '}
-                                      {details.delivery_location.address.street}
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .address_1
-                                      }
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .address_2
-                                      }
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .landmark
-                                      }
-                                      {details.delivery_location.address
-                                        .landmark !== '' ? (
-                                        <br />
-                                      ) : null}
-                                      {details.delivery_location.address.city}
-                                      {' - '}
-                                      {details.delivery_location.address.zip}
-                                      <br />
-                                      {details.delivery_location.address.state}
-                                      <br />
-                                      {
-                                        details.delivery_location.address
-                                          .contact_person_number
-                                      }
-                                    </p>
-                                  </CardContent>
-                                </Card>*/
-}

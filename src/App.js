@@ -21,7 +21,6 @@ const THEME = createMuiTheme({
       root: {
         textTransform: "capitalize",
         borderRadius: "0.3rem",
-        padding: "0.5rem 1rem",
         fontSize: ".9rem",
         outline: "none",
         border: "none",

@@ -80,7 +80,7 @@ const SignupOtpVerification = () => {
         </Col>
       </Row>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} noValidate autoComplete="off">
         <Row>
           <Col className={styles.signup_otp__error}>
             {isSubmitted && errorMsg !== "" ? (

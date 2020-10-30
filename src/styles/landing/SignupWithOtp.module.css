@@ -25,11 +25,13 @@
 }
 
 .signup__btn_div {
-  margin: 0.8rem;
+  margin: 0 auto;
+  padding: 0 0.9rem;
   text-align: center;
 }
 
 .signup__btn {
+  width: 100%;
   opacity: 0.8;
   padding: 0.5rem 1rem !important;
 }
@@ -37,6 +39,19 @@
 .signup__btn:focus {
   outline: none;
   border: none;
+}
+
+.sigup__div_signup {
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.sigup__txt_signup {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #000 !important;
+  cursor: pointer;
 }
 
 .sigup_otp__resend_div {
